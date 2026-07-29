@@ -1,0 +1,156 @@
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Inter", sans-serif;
+    font-weight: bold;
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: #cdd6f4;
+}
+
+/* Các block module */
+#workspaces,
+#window,
+#clock,
+#pulseaudio,
+#cpu,
+#memory,
+#battery,
+#tray,
+#custom-powermenu {
+    background-color: #1e1e2e;
+    padding: 4px 12px;
+    border-radius: 12px;
+    border: 1px solid #313244;
+}
+
+/* =====================
+   Niri Workspaces
+===================== */
+
+#workspaces button {
+    padding: 0 5px;
+    color: #6c7086;
+    background: transparent;
+}
+
+#workspaces button.active,
+#workspaces button.focused {
+    color: #cba6f7;
+}
+
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: transparent;
+}
+
+
+/* =====================
+   Window title
+===================== */
+
+#window {
+    color: #bac2de;
+}
+
+
+/* =====================
+   Clock
+===================== */
+
+#clock {
+    color: #89b4fa;
+}
+
+
+/* =====================
+   Audio
+===================== */
+
+#pulseaudio {
+    color: #f9e2af;
+}
+
+
+/* =====================
+   System Monitor
+===================== */
+
+#cpu {
+    color: #a6e3a1;
+}
+
+#memory {
+    color: #94e2d5;
+}
+
+
+/* =====================
+   Battery
+===================== */
+
+#battery {
+    color: #a6e3a1;
+}
+
+#battery.warning {
+    color: #fab387;
+}
+
+#battery.critical {
+    color: #f38ba8;
+}
+
+
+/* =====================
+   System Tray
+===================== */
+
+#tray {
+    color: #cdd6f4;
+}
+
+#tray > .passive {
+    opacity: 0.6;
+}
+
+#tray > .needs-attention {
+    color: #f38ba8;
+}
+
+#tray menu {
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 8px;
+    padding: 8px;
+}
+
+
+/* =====================
+   Power Menu
+===================== */
+
+#custom-powermenu {
+    color: #f38ba8;
+    padding: 4px 14px;
+}
+
+
+/* =====================
+   Hover Effects
+===================== */
+
+#clock:hover,
+#pulseaudio:hover,
+#cpu:hover,
+#memory:hover,
+#battery:hover,
+#tray:hover,
+#custom-powermenu:hover {
+    background-color: #313244;
+}
