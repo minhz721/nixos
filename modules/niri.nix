@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 {
-  # Enable the Niri Wayland compositor at the system level
+  # Enable Niri Wayland compositor
   programs.niri.enable = true;
 
   # services.displayManager.sddm = {
@@ -25,16 +25,28 @@
 
   # Essential security policies and authentication agents
   security.polkit.enable = true;
+
+  # GNOME keyring (password storage)
   services.gnome.gnome-keyring.enable = true;
+
+  # PAM for swaylock
   security.pam.services.swaylock = {};
+
+  # Wayland support for Electron apps
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  environment.systemPackages = with pkgs; [ 
-    xwayland-satellite # Protocol layer allowing older X11 apps to run on Wayland
-    swaylock           # Security utility to screen-lock the user session
-    mako               # Light-weight desktop notification daemon
-    swayidle           # User idle tracking agent for power management hooks
-    swaybg             # Wallpaper rendering engine targeted for Wayland
+  environment.systemPackages = with pkgs; [
+    greetd.regreet
+    # Niri dependencies
+    xwayland-satellite
+
+    # Wayland utilities
+    swaylock
+    swayidle
+    swaybg
+    mako
+
+    # Apps
     fuzzel
     flameshot
   ];
