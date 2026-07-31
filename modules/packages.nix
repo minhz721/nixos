@@ -12,6 +12,12 @@
         options = "--delete-older-than 7d";
     }; 
 
+    # fish
+    programs.fish.enable = true;
+    users.extraUsers.leomin = {
+        shell = pkgs.fish;
+    };
+
     # Enable dconf for GTK/Nemo settings
     programs.dconf.enable = true;
 

@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ./ghostty.nix
+        ./ghostty
         ./fish.nix
         ./git.nix
         ./niri
@@ -13,7 +13,6 @@
         ./flameshot.nix
         ./default_apps.nix
         ./mako.nix
-        ./noctalia.nix
     ];
   
     home.username = "leomin";

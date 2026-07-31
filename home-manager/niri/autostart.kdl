@@ -2,7 +2,7 @@
 spawn-at-startup "waybar"
 spawn-at-startup "mako"
 spawn-at-startup "fcitx5" "-d"
-// spawn-at-startup "swaybg" "-i" "/path/to/wallpaper.jpg" "-m" "fill"
+spawn-at-startup "sh" "-c" "swaybg -i $(cat ~/.cache/wallpaper_current) -m fill"
 
 hotkey-overlay {
     // skip-at-startup
