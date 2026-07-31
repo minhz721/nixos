@@ -41,7 +41,7 @@
           ${inputs.noctalia-greeter.packages.${pkgs.system}.default}/bin/noctalia-greeter-session -- --session niri
         '';
 
-        user = "greeter";
+        user = "leomin";
       };
     };
   };
