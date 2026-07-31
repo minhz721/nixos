@@ -40,6 +40,7 @@
       gl = "git log --oneline --graph --decorate";
       gcan = "git commit --amend --no-edit";
       ggf = "git push -f";
+      gpo = "git pull origin";
       
       rebuild = "sudo nixos-rebuild switch --flake";
       update = "nix flake update";

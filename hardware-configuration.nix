@@ -24,6 +24,21 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
+  # 2TB_HDD
+  fileSystems."/mnt/hdd1" = {
+    device = "/dev/disk/by-uuid/7ECE-1AA1";
+    fsType = "exfat";
+    options = [ "nofail" "uid=1000" "gid=100" "dmask=002" "fmask=113" ];
+  };
+
+  # 2TB_HDD_2
+  fileSystems."/mnt/hdd2" = {
+    device = "/dev/disk/by-uuid/6F5F-F3DD";
+    fsType = "exfat";
+    options = [ "nofail" "uid=1000" "gid=100" "dmask=002" "fmask=113" ];
+  };
+
+
   swapDevices = [ ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
