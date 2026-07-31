@@ -4,7 +4,26 @@
   # Enable Niri Wayland compositor
   programs.niri.enable = true;
 
-  # Security / authentication
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   wayland.enable = true;
+  # };
+
+  # Configure Greetd display manager to log straight into Niri session
+  services.greetd = {
+    enable = true;
+    settings = {
+      default_session = {
+        command = "${config.programs.niri.package}/bin/niri-session";
+        user = "leomin"; # System user profile matching your setup
+      };
+    };
+  };
+
+  # Prevent Systemd from overriding the user-manager PATH variables
+  systemd.user.services.niri.enableDefaultPath = false;
+
+  # Essential security policies and authentication agents
   security.polkit.enable = true;
 
   # GNOME keyring (password storage)
