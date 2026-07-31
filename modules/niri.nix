@@ -4,6 +4,11 @@
   # Enable the Niri Wayland compositor at the system level
   programs.niri.enable = true;
 
+  # services.displayManager.sddm = {
+  #   enable = true;
+  #   wayland.enable = true;
+  # };
+
   # Configure Greetd display manager to log straight into Niri session
   services.greetd = {
     enable = true;
