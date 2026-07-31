@@ -83,9 +83,9 @@
     "custom/wallpaper": {
         "format": "",
         "tooltip": true,
-        "tooltip-format": "Toggle Noctalia Wallpaper Panel",
+        "tooltip-format": "Toggle Wallpaper Panel",
         
         // Execute Noctalia's IPC command on click
-        "on-click": "noctalia-action toggle-panel wallpaper"
+        "on-click": "$HOME/.config/waybar/scripts/wallpaper.sh"
     }
 }

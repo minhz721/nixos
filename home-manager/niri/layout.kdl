@@ -1,6 +1,11 @@
 layout {
     gaps 16
-    center-focused-column "never"
+    // center-focused-column "never"
+    center-focused-column "on-overflow"
+    always-center-single-column
+    empty-workspace-above-first
+    // default-column-display "tabbed"
+    // background-color "#003300"
 
     preset-column-widths {
         proportion 0.33333
@@ -10,30 +15,90 @@ layout {
 
     default-column-width { proportion 0.5; }
 
+    preset-window-heights {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
     focus-ring {
+        // on
+        off
         width 4
-        active-color "#7fc8ff"
-        inactive-color "#505050"
-        // active-gradient from="#80c8ff" to="#c7ff7f" angle=45
+        // active-color "#7fc8ff"
+        // inactive-color "#505050"
+        urgent-color "#9b0000"
+        // active-gradient from="#80c8ff" to="#bbddff" angle=45
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        // urgent-gradient from="#800" to="#a33" angle=45
     }
 
     border {
         off
+        // on
         width 4
-        active-color "#ffc87f"
+        active-color "#7fc8ff"
         inactive-color "#505050"
         urgent-color "#9b0000"
+        // active-gradient from="#ffbb66" to="#ffc880" angle=45 relative-to="workspace-view"
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view" in="srgb-linear"
+        // urgent-gradient from="#800" to="#a33" angle=45
     }
 
     shadow {
-        softness 30
+        // off
+        on
+
+        draw-behind-window true
+
+        // You can change how shadows look. The values below are in logical
+        // pixels and match the CSS box-shadow properties.
+
+        // Softness controls the shadow blur radius.
+        softness 50
+
+        // Spread expands the shadow.
         spread 5
+
+        // Offset moves the shadow relative to the window.
         offset x=0 y=5
+
+        // You can also change the shadow color and opacity.
         color "#0007"
     }
 
-    struts {
-        // top 0
-        // bottom 0
+    tab-indicator {
+        off
+        // on
+        hide-when-single-tab
+        place-within-column
+        gap 5
+        width 4
+        length total-proportion=1.0
+        position "right"
+        gaps-between-tabs 2
+        corner-radius 8
+        active-color "red"
+        inactive-color "gray"
+        urgent-color "blue"
+        // active-gradient from="#80c8ff" to="#bbddff" angle=45
+        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        // urgent-gradient from="#800" to="#a33" angle=45
     }
+
+    insert-hint {
+        off
+        // on
+        color "#ffc87f80"
+        // gradient from="#ffbb6680" to="#ffc88080" angle=45 relative-to="workspace-view"
+    }
+
+    struts {
+        // left 64
+        // right 64
+        // top 64
+        // bottom 64
+    }
+
+     background-color "transparent"
 }

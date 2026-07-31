@@ -29,6 +29,7 @@
     swayidle
     swaybg
     mako
+    libnotify
 
     # Apps
     fuzzel
