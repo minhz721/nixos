@@ -12,7 +12,7 @@ window#waybar {
     color: #cdd6f4;
 }
 
-/* Các block module */
+/* block module */
 #workspaces,
 #window,
 #clock,
@@ -20,8 +20,7 @@ window#waybar {
 #cpu,
 #memory,
 #battery,
-#tray,
-#custom-powermenu {
+#tray {
     background-color: #1e1e2e;
     padding: 4px 12px;
     border-radius: 12px;
@@ -137,9 +136,25 @@ window#waybar {
 
 #custom-powermenu {
     color: #f38ba8;
-    padding: 4px 14px;
+    background-color: #1e1e2e;
+    border-radius: 12px;
+    border: 1px solid #313244;
+    padding: 4px 14px 4px 10px;
 }
 
+#custom-wallpaper {
+    color: #cba6f7; /* Catppuccin Mauve (Purple) */
+    background: #1e1e2e; /* Catppuccin Base */
+    padding: 0 12px;
+    margin: 4px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+#custom-wallpaper:hover {
+    color: #1e1e2e;
+    background: #cba6f7; /* Invert colors on hover */
+}
 
 /* =====================
    Hover Effects
@@ -151,6 +166,7 @@ window#waybar {
 #memory:hover,
 #battery:hover,
 #tray:hover,
+/* #custom-wallpaper:hover, */
 #custom-powermenu:hover {
     background-color: #313244;
 }
