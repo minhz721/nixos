@@ -12,6 +12,8 @@
         ./nemo
         ./flameshot.nix
         ./default_apps.nix
+        ./mako.nix
+        ./noctalia.nix
     ];
   
     home.username = "leomin";

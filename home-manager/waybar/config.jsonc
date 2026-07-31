@@ -20,6 +20,7 @@
         "pulseaudio",
         "cpu",
         "memory",
+        "custom/wallpaper",
         "custom/powermenu"
     ],
 
@@ -77,5 +78,14 @@
         "format": "",
         "tooltip": false,
         "on-click": "$HOME/.config/waybar/scripts/powermenu.sh"
+    },
+
+    "custom/wallpaper": {
+        "format": "",
+        "tooltip": true,
+        "tooltip-format": "Toggle Noctalia Wallpaper Panel",
+        
+        // Execute Noctalia's IPC command on click
+        "on-click": "noctalia-action toggle-panel wallpaper"
     }
 }

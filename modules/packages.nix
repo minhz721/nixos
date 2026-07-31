@@ -3,6 +3,15 @@
 {
     services.udisks2.enable = true;
 
+    # Nix store optimization and garbage collection
+    nix.settings.auto-optimise-store = true; 
+
+    nix.gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 7d";
+    }; 
+
     # Enable dconf for GTK/Nemo settings
     programs.dconf.enable = true;
 
@@ -39,5 +48,8 @@
         # bluetooth
         bluez
         blueman
+
+        #
+        btop
     ];
 }
