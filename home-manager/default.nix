@@ -2,7 +2,7 @@
 
 {
     imports = [
-        ./ghostty.nix
+        ./ghostty
         ./fish.nix
         ./git.nix
         ./niri
