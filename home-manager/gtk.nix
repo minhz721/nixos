@@ -15,8 +15,8 @@
     };
 
     cursorTheme = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
     };
 
     font = {
@@ -33,9 +33,16 @@
     };
   };
 
+
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };
+  };
+
+
+  home.sessionVariables = {
+    XCURSOR_THEME = "Bibata-Modern-Ice";
+    XCURSOR_SIZE = "24";
   };
 }

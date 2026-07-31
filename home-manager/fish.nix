@@ -20,8 +20,6 @@
       update = "nix flake update";
       clean = "sudo nix-collect-garbage -d";
 
-      ls = "eza --icons";
-      ll = "eza -la --icons";
     };
   };
 }

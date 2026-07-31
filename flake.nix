@@ -11,9 +11,13 @@
 
     # New custom packages repository for Thorium browser
     custom-packages.url = "github:Rishabh5321/custom-packages-flake";
+
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  # FIXED: Added '@inputs' so that all input flakes can be correctly passed to configuration modules
   outputs = { nixpkgs, home-manager, custom-packages, ... }@inputs:
   let
     system = "x86_64-linux";
@@ -22,6 +26,10 @@
   {
     nixosConfigurations.leomin = lib.nixosSystem {
       inherit system;
+
+      specialArgs = {
+        inherit inputs;
+      };
 
       modules = [
         ./configuration.nix
@@ -42,20 +50,11 @@
             import ./home-manager/default.nix;
         }
 
-        # Configuration block for GNOME Desktop and Graphics Drivers
-        ({ pkgs, ... }: {
+        {
           services.xserver = {
             enable = true;
-            
-            # Load proper open-source graphics driver for your AMD Ryzen 5 4600G
             videoDrivers = [ "amdgpu" ];
-
           };
-        })
-
-        # Passing inputs wrapper to make 'custom-packages' accessible inside configuration.nix
-        {
-          config._module.args = { inherit inputs; };
         }
       ];
     };

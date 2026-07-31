@@ -7,11 +7,13 @@
         ./locales.nix
         ./network.nix
         ./packages.nix
-        ./sddm.nix
+        ./greetd.nix
         ./service.nix
         ./user.nix
         ./fonts.nix
         ./niri.nix
         ./bluetooth.nix
+        ./keyd.nix
+
     ];
 }

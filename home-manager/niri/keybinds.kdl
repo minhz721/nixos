@@ -1,6 +1,8 @@
 binds {
 
-    // ─── Applications ───
+    // =========================
+    // Applications
+    // =========================
 
     Mod+Return hotkey-overlay-title="Open Terminal" {
         spawn "ghostty"
@@ -10,11 +12,11 @@ binds {
         spawn "nemo"
     }
 
-    Mod+B hotkey-overlay-title="Open Browser" {
+    Mod+B hotkey-overlay-title="Browser" {
         spawn "thorium-browser"
     }
 
-    Mod+C hotkey-overlay-title="Open VSCode" {
+    Mod+C hotkey-overlay-title="VSCode" {
         spawn "code"
     }
 
@@ -22,30 +24,48 @@ binds {
         spawn "swaylock"
     }
 
-    Mod+Shift+Slash {
-        show-hotkey-overlay
-    }
-
-    Mod+D hotkey-overlay-title="Run Application: fuzzel" {
+    Mod+D hotkey-overlay-title="Launcher" {
         spawn "fuzzel"
     }
 
 
-    // ─── Screenshot ───
+    // =========================
+    // Niri
+    // =========================
 
-    Mod+Shift+S {
-        spawn "flameshot" "gui"
+    Mod+Shift+Slash {
+        show-hotkey-overlay
     }
-
-
-    // ─── Reload Niri config ───
 
     Mod+Alt+R {
         spawn "niri" "msg" "action" "load-config-file"
     }
 
 
-    // ─── Audio ───
+    // =========================
+    // Screenshot
+    // =========================
+
+    Mod+Shift+S {
+        spawn "flameshot" "gui"
+    }
+
+    Print {
+        screenshot
+    }
+
+    Ctrl+Print {
+        screenshot-screen
+    }
+
+    Alt+Print {
+        screenshot-window
+    }
+
+
+    // =========================
+    // Audio
+    // =========================
 
     XF86AudioRaiseVolume allow-when-locked=true {
         spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"
@@ -64,7 +84,9 @@ binds {
     }
 
 
-    // ─── Media ───
+    // =========================
+    // Media
+    // =========================
 
     XF86AudioPlay allow-when-locked=true {
         spawn-sh "playerctl play-pause"
@@ -87,7 +109,9 @@ binds {
     }
 
 
-    // ─── Window control ───
+    // =========================
+    // Window
+    // =========================
 
     Mod+O repeat=false {
         toggle-overview
@@ -98,7 +122,131 @@ binds {
     }
 
 
-    // ─── Layout ───
+    // =========================
+    // Focus
+    // =========================
+
+    Mod+Left {
+        focus-column-left
+    }
+
+    Mod+Right {
+        focus-column-right
+    }
+
+    Mod+Up {
+        focus-window-up
+    }
+
+    Mod+Down {
+        focus-window-down
+    }
+
+
+    Mod+H {
+        focus-column-left
+    }
+
+    Mod+J {
+        focus-window-down
+    }
+
+    Mod+K {
+        focus-window-up
+    }
+
+    Mod+L {
+        focus-column-right
+    }
+
+
+    // =========================
+    // Move windows
+    // =========================
+
+    Mod+Shift+Left {
+        move-column-left
+    }
+
+    Mod+Shift+Right {
+        move-column-right
+    }
+
+    Mod+Shift+Up {
+        move-window-up
+    }
+
+    Mod+Shift+Down {
+        move-window-down
+    }
+
+
+    // =========================
+    // Workspace
+    // =========================
+
+    Mod+1 {
+        focus-workspace 1
+    }
+
+    Mod+2 {
+        focus-workspace 2
+    }
+
+    Mod+3 {
+        focus-workspace 3
+    }
+
+    Mod+4 {
+        focus-workspace 4
+    }
+
+    Mod+5 {
+        focus-workspace 5
+    }
+
+    Mod+6 {
+        focus-workspace 6
+    }
+
+    Mod+7 {
+        focus-workspace 7
+    }
+
+    Mod+8 {
+        focus-workspace 8
+    }
+
+    Mod+9 {
+        focus-workspace 9
+    }
+
+
+    Mod+Page_Down {
+        focus-workspace-down
+    }
+
+    Mod+Page_Up {
+        focus-workspace-up
+    }
+
+
+    Mod+Shift+1 {
+        move-column-to-workspace 1
+    }
+
+    Mod+Shift+2 {
+        move-column-to-workspace 2
+    }
+
+    Mod+Shift+3 {
+        move-column-to-workspace 3
+    }
+
+
+    // =========================
+    // Layout
+    // =========================
 
     Mod+R {
         switch-preset-column-width
@@ -117,7 +265,9 @@ binds {
     }
 
 
-    // ─── Floating / fullscreen ───
+    // =========================
+    // Floating / Fullscreen
+    // =========================
 
     Mod+V {
         toggle-window-floating
@@ -140,22 +290,51 @@ binds {
     }
 
 
-    // ─── Screenshot keys ───
+    // =========================
+    // Column
+    // =========================
 
-    Print {
-        screenshot
+    Mod+BracketLeft {
+        consume-or-expel-window-left
     }
 
-    Ctrl+Print {
-        screenshot-screen
+    Mod+BracketRight {
+        consume-or-expel-window-right
     }
 
-    Alt+Print {
-        screenshot-window
+    Mod+Comma {
+        consume-window-into-column
+    }
+
+    Mod+Period {
+        expel-window-from-column
     }
 
 
-    // ─── Exit ───
+    // =========================
+    // Monitor
+    // =========================
+
+    Mod+Ctrl+Left {
+        focus-monitor-left
+    }
+
+    Mod+Ctrl+Right {
+        focus-monitor-right
+    }
+
+    Mod+Shift+Ctrl+Left {
+        move-column-to-monitor-left
+    }
+
+    Mod+Shift+Ctrl+Right {
+        move-column-to-monitor-right
+    }
+
+
+    // =========================
+    // Exit
+    // =========================
 
     Mod+Shift+E {
         quit
@@ -166,9 +345,20 @@ binds {
     }
 
 
-    // ─── Monitor ───
+    // =========================
+    // Power
+    // =========================
 
     Mod+Shift+P {
         power-off-monitors
+    }
+
+
+    // =========================
+    // Shortcut inhibitor
+    // =========================
+
+    Mod+Escape allow-inhibiting=false {
+        toggle-keyboard-shortcuts-inhibit
     }
 }
