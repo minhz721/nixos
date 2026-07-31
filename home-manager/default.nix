@@ -10,7 +10,8 @@
         ./waybar
         ./gtk.nix
         ./nemo
-        ./flameshot
+        ./flameshot.nix
+        ./default_apps.nix
     ];
   
     home.username = "leomin";
@@ -33,8 +34,6 @@
         localsend
 
         #
-        xclip
-        keyd
         zoxide
         starship
 

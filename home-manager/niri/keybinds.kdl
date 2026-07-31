@@ -13,7 +13,7 @@ binds {
     }
 
     Mod+B hotkey-overlay-title="Browser" {
-        spawn "thorium-browser"
+        spawn "thorium"
     }
 
     Mod+C hotkey-overlay-title="VSCode" {
