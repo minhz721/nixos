@@ -2,7 +2,9 @@
 
 {
     services.udisks2.enable = true;
-
+    services.gvfs.enable = true; 
+    services.devmon.enable = true; 
+    
     # Nix store optimization and garbage collection
     nix.settings.auto-optimise-store = true; 
 
@@ -42,6 +44,7 @@
         polkit_gnome
         ntfs3g
         exfatprogs
+        exfat
         dconf-editor
         unzip
         nemo
