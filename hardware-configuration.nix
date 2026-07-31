@@ -25,14 +25,14 @@
     };
 
   # 2TB_HDD
-  fileSystems."/mnt/hdd1" = {
+  fileSystems."/run/media/leomin/2TB_HDD" = {
     device = "/dev/disk/by-uuid/7ECE-1AA1";
     fsType = "exfat";
     options = [ "nofail" "uid=1000" "gid=100" "dmask=002" "fmask=113" ];
   };
 
   # 2TB_HDD_2
-  fileSystems."/mnt/hdd2" = {
+  fileSystems."/run/media/leomin/2TB_HDD2" = {
     device = "/dev/disk/by-uuid/6F5F-F3DD";
     fsType = "exfat";
     options = [ "nofail" "uid=1000" "gid=100" "dmask=002" "fmask=113" ];
