@@ -1,13 +1,14 @@
 { pkgs, ... }: {
   programs.ghostty = {
     enable = true;
-    # Tự động cài đặt gói ghostty từ nixpkgs
+
     package = pkgs.ghostty;
 
     settings = {
+      theme = "Catppuccin Mocha";
       background-opacity = 0.75;
       background-blur-radius = 40;
-      font-size = 10;
+      font-size = 11;
       cursor-style = "block";
       cursor-style-blink = false;
       cursor-invert-fg-bg = true;
@@ -19,8 +20,8 @@
       focus-follows-mouse = true;
       link-url = true;
 
-      window-width = 135;
-      window-height = 55;
+      # window-width = 135;
+      # window-height = 55;
 
       keybind = [
         "ctrl+1=goto_tab:1"

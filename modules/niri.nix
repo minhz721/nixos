@@ -4,6 +4,8 @@
   # Enable Niri Wayland compositor
   programs.niri.enable = true;
 
+  boot.loader.grub.configurationLimit = 7;
+
   # Security / authentication
   security.polkit.enable = true;
 
@@ -17,7 +19,7 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   environment.systemPackages = with pkgs; [
-    regreet
+    greetd.regreet
     # Niri dependencies
     xwayland-satellite
 

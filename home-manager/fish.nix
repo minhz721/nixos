@@ -12,8 +12,9 @@
       gaa = "git add";
       gc = "git commit -m";
       gp = "git push";
+      gst = "git status";
       gl = "git log --oneline --graph --decorate";
-      gcan = "git commit --amend";
+      gcan = "git commit --amend --no-edit";
       ggf = "git push -f";
       
       nix-rebuild = "sudo nixos-rebuild switch --flake";
