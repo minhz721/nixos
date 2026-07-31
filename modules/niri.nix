@@ -29,6 +29,8 @@
 
     # Apps
     fuzzel
+    grim
     flameshot
+    wl-clipboard
   ];
 }
