@@ -1,6 +1,7 @@
 { config, pkgs, inputs, ...}:
 
 {
+    services.udisks2.enable = true;
 
     # Enable dconf for GTK/Nemo settings
     programs.dconf.enable = true;

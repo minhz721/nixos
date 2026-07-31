@@ -11,6 +11,7 @@
         ./gtk.nix
         ./nemo
         ./flameshot.nix
+        ./default_apps.nix
     ];
   
     home.username = "leomin";
