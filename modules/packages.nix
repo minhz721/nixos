@@ -60,5 +60,6 @@
 
         #
         btop
+        home-manager
     ];
 }
