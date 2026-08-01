@@ -29,6 +29,7 @@
         brave
         zathura
         mpv
+        cava
         imv
         mission-center
         dbeaver-bin
