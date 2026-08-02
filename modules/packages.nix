@@ -67,7 +67,7 @@
         nemo
         nemo-with-extensions
         nemo-fileroller
-
+	      vscode
         # Custom external inputs
         inputs.custom-packages.packages."x86_64-linux".thorium-avx2
 
