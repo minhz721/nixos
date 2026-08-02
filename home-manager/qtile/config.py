@@ -9,6 +9,7 @@ from libqtile.config import (
     Screen,
 )
 from libqtile.lazy import lazy
+
 from pathlib import Path
 import os
 import subprocess
@@ -117,12 +118,15 @@ floating_layout = layout.Floating(
 # stuff
 @hook.subscribe.startup_once
 def autostart():
-    autostartscript = "bash -c ~/.config/qtile/autostart_once.sh"
-    home = os.path.expanduser(autostartscript)
-    subprocess.Popen([home])
-
-
-from libqtile import hook
+    # autostartscript = "bash -c ~/.config/qtile/autostart_once.sh"
+    # home = os.path.expanduser(autostartscript)
+    # subprocess.Popen([home])
+    home = os.path.expanduser('~')
+    
+    script_path = os.path.join(home, '.config/qtile/autostart_once.sh')
+    
+    if os.path.exists(script_path):
+        subprocess.Popen([script_path])
 
 
 @hook.subscribe.client_new
@@ -135,19 +139,8 @@ auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 
-# If things like steam games want to auto-minimize themselves when losing
-# focus, should we respect this or not?
 auto_minimize = True
 
-# When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
 
-# XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
-# string besides java UI toolkits; you can see several discussions on the
-# mailing lists, GitHub issues, and other WM documentation that suggest setting
-# this string if your java app doesn't work correctly. We may as well just lie
-# and say that we're a working one by default.
-#
-# We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
-# java that happens to be on java's whitelist.
 wmname = "QTILE"

@@ -90,7 +90,6 @@
         zoxide
         bat
         fzf
-        tree
         btop
         vim-full
     ];

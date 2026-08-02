@@ -57,30 +57,19 @@ keys = [
     Key(
         [mod, "shift"],
         "r",
-        lazy.spawn("bash -c ~/.config/qtile/scripts/reload_config.sh"),
-        desc="Reload Qtile",
+        lazy.spawn("qtile cmd-obj -o cmd -f reload_config"),
+        desc="Reload Config Qtile",
     ),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
     Key([mod], "l", lazy.spawn("xfce4-screensaver-command -l")),
     # ============================== Media ========================================
-    Key(
-        [],
-        "XF86AudioRaiseVolume",
-        lazy.spawn(f"{home}/.config/qtile/scripts/volumecontrol.sh up"),
-        desc="Volume up",
-    ),
-    Key(
-        [],
-        "XF86AudioLowerVolume",
-        lazy.spawn(f"{home}/.config/qtile/scripts/volumecontrol.sh down"),
-        desc="Volume down",
-    ),
-    Key(
-        [],
-        "XF86AudioMute",
-        lazy.spawn(f"{home}/.config/qtile/scripts/volumecontrol.sh mute"),
-        desc="Toggle mute",
-    ),
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-")),
+    # (Mute/Unmute Output)
+    Key([], "XF86AudioMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")),
+    
+    # Microphone (Mute/Unmute Input)
+    Key([], "XF86AudioMicMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")),
     # ============================== Launchers ===================================
     Key([mod], "e", lazy.spawn("nemo"), desc="File manager"),
     Key([mod], "b", lazy.spawn("thorium"), desc="Browser"),
