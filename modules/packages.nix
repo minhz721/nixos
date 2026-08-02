@@ -4,6 +4,12 @@
     services.udisks2.enable = true;
     services.gvfs.enable = true; 
     services.devmon.enable = true; 
+
+    # Security / authentication
+    security.polkit.enable = true;
+
+    # GNOME keyring (password storage)
+    services.gnome.gnome-keyring.enable = true;
     
     # Nix store optimization and garbage collection
     nix.settings.auto-optimise-store = true; 
@@ -30,36 +36,62 @@
     nixpkgs.config.allowUnfree = true;
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
-    # List packages installed in system profile. To search, run:
-    # $ nix search wget
-    environment.systemPackages = with pkgs; [
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
-        git
-        ghostty
-        librewolf
-        vscode
-        #
-        gnome-disk-utility
+        # List packages installed in system profile. To search, run:
+        # $ nix search wget
+        environment.systemPackages = with pkgs; [
+        # =========================================================================
+        # System Core, Utilities & Storage Management
+        # =========================================================================
+        home-manager
         polkit_gnome
+        dconf-editor
+        gnome-disk-utility
         ntfs3g
         exfatprogs
         exfat
-        dconf-editor
         unzip
+        ffmpeg
+
+        # =========================================================================
+        # Hardware & Connectivity (Bluetooth)
+        # =========================================================================
+        bluez
+        blueman
+
+        # =========================================================================
+        # Graphic User Interface (GUI) Applications
+        # =========================================================================
+        ghostty
+        librewolf
+        flameshot
         nemo
         nemo-with-extensions
         nemo-fileroller
 
-        # Installs Thorium AVX2 system-wide
+        # Custom external inputs
         inputs.custom-packages.packages."x86_64-linux".thorium-avx2
 
-        # bluetooth
-        bluez
-        blueman
+        # =========================================================================
+        # Development Frameworks, Runtimes & Compilers
+        # =========================================================================
+        git
+        python3
+        nodejs
+        tk
+        dotnet-sdk_8
+        dotnet-runtime_8
 
-        #
+        # =========================================================================
+        # Terminal Enhancements, Shells & CLI Utilities
+        # =========================================================================
+        fish
+        starship
+        eza
+        zoxide
+        bat
+        fzf
+        tree
         btop
-        home-manager
     ];
+
 }
