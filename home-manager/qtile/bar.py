@@ -27,51 +27,6 @@ MOCHA_PULSEVOLUME = "#f9e2af"
 FONT = "JetBrainsMono Nerd Font"
 
 
-# ---------------------------------------------------------------------------- #
-#                                  Screenshot                                  #
-# ---------------------------------------------------------------------------- #
-
-# 1. Define the path layout targeting your existing screenshot script
-screenshot_script_path = os.path.expanduser("bash -c ~/.config/qtile/scripts/screenshot.sh")
-
-# 2. Create the standalone icon widget instance
-screenshot_widget = widget.TextBox(
-    text="📸",  # Icon display profile component
-    # foreground="#a6e3a1",  # Visual hex palette color property
-    font=FONT,
-    padding=10,
-    center_aligned=True,
-    fontsize=17,
-    mouse_callbacks={
-        "Button1": lazy.spawn(
-            screenshot_script_path
-        )  # Left-click handler script mapping
-    },
-)
-
-# ---------------------------------------------------------------------------- #
-#                                   Keybinds                                   #
-# ---------------------------------------------------------------------------- #
-
-# Define the absolute path to your markdown file safely
-KEYBINDS_PATH = os.path.expanduser("~/.config/nvim/keybinds.md")
-
-# Paste this inside your screens = [ Bar( [ ... ] ) ] structure
-widget.TextBox(
-    text="⌨️",
-    font="sans",
-    fontsize=14,
-    padding=8,
-    mouse_callbacks={
-        # Button1 represents Left Click
-        "Button1": lambda: qtile.cmd_spawn(
-            f"bash -c \"grep -E -v '^#|^$' {KEYBINDS_PATH} | rofi -dmenu -i "
-            "-p 'Neovim Keybindings' "
-            "-theme-str 'window {width: 35%; border: 2px; border-color: #51afef;} listview {lines: 12;}'\""
-        )
-    },
-)
-
 
 screens = [
     Screen(
@@ -95,22 +50,6 @@ screens = [
                     font=FONT,
                 ),
                 widget.Spacer(length=10),
-                widget.Sep(
-                    linewidth=1,
-                    padding=15,
-                    foreground=MOCHA_SURFACE2,
-                ),
-                widget.TextBox(
-                    text="⌨️",
-                    fontsize=18,
-                    mouse_callbacks={
-                        "Button1": lazy.spawn(
-                            f"bash -c \"grep -E -v '^#|^$' {KEYBINDS_PATH} | rofi -dmenu -i "
-                            "-p 'Neovim Keybindings' "
-                            f"-theme-str 'window {{width: 75%; border: 2px; border-color: {MOCHA_LAVENDER};}} listview {{lines: 18; columns: 2;}}'\""
-                        )
-                    },
-                ),
                 widget.Sep(
                     linewidth=1,
                     padding=15,
@@ -176,14 +115,10 @@ screens = [
                 ),
                 widget.PulseVolume(
                     fmt="  {}",
+                    mute_format="Mute",
                     fontsize=17,
                     padding=3,
                     foreground=MOCHA_PULSEVOLUME,
-                    mouse_callbacks={
-                        "Button1": lazy.spawn(
-                            "bash -c ~/.config/qtile/scripts/volumecontrol.sh mute"
-                        )
-                    },
                     font=FONT,
                 ),
                 widget.Sep(
@@ -192,12 +127,6 @@ screens = [
                     foreground=MOCHA_SURFACE2,
                 ),
                 widget.Systray(),
-                widget.Sep(
-                    linewidth=1,
-                    padding=15,
-                    foreground=MOCHA_SURFACE2,
-                ),
-                screenshot_widget,
                 widget.Sep(
                     linewidth=1,
                     padding=15,
