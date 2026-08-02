@@ -3,16 +3,24 @@
 {
     imports = [
         ./ghostty
-        ./fish.nix
+        ./shell.nix
         ./git.nix
-        ./niri
-        ./fuzzel
-        ./waybar
-        ./gtk.nix
         ./nemo
+        ./gtk.nix
         ./flameshot.nix
         ./default_apps.nix
-        ./mako.nix
+        
+        # niri
+        # ./niri
+        # ./fuzzel
+        # ./waybar
+        # ./mako.nix
+
+        # qtile
+        ./qtile
+        ./rofi
+        ./dunst
+        ./picom.nix
     ];
   
     home.username = "leomin";
@@ -43,13 +51,7 @@
         lazydocker
         lazygit
         lazysql
-
-        #
-        python3
-        nodejs
-        tk
-        ffmpeg
-        fish
+        
     ];
 
     
