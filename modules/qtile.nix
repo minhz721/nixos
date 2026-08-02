@@ -17,5 +17,7 @@
         feh
         xfce4-screensaver
         xautolock
+        # yad
+
     ];
 }
