@@ -15,7 +15,8 @@
         picom
         dunst
         feh
-        xfce4-screensaver
-        xautolock
+        lightlocker
     ];
+
+
 }

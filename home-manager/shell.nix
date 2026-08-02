@@ -5,8 +5,6 @@
     enableBashIntegration = true;
   };
 
-  programs.starship.enable = true;
-
   programs.fish = {
     enable = true;
 
@@ -18,15 +16,8 @@
       { name = "fzf-fish"; src = fzf-fish.src; }
       { name = "autopair"; src = autopair.src; }
       { name = "bass"; src = bass.src; }
-      {
-        name = "z";
-        src = pkgs.fetchFromGitHub {
-          owner = "jethrokuan";
-          repo = "z";
-          rev = "e0e1b9dfdba362f8ab1ae8c1afc7ccf62b89f7eb";
-          sha256 = "0dbnir6jbwjpjalz14snzd3cgdysgcs3raznsijd6savad3qhijc";
-        };
-      }
+      { name = "z"; src = z.src; }
+      { name = "pure"; src = pure.src; }
     ];
 
 

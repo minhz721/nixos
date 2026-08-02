@@ -17,10 +17,5 @@ blueman-applet &
 picom -b &
 
 
-xfce4-screensaver &
-
-xautolock \
-    -detectsleep \
-    -time 10 \
-    -locker "xfce4-screensaver-command --lock" &
+light-locker --lock-on-suspend &
     

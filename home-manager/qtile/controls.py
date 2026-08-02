@@ -61,7 +61,7 @@ keys = [
         desc="Reload Config Qtile",
     ),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "l", lazy.spawn("xfce4-screensaver-command -l")),
+    Key([mod], "l", lazy.spawn("light-locker-command --lock"), desc="Lock via light-locker"),
     # ============================== Media ========================================
     Key([], "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-")),
@@ -89,25 +89,8 @@ keys = [
     Key(
         [mod, "shift"],
         "s",
-        lazy.spawn("bash -c ~/.config/qtile/scripts/screenshot.sh"),
-        desc="Take screenshot",
+        lazy.spawn("flameshot gui"),
     ),
-    # Note: Shift + Arrows is reserved for Tiling layouts here.
-    # If it conflicts with Floating Resize below, you can change [mod, "shift"] to [mod, "mod1"] (Alt)
-    Key(
-        [mod, "shift"],
-        "Left",
-        lazy.layout.shuffle_left(),
-        desc="Move window to the left",
-    ),
-    Key(
-        [mod, "shift"],
-        "Right",
-        lazy.layout.shuffle_right(),
-        desc="Move window to the right",
-    ),
-    Key([mod, "shift"], "Down", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([mod, "shift"], "Up", lazy.layout.shuffle_up(), desc="Move window up"),
     # For Tiling Layouts (MonadTall, MonadWide) Resizing
     Key(
         [mod, "control"],
