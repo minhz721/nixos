@@ -33,6 +33,7 @@
         zoxide
         eza
         fish
+        xclip
 
         #  
         discord

@@ -14,10 +14,11 @@
         shadowOpacity = 0.75;
         
         settings = {
-            corner-radius = 8; 
+            # corner-radius = 12; 
+            # round-borders = 1;
             blur = {
-            method = "dual_kawase";
-            strength = 5;
+                method = "dual_kawase";
+                strength = 5;
             };
         };
     };
