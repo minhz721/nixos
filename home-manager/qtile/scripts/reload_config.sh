@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Reload Qtile and restart polybar
 
 qtile cmd-obj -o cmd -f reload_config

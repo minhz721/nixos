@@ -32,7 +32,7 @@ FONT = "JetBrainsMono Nerd Font"
 # ---------------------------------------------------------------------------- #
 
 # 1. Define the path layout targeting your existing screenshot script
-screenshot_script_path = os.path.expanduser("~/.config/qtile/scripts/screenshot.sh")
+screenshot_script_path = os.path.expanduser("bash -c ~/.config/qtile/scripts/screenshot.sh")
 
 # 2. Create the standalone icon widget instance
 screenshot_widget = widget.TextBox(
@@ -181,7 +181,7 @@ screens = [
                     foreground=MOCHA_PULSEVOLUME,
                     mouse_callbacks={
                         "Button1": lazy.spawn(
-                            f"{home}/.config/qtile/scripts/volumecontrol.sh mute"
+                            "bash -c ~/.config/qtile/scripts/volumecontrol.sh mute"
                         )
                     },
                     font=FONT,
