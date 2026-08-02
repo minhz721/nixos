@@ -117,7 +117,7 @@ floating_layout = layout.Floating(
 # stuff
 @hook.subscribe.startup_once
 def autostart():
-    autostartscript = "~/.config/qtile/autostart_once.sh"
+    autostartscript = "bash -c ~/.config/qtile/autostart_once.sh"
     home = os.path.expanduser(autostartscript)
     subprocess.Popen([home])
 

@@ -83,7 +83,7 @@ keys = [
     ),
     # ============================== Launchers ===================================
     Key([mod], "e", lazy.spawn("nemo"), desc="File manager"),
-    Key([mod], "b", lazy.spawn("thorium-browser"), desc="Browser"),
+    Key([mod], "b", lazy.spawn("thorium"), desc="Browser"),
     Key([mod], "c", lazy.spawn("code"), desc="VS Code"),
     Key([mod], "d", lazy.spawn("rofi -show drun"), desc="App launcher"),
     Key([alt], "tab", lazy.spawn("rofi -show window"), desc="Window switcher"),
@@ -100,7 +100,7 @@ keys = [
     Key(
         [mod, "shift"],
         "s",
-        lazy.spawn(home + "/.config/qtile/scripts/screenshot.sh"),
+        lazy.spawn("bash -c ~/.config/qtile/scripts/screenshot.sh"),
         desc="Take screenshot",
     ),
     # Note: Shift + Arrows is reserved for Tiling layouts here.

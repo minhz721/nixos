@@ -6,12 +6,6 @@
 
   boot.loader.grub.configurationLimit = 7;
 
-  # Security / authentication
-  security.polkit.enable = true;
-
-  # GNOME keyring (password storage)
-  services.gnome.gnome-keyring.enable = true;
-
   # PAM for swaylock
   security.pam.services.swaylock = {};
 
@@ -34,7 +28,6 @@
     # Apps
     fuzzel
     grim
-    flameshot
     wl-clipboard
   ];
 }
