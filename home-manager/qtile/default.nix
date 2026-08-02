@@ -9,5 +9,11 @@
   };
 
   services.polkit-gnome.enable = true; # polkit
-  
+
+  services.screen-locker = {
+    enable = true;
+    inactiveInterval = 10;
+    lockCmd = "${pkgs.lightlocker}/bin/light-locker-command --lock";
+  };
+
 }

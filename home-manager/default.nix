@@ -30,6 +30,9 @@
     home.packages = with pkgs; [
         fastfetch
         neovim
+        zoxide
+        eza
+        fish
 
         #  
         discord
@@ -42,10 +45,6 @@
         mission-center
         dbeaver-bin
         localsend
-
-        #
-        zoxide
-        starship
 
         #
         lazydocker
