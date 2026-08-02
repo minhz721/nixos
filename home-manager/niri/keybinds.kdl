@@ -22,7 +22,7 @@ binds {
     Mod+Q       repeat=false { close-window; }
     Mod+O       repeat=false { toggle-overview; }
     Mod+T       { toggle-window-floating; }
-    Mod+F       { fullscreen-window; }
+    Mod+Ctrl+F     { fullscreen-window; }
     Mod+W       { toggle-column-tabbed-display; }
 
     // ─── Window Focus & Navigation ───
@@ -106,7 +106,8 @@ binds {
     // ─── Layout & Sizing ───
     //Mod+C               { center-column; }
     Mod+Ctrl+C          { center-visible-columns; }
-    Mod+Ctrl+F          { expand-column-to-available-width; }
+    Mod+F          {  maximize-column; }
+    // Mod+F          { expand-column-to-available-width; }
     Mod+Minus           { set-column-width "-10%"; }
     Mod+Equal           { set-column-width "+10%"; }
     Mod+Shift+Minus     { set-window-height "-10%"; }
