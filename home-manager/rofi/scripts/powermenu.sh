@@ -56,7 +56,7 @@ run_cmd() {
         pkill -KILL -u "$USER"
         ;;
     lock)
-        light-locker-command --lock
+        xfce4-screensaver-command -l
         ;;
     *)
         notify-send "Invalid option: $1"
