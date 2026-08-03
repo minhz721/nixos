@@ -4,6 +4,9 @@
     
     # Enable CUPS to print documents.
     # services.printing.enable = true;
+    programs.java.package = pkgs.jdk21; 
+    programs.nix-ld.enable = true;
+
 
     services.udisks2.enable = true;
     services.gvfs.enable = true; 

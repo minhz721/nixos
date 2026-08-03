@@ -12,7 +12,7 @@
 
   services.screen-locker = {
     enable = true;
-    inactiveInterval = 10;
+    inactiveInterval = 20;
     lockCmd = "${pkgs.lightlocker}/bin/light-locker-command --lock";
   };
 
