@@ -12,18 +12,28 @@
     # New custom packages repository for Thorium browser
     custom-packages.url = "github:Rishabh5321/custom-packages-flake";
 
+    # niri
     noctalia-greeter = {
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, custom-packages, ... }@inputs:
-  let
+  outputs = {
+    nixpkgs,
+    home-manager,
+    custom-packages,
+    nixvim,
+    ...
+  } @ inputs: let
     system = "x86_64-linux";
     lib = nixpkgs.lib;
-  in
-  {
+  in {
     nixosConfigurations.leomin = lib.nixosSystem {
       inherit system;
 
@@ -39,12 +49,12 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          
+
           # Automatically backup existing conflicting files to prevent activation errors
           home-manager.backupFileExtension = "bak";
 
           # Pass 'inputs' so Home Manager files can access custom-packages directly for Thorium
-          home-manager.extraSpecialArgs = { inherit inputs; };
+          home-manager.extraSpecialArgs = {inherit inputs;};
 
           home-manager.users.leomin =
             import ./home-manager/default.nix;
@@ -53,7 +63,7 @@
         {
           services.xserver = {
             enable = true;
-            videoDrivers = [ "amdgpu" ];
+            videoDrivers = ["amdgpu"];
           };
         }
       ];
