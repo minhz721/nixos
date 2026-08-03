@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
     imports = [
@@ -21,6 +21,9 @@
         ./rofi
         ./dunst
         ./picom.nix
+
+        # nixvim
+        ./nixvim
     ];
   
     home.username = "leomin";
@@ -29,7 +32,6 @@
     # Packages that should be installed to the user profile.
     home.packages = with pkgs; [
         fastfetch
-        neovim
         zoxide
         eza
         fish

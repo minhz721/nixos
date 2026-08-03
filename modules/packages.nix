@@ -48,6 +48,9 @@
         tk
         dotnet-sdk_8
         dotnet-runtime_8
+        openjdk
+        glib
+        steam-run
 
         # =========================================================================
         # Terminal Enhancements, Shells & CLI Utilities
