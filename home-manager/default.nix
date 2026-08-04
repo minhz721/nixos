@@ -8,6 +8,7 @@
         ./nemo
         ./gtk.nix
         ./flameshot.nix
+        ./librewolf.nix
         
         # niri
         # ./niri

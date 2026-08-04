@@ -27,7 +27,6 @@
         # Graphic User Interface (GUI) Applications
         # =========================================================================
         ghostty
-        librewolf
         flameshot
         nemo
         nemo-with-extensions
