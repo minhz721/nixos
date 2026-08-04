@@ -3,7 +3,6 @@
     plugins.lsp = {
       enable = true;
 
-      # FIXED: Disable automatic signatureHelp requests on client capability initialization
       onAttach = ''
         if client.server_capabilities then
           client.server_capabilities.signatureHelpProvider = false

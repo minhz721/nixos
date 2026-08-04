@@ -40,5 +40,6 @@
     gnumake
 
     nerd-fonts.jetbrains-mono
+    tree-sitter
   ];
 }

@@ -47,7 +47,6 @@
         nodejs
         tk
         dotnetCorePackages.sdk_8_0
-        openjdk
         glib
         steam-run
 
