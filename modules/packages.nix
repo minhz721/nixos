@@ -32,7 +32,6 @@
         nemo
         nemo-with-extensions
         nemo-fileroller
-        thunar
         # nautilus
         vscode
         # Custom external inputs
@@ -47,14 +46,10 @@
         nodejs
         tk
         dotnetCorePackages.sdk_8_0
-        glib
-        steam-run
 
         # =========================================================================
         # Terminal Enhancements, Shells & CLI Utilities
         # =========================================================================
-        bat
-        fzf
         btop
         vim-full
     ];
