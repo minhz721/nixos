@@ -13,5 +13,7 @@
     ./autopairs.nix
     ./surround.nix
     ./toggleterm.nix
+    ./undo-tree.nix
+    ./snacks.nix
   ];
 }

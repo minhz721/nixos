@@ -4,7 +4,7 @@
       enable = true;
       settings = {
         options = {
-          theme = "vscode";
+          theme = "OceanicNext"; # vscode
           globalstatus = true;
           section_separators = "";
           component_separators = "";

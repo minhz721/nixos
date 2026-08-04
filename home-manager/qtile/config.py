@@ -115,6 +115,7 @@ floating_layout = layout.Floating(
         Match(wm_class="fcitx5-config-qt"),
         Match(wm_class="fcitx"),
         Match(wm_class="fcitx5-configtool"),
+        Match(wm_class="crx_amfojhdiedpdnlijjbhjnhokbnohfdfb"),
     ],
 )
 

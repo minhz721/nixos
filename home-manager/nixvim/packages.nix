@@ -39,7 +39,9 @@
     gcc
     gnumake
 
-    nerd-fonts.jetbrains-mono
     tree-sitter
+    sqlfluff
+    
+    nerd-fonts.jetbrains-mono
   ];
 }
