@@ -1,40 +1,33 @@
+{ config, pkgs, ... }:
+
 {
   programs.nixvim = {
+    # https://github.io
     plugins.treesitter = {
       enable = true;
-
       settings = {
-        highlight = {
-          enable = true;
-        };
-
-        indent = {
-          enable = true;
-        };
+        highlight.enable = true;       # Smart microsecond rendering code colors
+        indent.enable = true;          # Semantic context indent matching upon Return key
       };
 
-      nixvimInjections = true;
+      # Exact immutable grammar parsers package array managed cleanly via Nix Store
+      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        lua
+        vim
+        nix
+        javascript
+        typescript
+        tsx
+        html
+        css
+        json
+        bash
+        python
+        dockerfile
+        markdown
+        markdown_inline
+        svelte                         # Included svelte syntax highlighting parser
+      ];
     };
-
-    plugins.treesitter.settings.ensure_installed = [
-      "javascript"
-      "typescript"
-      "tsx"
-      "html"
-      "css"
-      "python"
-      "bash"
-      "dockerfile"
-      "nix"
-      "lua"
-      "json"
-      "yaml"
-      "toml"
-      "markdown"
-      "markdown_inline"
-      "regex"
-      "vim"
-      "vimdoc"
-    ];
   };
 }

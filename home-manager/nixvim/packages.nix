@@ -6,7 +6,6 @@
     fd
     curl
     wget
-    unzip
 
     nodejs
     typescript
@@ -40,6 +39,9 @@
     gcc
     gnumake
 
+    tree-sitter
+    sqlfluff
+    
     nerd-fonts.jetbrains-mono
   ];
 }

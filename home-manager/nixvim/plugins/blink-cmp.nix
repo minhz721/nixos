@@ -1,10 +1,13 @@
+{ config, pkgs, ... }:
+
 {
   programs.nixvim = {
+    # https://github.io
     plugins.blink-cmp = {
       enable = true;
       settings = {
         keymap = {
-          preset = "default";
+          preset = "super-tab";        # Enforce robust VS Code style Super-Tab controls
         };
 
         appearance = {
@@ -23,16 +26,11 @@
         };
 
         snippets = {
-          preset = "luasnip";
+          preset = "luasnip";          # Link seamlessly to Luasnip engine
         };
 
         sources = {
-          default = [
-            "lsp"
-            "path"
-            "snippets"
-            "buffer"
-          ];
+          default = [ "lsp" "path" "snippets" "buffer" ];
         };
 
         signature = {
@@ -41,6 +39,7 @@
       };
     };
 
+    # Snippets manager engine dependencies feeding into blink-cmp
     plugins.luasnip.enable = true;
   };
 }

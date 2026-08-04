@@ -1,9 +1,20 @@
 {
   programs.nixvim = {
-    colorschemes.vscode = {
-      enable = true;
+    colorschemes = {
+      vscode = {
+        enable = true;
+      };
+
+      tokyonight = {
+        enable = true;
+        settings = {
+          style = "moon"; # "storm", "night", "day"
+          transparent = true;
+        };
+      };
     };
 
-    colorscheme = "vscode";
+    colorscheme = "tokyonight";
+
   };
 }

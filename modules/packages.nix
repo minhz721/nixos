@@ -15,9 +15,6 @@
         ntfs3g
         exfatprogs
         exfat
-        unzip
-        unrar
-        p7zip
         ffmpeg
 
         # =========================================================================
@@ -35,9 +32,12 @@
         nemo
         nemo-with-extensions
         nemo-fileroller
+        thunar
+        # nautilus
         vscode
         # Custom external inputs
         inputs.custom-packages.packages."x86_64-linux".thorium-avx2
+        inputs.custom-packages.packages."x86_64-linux".ab-download-manager
 
         # =========================================================================
         # Development Frameworks, Runtimes & Compilers
@@ -46,9 +46,7 @@
         python3
         nodejs
         tk
-        dotnet-sdk_8
-        dotnet-runtime_8
-        openjdk
+        dotnetCorePackages.sdk_8_0
         glib
         steam-run
 

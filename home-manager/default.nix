@@ -8,7 +8,6 @@
         ./nemo
         ./gtk.nix
         ./flameshot.nix
-        ./default_apps.nix
         
         # niri
         # ./niri
