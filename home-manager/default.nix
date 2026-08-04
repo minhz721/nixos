@@ -8,6 +8,7 @@
         ./nemo
         ./gtk.nix
         ./flameshot.nix
+        ./librewolf.nix
         
         # niri
         # ./niri
@@ -23,6 +24,7 @@
 
         # nixvim
         ./nixvim
+        ./tmux/tmux.nix
     ];
   
     home.username = "leomin";

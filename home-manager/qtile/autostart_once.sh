@@ -16,6 +16,6 @@ blueman-applet &
 #!/bin/sh
 picom -b &
 
-
 light-locker --lock-on-suspend &
-    
+
+ab-download-manager --background &
