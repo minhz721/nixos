@@ -11,9 +11,10 @@
       # ==============================
       search = {
         force = true;
-        default = "Google";
+        default = "google"; 
         engines = {
-          "Google" = {
+          "google" = {
+            name = "Google"; 
             urls = [
               {
                 template = "https://www.google.com/search";

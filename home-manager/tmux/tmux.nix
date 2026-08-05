@@ -1,14 +1,16 @@
 # home.nix
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   programs.tmux = {
     enable = true;
     terminal = "screen-256color";
-    mouse = true;         
-    baseIndex = 1;         
-    keyMode = "vi";  
-    clock24 = true;     
+    mouse = true;
+    baseIndex = 1;
+    keyMode = "vi";
+    clock24 = true;
 
     extraConfig = ''
       # Clipboard
@@ -20,7 +22,7 @@
       set -g @catppuccin_flavor 'mocha'
       set -g @catppuccin_window_status_style "rounded"
       set -g @catppuccin_status_modules_right "directory session date_time"
-      set -g @catppuccin_date_time_text "%Y-%m-%d %H:%M"
+      # set -g @catppuccin_date_time_text "%Y-%m-%d %H:%M"
 
       # Resurrect & Continuum
       set -g @resurrect-capture-pane-contents 'on'
@@ -29,11 +31,11 @@
     '';
 
     plugins = with pkgs.tmuxPlugins; [
-      vim-tmux-navigator  
-      yank                
-      catppuccin          
-      resurrect           
-      continuum           
+      vim-tmux-navigator
+      yank
+      catppuccin
+      resurrect
+      continuum
     ];
   };
 }

@@ -16,5 +16,7 @@
     ./undo-tree.nix
     ./snacks.nix
     ./rainbow-delimiters.nix
+    ./render-markdown.nix
+    ./comment.nix
   ];
 }
