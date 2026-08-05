@@ -15,6 +15,5 @@
     };
 
     colorscheme = "tokyonight";
-
   };
 }

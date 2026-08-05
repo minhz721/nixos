@@ -1,11 +1,13 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Recursively link the entire directory layout into the XDG configuration path (~/.config/niri)
   xdg.configFile."qtile" = {
     source = ./.;
     recursive = true;
-    executable = true; 
+    executable = true;
   };
 
   services.polkit-gnome.enable = true; # polkit
@@ -15,5 +17,4 @@
     inactiveInterval = 20;
     lockCmd = "${pkgs.lightlocker}/bin/light-locker-command --lock";
   };
-
 }

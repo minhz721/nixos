@@ -9,6 +9,7 @@ This guide explains how to accurately find the `wm_class` or `title` properties 
 This is the fastest and most reliable method for Xorg-based systems.
 
 1. Open your terminal and run the following command:
+
    ```bash
    xprop WM_CLASS
    ```
@@ -36,7 +37,7 @@ floating_layout = layout.Floating(
     float_rules=[
         # Keep default system float rules
         *layout.Floating.default_float_rules,
-        
+
         # Add your custom applications here using the fetched wm_class
         Match(wm_class="spotify"),
         Match(wm_class="pavucontrol"),

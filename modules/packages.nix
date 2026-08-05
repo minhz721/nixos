@@ -1,56 +1,58 @@
-{ config, pkgs, inputs, ...}:
-
 {
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
-        # List packages installed in system profile. To search, run:
-        # $ nix search wget
-        environment.systemPackages = with pkgs; [
-        # =========================================================================
-        # System Core, Utilities & Storage Management
-        # =========================================================================
-        home-manager
-        polkit_gnome
-        dconf-editor
-        gnome-disk-utility
-        ntfs3g
-        exfatprogs
-        exfat
-        ffmpeg
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  nix.settings.experimental-features = ["nix-command" "flakes"];
+  # List packages installed in system profile. To search, run:
+  # $ nix search wget
+  environment.systemPackages = with pkgs; [
+    # =========================================================================
+    # System Core, Utilities & Storage Management
+    # =========================================================================
+    home-manager
+    polkit_gnome
+    dconf-editor
+    gnome-disk-utility
+    ntfs3g
+    exfatprogs
+    exfat
+    ffmpeg
 
-        # =========================================================================
-        # Hardware & Connectivity (Bluetooth)
-        # =========================================================================
-        bluez
-        blueman
+    # =========================================================================
+    # Hardware & Connectivity (Bluetooth)
+    # =========================================================================
+    bluez
+    blueman
 
-        # =========================================================================
-        # Graphic User Interface (GUI) Applications
-        # =========================================================================
-        ghostty
-        flameshot
-        nemo
-        nemo-with-extensions
-        nemo-fileroller
-        # nautilus
-        vscode
-        # Custom external inputs
-        inputs.custom-packages.packages."x86_64-linux".thorium-avx2
-        inputs.custom-packages.packages."x86_64-linux".ab-download-manager
+    # =========================================================================
+    # Graphic User Interface (GUI) Applications
+    # =========================================================================
+    ghostty
+    flameshot
+    nemo
+    nemo-with-extensions
+    nemo-fileroller
+    # nautilus
+    vscode
+    # Custom external inputs
+    inputs.custom-packages.packages."x86_64-linux".thorium-avx2
+    inputs.custom-packages.packages."x86_64-linux".ab-download-manager
 
-        # =========================================================================
-        # Development Frameworks, Runtimes & Compilers
-        # =========================================================================
-        git
-        python3
-        nodejs
-        tk
-        dotnetCorePackages.sdk_8_0
+    # =========================================================================
+    # Development Frameworks, Runtimes & Compilers
+    # =========================================================================
+    git
+    python3
+    nodejs
+    tk
+    dotnetCorePackages.sdk_8_0
 
-        # =========================================================================
-        # Terminal Enhancements, Shells & CLI Utilities
-        # =========================================================================
-        btop
-        vim-full
-    ];
-
+    # =========================================================================
+    # Terminal Enhancements, Shells & CLI Utilities
+    # =========================================================================
+    btop
+    vim-full
+  ];
 }

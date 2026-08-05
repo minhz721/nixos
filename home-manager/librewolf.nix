@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   programs.librewolf = {
     enable = true;
     profiles.default = {
@@ -11,10 +9,10 @@
       # ==============================
       search = {
         force = true;
-        default = "google"; 
+        default = "google";
         engines = {
           "google" = {
-            name = "Google"; 
+            name = "Google";
             urls = [
               {
                 template = "https://www.google.com/search";
@@ -57,8 +55,7 @@
         # Cloudflare
         # ==========================
         "network.trr.mode" = 3;
-        "network.trr.uri" =
-          "https://mozilla.cloudflare-dns.com/dns-query";
+        "network.trr.uri" = "https://mozilla.cloudflare-dns.com/dns-query";
 
         "network.trr.bootstrapAddress" = "1.1.1.1";
         # ==========================

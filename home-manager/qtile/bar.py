@@ -1,11 +1,10 @@
-from libqtile import bar, widget, qtile
-from libqtile.config import (
-    Screen,
-)
-from libqtile.lazy import lazy
 import os
 import subprocess
 from pathlib import Path
+
+from libqtile import bar, qtile, widget
+from libqtile.config import Screen
+from libqtile.lazy import lazy
 
 # Get home path
 home = str(Path.home())
@@ -25,7 +24,6 @@ MOCHA_CPU = "#a6e3a1"
 MOCHA_MEMORY = "#94e2d5"
 MOCHA_PULSEVOLUME = "#f9e2af"
 FONT = "JetBrainsMono Nerd Font"
-
 
 
 screens = [

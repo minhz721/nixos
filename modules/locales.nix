@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   # Set your time zone.
   time.timeZone = "Asia/Ho_Chi_Minh";
 
@@ -20,7 +19,6 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-
   # Input method configuration for English and Vietnamese
   i18n.inputMethod = {
     enable = true;
@@ -37,9 +35,9 @@
         "Groups/0" = {
           Name = "Default";
           "Default Layout" = "us";
-          DefaultIM = "keyboard-us"; 
+          DefaultIM = "keyboard-us";
         };
-        "Groups/0/Items/0".Name = "keyboard-us"; 
+        "Groups/0/Items/0".Name = "keyboard-us";
         "Groups/0/Items/1".Name = "bamboo";
       };
 
@@ -51,10 +49,9 @@
     };
   };
 
-
   # Configure keymap in X11
   services.xserver.xkb = {
-      layout = "us";
-      variant = "";
+    layout = "us";
+    variant = "";
   };
 }
