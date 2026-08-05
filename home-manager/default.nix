@@ -24,6 +24,7 @@
 
         # nixvim
         ./nixvim
+        ./tmux/tmux.nix
     ];
   
     home.username = "leomin";
