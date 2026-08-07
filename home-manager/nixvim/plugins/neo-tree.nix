@@ -1,15 +1,15 @@
 {
   programs.nixvim = {
+
     plugins.mini-icons = {
       enable = true;
       mockDevIcons = true;
     };
+
     plugins.neo-tree = {
       enable = true;
 
       settings = {
-        # close_if_last_window = true;
-
         popup_border_style = "rounded";
 
         filesystem = {
@@ -24,11 +24,39 @@
 
           use_libuv_file_watcher = true;
         };
-
-        # window = {
-        #   width = 35;
-        # };
       };
     };
+
+
+    keymaps = [
+      {
+        mode = "n";
+        key = "<leader>e";
+        action = "<cmd>Neotree toggle<CR>";
+        options.desc = "Toggle file explorer";
+      }
+
+      {
+        mode = "n";
+        key = "<leader>ef";
+        action = "<cmd>Neotree reveal<CR>";
+        options.desc = "Reveal current file";
+      }
+
+      {
+        mode = "n";
+        key = "<leader>eg";
+        action = "<cmd>Neotree git_status<CR>";
+        options.desc = "Open git status";
+      }
+
+      {
+        mode = "n";
+        key = "<leader>eb";
+        action = "<cmd>Neotree buffers<CR>";
+        options.desc = "Open buffer tree";
+      }
+    ];
+
   };
 }
