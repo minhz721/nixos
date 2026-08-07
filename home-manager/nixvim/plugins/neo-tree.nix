@@ -1,5 +1,6 @@
 {
   programs.nixvim = {
+
     plugins.mini-icons = {
       enable = true;
       mockDevIcons = true;
@@ -21,6 +22,7 @@
         };
       };
     };
+
 
     keymaps = [
       {
@@ -51,5 +53,6 @@
         options.desc = "Open buffer tree";
       }
     ];
+
   };
 }
