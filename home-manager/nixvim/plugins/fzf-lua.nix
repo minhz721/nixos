@@ -19,7 +19,6 @@
       };
     };
 
-
     keymaps = [
       {
         mode = "n";

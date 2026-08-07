@@ -1,6 +1,4 @@
-{ ... }:
-
-{
+{...}: {
   programs.nixvim = {
     plugins.snacks = {
       enable = true;
@@ -30,9 +28,9 @@
         bigfile = {
           enabled = true;
         };
-        quickfile = {
-          enabled = true;
-        };
+        # quickfile = {
+        #   enabled = true;
+        #};
       };
     };
     keymaps = [

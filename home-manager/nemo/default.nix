@@ -31,10 +31,6 @@ in {
 
   # Register core CLI tools and customized wrapper scripts to user environment
   home.packages = with pkgs; [
-    unzip
-    unrar
-    p7zip
-    openjdk
     myUnzip
     myUnrar
     myP7zip
