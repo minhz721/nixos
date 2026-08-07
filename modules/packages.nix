@@ -5,43 +5,43 @@
   ...
 }: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     # =========================================================================
-    # System Core, Utilities & Storage Management
+    # NixOS / System Management
     # =========================================================================
     home-manager
-    polkit_gnome
-    dconf-editor
-    gnome-disk-utility
-    ntfs3g
-    exfatprogs
-    exfat
-    ffmpeg
 
     # =========================================================================
-    # Hardware & Connectivity (Bluetooth)
+    # Authentication / Desktop Integration
+    # =========================================================================
+    polkit_gnome
+    dconf-editor
+
+    # =========================================================================
+    # Disk / Filesystem
+    # =========================================================================
+    gnome-disk-utility
+    ntfs3g
+    exfat
+    exfatprogs
+
+    # =========================================================================
+    # Bluetooth
     # =========================================================================
     bluez
     blueman
 
     # =========================================================================
-    # Graphic User Interface (GUI) Applications
+    # Desktop / GUI
     # =========================================================================
     ghostty
-    flameshot
     nemo
     nemo-with-extensions
     nemo-fileroller
-    # nautilus
-    vscode
-    # Custom external inputs
-    inputs.custom-packages.packages."x86_64-linux".thorium-avx2
-    inputs.custom-packages.packages."x86_64-linux".ab-download-manager
+    flameshot
 
     # =========================================================================
-    # Development Frameworks, Runtimes & Compilers
+    # Development
     # =========================================================================
     git
     python3
@@ -50,9 +50,15 @@
     dotnetCorePackages.sdk_8_0
 
     # =========================================================================
-    # Terminal Enhancements, Shells & CLI Utilities
+    # System / Monitoring
     # =========================================================================
     btop
     vim-full
+
+    # =========================================================================
+    # External Packages
+    # =========================================================================
+    inputs.custom-packages.packages."x86_64-linux".thorium-avx2
+    inputs.custom-packages.packages."x86_64-linux".ab-download-manager
   ];
 }
