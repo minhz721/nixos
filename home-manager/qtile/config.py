@@ -1,21 +1,12 @@
-from libqtile import bar, layout, hook, widget, qtile
-from libqtile.config import (
-    Click,
-    Drag,
-    Group,
-    Key,
-    Match,
-    hook,
-    Screen,
-)
-from libqtile.lazy import lazy
-
-from pathlib import Path
 import os
 import subprocess
+from pathlib import Path
 
 from bar import screens
-from controls import mod, keys
+from controls import keys, mod
+from libqtile import bar, hook, layout, qtile, widget
+from libqtile.config import Click, Drag, Group, Key, Match, Screen, hook
+from libqtile.lazy import lazy
 
 mod = "mod4"
 alt = "mod1"
@@ -126,10 +117,10 @@ def autostart():
     # autostartscript = "bash -c ~/.config/qtile/autostart_once.sh"
     # home = os.path.expanduser(autostartscript)
     # subprocess.Popen([home])
-    home = os.path.expanduser('~')
-    
-    script_path = os.path.join(home, '.config/qtile/autostart_once.sh')
-    
+    home = os.path.expanduser("~")
+
+    script_path = os.path.join(home, ".config/qtile/autostart_once.sh")
+
     if os.path.exists(script_path):
         subprocess.Popen([script_path])
 

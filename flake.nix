@@ -9,7 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # New custom packages repository for Thorium browser
+    # New custom packages repository for Thorium browser, ab download
     custom-packages.url = "github:Rishabh5321/custom-packages-flake";
 
     # niri

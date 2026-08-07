@@ -1,13 +1,15 @@
-{ config, pkgs, inputs, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     inputs.noctalia-greeter.nixosModules.default
   ];
 
   # Enable Niri compositor
   programs.niri.enable = true;
-
 
   # Noctalia Greeter
   programs.noctalia-greeter = {
@@ -30,7 +32,6 @@
     };
   };
 
-
   # Greetd login manager
   services.greetd = {
     enable = true;
@@ -46,10 +47,8 @@
     };
   };
 
-
   # Needed for user/session handling
   services.accounts-daemon.enable = true;
-
 
   # Cursor package for greeter
   environment.systemPackages = with pkgs; [

@@ -1,72 +1,73 @@
-{ config, pkgs, inputs, ... }:
-
 {
-    imports = [
-        ./ghostty
-        ./shell.nix
-        ./git.nix
-        ./nemo
-        ./gtk.nix
-        ./flameshot.nix
-        ./librewolf.nix
-        
-        # niri
-        # ./niri
-        # ./fuzzel
-        # ./waybar
-        # ./mako.nix
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    ./ghostty.nix
+    ./shell.nix
+    ./git.nix
+    ./nemo
+    ./gtk.nix
+    ./flameshot.nix
+    ./librewolf.nix
 
-        # qtile
-        ./qtile
-        ./rofi
-        ./dunst
-        ./picom.nix
+    # niri
+    # ./niri
+    # ./fuzzel
+    # ./waybar
+    # ./mako.nix
 
-        # nixvim
-        ./nixvim
-        ./tmux/tmux.nix
-    ];
-  
-    home.username = "leomin";
-    home.homeDirectory = "/home/leomin";
+    # qtile
+    ./qtile
+    ./rofi
+    ./dunst
+    ./picom.nix
 
-    # Packages that should be installed to the user profile.
-    home.packages = with pkgs; [
-        fastfetch
-        zoxide
-        eza
-        fish
-        xclip
+    # nixvim
+    ./nixvim
+    ./tmux/tmux.nix
+  ];
 
-        #  
-        discord
-        telegram-desktop
-        brave
-        zathura
-        mpv
-        cava
-        imv
-        mission-center
-        dbeaver-bin
-        localsend
+  home.username = "leomin";
+  home.homeDirectory = "/home/leomin";
 
-        #
-        lazydocker
-        lazygit
-        lazysql
-        
-    ];
+  # Packages that should be installed to the user profile.
+  home.packages = with pkgs; [
+    fastfetch
+    zoxide
+    eza
+    fish
+    xclip
 
-    
-    programs.home-manager.enable = true;
-
-    # This value determines the home Manager release that your
-    # configuration is compatible with. This helps avoid breakage
-    # when a new home Manager release introduces backwards
-    # incompatible changes.
     #
-    # You can update home Manager without changing this value. See
-    # the home Manager release notes for a list of state version
-    # changes in each release.
-    home.stateVersion = "26.05";
+    discord
+    telegram-desktop
+    brave
+    zathura
+    mpv
+    cava
+    imv
+    mission-center
+    dbeaver-bin
+    localsend
+
+    #
+    lazydocker
+    lazygit
+    lazysql
+  ];
+
+  programs.home-manager.enable = true;
+
+  # This value determines the home Manager release that your
+  # configuration is compatible with. This helps avoid breakage
+  # when a new home Manager release introduces backwards
+  # incompatible changes.
+  #
+  # You can update home Manager without changing this value. See
+  # the home Manager release notes for a list of state version
+  # changes in each release.
+  home.stateVersion = "26.05";
 }

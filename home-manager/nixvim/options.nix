@@ -28,6 +28,7 @@
       signcolumn = "yes";
       conceallevel = 0;
       pumheight = 15;
+      swapfile = false;
     };
   };
 }

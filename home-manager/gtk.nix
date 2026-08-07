@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   gtk = {
     enable = true;
 
@@ -33,13 +31,11 @@
     };
   };
 
-
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };
   };
-
 
   home.sessionVariables = {
     XCURSOR_THEME = "Bibata-Modern-Ice";

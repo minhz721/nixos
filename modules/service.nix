@@ -1,40 +1,41 @@
-{ config, pkgs, ... }:
-
 {
-    # Enable CUPS to print documents.
-    # services.printing.enable = true;
-    programs.java.package = pkgs.jdk21; 
-    programs.nix-ld.enable = true;
+  config,
+  pkgs,
+  ...
+}: {
+  # Enable CUPS to print documents.
+  # services.printing.enable = true;
+  programs.java.package = pkgs.jdk21;
+  programs.nix-ld.enable = true;
 
-    services.udisks2.enable = true;
-    services.gvfs.enable = true; 
-    services.devmon.enable = true; 
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;
+  services.devmon.enable = true;
 
-    # Security / authentication
-    security.polkit.enable = true;
+  # Security / authentication
+  security.polkit.enable = true;
 
-    # GNOME keyring (password storage)
-    services.gnome.gnome-keyring.enable = true;
-    
-    # Nix store optimization and garbage collection
-    nix.settings.auto-optimise-store = true; 
+  # GNOME keyring (password storage)
+  services.gnome.gnome-keyring.enable = true;
 
-    nix.gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 7d";
-    }; 
+  # Nix store optimization and garbage collection
+  nix.settings.auto-optimise-store = true;
 
-    # fish
-    programs.fish.enable = true;
-    users.extraUsers.leomin = {
-        shell = pkgs.fish;
-    };
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
 
-    # Enable dconf for GTK/Nemo settings
-    programs.dconf.enable = true;
+  # fish
+  programs.fish.enable = true;
+  users.extraUsers.leomin = {
+    shell = pkgs.fish;
+  };
 
-    # Allow unfree packages
-    nixpkgs.config.allowUnfree = true;
-    
+  # Enable dconf for GTK/Nemo settings
+  programs.dconf.enable = true;
+
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
 }

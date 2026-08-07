@@ -8,7 +8,7 @@
       enable = true;
 
       settings = {
-        close_if_last_window = true;
+        # close_if_last_window = true;
 
         popup_border_style = "rounded";
 
@@ -25,9 +25,9 @@
           use_libuv_file_watcher = true;
         };
 
-        window = {
-          width = 35;
-        };
+        # window = {
+        #   width = 35;
+        # };
       };
     };
   };

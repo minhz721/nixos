@@ -1,6 +1,7 @@
-from libqtile.config import Click, Drag, Key, KeyChord, EzKey
-from libqtile.lazy import lazy
 from pathlib import Path
+
+from libqtile.config import Click, Drag, EzKey, Key, KeyChord
+from libqtile.lazy import lazy
 
 mod = "mod4"
 alt = "mod1"
@@ -61,15 +62,31 @@ keys = [
         desc="Reload Config Qtile",
     ),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    Key([mod], "l", lazy.spawn("light-locker-command --lock"), desc="Lock via light-locker"),
+    Key(
+        [mod],
+        "l",
+        lazy.spawn("light-locker-command --lock"),
+        desc="Lock via light-locker",
+    ),
     # ============================== Media ========================================
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-")),
+    Key(
+        [],
+        "XF86AudioRaiseVolume",
+        lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+ -l 1.0"),
+    ),
+    Key(
+        [],
+        "XF86AudioLowerVolume",
+        lazy.spawn("wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"),
+    ),
     # (Mute/Unmute Output)
     Key([], "XF86AudioMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle")),
-    
     # Microphone (Mute/Unmute Input)
-    Key([], "XF86AudioMicMute", lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle")),
+    Key(
+        [],
+        "XF86AudioMicMute",
+        lazy.spawn("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
+    ),
     # ============================== Launchers ===================================
     Key([mod], "e", lazy.spawn("nemo"), desc="File manager"),
     Key([mod], "b", lazy.spawn("thorium"), desc="Browser"),

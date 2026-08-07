@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.file.".config/rofi" = {
     source = ./.;
     recursive = true;
-    executable = true; 
+    executable = true;
   };
 }

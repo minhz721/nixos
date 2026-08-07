@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.eza = {
     enable = true;
     enableFishIntegration = true;
@@ -12,14 +12,31 @@
       set fish_greeting
     '';
     plugins = with pkgs.fishPlugins; [
-      { name = "done"; src = done.src; }
-      { name = "fzf-fish"; src = fzf-fish.src; }
-      { name = "autopair"; src = autopair.src; }
-      { name = "bass"; src = bass.src; }
-      { name = "z"; src = z.src; }
-      { name = "pure"; src = pure.src; }
+      {
+        name = "done";
+        src = done.src;
+      }
+      {
+        name = "fzf-fish";
+        src = fzf-fish.src;
+      }
+      {
+        name = "autopair";
+        src = autopair.src;
+      }
+      {
+        name = "bass";
+        src = bass.src;
+      }
+      {
+        name = "z";
+        src = z.src;
+      }
+      {
+        name = "pure";
+        src = pure.src;
+      }
     ];
-
 
     shellAliases = {
       # Git shortcuts
@@ -32,13 +49,12 @@
       gcan = "git commit --amend --no-edit";
       ggf = "git push -f";
       gpo = "git pull origin";
-      
+
       rebuild = "sudo nixos-rebuild switch --flake";
       update = "nix flake update";
       nix-clean = "sudo nix-collect-garbage -d";
 
       # z = "eza";
-
     };
   };
 }

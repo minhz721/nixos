@@ -1,45 +1,55 @@
-{ config, pkgs, ... }:
-
-{
+{...}: {
   programs.nixvim = {
-    # https://github.io
     plugins.conform-nvim = {
       enable = true;
 
       settings = {
-        # Array matching specific filetypes to their dedicated global CLI code formatters
         formatters_by_ft = {
-          # Frontend web ecosystem handled globally via Prettier
-          javascript = [ "prettier" ];
-          javascriptreact = [ "prettier" ];
-          typescript = [ "prettier" ];
-          typescriptreact = [ "prettier" ];
-          html = [ "prettier" ];
-          css = [ "prettier" ];
-          json = [ "prettier" ];
-          svelte = [ "prettier" ];     # Auto-formats Svelte reactive components layout
-          markdown = [ "prettier" ];   # Formats .md files and nested code blocks safely
+          # Web
+          javascript = ["prettier"];
+          javascriptreact = ["prettier"];
+          typescript = ["prettier"];
+          typescriptreact = ["prettier"];
+          html = ["prettier"];
+          css = ["prettier"];
+          json = ["prettier"];
+          svelte = ["prettier"];
+          markdown = ["prettier"];
 
-          # Python structural sorting and styling standardization
-          python = [ "isort" "black" ]; # First sorts imports, then reformats layout colors
+          # Python
+          python = [
+            "isort"
+            "black"
+          ];
 
-          # Embedded Lua scripting code standardizer
-          lua = [ "stylua" ];
+          # Lua
+          lua = [
+            "stylua"
+          ];
 
-          # POSIX Shell and Bash automation script formatter
-          bash = [ "shfmt" ];
+          # Shell
+          sh = [
+            "shfmt"
+          ];
 
-          # Purely functional configuration syntax layout standardizer
-          nix = [ "alejandra" ];
+          bash = [
+            "shfmt"
+          ];
 
-          # Database schema syntax checking engine (Ensure sqlfluff is in packages.nix)
-          sql = [ "sqlfluff" ];
+          # Nix
+          nix = [
+            "alejandra"
+          ];
+
+          # SQL
+          sql = [
+            "sqlfluff"
+          ];
         };
 
-        # Automation block triggering code format actions instantly upon file save
         format_on_save = {
-          lsp_fallback = true;         # Fallback smoothly to standard LSP formatting if tool fails
-          timeout_ms = 500;            # Maximum duration allowed for execution before interrupting
+          lsp_fallback = true;
+          timeout_ms = 500;
         };
       };
     };

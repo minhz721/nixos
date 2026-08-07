@@ -1,4 +1,3 @@
-
 #!/usr/bin/env bash
 #  ██╗    ██╗ █████╗ ██╗     ██╗     ██████╗  █████╗ ██████╗ ███████╗██████╗
 #  ██║    ██║██╔══██╗██║     ██║     ██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗
@@ -29,11 +28,11 @@ mapfile -t PAPERS < <(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname 
 
 # Build the structural menu layout with filenames and direct icon previews
 generate_menu() {
-    for img in "${PAPERS[@]}"; do
-        filename=$(basename "$img")
-        # Rofi syntax to pass structural data: Label\0icon\x1f/path/to/icon
-        printf "%s\x00icon\x1f%s\n" "$filename" "$img"
-    done
+  for img in "${PAPERS[@]}"; do
+    filename=$(basename "$img")
+    # Rofi syntax to pass structural data: Label\0icon\x1f/path/to/icon
+    printf "%s\x00icon\x1f%s\n" "$filename" "$img"
+  done
 }
 
 # Launch Rofi and capture the selected item text (filename)
@@ -47,12 +46,12 @@ FULL_PATH="$WALLPAPER_DIR/$SELECTED_NAME"
 
 # Fallback validation to verify the target wallpaper file exists locally
 if [ ! -f "$FULL_PATH" ]; then
-    echo "Error: Target image file not found on system."
-    exit 1
+  echo "Error: Target image file not found on system."
+  exit 1
 fi
 
 # Write the final choice location data out to system cache
-echo "$FULL_PATH" > "$CACHE_FILE"
+echo "$FULL_PATH" >"$CACHE_FILE"
 
 # Apply the graphic directly to the monitor matrix via feh --bg-fill
 feh --bg-fill "$FULL_PATH"
