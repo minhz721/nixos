@@ -23,7 +23,6 @@
       };
     };
 
-
     keymaps = [
       {
         mode = "n";
@@ -53,6 +52,5 @@
         options.desc = "Open buffer tree";
       }
     ];
-
   };
 }
