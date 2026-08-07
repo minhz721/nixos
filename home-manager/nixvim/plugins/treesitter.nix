@@ -1,44 +1,72 @@
 {pkgs, ...}: {
   programs.nixvim = {
-    plugins.treesitter = {
-      enable = true;
+    plugins = {
+      treesitter = {
+        enable = true;
+        settings = {
+          highlight.enable = true;
+          indent.enable = true;
+        };
+        grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+          # Core
+          lua
+          vim
+          nix
 
-      settings = {
-        highlight.enable = true;
-        indent.enable = true;
+          # Web
+          javascript
+          typescript
+          tsx
+          html
+          css
+          json
+          svelte
+
+          # Config / DevOps
+          bash
+          dockerfile
+          yaml
+          toml
+
+          # Data / Docs
+          markdown
+          markdown_inline
+
+          # Python
+          python
+        ];
       };
+      # Rainbow brackets / parentheses
+      rainbow-delimiters = {
+        enable = true;
+      };
+      # Better Markdown rendering
+      render-markdown = {
+        enable = true;
 
-      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
-        # Core
-        lua
-        vim
-        nix
-
-        # Web
-        javascript
-        typescript
-        tsx
-        html
-        css
-        json
-        svelte
-
-        # Config / DevOps
-        bash
-        dockerfile
-        yaml
-        toml
-
-        # Data / Docs
-        markdown
-        markdown_inline
-
-        # Python
-        python
-
-        # API testing
-        # http
-      ];
+        settings = {
+          heading = {
+            sign = true;
+            icons = [
+              "1 "
+              "2 "
+              "3 "
+              "4 "
+              "5 "
+              "6 "
+            ];
+          };
+          checkbox = {
+            enabled = true;
+            unchecked = {
+              icon = "󰄱 ";
+            };
+            checked = {
+              icon = "󰱒 ";
+            };
+          };
+        };
+      };
     };
   };
 }

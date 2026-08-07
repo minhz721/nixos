@@ -8,25 +8,20 @@
 
     plugins.neo-tree = {
       enable = true;
-
       settings = {
         popup_border_style = "rounded";
-
         filesystem = {
           filtered_items = {
             hide_dotfiles = false;
             hide_gitignored = false;
           };
-
           follow_current_file = {
             enabled = true;
           };
-
           use_libuv_file_watcher = true;
         };
       };
     };
-
 
     keymaps = [
       {
@@ -57,6 +52,5 @@
         options.desc = "Open buffer tree";
       }
     ];
-
   };
 }
