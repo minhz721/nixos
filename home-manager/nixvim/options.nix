@@ -31,4 +31,6 @@
       swapfile = false;
     };
   };
+
+  programs.nixvim.plugins.web-devicons.enable = true;
 }

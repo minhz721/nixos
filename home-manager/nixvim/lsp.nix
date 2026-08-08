@@ -9,17 +9,14 @@
 
     plugins.lsp = {
       enable = true;
-
       keymaps = {
         silent = true;
-
         lspBuf = {
           gd = "definition";
           gD = "declaration";
           gi = "implementation";
           gr = "references";
           K = "hover";
-
           "<leader>rn" = "rename";
           "<leader>ca" = "code_action";
         };
@@ -29,7 +26,6 @@
         # Nix
         nil_ls = {
           enable = true;
-
           settings = {
             formatting.command = ["alejandra"];
           };
@@ -38,15 +34,11 @@
         # Lua
         lua_ls = {
           enable = true;
-
           settings = {
             Lua = {
               diagnostics.globals = ["vim"];
-
               workspace.checkThirdParty = false;
-
               telemetry.enable = false;
-
               format.enable = false;
             };
           };

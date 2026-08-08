@@ -18,5 +18,6 @@
     dunst
     feh
     lightlocker
+    xclip
   ];
 }
