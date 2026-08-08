@@ -78,6 +78,9 @@
 
         # Frontend
         svelte.enable = true;
+
+        # zig
+        zls.enable = true;
       };
     };
   };

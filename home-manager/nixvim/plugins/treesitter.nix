@@ -13,6 +13,9 @@
           vim
           nix
 
+          # zig
+          zig
+
           # Web
           javascript
           typescript

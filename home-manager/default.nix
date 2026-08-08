@@ -13,6 +13,7 @@
     ./flameshot.nix
     ./librewolf.nix
     ./yazi.nix
+    ./obs-studio.nix
 
     # niri
     # ./niri
@@ -82,6 +83,7 @@
     # Development Tools
     # =========================================================================
     dbeaver-bin
+    bruno
     lazydocker
     lazygit
     lazysql

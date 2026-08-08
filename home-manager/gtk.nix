@@ -41,4 +41,9 @@
     XCURSOR_THEME = "Bibata-Modern-Ice";
     XCURSOR_SIZE = "24";
   };
+
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+  };
 }

@@ -39,6 +39,7 @@
     nemo-with-extensions
     nemo-fileroller
     flameshot
+    vscode
 
     # =========================================================================
     # Development

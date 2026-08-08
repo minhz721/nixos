@@ -14,9 +14,11 @@
     ./fonts.nix
     ./bluetooth.nix
     ./keyd.nix
+    # ./gaming.nix
     # niri
     # ./niri.nix
     # ./greetd.nix
+
     # qtile
     ./qtile.nix
   ];
