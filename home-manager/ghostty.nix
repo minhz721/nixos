@@ -10,7 +10,7 @@
       # Appearance
       theme = "Catppuccin Mocha";
       background-opacity = 0.75;
-      background-blur-radius = 40;
+      background-blur-radius = 30;
       font-family = "JetBrainsMono Nerd Font";
       font-size = 11;
       cursor-style = "block";

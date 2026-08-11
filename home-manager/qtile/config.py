@@ -107,6 +107,7 @@ floating_layout = layout.Floating(
         Match(wm_class="fcitx"),
         Match(wm_class="fcitx5-configtool"),
         Match(wm_class="crx_amfojhdiedpdnlijjbhjnhokbnohfdfb"),
+        Match(wm_class=".blueman-manager-wrapped"),
     ],
 )
 
@@ -114,9 +115,6 @@ floating_layout = layout.Floating(
 # stuff
 @hook.subscribe.startup_once
 def autostart():
-    # autostartscript = "bash -c ~/.config/qtile/autostart_once.sh"
-    # home = os.path.expanduser(autostartscript)
-    # subprocess.Popen([home])
     home = os.path.expanduser("~")
 
     script_path = os.path.join(home, ".config/qtile/autostart_once.sh")
