@@ -10,7 +10,7 @@
     ./git.nix
     ./nemo
     ./gtk.nix
-    ./flameshot.nix
+    # ./flameshot.nix
     ./librewolf.nix
     ./yazi.nix
     # ./obs-studio.nix
@@ -22,10 +22,14 @@
     # ./mako.nix
 
     # qtile
-    ./qtile
-    ./rofi
-    ./dunst
-    ./picom.nix
+    # ./qtile
+    # ./rofi
+    # ./dunst
+    # ./picom.nix
+
+    # sway
+    ./sway.nix
+    ./waybar
 
     # nixvim
     ./nixvim

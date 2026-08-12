@@ -22,6 +22,9 @@
     # ./greetd.nix
 
     # qtile
-    ./qtile.nix
+    # ./qtile.nix
+
+    # sway
+    ./sway.nix
   ];
 }

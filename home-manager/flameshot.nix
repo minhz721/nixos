@@ -5,12 +5,16 @@
 }: {
   services.flameshot = {
     enable = true;
-
+    # Wayland
+    package = pkgs.flameshot.override { enableWlrSupport = true; }; 
     settings = {
       General = {
         savePath = "${config.home.homeDirectory}/Pictures/Screenshots";
-        showStartupLaunchMessage = false;
-        disabledTrayIcon = false;
+        showStartupLaunchMessage = "false";
+        disabledTrayIcon = "false";
+        useGrimAdapter = "true";
+        
+        disabledGrimWarning = "true";
       };
     };
   };
