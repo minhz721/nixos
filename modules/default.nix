@@ -15,6 +15,7 @@
     ./bluetooth.nix
     ./keyd.nix
     ./xdm.nix
+    ./cache.nix
     # ./gaming.nix
     # niri
     # ./niri.nix
