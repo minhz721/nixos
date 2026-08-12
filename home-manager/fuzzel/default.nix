@@ -4,5 +4,6 @@
   home.file.".config/fuzzel" = {
     source = ./.;
     recursive = true;
+    executable = true;
   };
 }

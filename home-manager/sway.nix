@@ -4,7 +4,6 @@
   inputs,
   ...
 }: {
-
   home.packages = with pkgs; [
     libnotify
     wl-clipboard
@@ -13,31 +12,8 @@
     wlr-randr
     grim
     slurp
+    jq
   ];
-
-  programs.fuzzel = {
-    enable = true;
-    settings = {
-      main = {
-        terminal = "${pkgs.ghostty}/bin/ghostty";
-        layer = "overlay";
-        width = 40;
-        lines = 10;
-        fields = "name,generic,comment,categories,filename";
-      };
-      colors = {
-        background = "1e1e2eff";
-        text = "cdd6f4ff";
-        selection = "b4befe55";
-        selection-text = "cdd6f4ff";
-        border = "cba6f7ff";
-      };
-      border = {
-        width = 2;
-        radius = 8;
-      };
-    };
-  };
 
   services.mako = {
     enable = true;
@@ -123,8 +99,6 @@
     };
   };
 
-  
-
   wayland.windowManager.sway = {
     extraConfig = ''
       include ~/.config/sway/outputs
@@ -179,6 +153,8 @@
         {command = "fcitx5 -d";}
         {command = "mako";}
         {command = "blueman-applet";}
+        # {command = "ab-download-manager";}
+        {command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";}
       ];
       bars = [];
       window = {
@@ -220,7 +196,13 @@
         }
         {
           command = "floating enable, move center";
-          criteria.title = "(?i)(AB Download Manager|Mission Center)";
+          criteria = {
+            class = "com-abdownloadmanager-desktop-AppKt";
+          };
+        }
+        {
+          command = "floating enable, move center";
+          criteria.title = "(?i)(Mission Center)";
         }
       ];
       keybindings = let
@@ -232,9 +214,9 @@
           "${modifier}+d" = "exec fuzzel";
           "${modifier}+q" = "kill";
           "${modifier}+Shift+r" = "reload";
-          "${modifier}+Shift+s" =
-  "exec grim -g \"$(slurp)\" - | tee ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy";
+          "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | tee ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy";
           "${modifier}+l" = "exec hyprlock";
+          "${modifier}+Tab" = "exec ${config.home.homeDirectory}/.config/fuzzel/scripts/sway-window-switcher.sh";       
 
           # Application shortcuts
           "${modifier}+e" = "exec nemo";

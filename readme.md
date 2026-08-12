@@ -8,7 +8,6 @@ Welcome to my personal **NixOS** configuration repository. This setup manages my
 
 - **Nix Flakes**: Modern dependency management with locked package versions (`flake.lock`).
 - **Home Manager**: Declarative configuration for user environments, CLI tools, and GUI dotfiles.
-- **Niri Compositor**: A scrollable-tiling Wayland window manager focused on smooth animations.
 - **Storage Optimization**: Configured with `auto-optimise-store = true` to eliminate duplicate files.
 - **System Maintenance**: Automated garbage collection to prevent disk space bloat.
 
@@ -74,28 +73,18 @@ sudo nixos-rebuild switch --flake .#<your-host-name>
 
 ---
 
-## 🔍 Troubleshooting Niri
+## 🔍 Troubleshooting Sway
 
-If you encounter issues, crashes, or glitches while using the Niri compositor, use these commands to check the logs:
+Get classname and appid:
 
-- **View live logs in real-time:**
   ```bash
-  journalctl --user -f -u niri
+  xprop WM_CLASS
   ```
-- **View logs from the current boot only:**
   ```bash
-  journalctl --user -b -u niri
-  ```
-- **View the most recent errors (priority level Warning and above):**
-  ```bash
-  journalctl --user -u niri -p 3..4 --no-pager
-  ```
-- **Export logs to a file for debugging or sharing:**
-  ```bash
-  journalctl --user -u niri > niri-debug.log
+  swaymsg -t get_tree | grep -E '"app_id"|"name"'
   ```
 
----
+
 
 ## 👤 Author
 

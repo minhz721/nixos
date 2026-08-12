@@ -16,6 +16,9 @@
   programs.hyprlock.enable = true;
   services.accounts-daemon.enable = true;
 
+  services.udisks2.enable = true;
+  security.polkit.enable = true;
+
   # Noctalia Greeter settings
   programs.noctalia-greeter = {
     enable = true;
