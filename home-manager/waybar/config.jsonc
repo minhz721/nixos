@@ -6,9 +6,9 @@
     "margin-left": 10,
     "margin-right": 10,
     "spacing": 8,
-    "output": [
-        "DP-1"
-    ],
+    // "output": [
+    //     "DP-1"
+    // ],
 
     // Layout
     "modules-left": [
@@ -22,9 +22,9 @@
     ],
     "modules-right": [
         "tray",
-        "pulseaudio",
         "cpu",
         "memory",
+        "pulseaudio",
         "custom/wallpaper",
         "custom/powermenu"
     ],
@@ -50,7 +50,8 @@
     // Sway Workspaces 
     "sway/workspaces": {
         "disable-scroll": true,
-        "all-outputs": true,
+        "all-outputs": false,
+        "sort-by-number": true,
         "format": "{icon}",
         "format-icons": {
             "default": "○",

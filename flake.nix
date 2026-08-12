@@ -23,10 +23,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-xdm = {
-      url = "github:Diomeh/nix-xdm";
-      flake = false;
-    };
+    # nix-xdm = {
+    #   url = "github:Diomeh/nix-xdm";
+    #   flake = false;
+    # };
   };
 
   outputs = {
@@ -34,7 +34,7 @@
     home-manager,
     custom-packages,
     nixvim,
-    nix-xdm,
+    # nix-xdm,
     ...
   } @ inputs: let
     system = "x86_64-linux";
