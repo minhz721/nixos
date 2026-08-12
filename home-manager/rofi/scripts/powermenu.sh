@@ -17,7 +17,7 @@ messages=("See ya!" "Adiós, amigo!" "Catch you on the flip side!" "Powering dow
 sendoff="${messages[$((RANDOM % ${#messages[@]}))]}"
 
 # Theme rofi
-theme="$HOME/.config/rofi/themes/catppuccin-mocha.rasi"
+theme="$HOME/.config/rofi/powermenu.rasi"
 
 # ───────────────────────────────────────────────────────────────
 #                            Rofi UI
@@ -55,7 +55,7 @@ run_cmd() {
     pkill -KILL -u "$USER"
     ;;
   lock)
-    xfce4-screensaver-command -l
+    light-locker-command --lock
     ;;
   *)
     notify-send "Invalid option: $1"

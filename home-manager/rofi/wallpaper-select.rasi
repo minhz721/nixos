@@ -1,4 +1,5 @@
-// # z0mbi3 -  https://github.com/gh0stzk/dotfiles
+@import "themes/catppuccin-mocha.rasi"
+
 
 configuration {
     modi:                        "drun";
@@ -9,15 +10,6 @@ configuration {
     //hover-select:				 true;
 	//me-select-entry:			 "";
 	//me-accept-entry:			 "MousePrimary";
-}
-
-//----- Global Properties -----//
-
-* {
-main-bg: #282828E6;
-main-fg: #fbf1c7;
-select-bg: #d79921;
-select-fg: #282828;
 }
 
 //----- Main Window -----//

@@ -26,146 +26,161 @@ MOCHA_PULSEVOLUME = "#f9e2af"
 FONT = "JetBrainsMono Nerd Font"
 
 
+def create_bar(show_systray=False):
+    widgets = [
+        widget.Spacer(length=18),
+        # === LEFT ===
+        widget.GroupBox(
+            fontsize=17,
+            borderwidth=3,
+            highlight_method="line",
+            highlight_color=[MOCHA_BASE, MOCHA_BASE],
+            this_current_screen_border=MOCHA_LAVENDER,
+            active=MOCHA_TEXT,
+            inactive=MOCHA_SURFACE2,
+            rounded=False,
+            disable_drag=True,
+            padding_x=8,
+            padding_y=3,
+            margin_x=3,
+            font=FONT,
+        ),
+        widget.Spacer(length=10),
+        widget.Sep(
+            linewidth=1,
+            padding=15,
+            foreground=MOCHA_SURFACE2,
+        ),
+        widget.CurrentLayout(
+            fontsize=17,
+            padding=8,
+            foreground=MOCHA_TEXT,
+            font=FONT,
+        ),
+        widget.Spacer(),
+        # === CENTER ===
+        widget.Clock(
+            format="%I:%M %p, %a %Y-%m-%d",
+            font=FONT,
+            fontsize=17,
+            foreground=MOCHA_TEXT,
+            mouse_callbacks={"Button1": lazy.spawn("gsimplecal")},
+        ),
+        widget.Spacer(),
+        # === RIGHT ===
+        widget.CPU(
+            format="CPU: {load_percent:.1f}%",
+            fontsize=17,
+            padding=10,
+            update_interval=5,
+            foreground=MOCHA_CPU,
+            font=FONT,
+            mouse_callbacks={"Button1": lazy.spawn("ghostty -e btop")},
+        ),
+        widget.ThermalSensor(
+            format="🌡️ {temp:.0f}°C",
+            tag_sensor="Tctl",
+            fontsize=17,
+            padding=10,
+            update_interval=2,
+            metric=True,
+            threshold=75,
+            foreground=MOCHA_SUBTEXT1,
+            font=FONT,
+            mouse_callbacks={"Button1": lazy.spawn("ghostty -e btop")},
+        ),
+        widget.Sep(
+            linewidth=1,
+            padding=15,
+            foreground=MOCHA_SURFACE2,
+        ),
+        widget.Memory(
+            format="RAM: {MemUsed:.1f}GB",
+            measure_mem="G",
+            fontsize=17,
+            padding=10,
+            update_interval=5,
+            foreground=MOCHA_MEMORY,
+            font=FONT,
+            mouse_callbacks={"Button1": lazy.spawn("ghostty -e btop")},
+        ),
+        widget.Sep(
+            linewidth=1,
+            padding=15,
+            foreground=MOCHA_SURFACE2,
+        ),
+        widget.PulseVolume(
+            fmt="  {}",
+            mute_format="Mute",
+            fontsize=17,
+            padding=3,
+            foreground=MOCHA_PULSEVOLUME,
+            font=FONT,
+        ),
+        widget.Sep(
+            linewidth=1,
+            padding=15,
+            foreground=MOCHA_SURFACE2,
+        ),
+    ]
+
+    if show_systray:
+        widgets += [
+            widget.Systray(),
+            widget.Sep(
+                linewidth=1,
+                padding=15,
+                foreground=MOCHA_SURFACE2,
+            ),
+        ]
+
+    widgets += [
+        widget.TextBox(
+            text="",
+            fontsize=18,
+            padding=15,
+            foreground=MOCHA_BLUE,
+            mouse_callbacks={
+                "Button1": lazy.spawn(
+                    "bash -c ~/.config/rofi/scripts/wallpaper-select.sh"
+                )
+            },
+            font=FONT,
+        ),
+        widget.Sep(
+            linewidth=1,
+            padding=15,
+            foreground=MOCHA_SURFACE2,
+        ),
+        widget.TextBox(
+            text="",
+            fontsize=18,
+            padding=15,
+            foreground=MOCHA_RED,
+            mouse_callbacks={
+                "Button1": lazy.spawn("bash -c ~/.config/rofi/scripts/powermenu.sh")
+            },
+            font=FONT,
+        ),
+        widget.Spacer(length=18),
+    ]
+
+    return bar.Bar(
+        widgets,
+        size=38,
+        margin=[10, 10, 10, 10],
+        background=MOCHA_BASE,
+        opacity=0.95,
+    )
+
+
 screens = [
     Screen(
-        top=bar.Bar(
-            [
-                widget.Spacer(length=18),
-                # === LEFT ===
-                widget.GroupBox(
-                    fontsize=17,
-                    borderwidth=3,
-                    highlight_method="line",
-                    highlight_color=[MOCHA_BASE, MOCHA_BASE],
-                    this_current_screen_border=MOCHA_LAVENDER,
-                    active=MOCHA_TEXT,
-                    inactive=MOCHA_SURFACE2,
-                    rounded=False,
-                    disable_drag=True,
-                    padding_x=8,
-                    padding_y=3,
-                    margin_x=3,
-                    font=FONT,
-                ),
-                widget.Spacer(length=10),
-                widget.Sep(
-                    linewidth=1,
-                    padding=15,
-                    foreground=MOCHA_SURFACE2,
-                ),
-                widget.CurrentLayout(
-                    fontsize=17,
-                    padding=8,
-                    foreground=MOCHA_TEXT,
-                    font=FONT,
-                ),
-                widget.Spacer(),
-                # === CENTER ===
-                widget.Clock(
-                    format="%I:%M %p, %a %Y-%m-%d",
-                    font=FONT,
-                    fontsize=17,
-                    foreground=MOCHA_TEXT,
-                    mouse_callbacks={"Button1": lazy.spawn("gsimplecal")},
-                ),
-                widget.Spacer(),
-                # === RIGHT ===
-                widget.CPU(
-                    format="CPU: {load_percent:.1f}%",
-                    fontsize=17,
-                    padding=10,
-                    update_interval=5,
-                    foreground=MOCHA_CPU,
-                    font=FONT,
-                    mouse_callbacks={"Button1": lazy.spawn("ghostty -e btop")},
-                ),
-                widget.ThermalSensor(
-                    format="🌡️ {temp:.0f}°C",
-                    tag_sensor="Tctl",
-                    fontsize=17,
-                    padding=10,
-                    update_interval=2,
-                    metric=True,
-                    threshold=75,
-                    foreground=MOCHA_SUBTEXT1,
-                    font=FONT,
-                    mouse_callbacks={"Button1": lazy.spawn("ghostty -e btop")},
-                ),
-                widget.Sep(
-                    linewidth=1,
-                    padding=15,
-                    foreground=MOCHA_SURFACE2,
-                ),
-                widget.Memory(
-                    format="RAM: {MemUsed:.1f}GB",
-                    measure_mem="G",
-                    fontsize=17,
-                    padding=10,
-                    update_interval=5,
-                    foreground=MOCHA_MEMORY,
-                    font=FONT,
-                    mouse_callbacks={"Button1": lazy.spawn("ghostty -e btop")},
-                ),
-                widget.Sep(
-                    linewidth=1,
-                    padding=15,
-                    foreground=MOCHA_SURFACE2,
-                ),
-                widget.PulseVolume(
-                    fmt="  {}",
-                    mute_format="Mute",
-                    fontsize=17,
-                    padding=3,
-                    foreground=MOCHA_PULSEVOLUME,
-                    font=FONT,
-                ),
-                widget.Sep(
-                    linewidth=1,
-                    padding=15,
-                    foreground=MOCHA_SURFACE2,
-                ),
-                widget.Systray(),
-                widget.Sep(
-                    linewidth=1,
-                    padding=15,
-                    foreground=MOCHA_SURFACE2,
-                ),
-                widget.TextBox(
-                    text="",
-                    fontsize=18,
-                    padding=15,
-                    foreground=MOCHA_BLUE,
-                    mouse_callbacks={
-                        "Button1": lazy.spawn(
-                            "bash -c ~/.config/qtile/scripts/wallpaper-select.sh"
-                        )
-                    },
-                    font=FONT,
-                ),
-                widget.Sep(
-                    linewidth=1,
-                    padding=15,
-                    foreground=MOCHA_SURFACE2,
-                ),
-                widget.TextBox(
-                    text="",
-                    fontsize=18,
-                    padding=15,
-                    foreground=MOCHA_RED,
-                    mouse_callbacks={
-                        "Button1": lazy.spawn(
-                            "bash -c ~/.config/rofi/scripts/powermenu.sh"
-                        )
-                    },
-                    font=FONT,
-                ),
-                widget.Spacer(length=18),
-            ],
-            size=38,
-            margin=[10, 10, 10, 10],
-            background=MOCHA_BASE,
-            opacity=0.95,
-        ),
+        top=create_bar(show_systray=True),
+        wallpaper_mode="center",
+    ),
+    Screen(
+        top=create_bar(show_systray=False),
         wallpaper_mode="center",
     ),
 ]

@@ -1,8 +1,5 @@
-/**
- * Unified Rofi Configuration File
- * Feature Set: Application Launcher, Window Switcher, and File Browser
- * Theme: Catppuccin Mocha Palette Sync
- **/
+@import "themes/catppuccin-mocha.rasi"
+
 
 configuration {
     /* Core Mode Activation */
@@ -25,14 +22,7 @@ configuration {
     kb-mode-previous:           "Shift+Left";
 }
 
-/* --- THEME VARIABLES & COLOR PALETTE (Catppuccin Mocha) --- */
-* {
-    bg:      #1e1e2e; /* Base: Deep Primary Background */
-    bg-alt:  #181825; /* Mantle: Secondary Input Panel Background */
-    fg:      #cdd6f4; /* Text: Primary Text Value */
-    accent:  #b4befe; /* Lavender: Pastel Highlight Component */
-    border:  #b4befe; /* Lavender: Geometric Edge Border Control */
-}
+
 
 /* --- SYSTEM WINDOW STRUCTURE --- */
 window {
