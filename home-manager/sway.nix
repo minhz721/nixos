@@ -123,12 +123,53 @@
     };
   };
 
+  
+
   wayland.windowManager.sway = {
     extraConfig = ''
       include ~/.config/sway/outputs
     '';
     enable = true;
     config = {
+      workspaceOutputAssign = [
+        {
+          workspace = "1";
+          output = "DP-1";
+        }
+        {
+          workspace = "3";
+          output = "DP-1";
+        }
+        {
+          workspace = "5";
+          output = "DP-1";
+        }
+        {
+          workspace = "7";
+          output = "DP-1";
+        }
+        {
+          workspace = "9";
+          output = "DP-1";
+        }
+
+        {
+          workspace = "2";
+          output = "HDMI-A-1";
+        }
+        {
+          workspace = "4";
+          output = "HDMI-A-1";
+        }
+        {
+          workspace = "6";
+          output = "HDMI-A-1";
+        }
+        {
+          workspace = "8";
+          output = "HDMI-A-1";
+        }
+      ];
       modifier = "Mod4";
       terminal = "ghostty";
       menu = "fuzzel";
@@ -155,11 +196,31 @@
       window.commands = [
         {
           command = "floating enable, move center";
-          criteria = {app_id = "(?i)(xdm-app|xdman|xdman-main|blueman-manager|blueman-manager-wrapped|\\.blueman-manager-wrapped|com-abdownloadmanager-desktop-appkt|mpv|imv|cava|fcitx5-config-qt|fcitx|fcitx5-configtool|crx_amfojhdiedpdnlijjbhjnhokbnohfdfb)";};
+          criteria.app_id = "blueman-manager";
         }
         {
           command = "floating enable, move center";
-          criteria = {title = "(?i)(XDM 2020|java-lang-Thread|mpv|Mission Center)";};
+          criteria.app_id = "blueman-manager-wrapped";
+        }
+        {
+          command = "floating enable, move center";
+          criteria.app_id = "mpv";
+        }
+        {
+          command = "floating enable, move center";
+          criteria.app_id = "imv";
+        }
+        {
+          command = "floating enable, move center";
+          criteria.app_id = "cava";
+        }
+        {
+          command = "floating enable, move center";
+          criteria.app_id = "fcitx5-configtool";
+        }
+        {
+          command = "floating enable, move center";
+          criteria.title = "(?i)(AB Download Manager|Mission Center)";
         }
       ];
       keybindings = let
@@ -202,6 +263,10 @@
           "${modifier}+3" = "workspace number 3";
           "${modifier}+4" = "workspace number 4";
           "${modifier}+5" = "workspace number 5";
+          "${modifier}+6" = "workspace number 6";
+          "${modifier}+7" = "workspace number 7";
+          "${modifier}+8" = "workspace number 8";
+          "${modifier}+9" = "workspace number 9";
 
           # Move focused container to workspace
           "${modifier}+Shift+1" = "move container to workspace number 1";
@@ -209,6 +274,10 @@
           "${modifier}+Shift+3" = "move container to workspace number 3";
           "${modifier}+Shift+4" = "move container to workspace number 4";
           "${modifier}+Shift+5" = "move container to workspace number 5";
+          "${modifier}+Shift+6" = "move container to workspace number 6";
+          "${modifier}+Shift+7" = "move container to workspace number 7";
+          "${modifier}+Shift+8" = "move container to workspace number 8";
+          "${modifier}+Shift+9" = "move container to workspace number 9";
 
           # Move focused window (Vim keys)
           "${modifier}+Shift+h" = "move left";
