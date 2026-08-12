@@ -14,32 +14,19 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/e639be81-2a04-4ec2-be17-5e98f4ed7fc1";
+    { device = "/dev/disk/by-uuid/ac67b275-e764-4de5-bd81-edda9ec49839";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/7221-6EC3";
+    { device = "/dev/disk/by-uuid/DAA4-9FD7";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  # # 2TB_HDD
-  # fileSystems."/run/media/leomin/2TB_HDD" = {
-  #   device = "/dev/disk/by-uuid/7ECE-1AA1";
-  #   fsType = "exfat";
-  #   options = [ "nofail" "uid=1000" "gid=100" "dmask=002" "fmask=113" ];
-  # };
-
-  # # 2TB_HDD_2
-  # fileSystems."/run/media/leomin/2TB_HDD2" = {
-  #   device = "/dev/disk/by-uuid/6F5F-F3DD";
-  #   fsType = "exfat";
-  #   options = [ "nofail" "uid=1000" "gid=100" "dmask=002" "fmask=113" ];
-  # };
-
-
-  swapDevices = [ ];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/c172057a-c2cc-474c-b9b9-41d08f5cf3d8"; }
+    ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

@@ -21,7 +21,7 @@ Welcome to my personal **NixOS** configuration repository. This setup manages my
 ├── flake.nix                  # Main entry point defining inputs and outputs
 ├── flake.lock                 # Strict version lockfile for reproducible builds
 ├── configuration.nix          # Core system-level configuration
-├── hardware-configuration.nix # Hardware-specific configuration (auto-generated)
+├── hardware-configuration.nix #
 ├── home-manager/              # User-level configurations and dotfiles
 └── modules/                   # Reusable system modules or packages
 ```
@@ -44,7 +44,7 @@ cd ~/.config/nixos
 Backup or overwrite the repository's hardware file with your own local setup:
 
 ```bash
-cp /etc/nixos/hardware-configuration.nix ~/.config/nixos/
+sudo cp /etc/nixos/hardware-configuration.nix ~/.config/nixos/
 ```
 
 ### 3. Apply the configuration
