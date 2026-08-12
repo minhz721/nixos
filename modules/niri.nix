@@ -30,6 +30,7 @@
     # Apps
     fuzzel
     grim
+    # clipboard
     wl-clipboard
   ];
 }

@@ -6,11 +6,16 @@
     "margin-left": 10,
     "margin-right": 10,
     "spacing": 8,
+    "output": [
+        "DP-1"
+    ],
 
     // Layout
     "modules-left": [
-        "niri/workspaces",
-        "niri/window"
+        // "niri/workspaces",
+        // "niri/window"
+        "sway/workspaces",
+        "sway/window"
     ],
     "modules-center": [
         "clock"
@@ -27,18 +32,38 @@
     // --- MODULE CONFIGURATIONS ---
 
     // Niri Workspaces (Cần Waybar phiên bản mới hỗ trợ niri/workspaces)
-    "niri/workspaces": {
+    // "niri/workspaces": {
+    //     "format": "{icon}",
+    //     "format-icons": {
+    //         "default": "○",
+    //         "active": "●"
+    //     }
+    // },
+
+    // "niri/window": {
+    //     "format": "{}",
+    //     "max-length": 40,
+    //     "separate-outputs": true
+    // },
+
+
+    // Sway Workspaces 
+    "sway/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
         "format": "{icon}",
         "format-icons": {
             "default": "○",
-            "active": "●"
+            "focused": "●"
         }
     },
 
-    "niri/window": {
+    // Sway Window Title
+    "sway/window": {
         "format": "{}",
         "max-length": 40,
-        "separate-outputs": true
+        "icon": true, 
+        "icon-size": 16
     },
 
     "clock": {
