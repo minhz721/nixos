@@ -14,7 +14,7 @@
     ./fonts.nix
     ./bluetooth.nix
     ./keyd.nix
-    ./xdm.nix
+    # ./xdm.nix
     ./cache.nix
     # ./gaming.nix
     # niri

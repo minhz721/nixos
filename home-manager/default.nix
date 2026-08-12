@@ -30,6 +30,7 @@
     # sway
     ./sway.nix
     ./waybar
+    ./fuzzel
 
     # nixvim
     ./nixvim
