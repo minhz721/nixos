@@ -24,7 +24,7 @@
     };
 
     # nix-xdm = {
-    #   url = "github:Diomeh/nix-xdm";
+    #   url = "github:Diomeh/nix-xdm/0.0.4";
     #   flake = false;
     # };
   };

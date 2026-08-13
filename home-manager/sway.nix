@@ -196,6 +196,10 @@
         }
         {
           command = "floating enable, move center";
+          criteria.app_id = "xdm-app";
+        }
+        {
+          command = "floating enable, move center";
           criteria = {
             class = "com-abdownloadmanager-desktop-AppKt";
           };
