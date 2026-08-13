@@ -34,11 +34,11 @@
     enable = true;
     timeouts = [
       {
-        timeout = 300;
+        timeout = 1200;
         command = "${pkgs.hyprlock}/bin/hyprlock";
       }
       {
-        timeout = 600;
+        timeout = 1200;
         command = "${pkgs.sway}/bin/swaymsg 'output * power off'";
         resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * power on'";
       }
@@ -153,6 +153,8 @@
         {command = "fcitx5 -d";}
         {command = "mako";}
         {command = "blueman-applet";}
+        # {command = "ab-download-manager";}
+        {command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";}
       ];
       bars = [];
       window = {
@@ -194,7 +196,13 @@
         }
         {
           command = "floating enable, move center";
-          criteria.title = "(?i)(AB Download Manager|Mission Center)";
+          criteria = {
+            class = "com-abdownloadmanager-desktop-AppKt";
+          };
+        }
+        {
+          command = "floating enable, move center";
+          criteria.title = "(?i)(Mission Center)";
         }
       ];
       keybindings = let
@@ -208,8 +216,7 @@
           "${modifier}+Shift+r" = "reload";
           "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | tee ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy";
           "${modifier}+l" = "exec hyprlock";
-          "${modifier}+Tab" = "exec ${config.home.homeDirectory}/.config/fuzzel/scripts/sway-window-switcher.sh";       
-
+          "${modifier}+Tab" = "exec ${config.home.homeDirectory}/.config/fuzzel/scripts/sway-window-switcher.sh";
 
           # Application shortcuts
           "${modifier}+e" = "exec nemo";
