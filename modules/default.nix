@@ -16,6 +16,7 @@
     ./keyd.nix
     # ./xdm.nix
     ./cache.nix
+    # ./virt-manager.nix
     # ./gaming.nix
     # niri
     # ./niri.nix
