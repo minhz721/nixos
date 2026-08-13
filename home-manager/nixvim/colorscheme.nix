@@ -14,6 +14,6 @@
       };
     };
 
-    colorscheme = "tokyonight";
+    colorscheme = "vscode";
   };
 }
