@@ -14,9 +14,9 @@
     ./fonts.nix
     ./bluetooth.nix
     ./keyd.nix
+
     # ./xdm.nix
     # ./virt-manager.nix
-    # ./gaming.nix
     # niri
     ./niri.nix
     # ./greetd.nix

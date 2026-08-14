@@ -42,12 +42,17 @@ in {
       default-folder-viewer = "list-view"; # Enforce global default layout to List View
       ignore-view-metadata = true; # Override and ignore directory-specific layout history
       show-hidden-files = true; # Persistent visibility for hidden files
+      default-sort-order = "mtime";
     };
 
     "org/nemo/preferences/menu-config" = {
       # Hide default Cinnamon terminal menus to prioritize Ghostty Nemo Action
       background-menu-open-in-terminal = false;
       selection-menu-open-in-terminal = false;
+    };
+
+    "org.gnome.desktop.privacy" = {
+      remember-recent-files = false;
     };
 
     "org/nemo/search" = {
@@ -150,5 +155,18 @@ in {
       "application/x-java-archive" = ["java-jar-launcher.desktop"];
       "application/x-jar" = ["java-jar-launcher.desktop"];
     };
+  };
+
+  xdg.configFile = {
+    "gtk-3.0/settings.ini".text = ''
+      [Settings]
+      gtk-recent-files-max-age=0
+      gtk-recent-files-limit=0
+    '';
+    "gtk-4.0/settings.ini".text = ''
+      [Settings]
+      gtk-recent-files-max-age=0
+      gtk-recent-files-limit=0
+    '';
   };
 }

@@ -53,6 +53,10 @@
     unzip
     unrar
     p7zip
+    file-roller
+    ffmpegthumbnailer
+    poppler
+    libgsf
     openjdk
 
     # =========================================================================
