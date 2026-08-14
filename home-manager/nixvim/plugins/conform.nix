@@ -16,6 +16,8 @@
           svelte = ["prettier"];
           markdown = ["prettier"];
 
+          # kdl = [ "kdlfmt" ];
+
           # Python
           python = [
             "isort"

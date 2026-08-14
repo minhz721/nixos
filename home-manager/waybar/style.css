@@ -19,7 +19,7 @@ window#waybar {
 #pulseaudio,
 #cpu,
 #memory,
-#battery,
+#temperature,
 #tray {
   background-color: #1e1e2e;
   padding: 4px 12px;
@@ -85,22 +85,6 @@ window#waybar {
 }
 
 /* =====================
-   Battery
-===================== */
-
-#battery {
-  color: #a6e3a1;
-}
-
-#battery.warning {
-  color: #fab387;
-}
-
-#battery.critical {
-  color: #f38ba8;
-}
-
-/* =====================
    System Tray
 ===================== */
 
@@ -152,6 +136,7 @@ window#waybar {
 #memory:hover,
 #battery:hover,
 #tray:hover,
+#temperature:hover,
 #custom-wallpaper:hover,
 #custom-powermenu:hover {
   background-color: #313244;

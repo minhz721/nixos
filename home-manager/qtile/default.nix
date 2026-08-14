@@ -10,8 +10,6 @@
     executable = true;
   };
 
-  services.polkit-gnome.enable = true; # polkit
-
   services.screen-locker = {
     enable = true;
     inactiveInterval = 20;

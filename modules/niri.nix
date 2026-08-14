@@ -1,36 +1,70 @@
 {
   config,
   pkgs,
+  inputs,
   ...
 }: {
-  # Enable Niri Wayland compositor
+  imports = [
+    inputs.noctalia-greeter.nixosModules.default
+  ];
+  # Noctalia Greeter
+  programs.noctalia-greeter = {
+    enable = true;
+    settings = {
+      appearance = {
+        scheme = "Catppuccin";
+      };
+      keyboard = {
+        layout = "us";
+      };
+      output = {
+        name = "DP-1";
+        # layout = "DP-1:0,0; HDMI-A-1:2560,0";
+        # scales = "DP-1:1; HDMI-A-1:1";
+      };
+      session = {
+        default = "niri";
+      };
+      user = {
+        default = "leomin";
+      };
+    };
+  };
+
+  # Needed for user/session handling
+  services.accounts-daemon.enable = true;
+
   programs.niri.enable = true;
 
-  boot.loader.grub.configurationLimit = 7;
-
-  # PAM for swaylock
-  security.pam.services.swaylock = {};
-
-  # Wayland support for Electron apps
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
+  xdg.portal = {
+    enable = true;
+    extraPortals = [pkgs.xdg-desktop-portal-gnome];
+    config.common.default = "*";
+  };
+
   environment.systemPackages = with pkgs; [
-    # greetd.regreet
-    regreet
     # Niri dependencies
     xwayland-satellite
 
     # Wayland utilities
-    swaylock
     swayidle
     swaybg
     mako
     libnotify
+    hyprlock
 
     # Apps
     fuzzel
-    grim
     # clipboard
     wl-clipboard
+
+    jq
+    # nwg-displays
+    wlr-randr
+    grim
+    slurp
+    udiskie
   ];
 }
