@@ -3,20 +3,8 @@
   pkgs,
   ...
 }: {
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
   programs.java.package = pkgs.jdk21;
   programs.nix-ld.enable = true;
-
-  services.udisks2.enable = true;
-  services.gvfs.enable = true;
-  services.devmon.enable = true;
-
-  # Security / authentication
-  security.polkit.enable = true;
-
-  # GNOME keyring (password storage)
-  services.gnome.gnome-keyring.enable = true;
 
   # Nix store optimization and garbage collection
   nix.settings.auto-optimise-store = true;
@@ -27,11 +15,16 @@
     options = "--delete-older-than 7d";
   };
 
-  # fish
-  programs.fish.enable = true;
-  users.extraUsers.leomin = {
-    shell = pkgs.fish;
-  };
+  # polkit
+  security.polkit.enable = true;
+
+  services.gnome.gnome-keyring.enable = true;
+  services.udisks2.enable = true;
+  services.devmon.enable = true;
+  services.gvfs.enable = true;
+
+  boot.initrd.kernelModules = ["amdgpu"];
+  services.xserver.videoDrivers = ["amdgpu"];
 
   # Enable dconf for GTK/Nemo settings
   programs.dconf.enable = true;

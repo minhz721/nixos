@@ -1,7 +1,4 @@
 {pkgs, ...}: {
-  # Enable dconf (required for virt-manager settings)
-  programs.dconf.enable = true;
-
   # Enable the virt-manager GUI application
   programs.virt-manager.enable = true;
 

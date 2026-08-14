@@ -49,8 +49,6 @@
     # SQL
     sqlfluff
 
-    # tree-sitter
-    # Fonts
-    nerd-fonts.jetbrains-mono
+    kdlfmt
   ];
 }

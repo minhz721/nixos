@@ -1,29 +1,30 @@
-binds {
-    // ─── Help / Overlay ───
-    Mod+Shift+Escape                        { show-hotkey-overlay; }
+hotkey-overlay {
+    skip-at-startup
+}
 
+binds {
     // ─── Customs ───
     Mod+Return      { spawn "ghostty"; }
-    Mod+D       { spawn "rofi" "-show" "drun"; }
+    Mod+D       { spawn "fuzzel"; }
     Mod+E       { spawn "nemo"; }
     Mod+B       { spawn "thorium"; }
     Mod+C       { spawn "code"; }
     Mod+Alt+L       { spawn "hyprlock"; }
-    Mod+Shift+S     { spawn "flameshot" "gui"; }
+    Mod+Shift+S { spawn "bash" "-c" "mkdir -p ~/Pictures/Screenshots && grim -g \"$(slurp)\" - | tee ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy"; }
     Mod+Alt+R       { spawn "niri" "msg" "action" "load-config-file"; }
 
     // ─── Audio Controls ───
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
-    XF86AudioMute        allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteOutput"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
+    "XF86AudioRaiseVolume" { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+" "-l" "1.0"; }
+    "XF86AudioLowerVolume" { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+    "XF86AudioMute"        { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
 
     // ─── Window Actions ───
-    Mod+Q       repeat=false { close-window; }
-    Mod+O       repeat=false { toggle-overview; }
+    Mod+Q        { close-window; }
+    Mod+O       { toggle-overview; }
     Mod+T       { toggle-window-floating; }
     Mod+Ctrl+F     { fullscreen-window; }
     Mod+W       { toggle-column-tabbed-display; }
+    Mod+V       {  toggle-window-floating; }
 
     // ─── Window Focus & Navigation ───
     Mod+Left    { focus-column-left; }
@@ -113,13 +114,5 @@ binds {
     Mod+Shift+Minus     { set-window-height "-10%"; }
     Mod+Shift+Equal     { set-window-height "+10%"; }
 
-    // ─── Screenshots ───
-    Ctrl+Shift+S        { screenshot; }
-    Ctrl+Shift+2        { screenshot-screen; }
-    Ctrl+Shift+3        { screenshot-window; }
-
-    // ─── System & Safety ───
-    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
-    Ctrl+Alt+Delete     { quit; }
-    Mod+Shift+P         { power-off-monitors; }
+   
 }

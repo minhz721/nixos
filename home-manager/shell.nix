@@ -41,7 +41,8 @@
     shellAliases = {
       # Git shortcuts
       g = "git";
-      gaa = "git add";
+      ga = "git add";
+      gaa = "git add --all";
       gc = "git commit -m";
       gp = "git push";
       gst = "git status";
@@ -49,12 +50,17 @@
       gcan = "git commit --amend --no-edit";
       ggf = "git push -f";
       gpo = "git pull origin";
+      gco = "git checkout";
+      gs = "git stash";
+      gsa = "git stash apply";
+      gsl = "git stash list";
+      gsp = "git stash pop";
+      gsc = "git stash clear";
 
       rebuild = "sudo nixos-rebuild switch --flake";
-      update = "nix flake update";
+      flake-update = "nix flake update";
       nix-clean = "sudo nix-collect-garbage -d";
 
-      # z = "eza";
     };
   };
 }

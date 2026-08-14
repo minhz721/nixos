@@ -83,7 +83,10 @@ Get classname and appid:
   ```bash
   swaymsg -t get_tree | grep -E '"app_id"|"name"'
   ```
-
+Live log niri
+```
+journalctl --user -u niri -f
+```
 
 
 ## 👤 Author

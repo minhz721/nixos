@@ -3,4 +3,5 @@ spawn-at-startup "waybar"
 spawn-at-startup "mako"
 spawn-at-startup "fcitx5" "-d"
 spawn-at-startup "sh" "-c" "swaybg -i $(cat ~/.cache/wallpaper_current) -m fill"
+spawn-at-startup "/run/current-system/sw/libexec/polkit-gnome-authentication-agent-1"
 
