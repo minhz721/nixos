@@ -1,5 +1,4 @@
-// Master configuration for Niri
-include "autostart.kdl"
+include "startup.kdl"
 include "input.kdl"
 include "layout.kdl"
 include "animations.kdl"

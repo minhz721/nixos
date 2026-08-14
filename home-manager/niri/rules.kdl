@@ -1,46 +1,23 @@
-// Output default path
-screenshot-path "~/Pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
-
-// prefer-no-csd
-
-// WezTerm layout workaround
-window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    default-column-width {}
-}
-
-// Picture-in-Picture window rule
-window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
-}
-
-// Rounded corners for all windows (Bo góc cửa sổ)
-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
-}
-
 // float window
 window-rule {
     match app-id="imv"
     match app-id="mpv"
+    match app-id="cava"
     match app-id="xdm-app"      
     match app-id="blueman-manager"
     match app-id="org.pwmt.zathura" 
+    match app-id="fcitx5-configtool" 
 
     open-floating true
-    
-    // default-floating-dimensions width=1000 height=700
 }
 
-// Replace "foot" or "kitty" with your actual terminal app-id
 window-rule {
-    match app-id="foot"
-    match app-id="kitty"
-    match app-id="Alacritty"
     match app-id="ghostty"
 
-    // Fix border blending issue by disabling client-side transparency processing
     draw-border-with-background false
+}
+
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
 }

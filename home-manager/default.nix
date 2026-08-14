@@ -13,13 +13,11 @@
     # ./flameshot.nix
     ./librewolf.nix
     ./yazi.nix
-    # ./obs-studio.nix
 
     # niri
-    # ./niri
-    # ./fuzzel
-    # ./waybar
-    # ./mako.nix
+    ./niri
+    ./fuzzel
+    ./waybar
 
     # qtile
     # ./qtile
@@ -28,9 +26,9 @@
     # ./picom.nix
 
     # sway
-    ./sway.nix
-    ./waybar
-    ./fuzzel
+    # ./sway.nix
+    # ./waybar
+    # ./fuzzel
 
     # nixvim
     ./nixvim

@@ -15,6 +15,8 @@
     jq
   ];
 
+  services.polkit-gnome.enable = true;
+
   services.mako = {
     enable = true;
     settings = {
@@ -104,6 +106,7 @@
       include ~/.config/sway/outputs
     '';
     enable = true;
+    wrapperFeatures.gtk = true;
     config = {
       workspaceOutputAssign = [
         {
