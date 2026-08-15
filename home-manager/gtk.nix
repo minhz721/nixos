@@ -12,11 +12,6 @@
       package = pkgs.adwaita-icon-theme;
     };
 
-    cursorTheme = {
-      name = "Bibata-Modern-Ice";
-      package = pkgs.bibata-cursors;
-    };
-
     font = {
       name = "JetBrainsMono Nerd Font";
       size = 11;
@@ -35,11 +30,6 @@
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
     };
-  };
-
-  home.sessionVariables = {
-    XCURSOR_THEME = "Bibata-Modern-Ice";
-    XCURSOR_SIZE = "24";
   };
 
   qt = {
