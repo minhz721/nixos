@@ -1,88 +1,246 @@
-# Hướng Dẫn Cấu Hình Virt-Manager Trên NixOS (Share Clipboard & Folder)
+# 1. Cấu hình NixOS Host
+```
+{pkgs, ...}: {
+  # Enable the virt-manager GUI application
+  programs.virt-manager.enable = true;
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
 
-Tài liệu này hướng dẫn chi tiết cách thiết lập **Virt-Manager** trên hệ điều hành **NixOS** hỗ trợ đồng bộ bộ nhớ tạm (Clipboard Sharing) và chia sẻ dữ liệu (Folder Sharing) qua giao thức `VirtioFS` tốc độ cao.
+  # Allow USB redirection support (optional)
+  virtualisation.spiceUSBRedirection.enable = true;
 
----
+  # Add your regular user to the libvirtd group
+  users.users.leomin.extraGroups = ["libvirtd"];
 
-## Bước 1: Thêm Cấu Hình Vào Hệ Thống
+  environment.systemPackages = with pkgs; [ 
+    dnsmasq 
+    spice-gtk
+    spice
+  ];
 
-1. Sao chép nội dung file `virt-manager.nix` vào thư mục cấu hình của bạn.
-2. Mở file cấu hình tổng của hệ thống bằng quyền root:
-   ```bash
-   sudo nano /etc/nixos/configuration.nix
-   ```
-3. Khai báo import file này vào bên trong block `imports = [ ... ];` chính:
-   ```nix
-   imports = [
-     ./hardware-configuration.nix
-     ./virt-manager.nix # Thêm dòng này để gọi cấu hình máy ảo
-   ];
-   ```
-4. **Quan trọng:** Mở file `virt-manager.nix` ra, tìm dòng `users.users.your_username.extraGroups` và đổi chữ `your_username` thành **tên đăng nhập chính xác** của bạn trên NixOS.
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
+  };
 
----
+ 
+}
+```
+Check `virtiofsd`:
+```
+which virtiofsd
+```
+Kết quả mong đợi:
 
-## Bước 2: Áp Dụng Cấu Hình Hệ Thống
+```text
+/run/current-system/sw/bin/virtiofsd
+```
+Kiểm tra libvirt:
 
-Chạy lệnh sau để hệ thống tự động tải gói phần mềm và kích hoạt dịch vụ nền:
 ```bash
-sudo nixos-rebuild switch
+systemctl status libvirtd
 ```
 
-**Lưu ý:** Sau khi lệnh chạy hoàn tất, bạn **bắt buộc phải khởi động lại máy tính** hoặc Đăng xuất (Log out) rồi Đăng nhập lại để quyền truy cập nhóm hệ thống `libvirtd` có hiệu lực trên tài khoản user của bạn.
+---
+
+# 2. Tạo folder cần share
+Ví dụ share folder:
+
+```text
+/home/leomin/Share
+```
+
+Tạo folder:
+
+```bash
+mkdir -p ~/Share
+```
+
+Có thể test:
+
+```bash
+echo "Hello from NixOS" > ~/Share/test.txt
+```
 
 ---
 
-## Bước 3: Thiết Lập Phần Cứng Trong Giao Diện Virt-Manager
+# 3. Cấu hình VirtioFS trong virt-manager
 
-Mở ứng dụng **Virtual Machine Manager** lên. Hãy chắc chắn rằng máy ảo của bạn đã được **Tắt hẳn (Shutdown)** trước khi chỉnh sửa phần cứng:
+Mở:
 
-### 1. Đồng bộ Bộ nhớ tạm (Clipboard) & Tự co giãn màn hình
-* Bấm vào biểu tượng bóng đèn màu vàng (**Show virtual hardware details**).
-* Chọn mục **Display Spice**: Đảm bảo mục *Type* đang để là `Spice server`.
-* Chọn mục **Channel spice**: Đảm bảo mục *Type* là `Spice agent`. Nếu danh sách phần cứng của bạn chưa có mục này, hãy chọn *Add Hardware* -> *Channel* -> Chọn Name là `com.redhat.spice.0`.
-* Chọn mục **Video**: Chuyển đổi Model sang `QXL` hoặc `Virtio` (để máy ảo tự động thay đổi độ phân giải theo kích thước cửa sổ bạn kéo giãn).
+```text
+virt-manager
+```
 
-### 2. Thiết lập Thư mục Chia sẻ (Folder Sharing)
-* Bấm vào nút **Add Hardware** ở góc dưới cùng bên trái cửa sổ cấu hình phần cứng máy ảo.
-* Chọn mục **Filesystem** từ danh sách bên trái.
-* Thiết lập các thông số chính xác như sau:
-  * **Driver:** Chọn `VirtioFS` (Đây là driver có hiệu năng tốt và tối ưu nhất hiện tại).
-  * **Source Path:** Bấm nút *Browse* chọn đường dẫn tới thư mục thực tế trên máy NixOS của bạn (Ví dụ: `/home/ten_ban/Shared`).
-  * **Target Path:** Nhập một chuỗi ký tự liền nhau không dấu làm thẻ định danh để hệ điều hành khách gọi tới (Ví dụ: `host_share`).
-* Bấm **Finish** để lưu lại thiết lập.
+Chọn Arch Linux VM:
+
+```text
+Open
+→ Show virtual hardware
+→ Add Hardware
+→ Filesystem
+```
+
+Cấu hình:
+
+```text
+Driver:       virtiofs
+Source path:  /home/leomin/Share
+Target path:  hostshare
+```
+
+Ví dụ:
+
+```text
+Source path:
+    /home/leomin/Share
+
+Target path:
+    hostshare
+```
+
+### Lưu ý
+
+`Target path` là **VirtioFS mount tag**, không phải đường dẫn `/mnt/...` trong Arch.
+
+Sau khi thêm Filesystem, shutdown VM rồi boot lại.
 
 ---
 
-## Bước 4: Cấu Hình Bên Trong Máy Ảo (Guest OS)
+### Mount VirtioFS trong Arch Linux
 
-Khi bật máy ảo lên, bạn cần cài driver tương ứng cho từng hệ điều hành để kích hoạt các tính năng:
+Trong Arch guest:
 
-### A. Nếu Máy Ảo Là Windows (10 / 11)
-1. **Bật Clipboard & Tự đổi độ phân giải:** Truy cập vào trang chủ Spice tại đường dẫn [spice-space.org/download.html](https://spice-space.org), tìm mục **Windows binaries** và tải gói cài đặt **spice-guest-tools** (định dạng `.exe`). Tiến hành chạy cài đặt bình thường và khởi động lại máy ảo Windows.
-2. **Nhận diện Thư mục chia sẻ (VirtioFS):**
-   * Tải và cài đặt thư viện hệ thống [WinFsp](https://winfsp.dev) trên Windows trước.
-   * Tải file ISO chứa Driver ảo hóa chính thức từ dự án Fedora: [virtio-win.iso](https://fedorapeople.org).
-   * Gắn file ISO này vào ổ đĩa CD ảo của máy ảo, truy cập vào ổ đĩa đó, tìm thư mục `virtio-fs` và chạy cài đặt dịch vụ tương ứng với phiên bản Windows của bạn. Thư mục chia sẻ sẽ tự động xuất hiện thành một ổ đĩa mạng trong mục **This PC**.
+```bash
+sudo mkdir -p /mnt/hostshare
+```
 
-### B. Nếu Máy Ảo Là Linux (Ubuntu / Debian / Fedora...)
-Mở cửa sổ Terminal ngay bên trong hệ điều hành máy ảo và chạy các lệnh tương ứng:
+Mount thử:
 
-1. **Cài đặt gói Clipboard (Spice Agent):**
-   ```bash
-   # Dành cho hệ điều hành Ubuntu / Debian / Linux Mint:
-   sudo apt update && sudo apt install spice-vdagent -y
+```bash
+sudo mount -t virtiofs hostshare /mnt/hostshare
+```
 
-   # Dành cho hệ điều hành Fedora / RHEL:
-   sudo dnf install spice-vdagent -y
-   ```
-2. **Gắn Thư mục chia sẻ vào hệ thống (Mount):**
-   Tạo một thư mục trống bên trong máy ảo và dùng lệnh `mount` để liên kết tới thẻ `Target Path` (ở đây ví dụ là `host_share`) mà bạn đã đặt ở Bước 3:
-   ```bash
-   sudo mkdir -p /mnt/shared
-   sudo mount -t virtiofs host_share /mnt/shared
-   ```
-   *Để thư mục này tự động gắn mỗi khi bật máy ảo Linux mà không cần gõ lại lệnh, hãy thêm dòng sau vào cuối file `/etc/fstab` của máy ảo:*
-   ```text
-   host_share  /mnt/shared  virtiofs  defaults  0  0
-   ```
+Kiểm tra:
+
+```bash
+ls -la /mnt/hostshare
+```
+
+Nếu thấy:
+
+```text
+test.txt
+```
+
+thì VirtioFS đã hoạt động.
+
+Test từ Arch:
+
+```bash
+echo "Hello from Arch" | sudo tee /mnt/hostshare/arch.txt
+```
+
+Trên NixOS:
+
+```bash
+ls ~/Share
+```
+
+Bạn sẽ thấy:
+
+```text
+arch.txt
+test.txt
+```
+
+---
+
+
+# 4. Clipboard 2 chiều với SPICE
+
+VirtioFS chỉ dùng để share file/folder.
+
+Để copy/paste text giữa:
+
+```text
+NixOS Host ↔ Arch Guest
+```
+
+cần sử dụng **SPICE + spice-vdagent**.
+
+## 4.1. Kiểm tra Display
+
+Trong virt-manager:
+
+```text
+Arch VM
+→ Show virtual hardware
+→ Display
+```
+
+Display nên sử dụng:
+
+```text
+Type: SPICE
+```
+
+---
+
+# 5. Thêm SPICE Channel
+
+Trong virt-manager:
+
+```text
+Add Hardware
+→ Channel
+```
+
+Cấu hình:
+
+```text
+Type: spicevmc
+Name: com.redhat.spice.0
+```
+
+Kết quả sẽ tương tự:
+
+```text
+Channel
+    Type: spicevmc
+    Name: com.redhat.spice.0
+```
+
+Channel này cho phép SPICE agent trong Arch giao tiếp với host.
+
+---
+
+# 6. Cài spice-vdagent trong Arch
+
+Trong Arch Linux:
+
+```bash
+sudo pacman -S spice-vdagent
+```
+
+Enable service:
+
+```bash
+sudo systemctl enable --now spice-vdagentd
+```
+
+Kiểm tra:
+
+```bash
+systemctl status spice-vdagentd
+```
+
+Nếu service đang chạy:
+
+```text
+Active: active (running)
+```
+
+thì agent đã hoạt động.
+
+---
