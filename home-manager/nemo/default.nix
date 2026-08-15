@@ -42,7 +42,7 @@ in {
       default-folder-viewer = "list-view"; # Enforce global default layout to List View
       ignore-view-metadata = true; # Override and ignore directory-specific layout history
       show-hidden-files = true; # Persistent visibility for hidden files
-      default-sort-order = "mtime";
+      # default-sort-order = "mtime";
     };
 
     "org/nemo/preferences/menu-config" = {
