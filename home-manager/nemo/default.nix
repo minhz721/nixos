@@ -105,6 +105,24 @@ in {
     };
   };
 
+  home.file.".config/gtk-3.0/bookmarks".text = ''
+    file://${config.home.homeDirectory}/Downloads Downloads
+    file://${config.home.homeDirectory}/Documents Documents
+    file://${config.home.homeDirectory}/Videos Videos
+    file://${config.home.homeDirectory}/Music Music
+    file://${config.home.homeDirectory}/Pictures Pictures
+  '';
+
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    documents = "${config.home.homeDirectory}/Documents";
+    download = "${config.home.homeDirectory}/Downloads";
+    videos = "${config.home.homeDirectory}/Videos";
+    music = "${config.home.homeDirectory}/Music";
+    pictures = "${config.home.homeDirectory}/Pictures";
+  };
+
   # Global system-wide User MIME applications associations routing
   xdg.mimeApps = {
     enable = true;

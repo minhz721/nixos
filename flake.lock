@@ -60,6 +60,23 @@
         "type": "github"
       }
     },
+    "nix-xdm": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1763925163,
+        "narHash": "sha256-d2F8lOBXP4wMLnuaQ4/mDUeKQeCr57diqCn5DO9vGAA=",
+        "owner": "Diomeh",
+        "repo": "nix-xdm",
+        "rev": "c1bb2b1a02c3e51f1dbf8461c752d754fee226bb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Diomeh",
+        "ref": "0.0.4",
+        "repo": "nix-xdm",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1785318670,
@@ -139,6 +156,7 @@
       "inputs": {
         "custom-packages": "custom-packages",
         "home-manager": "home-manager",
+        "nix-xdm": "nix-xdm",
         "nixpkgs": "nixpkgs_2",
         "nixvim": "nixvim",
         "noctalia-greeter": "noctalia-greeter"
