@@ -16,13 +16,9 @@
     ./keyd.nix
     ./virt-manager.nix
 
-    # ./xdm.nix
-    # niri
-    ./niri.nix
-    # ./greetd.nix
+    ./xdm.nix
 
-    # qtile
-    # ./qtile.nix
+    ./qtile.nix
 
     # sway
     # ./sway.nix

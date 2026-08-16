@@ -5,8 +5,6 @@
 }: {
   services.flameshot = {
     enable = true;
-    # Wayland
-    package = pkgs.flameshot.override { enableWlrSupport = true; }; 
     settings = {
       General = {
         savePath = "${config.home.homeDirectory}/Pictures/Screenshots";

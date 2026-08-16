@@ -10,24 +10,22 @@
     ./git.nix
     ./nemo
     ./gtk.nix
-    # ./flameshot.nix
     ./librewolf.nix
     ./yazi.nix
+    ./flameshot.nix
 
     # niri
-    ./niri
-    ./fuzzel
-    ./waybar
+    # ./niri
+    # ./fuzzel
+    # ./waybar
 
-    # qtile
-    # ./qtile
-    # ./rofi
-    # ./dunst
-    # ./picom.nix
+    ./qtile
+    ./rofi
+    ./dunst
+    ./picom.nix
 
     # sway
     # ./sway.nix
-    # ./waybar
     # ./fuzzel
 
     # nixvim
