@@ -16,25 +16,42 @@ terminal = "ghostty"
 home = str(Path.home())
 
 # ============================== Groups ========================================
-groups = [Group(f"{i+1}", label="") for i in range(8)]
+groups = [Group(f"{i+1}") for i in range(8)]
+
+@lazy.function
+def go_to_group_no_swap(qtile, group_name):
+    target_group = qtile.groups_map.get(group_name)
+    if target_group:
+        if target_group.screen:
+            qtile.focus_screen(target_group.screen.index)
+        else:
+            qtile.current_screen.set_group(target_group)
 
 for i in groups:
-    keys.extend(
-        [
-            Key(
-                [mod],
-                i.name,
-                lazy.group[i.name].toscreen(),
-                desc="Switch to group {}".format(i.name),
-            ),
-            Key(
-                [mod, "shift"],
-                i.name,
-                lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
-            ),
-        ]
-    )
+    keys.extend([
+        Key([mod], i.name, go_to_group_no_swap(i.name)),
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=False)),
+    ])
+
+# groups = [Group(f"{i+1}", label="") for i in range(8)]
+
+# for i in groups:
+#     keys.extend(
+#         [
+#             Key(
+#                 [mod],
+#                 i.name,
+#                 lazy.group[i.name].toscreen(),
+#                 desc="Switch to group {}".format(i.name),
+#             ),
+#             Key(
+#                 [mod, "shift"],
+#                 i.name,
+#                 lazy.window.togroup(i.name, switch_group=True),
+#                 desc="Switch to & move focused window to group {}".format(i.name),
+#             ),
+#         ]
+#     )
 
 
 # ============================== Layouts ========================================

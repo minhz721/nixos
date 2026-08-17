@@ -15,8 +15,6 @@
     jq
   ];
 
-  services.polkit-gnome.enable = true;
-
   services.mako = {
     enable = true;
     settings = {

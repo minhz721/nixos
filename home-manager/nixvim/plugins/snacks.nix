@@ -6,7 +6,6 @@
         indent = {
           enabled = true;
           char = "│";
-
           animate = {
             enabled = false;
           };
@@ -22,30 +21,10 @@
             easing = "linear";
           };
         };
-        lazygit = {
-          enabled = true;
-        };
         bigfile = {
           enabled = true;
         };
-        # quickfile = {
-        #   enabled = true;
-        #};
       };
     };
-    keymaps = [
-      {
-        mode = "n";
-        key = "<leader>gg";
-        action = "<cmd>lua Snacks.lazygit()<CR>";
-        options.desc = "Open Lazygit";
-      }
-      {
-        mode = "n";
-        key = "<leader>gl";
-        action = "<cmd>lua Snacks.lazygit.log()<CR>";
-        options.desc = "Git log";
-      }
-    ];
   };
 }
