@@ -57,10 +57,11 @@
       gsp = "git stash pop";
       gsc = "git stash clear";
 
+      lg = "lazygit";
+
       rebuild = "sudo nixos-rebuild switch --flake";
       flake-update = "nix flake update";
       nix-clean = "sudo nix-collect-garbage -d";
-
     };
   };
 }
