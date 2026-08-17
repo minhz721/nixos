@@ -24,15 +24,8 @@
     ./dunst
     ./picom.nix
 
-    # ./i3.nix
-    # ./rofi
-    # ./dunst
-    # ./picom.nix
-    # ./polybar.nix
-
     # sway
     # ./sway.nix
-    # ./waybar
     # ./fuzzel
 
     # nixvim
