@@ -63,6 +63,5 @@
     wlr-randr
     grim
     slurp
-    udiskie
   ];
 }
