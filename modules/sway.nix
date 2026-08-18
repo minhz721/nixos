@@ -4,13 +4,37 @@
   inputs,
   ...
 }: {
+  imports = [
+    inputs.noctalia-greeter.nixosModules.default
+  ];
+  # Noctalia Greeter
+  programs.noctalia-greeter = {
+    enable = true;
+    settings = {
+      appearance = {
+        scheme = "Catppuccin";
+      };
+      keyboard = {
+        layout = "us";
+      };
+      output = {
+        name = "DP-1";
+      };
+      session = {
+        default = "niri";
+      };
+      user = {
+        default = "leomin";
+      };
+    };
+  };
+
   # Enable core components
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
       grim
-      pulseaudio
       swayidle
       brightnessctl
     ];

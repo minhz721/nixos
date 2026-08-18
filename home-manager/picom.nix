@@ -7,8 +7,7 @@
     enable = true;
 
     backend = "glx";
-
-    vSync = true;
+    vSync = false;
     fade = true;
     fadeDelta = 5;
 

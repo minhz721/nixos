@@ -7,11 +7,9 @@ mod = "mod4"
 alt = "mod1"
 terminal = "ghostty"
 
-
 # Get home path
 home = str(Path.home())
 
-# Define mouse bindings for window manipulation
 mouse = [
     # Mod + Left Click: Drag to move floating windows
     Drag(

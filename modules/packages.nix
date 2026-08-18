@@ -23,6 +23,7 @@
     ntfs3g
     exfat
     exfatprogs
+    udiskie
 
     # =========================================================================
     # Bluetooth
@@ -58,5 +59,8 @@
     # =========================================================================
     inputs.custom-packages.packages."x86_64-linux".thorium-avx2
     # inputs.custom-packages.packages."x86_64-linux".ab-download-manager
+    gnome-themes-extra
+    adwaita-icon-theme 
   ];
+
 }
