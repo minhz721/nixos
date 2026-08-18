@@ -289,4 +289,10 @@
         };
     };
   };
+
+  xdg.configFile."thorium-flags.conf".text = ''
+    --ozone-platform-hint=auto
+    --ozone-platform=wayland
+    --enable-features=WaylandWindowDecorations
+  '';
 }

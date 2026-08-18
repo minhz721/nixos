@@ -20,7 +20,6 @@
 
     ./qtile.nix
 
-    # sway
     # ./sway.nix
   ];
 }

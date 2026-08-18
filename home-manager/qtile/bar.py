@@ -142,7 +142,7 @@ def create_bar(show_systray=False):
             foreground=MOCHA_BLUE,
             mouse_callbacks={
                 "Button1": lazy.spawn(
-                    "bash -c ~/.config/rofi/scripts/wallpaper-select.sh"
+                    "bash -c ~/.config/rofi/scripts/wallpaper.sh"
                 )
             },
             font=FONT,
