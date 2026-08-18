@@ -19,8 +19,6 @@
       };
       output = {
         name = "DP-1";
-        # layout = "DP-1:0,0; HDMI-A-1:2560,0";
-        # scales = "DP-1:1; HDMI-A-1:1";
       };
       session = {
         default = "niri";
