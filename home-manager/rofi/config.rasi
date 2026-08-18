@@ -3,7 +3,7 @@
 
 configuration {
     /* Core Mode Activation */
-    modi:                       "drun,window,filebrowser";
+    modi:                       "drun,window";
     show-icons:                 true;
     icon-theme:                 "Papirus";
     terminal:                   "ghostty";
@@ -15,7 +15,6 @@ configuration {
     /* Interface Labels */
     display-drun:               " Applications";
     display-window:             " Windows";
-    display-filebrowser:        " File Browser";
     
     /* Navigation Hotkeys within Rofi Menu */
     kb-mode-next:               "Shift+Right,Control+Tab";
@@ -39,28 +38,6 @@ mainbox {
     background-color: transparent;
     children:         [ inputbar, mode-switcher, listview ];
     spacing:          15px;
-}
-
-/* --- INTERACTIVE SEARCH FIELD --- */
-inputbar {
-    background-color: @bg-alt;
-    border-radius:    8px;
-    padding:          10px 15px;
-    children:         [ prompt, entry ];
-    spacing:          10px;
-}
-
-prompt {
-    background-color: transparent;
-    text-color:       @accent;
-    font:             "JetBrainsMono Nerd Font Bold 11";
-}
-
-entry {
-    background-color: transparent;
-    text-color:       @fg;
-    placeholder:      "Type to search...";
-    placeholder-color:#585b70; /* Surface 2: Dimmed Placeholder */
 }
 
 /* --- VIEW CONTROLLER / MODE SWITCHER --- */

@@ -8,10 +8,10 @@
   "spacing": 8,
   // Layout
   "modules-left": [
-    "niri/workspaces",
-    "niri/window"
-    // "sway/workspaces",
-    // "sway/window"
+    // "niri/workspaces",
+    // "niri/window"
+    "sway/workspaces",
+    "sway/window"
   ],
   "modules-center": [
     "clock"
@@ -26,35 +26,35 @@
     "custom/powermenu"
   ],
   // --- MODULE CONFIGURATIONS ---
-  "niri/workspaces": {
-    "disable-scroll": true,
-    "all-outputs": false,
-    "sort-by-number": true,
-    "format": "{index}"
-  },
-  "niri/window": {
-    "format": "{}",
-    "max-length": 40,
-    "separate-outputs": true
-  },
-  // Sway Workspaces 
-  // "sway/workspaces": {
+  // "niri/workspaces": {
   //   "disable-scroll": true,
   //   "all-outputs": false,
   //   "sort-by-number": true,
-  //   "format": "{name}"
-  //   // "format-icons": {
-  //   //     "default": "○",
-  //   //     "focused": "●"
-  //   // }
+  //   "format": "{index}"
   // },
-  // // Sway Window Title
-  // "sway/window": {
+  // "niri/window": {
   //   "format": "{}",
   //   "max-length": 40,
-  //   "icon": true,
-  //   "icon-size": 16
+  //   "separate-outputs": true
   // },
+  // Sway Workspaces 
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": false,
+    "sort-by-number": true,
+    "format": "{name}"
+    // "format-icons": {
+    //     "default": "○",
+    //     "focused": "●"
+    // }
+  },
+  // Sway Window Title
+  "sway/window": {
+    "format": "{}",
+    "max-length": 40,
+    "icon": true,
+    "icon-size": 16
+  },
   "clock": {
     "format": " {:%H:%M   %d/%m/%Y}",
     "format-alt": " {:%H:%M:%S   %A, %d %B %Y}",

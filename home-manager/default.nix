@@ -12,21 +12,23 @@
     ./gtk.nix
     ./librewolf.nix
     ./yazi.nix
-    ./flameshot.nix
 
     # niri
     # ./niri
     # ./fuzzel
     # ./waybar
 
-    ./qtile
     ./rofi
+    ./qtile
     ./dunst
     ./picom.nix
+    ./flameshot.nix
+
 
     # sway
     # ./sway.nix
     # ./fuzzel
+    # ./waybar
 
     # nixvim
     ./nixvim

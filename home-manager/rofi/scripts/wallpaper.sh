@@ -21,7 +21,7 @@ WALLPAPER_DIR="$HOME/Pictures/wallpaper"
 CACHE_FILE="$HOME/.cache/wallpaper_current"
 
 # Rofi command pointing to your custom 3x3 layout configuration
-ROFI_CMD="rofi -dmenu -i -config $HOME/.config/rofi/wallpaper-select.rasi"
+ROFI_CMD="rofi -dmenu -i -config $HOME/.config/rofi/wallpaper.rasi"
 
 # Scan and collect wallpaper files (jpg, jpeg, png) into an array
 mapfile -t PAPERS < <(find "$WALLPAPER_DIR" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) | sort)
