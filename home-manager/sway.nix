@@ -69,6 +69,7 @@
       ];
       input-field = [
         {
+          monitor = "DP-1";
           size = "250, 60";
           outline_thickness = 2;
           dots_size = 0.2;
@@ -154,8 +155,6 @@
         {command = "fcitx5 -d";}
         {command = "mako";}
         {command = "blueman-applet";}
-        # {command = "ab-download-manager";}
-        {command = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";}
       ];
       bars = [];
       window = {
