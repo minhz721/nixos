@@ -8,11 +8,11 @@
           "*"
         ];
 
-        settings = {
-          main = {
-            insert = "home";
-          };
-        };
+        # settings = {
+        #   main = {
+        #     insert = "home";
+        #   };
+        # };
       };
     };
   };

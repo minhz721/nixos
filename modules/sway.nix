@@ -21,7 +21,7 @@
         name = "DP-1";
       };
       session = {
-        default = "niri";
+        default = "sway";
       };
       user = {
         default = "leomin";
