@@ -13,12 +13,14 @@
     ./user.nix
     ./fonts.nix
     ./bluetooth.nix
-    ./keyd.nix
+    # ./keyd.nix
     ./virt-manager.nix
 
     ./xdm.nix
 
-    ./qtile.nix
+    # ./qtile.nix
+
+    ./i3.nix
 
     # ./sway.nix
   ];

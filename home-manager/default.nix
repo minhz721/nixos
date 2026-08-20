@@ -18,12 +18,12 @@
     # ./fuzzel
     # ./waybar
 
+    # ./qtile
     ./rofi
-    ./qtile
     ./dunst
     ./picom.nix
     ./flameshot.nix
-
+    ./i3.nix
 
     # sway
     # ./sway.nix
@@ -38,7 +38,6 @@
   home.username = "leomin";
   home.homeDirectory = "/home/leomin";
 
-  # Packages that should be installed to the user profile.
   home.packages = with pkgs; [
     # =========================================================================
     # Shell & CLI Utilities
