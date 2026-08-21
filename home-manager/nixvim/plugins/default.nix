@@ -15,5 +15,6 @@
     ./snacks.nix
     ./comment.nix
     ./yazi.nix
+    ./lazygit.nix
   ];
 }
