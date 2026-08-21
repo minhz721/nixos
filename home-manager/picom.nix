@@ -4,23 +4,13 @@
   ...
 }: {
   services.picom = {
-    enable = true;
+  enable = true;
+  backend = "glx";
+  vSync = true;
 
-    backend = "glx";
-    vSync = false;
-    fade = true;
-    fadeDelta = 5;
-
-    shadow = true;
-    shadowOpacity = 0.75;
-
-    settings = {
-      # corner-radius = 12;
-      # round-borders = 1;
-      blur = {
-        method = "dual_kawase";
-        strength = 5;
-      };
-    };
+  settings = {
+    use-damage = true;
+    xrender-sync-fence = true;
   };
+};
 }

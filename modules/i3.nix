@@ -29,7 +29,8 @@
     feh
     lightlocker
     xclip
-    font-awesome 
+    font-awesome
     i3status-rust
+    mesa-demos
   ];
 }

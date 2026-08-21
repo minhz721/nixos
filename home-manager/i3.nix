@@ -73,7 +73,6 @@
           "${modifier}+Ctrl+Right" = "resize grow width 20 px";
 
           # Switch to workspace
-          "${modifier}+0" = "workspace number 10";
           "${modifier}+1" = "workspace number 1";
           "${modifier}+2" = "workspace number 2";
           "${modifier}+3" = "workspace number 3";
@@ -85,7 +84,7 @@
           "${modifier}+9" = "workspace number 9";
 
           # Move focused container to workspace
-          "${modifier}+Shift+0" = "move container to workspace number 10";
+
           "${modifier}+Shift+1" = "move container to workspace number 1";
           "${modifier}+Shift+2" = "move container to workspace number 2";
           "${modifier}+Shift+3" = "move container to workspace number 3";
@@ -119,14 +118,16 @@
         };
     };
     extraConfig = ''
-      default_border pixel 2
+      default_border pixel 3
       font pango:JetBrainsMono Nerd Font 14
+
       # startup
       exec --no-startup-id sh -c 'feh --bg-fill $(cat ~/.cache/wallpaper_current)'"
       exec --no-startup-id fcitx5
       exec --no-startup-id dunst
       exec --no-startup-id blueman-applet
       exec --no-startup-id light-locker --lock-on-suspend
+      exec --no-startup-id i3-msg "workspace 1"
 
       # float window
       for_window [class="missioncenter"] floating enable, resize set 1100px 750px, move position center
@@ -135,7 +136,7 @@
       for_window [class="mpv"] floating enable, move position center
       for_window [class="imv"] floating enable, move position center
       for_window [class="fcitx5-config-qt"] floating enable, move position center
-      for_window [class="xdm-app"] floating enable, move position center
-       '';
+      for_window [class="(?i)xdm-app"] floating enable, resize set 1000px 650px, move position center
+    '';
   };
 }

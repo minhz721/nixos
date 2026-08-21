@@ -37,8 +37,13 @@
   services.devmon.enable = true;
   services.gvfs.enable = true;
 
-  boot.initrd.kernelModules = ["amdgpu"];
-  services.xserver.videoDrivers = ["amdgpu"];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
 
   # Enable dconf for GTK/Nemo settings
   programs.dconf.enable = true;

@@ -21,7 +21,7 @@
     # ./qtile
     ./rofi
     ./dunst
-    # ./picom.nix
+    ./picom.nix
     ./flameshot.nix
     ./i3.nix
 
