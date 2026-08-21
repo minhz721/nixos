@@ -119,15 +119,15 @@
     };
     extraConfig = ''
       default_border pixel 3
-      font pango:JetBrainsMono Nerd Font 14
+
+      # font pango:JetBrainsMono Nerd Font 14
 
       # startup
-      exec --no-startup-id sh -c 'feh --bg-fill $(cat ~/.cache/wallpaper_current)'"
+      exec --no-startup-id sh -c "feh --bg-fill $(cat ~/.cache/wallpaper_current)"
       exec --no-startup-id fcitx5
       exec --no-startup-id dunst
       exec --no-startup-id blueman-applet
       exec --no-startup-id light-locker --lock-on-suspend
-      exec --no-startup-id i3-msg "workspace 1"
 
       # float window
       for_window [class="missioncenter"] floating enable, resize set 1100px 750px, move position center
