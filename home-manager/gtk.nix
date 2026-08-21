@@ -14,7 +14,7 @@
 
     font = {
       name = "JetBrainsMono Nerd Font";
-      size = 14;
+      size = 12;
     };
 
     gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
