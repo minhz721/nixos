@@ -26,7 +26,7 @@
           };
           colors = {
             background = "#282a2e";
-            statusline = "#e0dedc";
+            statusline = "#ffffff";
             separator = "#373b41";
           };
           extraConfig = ''
@@ -118,7 +118,7 @@
         };
     };
     extraConfig = ''
-      default_border pixel 3
+      # default_border pixel 3
 
       # font pango:JetBrainsMono Nerd Font 14
 
