@@ -118,7 +118,7 @@
         };
     };
     extraConfig = ''
-      default_border pixel 3
+      # default_border pixel 3
 
       # font pango:JetBrainsMono Nerd Font 14
 
