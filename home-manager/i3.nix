@@ -26,7 +26,7 @@
           };
           colors = {
             background = "#282a2e";
-            statusline = "#e0dedc";
+            statusline = "#ffffff";
             separator = "#373b41";
           };
           extraConfig = ''
