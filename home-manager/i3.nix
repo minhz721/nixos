@@ -121,7 +121,8 @@
       # default_border pixel 3
 
       # font pango:JetBrainsMono Nerd Font 14
-
+      exec --no-startup-id i3-msg workspace 1
+      workspace 1 output DP-1
       # startup
       exec --no-startup-id sh -c "feh --bg-fill $(cat ~/.cache/wallpaper_current)"
       exec --no-startup-id fcitx5
