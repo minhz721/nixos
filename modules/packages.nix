@@ -44,8 +44,6 @@
     # =========================================================================
     python3
     nodejs
-    dotnetCorePackages.sdk_8_0
-
     # =========================================================================
     # System / Monitoring
     # =========================================================================
@@ -56,8 +54,12 @@
     # External Packages
     # =========================================================================
     inputs.custom-packages.packages."x86_64-linux".thorium-avx2
+    inputs.custom-packages.packages."x86_64-linux".stremio
     # inputs.custom-packages.packages."x86_64-linux".ab-download-manager
     gnome-themes-extra
     adwaita-icon-theme
+
+    # finder
+    czkawka
   ];
 }
