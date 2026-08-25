@@ -13,8 +13,8 @@
     ./user.nix
     ./fonts.nix
     ./bluetooth.nix
-    # ./keyd.nix
     ./virt-manager.nix
+    ./docker.nix
 
     ./xdm.nix
 
