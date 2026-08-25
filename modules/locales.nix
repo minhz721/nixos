@@ -28,6 +28,7 @@
       addons = with pkgs; [
         fcitx5-gtk
         fcitx5-bamboo
+        # fcitx5-lotus
       ];
 
       settings.inputMethod = {
@@ -42,8 +43,8 @@
       };
 
       settings.globalOptions = {
-        Hotkey = {
-          TriggerKeys = "Control+Left Shift";
+        "Hotkey/TriggerKeys" = {
+          "0" = "Shift_L+Control_L";
         };
       };
     };
