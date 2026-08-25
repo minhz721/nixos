@@ -30,7 +30,6 @@
         fcitx5-bamboo
         # fcitx5-lotus
       ];
-
       settings.inputMethod = {
         GroupOrder."0" = "Default";
         "Groups/0" = {
@@ -42,9 +41,11 @@
         "Groups/0/Items/1".Name = "bamboo";
       };
 
-      settings.globalOptions = {
-        "Hotkey/TriggerKeys" = {
-          "0" = "Shift_L+Control_L";
+      settings = {
+        globalOptions = {
+          Hotkey = {
+            TriggerKeys = "SHIFT_L+CTRL_L";
+          };
         };
       };
     };
