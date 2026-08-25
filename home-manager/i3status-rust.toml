@@ -6,7 +6,11 @@ block = "cpu"
 interval = 2
 format = " CPU: $utilization "
 [block.theme_overrides]
-idle_fg = "#a6e3a1" 
+idle_fg = "#a6e3a1"
+good_fg = "#a6e3a1" 
+info_fg = "#a6e3a1" 
+warning_fg = "#ff0048"
+critical_cpu = "#ff0048"
 
 [[block]]
 block = "temperature"
@@ -14,7 +18,9 @@ format = " $icon: $max "
 interval = 2
 [block.theme_overrides]
 idle_fg = "#f38ba8" 
-
+good_fg = "#f38ba8" 
+info_fg = "#f38ba8" 
+warning_fg = "#ff0048"
 
 [[block]]
 block = "memory"
