@@ -1,7 +1,6 @@
 {
   programs.yazi = {
     enable = true;
-
     settings = {
       manager = {
         show_hidden = true;
@@ -10,12 +9,10 @@
         sort_dir_first = true;
         linemode = "size";
       };
-
       preview = {
         wrap = "yes";
         tab_size = 2;
       };
-
       opener = {
         imv = [
           {
@@ -24,7 +21,6 @@
             desc = "Open with imv";
           }
         ];
-
         mpv = [
           {
             run = ''mpv "$@"'';
@@ -32,7 +28,6 @@
             desc = "Open with mpv";
           }
         ];
-
         zathura = [
           {
             run = ''zathura "$@"'';
@@ -41,24 +36,20 @@
           }
         ];
       };
-
       open = {
         prepend_rules = [
           {
             mime = "image/*";
             use = "imv";
           }
-
           {
             mime = "video/*";
             use = "mpv";
           }
-
           {
             mime = "audio/*";
             use = "mpv";
           }
-
           {
             mime = "application/pdf";
             use = "zathura";

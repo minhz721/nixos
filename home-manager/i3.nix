@@ -135,6 +135,7 @@
       for_window [class="[Bb]lueman-manager"] floating enable, resize set 800px 600px, move position center
       for_window [class="cava"] floating enable, resize set 1000px 600px, move position center
       for_window [class="mpv"] floating enable, move position center
+      for_window [class="crx_amfojhdiedpdnlijjbhjnhokbnohfdfb"] floating enable, move position center
       for_window [class="imv"] floating enable, move position center
       for_window [class="fcitx5-config-qt"] floating enable, move position center
       for_window [class="(?i)xdm-app"] floating enable, resize set 1000px 650px, move position center

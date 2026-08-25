@@ -12,11 +12,7 @@
     ./gtk.nix
     ./librewolf.nix
     ./yazi.nix
-
-    # niri
-    # ./niri
-    # ./fuzzel
-    # ./waybar
+    ./fcitx5.nix
 
     # ./qtile
     ./rofi
