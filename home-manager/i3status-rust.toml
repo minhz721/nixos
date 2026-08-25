@@ -5,20 +5,29 @@ theme = "native"
 block = "cpu"
 interval = 2
 format = " CPU: $utilization "
+[block.theme_overrides]
+idle_fg = "#a6e3a1" 
 
 [[block]]
 block = "temperature"
 format = " $icon: $max "
 interval = 2
+[block.theme_overrides]
+idle_fg = "#f38ba8" 
+
 
 [[block]]
 block = "memory"
 format = " RAM: $mem_used.eng(w:4) "
 interval = 2
- 
+[block.theme_overrides]
+idle_fg = "#94e2d5" 
+
 [[block]]
 block = "sound"
 format = " VOL: {$volume|mute} "
+[block.theme_overrides]
+idle_fg = "#f9e2af" 
 
 [[block]]
 block = "time"
@@ -35,6 +44,7 @@ format = "  "
 button = "left"
 cmd = "~/.config/rofi/scripts/wallpaper.sh"
 
+
 [[block]]
 block = "custom"
 command = "echo power"
@@ -42,3 +52,5 @@ format = "  "
 [[block.click]]
 button = "left"
 cmd = "bash -c ~/.config/rofi/scripts/powermenu.sh"
+[block.theme_overrides]
+idle_fg = "#ff0048" 
