@@ -12,6 +12,7 @@
     ./gtk.nix
     ./librewolf.nix
     ./yazi.nix
+    ./fcitx5.nix
 
     # niri
     # ./niri
