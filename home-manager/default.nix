@@ -14,11 +14,6 @@
     ./yazi.nix
     ./fcitx5.nix
 
-    # niri
-    # ./niri
-    # ./fuzzel
-    # ./waybar
-
     # ./qtile
     ./rofi
     ./dunst
