@@ -61,12 +61,12 @@
         action = "<cmd>FzfLua grep_cword<CR>";
         options.desc = "Search current word";
       }
-      {
-        mode = "n";
-        key = "<leader>fc";
-        action = "<cmd>FzfLua commands<CR>";
-        options.desc = "Search commands";
-      }
+      # {
+      #   mode = "n";
+      #   key = "<leader>fc";
+      #   action = "<cmd>FzfLua commands<CR>";
+      #   options.desc = "Search commands";
+      # }
       {
         mode = "n";
         key = "<leader>fk";

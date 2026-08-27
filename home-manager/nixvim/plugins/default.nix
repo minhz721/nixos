@@ -16,5 +16,6 @@
     ./comment.nix
     ./yazi.nix
     ./lazygit.nix
+    ./code-runner.nix
   ];
 }

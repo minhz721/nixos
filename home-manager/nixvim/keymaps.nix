@@ -13,7 +13,13 @@
 
     # Select all
     {
-      mode = ["n" "i"];
+      mode = ["n"];
+      key = "<C-a>";
+      action = "ggVG";
+      options.desc = "Select all";
+    }
+    {
+      mode = ["i"];
       key = "<C-a>";
       action = "<Esc>ggVG";
       options.desc = "Select all";
