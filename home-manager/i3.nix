@@ -5,7 +5,7 @@
 }: {
   services.screen-locker = {
     enable = true;
-    inactiveInterval = 15;
+    inactiveInterval = 20;
     lockCmd = "${pkgs.lightlocker}/bin/light-locker-command --lock";
   };
 
@@ -123,6 +123,7 @@
       # font pango:JetBrainsMono Nerd Font 14
       exec --no-startup-id i3-msg workspace 1
       workspace 1 output DP-1
+      workspace 2 output HDMI-A-0 
       # startup
       exec --no-startup-id sh -c "feh --bg-fill $(cat ~/.cache/wallpaper_current)"
       exec --no-startup-id fcitx5
@@ -135,8 +136,9 @@
       for_window [class="[Bb]lueman-manager"] floating enable, resize set 800px 600px, move position center
       for_window [class="cava"] floating enable, resize set 1000px 600px, move position center
       for_window [class="mpv"] floating enable, move position center
-      for_window [class="crx_amfojhdiedpdnlijjbhjnhokbnohfdfb"] floating enable, move position center
+      for_window [instance="crx_amfojhdiedpdnlijjbhjnhokbnohfdfb"] floating enable
       for_window [class="imv"] floating enable, move position center
+      for_window [class="com-abdownloadmanager-desktop-AppKt"] floating enable, move position center
       for_window [class="fcitx5-config-qt"] floating enable, move position center
       for_window [class="(?i)xdm-app"] floating enable, resize set 1000px 650px, move position center
     '';
