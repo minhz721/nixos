@@ -77,17 +77,35 @@ sudo nixos-rebuild switch --flake .#<your-host-name>
 
 Get classname and appid:
 
-  ```bash
-  xprop WM_CLASS
-  ```
-  ```bash
-  swaymsg -t get_tree | grep -E '"app_id"|"name"'
-  ```
+```bash
+xprop WM_CLASS
+```
+
+```bash
+swaymsg -t get_tree | grep -E '"app_id"|"name"'
+```
+
 Live log niri
+
 ```
 journalctl --user -u niri -f
 ```
 
+### Ventoy
+
+Install ventoy
+
+```
+NIXPKGS_ALLOW_UNFREE=1 nix shell nixpkgs#ventoy --impure
+
+```
+
+Check disk `lsblk`
+Example
+
+```
+sudo ventoy -i /dev/sdb
+```
 
 ## 👤 Author
 
