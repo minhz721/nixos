@@ -16,8 +16,6 @@
           svelte = ["prettier"];
           markdown = ["prettier"];
 
-          # kdl = [ "kdlfmt" ];
-
           # Python
           python = [
             "isort"
@@ -25,28 +23,24 @@
           ];
 
           # Lua
-          lua = [
-            "stylua"
-          ];
+          lua = ["stylua"];
 
           # Shell
-          sh = [
-            "shfmt"
-          ];
+          sh = ["shfmt"];
 
-          bash = [
-            "shfmt"
-          ];
+          bash = ["shfmt"];
 
           # Nix
-          nix = [
-            "alejandra"
-          ];
+          nix = ["alejandra"];
 
           # SQL
-          sql = [
-            "sqlfluff"
-          ];
+          sql = ["sqlfluff"];
+
+          # Rust
+          rust = ["rustfmt"];
+
+          # Zig
+          zig = ["zigfmt"];
         };
 
         format_on_save = {

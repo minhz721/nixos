@@ -37,6 +37,15 @@
 
           # Python
           python
+
+          # Rust
+          rust
+
+          # Zig
+          zig
+
+          # Sql
+          sql
         ];
       };
       # Rainbow brackets / parentheses
