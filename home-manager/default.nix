@@ -87,8 +87,6 @@
     # Development
     # =========================================================================
     vscode
-    python3
-    nodejs
     dbeaver-bin
     bruno
     lazydocker

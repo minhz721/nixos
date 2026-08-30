@@ -1,7 +1,6 @@
 {pkgs, ...}: let
   code-runner = pkgs.writeShellScriptBin "code-runner" ''
     set -e
-
     file="$1"
 
     if [ -z "$file" ]; then
@@ -15,7 +14,6 @@
     fi
 
     case "$file" in
-
       *.js)
         echo "▶ Running JavaScript: $file"
         exec ${pkgs.nodejs}/bin/node "$file"
@@ -61,7 +59,6 @@ in {
     extraPackages = [
       code-runner
     ];
-
     keymaps = [
       {
         key = "<leader>rr";

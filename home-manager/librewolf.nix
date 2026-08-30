@@ -4,33 +4,6 @@
     profiles.default = {
       id = 0;
       isDefault = true;
-      # ==============================
-      # Search Engine Configuration
-      # ==============================
-      search = {
-        force = true;
-        default = "google";
-        engines = {
-          "google" = {
-            name = "Google";
-            urls = [
-              {
-                template = "https://www.google.com/search";
-                params = [
-                  {
-                    name = "q";
-                    value = "{searchTerms}";
-                  }
-                ];
-              }
-            ];
-            definedAliases = [
-              "@g"
-            ];
-            icon = "https://www.google.com/favicon.ico";
-          };
-        };
-      };
       # Browser Preferences
       settings = {
         # Homepage
@@ -52,7 +25,6 @@
         # ==========================
         "network.trr.mode" = 3;
         "network.trr.uri" = "https://mozilla.cloudflare-dns.com/dns-query";
-
         "network.trr.bootstrapAddress" = "1.1.1.1";
         # Privacy
         "extensions.pocket.enabled" = false;
@@ -74,16 +46,6 @@
         "privacy.clearOnShutdown.cache" = true;
         "privacy.clearOnShutdown.formdata" = true;
       };
-      # ==============================
-      # Extensions
-      # ==============================
-      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
-        # Add extensions available in NUR here
-        # Example:
-        # ublock-origin
-        # bitwarden
-        # darkreader
-      ];
     };
   };
 }
