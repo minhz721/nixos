@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./ghostty.nix
-    ./shell.nix
+    ./fish.nix
     ./git.nix
     ./nemo
     ./gtk.nix
@@ -41,6 +41,7 @@
     fastfetch
     zoxide
     eza
+    uv
 
     # =========================================================================
     # Archive / Java

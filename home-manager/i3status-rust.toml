@@ -9,7 +9,7 @@ format = " CPU: $utilization "
 idle_fg = "#a6e3a1"
 good_fg = "#a6e3a1" 
 info_fg = "#a6e3a1" 
-warning_fg = "#ff0048"
+warning_fg = "#f9e2af"
 critical_cpu = "#ff0048"
 
 [[block]]

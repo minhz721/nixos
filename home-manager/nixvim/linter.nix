@@ -1,22 +1,32 @@
 {
-  programs.nixvim = {
-    plugins.lint = {
-      enable = true;
+  programs.nixvim.plugins.lint = {
+    enable = true;
+    lintersByFt = {
+      # Python
+      python = [
+        "ruff"
+      ];
 
-      lintersByFt = {
-        python = [
-          "ruff"
-        ];
+      # Nix
+      nix = [
+        "statix"
+        "deadnix"
+      ];
 
-        nix = [
-          "statix"
-          "deadnix"
-        ];
+      # Bash
+      bash = [
+        "shellcheck"
+      ];
 
-        bash = [
-          "shellcheck"
-        ];
-      };
+      # Docker
+      docker = [
+        "hadolint"
+      ];
+
+      # Lua
+      lua = [
+        "luacheck"
+      ];
     };
   };
 }
