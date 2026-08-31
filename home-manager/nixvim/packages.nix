@@ -9,10 +9,6 @@ in {
     # General Tools
     # ==========================================
     git
-    ripgrep
-    fd
-    curl
-    wget
 
     # ==========================================
     # JavaScript / TypeScript
@@ -66,14 +62,23 @@ in {
     # ==========================================
     # KDL
     # ==========================================
-    kdlfmt
+    # kdlfmt
 
     # ==========================================
     # Rust
     # ==========================================
+    # Rust toolchain
     rustc
     cargo
     rustfmt
     clippy
+
+    # LSP
+    rust-analyzer
+
+    # Useful tools
+    cargo-edit
+    cargo-watch
+    cargo-nextest
   ];
 }
