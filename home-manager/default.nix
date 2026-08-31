@@ -6,7 +6,7 @@
 }: {
   imports = [
     ./ghostty.nix
-    ./shell.nix
+    ./fish.nix
     ./git.nix
     ./nemo
     ./gtk.nix
