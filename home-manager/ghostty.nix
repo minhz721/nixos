@@ -10,7 +10,8 @@
       # background-opacity = 0.8;
       # background-blur-radius = 30;
       # window-decoration = false;
-      theme = "Dark+";
+      # theme = "Dark+";
+      # theme = "TokyoNight";
       # theme = "Catppuccin Mocha";
       font-family = "JetBrainsMono Nerd Font";
       font-size = 11;
@@ -37,7 +38,7 @@
         "ctrl+9=goto_tab:9"
 
         # Custom keybindings
-        # "super+r=reload_config"
+        "super+r=reload_config"
         "f10=toggle_fullscreen"
         "ctrl+v=paste_from_clipboard"
         # "ctrl+t=new_tab"

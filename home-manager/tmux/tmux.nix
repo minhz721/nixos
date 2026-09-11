@@ -27,7 +27,7 @@
       # Resurrect & Continuum
       set -g @resurrect-capture-pane-contents 'on'
       set -g @continuum-restore 'on'
-      set -g @continuum-save-interval '15'
+      set -g @continuum-save-interval '5'
     '';
 
     plugins = with pkgs.tmuxPlugins; [

@@ -1,13 +1,9 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
-  services.screen-locker = {
-    enable = true;
-    inactiveInterval = 20;
-    lockCmd = "${pkgs.lightlocker}/bin/light-locker-command --lock";
-  };
+{pkgs, ...}: {
+  # services.screen-locker = {
+  #   enable = true;
+  #   inactiveInterval = 20;
+  #   lockCmd = "${pkgs.lightlocker}/bin/light-locker-command --lock";
+  # };
 
   xsession.windowManager.i3 = {
     enable = true;
@@ -25,7 +21,7 @@
             size = 14.0;
           };
           colors = {
-            background = "#282a2e";
+            background = "#282828";
             statusline = "#ffffff";
             separator = "#373b41";
           };
@@ -123,7 +119,7 @@
       # font pango:JetBrainsMono Nerd Font 14
       exec --no-startup-id i3-msg workspace 1
       workspace 1 output DP-1
-      workspace 2 output HDMI-A-0 
+      workspace 2 output HDMI-A-0
       # startup
       exec --no-startup-id sh -c "feh --bg-fill $(cat ~/.cache/wallpaper_current)"
       exec --no-startup-id fcitx5
