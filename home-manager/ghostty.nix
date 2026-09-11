@@ -37,7 +37,7 @@
         "ctrl+9=goto_tab:9"
 
         # Custom keybindings
-        # "super+r=reload_config"
+        "super+r=reload_config"
         "f10=toggle_fullscreen"
         "ctrl+v=paste_from_clipboard"
         # "ctrl+t=new_tab"
