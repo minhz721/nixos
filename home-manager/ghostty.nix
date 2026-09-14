@@ -10,7 +10,8 @@
       # background-opacity = 0.8;
       # background-blur-radius = 30;
       # window-decoration = false;
-      theme = "Dark+";
+      # theme = "Dark+";
+      # theme = "TokyoNight";
       # theme = "Catppuccin Mocha";
       font-family = "JetBrainsMono Nerd Font";
       font-size = 11;
