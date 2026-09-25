@@ -10,6 +10,12 @@
     config = {
       modifier = "Mod4";
       terminal = "ghostty";
+      startup = [
+        {
+          command = "xset s off -dpms s noblank";
+          notification = false;
+        }
+      ];
       bars = [
         {
           position = "top";

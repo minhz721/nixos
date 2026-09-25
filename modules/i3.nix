@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  callPackage,
-  ...
-}: {
+{pkgs, ...}: {
   services.xserver = {
     enable = true;
     windowManager.i3 = {
