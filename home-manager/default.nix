@@ -89,7 +89,7 @@
     # =========================================================================
     vscode
     dbeaver-bin
-    bruno
+    # bruno
     lazydocker
     lazygit
     lazysql
