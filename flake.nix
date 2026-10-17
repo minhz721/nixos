@@ -55,8 +55,7 @@
           # Pass 'inputs' so Home Manager files can access custom-packages directly for Thorium
           home-manager.extraSpecialArgs = {inherit inputs;};
 
-          home-manager.users.leomin =
-            import ./home-manager/default.nix;
+          home-manager.users.leomin = import ./home-manager/default.nix;
         }
 
         {
