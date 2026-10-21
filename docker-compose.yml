@@ -1,6 +1,6 @@
 services:
   dbx:
-    image: t8y2/dbx:latest
+    image: t8y2/dbx:0.6.48
     pull_policy: always
     ports:
       - "4224:4224"
@@ -8,5 +8,47 @@ services:
       - dbx-data:/app/data
     restart: unless-stopped
 
+  mysql:
+    image: mysql:8.4
+    profiles: ["mysql"]
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
+      MYSQL_DATABASE: app
+      MYSQL_USER: app
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    restart: unless-stopped
+
+  postgresql:
+    image: postgres:18-alpine
+    profiles: ["postgres"]
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql
+    restart: unless-stopped
+
+  mongodb:
+    image: mongo:8
+    profiles: ["mongo"]
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:?Set MONGO_ROOT_PASSWORD in .env}
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    restart: unless-stopped
+
 volumes:
   dbx-data:
+  mysql-data:
+  postgres-data:
+  mongo-data:
