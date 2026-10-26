@@ -88,8 +88,8 @@
     # Development
     # =========================================================================
     vscode
-    dbeaver-bin
-    # bruno
+    # dbeaver-bin
+    bruno
     lazydocker
     lazygit
     lazysql
