@@ -14,7 +14,6 @@
     ./yazi.nix
     ./fcitx5.nix
 
-    # ./qtile
     ./rofi
     ./dunst
     ./picom.nix
@@ -41,7 +40,19 @@
     fastfetch
     zoxide
     eza
-    uv
+    uv # Python (Powered by UV)
+    bun # JavaScript / TypeScript (Powered by Bun)
+
+    # --- Format & Lint ---
+    prettier        
+    shellcheck      
+    shfmt           
+    hadolint        
+    alejandra       
+    statix          
+    deadnix         
+    stylua          
+    sqlfluff        
 
     # =========================================================================
     # Archive / Java
@@ -85,7 +96,7 @@
     brave
 
     # =========================================================================
-    # Development
+    # Development & Build Tools
     # =========================================================================
     vscode
     # dbeaver-bin
@@ -93,6 +104,19 @@
     lazydocker
     lazygit
     lazysql
+    gcc
+    gnumake
+    # Rust toolchain
+    rustc
+    cargo
+    rustfmt
+    clippy
+    # LSP
+    rust-analyzer
+    # Useful tools
+    cargo-watch
+    cargo-nextest
+
 
     # =========================================================================
     # Finder
