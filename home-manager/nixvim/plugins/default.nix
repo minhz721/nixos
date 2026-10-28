@@ -18,5 +18,6 @@
     ./lazygit.nix
     ./code-runner.nix
     ./colorizer.nix
+    ./flash.nix
   ];
 }

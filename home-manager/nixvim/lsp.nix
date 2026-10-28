@@ -23,7 +23,7 @@
       };
 
       servers = {
-        # Nix
+        # Nix Configuration
         nil_ls = {
           enable = true;
           settings = {
@@ -31,7 +31,7 @@
           };
         };
 
-        # Lua
+        # Lua Development
         lua_ls = {
           enable = true;
           settings = {
@@ -39,46 +39,59 @@
               diagnostics.globals = ["vim"];
               workspace.checkThirdParty = false;
               telemetry.enable = false;
-              format.enable = false;
+              format.enable = false; # Let conform-nvim handle formatting
             };
           };
         };
 
-        # Web
-        ts_ls.enable = true;
+        # Web & JavaScript Ecosystem (Optimized for Bun via vtsls)
+        vtsls = {
+          enable = true;
+        };
         html.enable = true;
         cssls.enable = true;
         jsonls.enable = true;
         yamlls.enable = true;
         tailwindcss.enable = true;
 
-        # Python
-        pyright.enable = true;
+        # Python Development (Configured to resolve uv local virtual environments)
+        pyright = {
+          enable = true;
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true;
+                useLibraryCodeForTypes = true;
+                diagnosticMode = "openFilesOnly";
+              };
+            };
+          };
+        };
 
-        # Shell
+        # Shell Scripting
         bashls.enable = true;
 
-        # Docker
+        # Docker Containment
         dockerls.enable = true;
         docker_compose_language_service.enable = true;
 
-        # Rust
+        # Rust Systems Programming (Utilizes external system toolchain)
         rust_analyzer = {
           enable = true;
           installCargo = false;
           installRustc = false;
         };
 
-        # Markdown
+        # Document Formats
         marksman.enable = true;
 
-        # SQL
+        # Database Languages
         sqls.enable = true;
 
-        # Frontend
+        # Frontend Frameworks
         svelte.enable = true;
 
-        # zig
+        # Low-level Languages
         zls.enable = true;
       };
     };

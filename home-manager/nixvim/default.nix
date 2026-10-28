@@ -10,7 +10,6 @@
     ./keymaps.nix
     ./autocmds.nix
     ./colorscheme.nix
-    ./packages.nix
     ./lsp.nix
     ./linter.nix
     ./plugins
