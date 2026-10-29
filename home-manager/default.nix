@@ -80,6 +80,7 @@
     vscode-langservers-extracted
     yaml-language-server
     svelte-language-server
+    emmet-ls
 
     # Linters & Formatters
     prettier

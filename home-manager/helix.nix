@@ -7,6 +7,35 @@
     enable = true;
     defaultEditor = false;
 
+    themes = {
+      catppuccin_mocha = {
+        "inherits" = "catppuccin_mocha";
+
+        # TODO / FIXME / NOTE / HACK
+        "comment.note" = {
+          fg = "#89b4fa";
+          modifiers = ["bold"];
+        };
+        "comment.warning" = {
+          fg = "#f9e2af";
+          modifiers = ["bold"];
+        };
+        "comment.error" = {
+          fg = "#f38ba8";
+          modifiers = ["bold"];
+        };
+
+        "special" = {
+          fg = "#f9e2af";
+          modifiers = ["bold"];
+        };
+        "markup.heading.marker" = {
+          fg = "#f38ba8";
+          modifiers = ["bold"];
+        };
+      };
+    };
+
     settings = {
       theme = "catppuccin_mocha";
 
@@ -47,6 +76,7 @@
         "tab" = ":buffer-next";
         "S-tab" = ":buffer-previous";
         "C-s" = ":w";
+        "C-a" = ["goto_file_start" "select_all"];
         # Quick actions with comma ','
         "," = {
           w = ":w"; # Save file (,w)
@@ -65,6 +95,7 @@
 
       keys.insert = {
         "C-s" = ":w";
+        "C-a" = ["goto_file_start" "select_all"];
       };
     };
 
