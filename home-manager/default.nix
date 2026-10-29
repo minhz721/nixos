@@ -13,6 +13,7 @@
     ./librewolf.nix
     ./yazi.nix
     ./fcitx5.nix
+    ./helix.nix
 
     ./rofi
     ./dunst
@@ -29,33 +30,71 @@
     ./nixvim
     ./tmux/tmux.nix
   ];
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   home.username = "leomin";
   home.homeDirectory = "/home/leomin";
 
   home.packages = with pkgs; [
     # =========================================================================
-    # Shell & CLI Utilities
+    # Shell & CLI Utilities / Search Tools
     # =========================================================================
     fastfetch
     zoxide
     eza
-    uv # Python (Powered by UV)
-    bun # JavaScript / TypeScript (Powered by Bun)
-
-    # --- Format & Lint ---
-    prettier        
-    shellcheck      
-    shfmt           
-    hadolint        
-    alejandra       
-    statix          
-    deadnix         
-    stylua          
-    sqlfluff        
+    ripgrep
+    fzf
+    fd
 
     # =========================================================================
-    # Archive / Java
+    # Runtimes & Development Toolchains
+    # =========================================================================
+    uv   # Python
+    ruff
+    bun  # JavaScript / TypeScript
+
+    # Rust toolchain & ecosystem
+    rustc
+    cargo
+    rustfmt
+    clippy
+    rust-analyzer
+    cargo-watch
+    cargo-nextest
+
+    # Compilers & Build Tools
+    gnumake
+
+    # =========================================================================
+    # Language Servers (LSPs) & Code Quality (Format / Lint)
+    # =========================================================================
+    # LSP Binaries & Tools
+    nil
+    vtsls
+    pyright
+    marksman    # Markdown LSP
+    bash-language-server
+    vscode-langservers-extracted
+    yaml-language-server
+    svelte-language-server
+    emmet-ls
+
+    # Linters & Formatters
+    prettier
+    shellcheck
+    shfmt
+    hadolint
+    alejandra
+    statix
+    deadnix
+    stylua
+    sqlfluff
+
+    # =========================================================================
+    # Archive & System Utilities
     # =========================================================================
     unzip
     unrar
@@ -65,63 +104,38 @@
     poppler
     libgsf
     openjdk
+    czkawka # finder duplicate
 
     # =========================================================================
-    # File Manager
+    # File Manager & Desktop Applications
     # =========================================================================
     yazi
     nemo-with-extensions
     nemo-fileroller
-
-    # =========================================================================
-    # Media & Desktop Utilities
-    # =========================================================================
-    ffmpeg
-    mpv
-    cava
-    imv
     zathura
+    imv
+    mpv
+    ffmpeg
+    cava
     mission-center
     localsend
 
     # =========================================================================
-    # Communication
+    # Communication & Web
     # =========================================================================
     discord
     telegram-desktop
-
-    # =========================================================================
-    # Web Browser
-    # =========================================================================
     brave
 
     # =========================================================================
-    # Development & Build Tools
+    # Development & Database Clients
     # =========================================================================
     vscode
-    # dbeaver-bin
     bruno
     lazydocker
     lazygit
     lazysql
-    gcc
-    gnumake
-    # Rust toolchain
-    rustc
-    cargo
-    rustfmt
-    clippy
-    # LSP
-    rust-analyzer
-    # Useful tools
-    cargo-watch
-    cargo-nextest
-
-
-    # =========================================================================
-    # Finder
-    # =========================================================================
-    czkawka
+    # dbeaver-bin
   ];
 
   programs.home-manager.enable = true;
