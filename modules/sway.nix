@@ -8,7 +8,7 @@
     inputs.noctalia-greeter.nixosModules.default
   ];
   # Noctalia Greeter
-  programs.noctalia-greeter = {
+  services.displayManager.noctalia-greeter = {
     enable = true;
     settings = {
       appearance = {
