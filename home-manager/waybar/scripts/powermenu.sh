@@ -14,7 +14,7 @@ chosen=$(echo -e "$options" | fuzzel --dmenu \
   --prompt="⚡ Power Menu: " \
   --lines=5 \
   --width=25 \
-  --font="JetBrainsMono Nerd Font:size=12")
+  --font="Maple Mono:size=12")
 
 # Execute selected option
 case "$chosen" in

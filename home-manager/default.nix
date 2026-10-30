@@ -14,6 +14,7 @@
     ./yazi.nix
     ./fcitx5.nix
     ./helix.nix
+    ./zed.nix
 
     # ./rofi
     # ./dunst
@@ -21,7 +22,6 @@
     # ./flameshot.nix
     # ./i3.nix
 
-    # sway
     ./sway.nix
     ./fuzzel
     ./waybar
@@ -41,6 +41,22 @@
     # Shell & CLI Utilities
     # =========================================================================
     fastfetch
+
+    # Runtimes and toolchains
+    uv
+    bun
+    # Nix
+    alejandra     # Formatter
+    statix        # Linter
+
+    rustup
+    gnumake
+    ruff
+    shfmt
+    shellcheck
+    hadolint
+    sqlfluff
+
 
     # =========================================================================
     # Archive & System Utilities
@@ -78,7 +94,6 @@
     google-chrome
 
     # Development applications / CLI tools
-    vscode
     bruno
     lazydocker
     lazygit
