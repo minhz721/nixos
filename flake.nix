@@ -9,14 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # New custom packages repository for Thorium browser, ab download
-    custom-packages.url = "github:Rishabh5321/custom-packages-flake";
-
-    nixvim = {
-      url = "github:nix-community/nixvim/nixos-26.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     nix-xdm = {
       url = "github:Diomeh/nix-xdm/0.0.4";
       flake = false;
@@ -26,8 +18,6 @@
   outputs = {
     nixpkgs,
     home-manager,
-    custom-packages,
-    nixvim,
     nix-xdm,
     ...
   } @ inputs: let
@@ -36,14 +26,11 @@
   in {
     nixosConfigurations.leomin = lib.nixosSystem {
       inherit system;
-
       specialArgs = {
         inherit inputs;
       };
-
       modules = [
         ./configuration.nix
-
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;

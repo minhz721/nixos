@@ -26,7 +26,6 @@
     # ./fuzzel
     # ./waybar
 
-    # ./nixvim
     ./tmux/tmux.nix
   ];
   programs.direnv = {
@@ -39,7 +38,7 @@
 
   home.packages = with pkgs; [
     # =========================================================================
-    # Shell & CLI Utilities 
+    # Shell & CLI Utilities
     # =========================================================================
     fastfetch
 
@@ -76,6 +75,7 @@
     discord
     telegram-desktop
     brave
+    google-chrome
 
     # Development applications / CLI tools
     vscode
