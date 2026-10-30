@@ -14,8 +14,6 @@
 
     ./xdm.nix
 
-    # ./qtile.nix
-
     # ./i3.nix
 
     ./sway.nix
