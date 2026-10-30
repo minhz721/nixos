@@ -55,7 +55,7 @@
 
           # Application shortcuts
           "${modifier}+e" = "exec nemo";
-          "${modifier}+b" = "exec thorium";
+          "${modifier}+b" = "exec google-chrome";
           "${modifier}+c" = "exec code";
 
           # Window layout controls

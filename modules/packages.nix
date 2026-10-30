@@ -29,7 +29,6 @@
     # System / Monitoring
     # =========================================================================
     btop
-    vim-full
     simplescreenrecorder
 
     # =========================================================================
@@ -37,12 +36,5 @@
     # =========================================================================
     gnome-themes-extra
     adwaita-icon-theme
-
-    # =========================================================================
-    # External Packages
-    # =========================================================================
-    inputs.custom-packages.packages."x86_64-linux".thorium-avx2
-    inputs.custom-packages.packages."x86_64-linux".stremio
-    # inputs.custom-packages.packages."x86_64-linux".ab-download-manager
   ];
 }

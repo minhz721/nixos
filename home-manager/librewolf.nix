@@ -1,10 +1,20 @@
-{pkgs, ...}: {
+
+{ ... }: {
   programs.librewolf = {
     enable = true;
     profiles.default = {
-      id = 0;
       isDefault = true;
-      # Browser Preferences
+      # Search Engine
+      search = {
+        force = true;
+        default = "google";
+        privateDefault = "google";
+
+        order = [
+          "google"
+        ];
+        engines.google.metaData.alias = "@g";
+      };
       settings = {
         # Homepage
         "browser.startup.page" = 1;
@@ -12,19 +22,18 @@
         # Search suggestions
         "browser.search.suggest.enabled" = true;
         "browser.urlbar.suggest.searches" = true;
-        # Use the same search engine in private windows
         "browser.search.separatePrivateDefault" = false;
+        # Firefox Sync
+        "identity.fxaccounts.enabled" = true;
         # Dark Theme
         "layout.css.prefers-color-scheme.content-override" = 0;
         "ui.systemUsesDarkTheme" = 1;
-        # Enable custom CSS
+        # Custom CSS
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        # ==========================
-        # DNS over HTTPS
-        # Cloudflare
-        # ==========================
+        # DNS over HTTPS - Cloudflare
         "network.trr.mode" = 3;
-        "network.trr.uri" = "https://mozilla.cloudflare-dns.com/dns-query";
+        "network.trr.uri" =
+          "https://mozilla.cloudflare-dns.com/dns-query";
         "network.trr.bootstrapAddress" = "1.1.1.1";
         # Privacy
         "extensions.pocket.enabled" = false;
