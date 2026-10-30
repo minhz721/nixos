@@ -13,7 +13,7 @@
     fg-col2:          #b4befe; /* Lavender Focused Text Value */
     grey:             #6c7086; /* Overlay Dimmed Elements */
     width:            600;
-    font:             "JetBrainsMono Nerd Font 12";
+    font:             "Maple Mono 12";
     border-radius:    10px;
     bg:      #1e1e2e; /* Base: Deep Primary Background */
     bg-alt:  #181825; /* Mantle: Secondary Input Panel Background */

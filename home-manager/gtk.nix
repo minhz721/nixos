@@ -19,7 +19,7 @@
       package = pkgs.adwaita-icon-theme;
     };
     font = {
-      name = "JetBrainsMono Nerd Font";
+      name = "Maple Mono";
       size = 12;
     };
     gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
@@ -61,6 +61,6 @@
     x11.enable = true;
     name = "Adwaita";
     package = pkgs.adwaita-icon-theme;
-    size = 16;       
+    size = 16;
   };
 }

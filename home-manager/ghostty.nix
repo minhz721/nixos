@@ -10,8 +10,13 @@
       # theme = "Dark+";
       # theme = "TokyoNight";
       theme = "Catppuccin Mocha";
-      font-family = "JetBrainsMono Nerd Font";
+      # font-family = "Maple Mono";
+      font-family = "Maple Mono";
       font-size = 11;
+      font-feature = [
+        "calt"
+        "liga"
+      ];
       cursor-style = "block";
       cursor-style-blink = false;
       cursor-invert-fg-bg = true;

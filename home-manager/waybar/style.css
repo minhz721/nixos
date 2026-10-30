@@ -1,15 +1,15 @@
 * {
-  border: none;
-  border-radius: 0;
-  font-family: "JetBrainsMono Nerd Font", "Inter", sans-serif;
-  font-weight: bold;
-  font-size: 15px;
-  min-height: 0;
+    border: none;
+    border-radius: 0;
+    font-family: "Maple Mono", "Inter", sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    min-height: 0;
 }
 
 window#waybar {
-  background-color: transparent;
-  color: #cdd6f4;
+    background-color: transparent;
+    color: #cdd6f4;
 }
 
 /* block module */
@@ -21,10 +21,10 @@ window#waybar {
 #memory,
 #temperature,
 #tray {
-  background-color: #1e1e2e;
-  padding: 4px 12px;
-  border-radius: 12px;
-  border: 1px solid #313244;
+    background-color: #1e1e2e;
+    padding: 4px 12px;
+    border-radius: 12px;
+    border: 1px solid #313244;
 }
 
 /* =====================
@@ -32,20 +32,20 @@ window#waybar {
 ===================== */
 
 #workspaces button {
-  padding: 0 5px;
-  color: #6c7086;
-  background: transparent;
+    padding: 0 5px;
+    color: #6c7086;
+    background: transparent;
 }
 
 #workspaces button.active,
 #workspaces button.focused {
-  color: #cba6f7;
+    color: #cba6f7;
 }
 
 #workspaces button:hover {
-  box-shadow: inherit;
-  text-shadow: inherit;
-  background: transparent;
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: transparent;
 }
 
 /* =====================
@@ -53,7 +53,7 @@ window#waybar {
 ===================== */
 
 #window {
-  color: #bac2de;
+    color: #bac2de;
 }
 
 /* =====================
@@ -61,7 +61,7 @@ window#waybar {
 ===================== */
 
 #clock {
-  color: #89b4fa;
+    color: #89b4fa;
 }
 
 /* =====================
@@ -69,7 +69,7 @@ window#waybar {
 ===================== */
 
 #pulseaudio {
-  color: #f9e2af;
+    color: #f9e2af;
 }
 
 /* =====================
@@ -77,11 +77,11 @@ window#waybar {
 ===================== */
 
 #cpu {
-  color: #a6e3a1;
+    color: #a6e3a1;
 }
 
 #memory {
-  color: #94e2d5;
+    color: #94e2d5;
 }
 
 /* =====================
@@ -89,22 +89,22 @@ window#waybar {
 ===================== */
 
 #tray {
-  color: #cdd6f4;
+    color: #cdd6f4;
 }
 
-#tray>.passive {
-  opacity: 0.6;
+#tray > .passive {
+    opacity: 0.6;
 }
 
-#tray>.needs-attention {
-  color: #f38ba8;
+#tray > .needs-attention {
+    color: #f38ba8;
 }
 
 #tray menu {
-  background: #1e1e2e;
-  color: #cdd6f4;
-  border-radius: 8px;
-  padding: 8px;
+    background: #1e1e2e;
+    color: #cdd6f4;
+    border-radius: 8px;
+    padding: 8px;
 }
 
 /* =====================
@@ -112,18 +112,18 @@ window#waybar {
 ===================== */
 
 #custom-powermenu {
-  color: #f38ba8;
-  background-color: #1e1e2e;
-  border-radius: 12px;
-  border: 1px solid #313244;
-  padding: 4px 16px 4px 12px;
+    color: #f38ba8;
+    background-color: #1e1e2e;
+    border-radius: 12px;
+    border: 1px solid #313244;
+    padding: 4px 16px 4px 12px;
 }
 
 #custom-wallpaper {
-  background-color: #1e1e2e;
-  border-radius: 12px;
-  border: 1px solid #313244;
-  padding: 4px 16px 4px 12px;
+    background-color: #1e1e2e;
+    border-radius: 12px;
+    border: 1px solid #313244;
+    padding: 4px 16px 4px 12px;
 }
 
 /* =====================
@@ -139,5 +139,5 @@ window#waybar {
 #temperature:hover,
 #custom-wallpaper:hover,
 #custom-powermenu:hover {
-  background-color: #313244;
+    background-color: #313244;
 }

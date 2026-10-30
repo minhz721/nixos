@@ -11,7 +11,7 @@
     frame_width = 2
     frame_color = "#b4befe"
     separator_color = frame
-    font = JetBrainsMono Nerd Font 10
+    font = Maple Mono 10
     line_height = 0
     markup = full
     format = "<b>%s</b>\n%b"
@@ -43,7 +43,7 @@
     force_xwayland = false
     script = ~/.config/dunst/scripts/notify-sound.sh
     icon_path = /usr/share/icons/Papirus/16x16/status:/usr/share/icons/Adwaita/16x16/status:/usr/share/icons/Papirus/48x48/status:/usr/share/icons/Adwaita/scalable/status
-    
+
     # Progress bar customization using Catppuccin Mocha palette
     progress_bar = true
     progress_bar_frame_width = 1

@@ -1,49 +1,4 @@
-{pkgs, ...}: let
-  prettierFormatter = {
-    command = "prettier";
-    args = ["--stdin-filepath" "%{buffer_name}"];
-  };
-in {
-  home.packages = with pkgs; [
-    # Runtimes and toolchains
-    uv
-    bun
-    rustc
-    cargo
-    rustfmt
-    clippy
-    rust-analyzer
-    cargo-watch
-    cargo-nextest
-    gnumake
-
-    # Language servers
-    nil
-    lua-language-server
-    vtsls
-    emmet-language-server
-    pyright
-    bash-language-server
-    vscode-langservers-extracted
-    yaml-language-server
-    svelte-language-server
-    dockerfile-language-server
-    marksman
-    sqls
-
-    # Formatters and linters
-    ruff
-    prettier
-    alejandra
-    stylua
-    shfmt
-    shellcheck
-    hadolint
-    statix
-    deadnix
-    sqlfluff
-  ];
-
+{
   programs.helix = {
     enable = true;
     defaultEditor = true;
@@ -55,7 +10,7 @@ in {
 
       # TODO / FIXME / NOTE / HACK
       "comment.note" = {
-        # fg = "#89b4fa";
+        fg = "#89b4fa";
         modifiers = ["bold"];
       };
       "comment.warning" = {
@@ -118,6 +73,14 @@ in {
           "spacer"
           "diff"
         ];
+
+        statusline = {
+          mode = {
+            normal = "NORMAL";
+            insert = "INSERT";
+            select = "SELECT";
+          };
+        };
 
         soft-wrap = {
           enable = true;
@@ -227,7 +190,7 @@ in {
           "C-p" = ":clipboard-paste-after";
 
           "C-/" = "toggle_comments";
-          "C-z" = [ "normal_mode" "undo" "insert_mode" ];
+          "C-z" = ["normal_mode" "undo" "insert_mode"];
 
           "C-d" = ["normal_mode" "kill_to_line_start" "kill_to_line_end" "insert_mode"];
         };
@@ -255,27 +218,6 @@ in {
     };
 
     languages = {
-      language-server = {
-        vtsls = {
-          command = "vtsls";
-          args = ["--stdio"];
-        };
-
-        emmet-lsp = {
-          command = "emmet-language-server";
-          args = ["--stdio"];
-          config = {
-            showAbbreviationSuggestions = true;
-            showExpandedAbbreviation = "always";
-            showSuggestionsAsSnippets = false;
-            includeLanguages = {
-              jsx = "javascriptreact";
-              tsx = "typescriptreact";
-            };
-          };
-        };
-      };
-
       language = [
         {
           name = "nix";
@@ -283,90 +225,6 @@ in {
           language-servers = ["nil"];
           auto-format = true;
           formatter.command = "alejandra";
-        }
-        {
-          name = "lua";
-          scope = "source.lua";
-          language-servers = ["lua-language-server"];
-          auto-format = true;
-          formatter = {
-            command = "stylua";
-            args = ["-"];
-          };
-        }
-
-        # TypeScript / TSX
-        {
-          name = "typescript";
-          language-servers = ["vtsls"];
-          auto-format = true;
-          formatter = prettierFormatter;
-        }
-        {
-          name = "tsx";
-          language-servers = ["vtsls" "emmet-lsp"];
-          auto-format = true;
-          formatter = prettierFormatter;
-        }
-
-        # JavaScript / JSX
-        {
-          name = "javascript";
-          language-servers = ["vtsls"];
-          auto-format = true;
-          formatter = prettierFormatter;
-        }
-        {
-          name = "jsx";
-          language-servers = ["vtsls" "emmet-lsp"];
-          auto-format = true;
-          formatter = prettierFormatter;
-        }
-
-        {
-          name = "html";
-          scope = "text.html.basic";
-          language-servers = ["vscode-html-language-server" "emmet-lsp"];
-          auto-format = true;
-          formatter = prettierFormatter;
-        }
-        {
-          name = "css";
-          scope = "source.css";
-          language-servers = ["vscode-css-language-server" "emmet-lsp"];
-          auto-format = true;
-          formatter = prettierFormatter;
-        }
-        {
-          name = "json";
-          scope = "source.json";
-          language-servers = ["vscode-json-language-server"];
-          auto-format = true;
-          formatter = prettierFormatter;
-        }
-        {
-          name = "yaml";
-          scope = "source.yaml";
-          language-servers = ["yaml-language-server"];
-          auto-format = true;
-          formatter = prettierFormatter;
-        }
-        {
-          name = "svelte";
-          scope = "source.svelte";
-          language-servers = ["svelteserver" "emmet-lsp"];
-          auto-format = true;
-          formatter = prettierFormatter;
-        }
-        {
-          name = "python";
-          scope = "source.python";
-          language-servers = ["pyright"];
-          auto-format = true;
-          formatter = {
-            command = "ruff";
-            args = ["format" "--stdin-filename" "%{buffer_name}" "-"];
-          };
         }
         {
           name = "bash";
@@ -377,29 +235,6 @@ in {
             command = "shfmt";
             args = ["-i" "2"];
           };
-        }
-        {
-          name = "dockerfile";
-          scope = "source.dockerfile";
-          language-servers = ["docker-langserver"];
-        }
-        {
-          name = "rust";
-          scope = "source.rust";
-          language-servers = ["rust-analyzer"];
-          auto-format = true;
-        }
-        {
-          name = "markdown";
-          scope = "text.html.markdown";
-          language-servers = ["marksman"];
-          auto-format = true;
-          formatter = prettierFormatter;
-        }
-        {
-          name = "sql";
-          scope = "source.sql";
-          language-servers = ["sqls"];
         }
       ];
     };

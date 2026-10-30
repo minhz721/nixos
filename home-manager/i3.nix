@@ -23,7 +23,7 @@
           trayOutput = "primary";
           trayPadding = 4;
           fonts = {
-            names = ["JetBrainsMono Nerd Font" "Font Awesome 6 Free"];
+            names = ["Maple Mono" "Font Awesome 6 Free"];
             size = 14.0;
           };
           colors = {
@@ -56,7 +56,7 @@
           # Application shortcuts
           "${modifier}+e" = "exec nemo";
           "${modifier}+b" = "exec google-chrome";
-          "${modifier}+c" = "exec code";
+          "${modifier}+c" = "exec zeditor";
 
           # Window layout controls
           "${modifier}+f" = "floating toggle";
@@ -122,7 +122,7 @@
     extraConfig = ''
       # default_border pixel 3
 
-      # font pango:JetBrainsMono Nerd Font 14
+      # font pango:Maple Mono 14
       exec --no-startup-id i3-msg workspace 1
       workspace 1 output DP-1
       workspace 2 output HDMI-A-0

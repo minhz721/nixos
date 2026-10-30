@@ -19,7 +19,7 @@
     enable = true;
     settings = {
       default-timeout = 5000;
-      font = "JetBrainsMono Nerd Font";
+      font = "Maple Mono";
       background-color = "#1e1e2eff";
       text-color = "#cdd6f4ff";
       border-color = "#cba6f7ff";
@@ -91,7 +91,7 @@
           text = "$TIME";
           color = "rgba(205, 214, 244, 1.0)";
           font_size = 120;
-          font_family = "JetBrainsMono Nerd Font";
+          font_family = "Maple Mono";
           position = "0, 80";
           halign = "center";
           valign = "center";
@@ -188,7 +188,7 @@
           # Application shortcuts
           "${modifier}+e" = "exec nemo";
           "${modifier}+b" = "exec google-chrome";
-          "${modifier}+c" = "exec code";
+          "${modifier}+c" = "exec zeditor";
 
           # Window layout controls
           "${modifier}+f" = "floating toggle";
@@ -263,7 +263,7 @@
     --ozone-platform=wayland
     --enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer
   '';
-  xdg.configFile."code-flags.conf".text = ''
+  xdg.configFile."zeditor-flags.conf".text = ''
     --ozone-platform-hint=auto
     --ozone-platform=wayland
     --enable-features=WaylandWindowDecorations
