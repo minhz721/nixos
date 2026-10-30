@@ -107,45 +107,6 @@
     enable = true;
     wrapperFeatures.gtk = true;
     config = {
-      workspaceOutputAssign = [
-        {
-          workspace = "1";
-          output = "DP-1";
-        }
-        {
-          workspace = "3";
-          output = "DP-1";
-        }
-        {
-          workspace = "5";
-          output = "DP-1";
-        }
-        {
-          workspace = "7";
-          output = "DP-1";
-        }
-        {
-          workspace = "9";
-          output = "DP-1";
-        }
-
-        {
-          workspace = "2";
-          output = "HDMI-A-1";
-        }
-        {
-          workspace = "4";
-          output = "HDMI-A-1";
-        }
-        {
-          workspace = "6";
-          output = "HDMI-A-1";
-        }
-        {
-          workspace = "8";
-          output = "HDMI-A-1";
-        }
-      ];
       modifier = "Mod4";
       terminal = "ghostty";
       menu = "fuzzel";
@@ -224,7 +185,7 @@
 
           # Application shortcuts
           "${modifier}+e" = "exec nemo";
-          "${modifier}+b" = "exec thorium";
+          "${modifier}+b" = "exec google-chrome";
           "${modifier}+c" = "exec code";
 
           # Window layout controls
@@ -291,6 +252,16 @@
   };
 
   xdg.configFile."thorium-flags.conf".text = ''
+    --ozone-platform-hint=auto
+    --ozone-platform=wayland
+    --enable-features=WaylandWindowDecorations
+  '';
+  xdg.configFile."chrome-flags.conf".text = ''
+    --ozone-platform-hint=auto
+    --ozone-platform=wayland
+    --enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer
+  '';
+  xdg.configFile."code-flags.conf".text = ''
     --ozone-platform-hint=auto
     --ozone-platform=wayland
     --enable-features=WaylandWindowDecorations
