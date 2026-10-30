@@ -15,16 +15,16 @@
     ./fcitx5.nix
     ./helix.nix
 
-    ./rofi
-    ./dunst
-    ./picom.nix
-    ./flameshot.nix
-    ./i3.nix
+    # ./rofi
+    # ./dunst
+    # ./picom.nix
+    # ./flameshot.nix
+    # ./i3.nix
 
     # sway
-    # ./sway.nix
-    # ./fuzzel
-    # ./waybar
+    ./sway.nix
+    ./fuzzel
+    ./waybar
 
     ./tmux/tmux.nix
   ];

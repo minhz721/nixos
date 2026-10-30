@@ -16,8 +16,8 @@
 
     # ./qtile.nix
 
-    ./i3.nix
+    # ./i3.nix
 
-    # ./sway.nix
+    ./sway.nix
   ];
 }

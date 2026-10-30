@@ -13,12 +13,15 @@
       url = "github:Diomeh/nix-xdm/0.0.4";
       flake = false;
     };
+
+    noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
   };
 
   outputs = {
     nixpkgs,
     home-manager,
     nix-xdm,
+    noctalia-greeter,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -38,9 +41,6 @@
 
           # Automatically backup existing conflicting files to prevent activation errors
           home-manager.backupFileExtension = "bak";
-
-          # Pass 'inputs' so Home Manager files can access custom-packages directly for Thorium
-          home-manager.extraSpecialArgs = {inherit inputs;};
 
           home-manager.users.leomin = import ./home-manager/default.nix;
         }
