@@ -6,7 +6,7 @@
     EDITOR = "hx";
     VISUAL = "hx";
   };
-  
+
   home.packages = with pkgs; [
     fzf
     fd
@@ -126,6 +126,8 @@
 
       # Lazygit
       lg = "lazygit";
+      ld = "lazydocker";
+      lsql = "lazysql";
 
       # helix
       e = "hx";

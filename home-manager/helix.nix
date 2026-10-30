@@ -215,6 +215,7 @@ in {
             "f" = "file_picker";
             "b" = "buffer_picker";
             "s" = "symbol_picker";
+            "/" = "global_search";
           };
         };
 
