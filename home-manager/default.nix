@@ -39,14 +39,9 @@
 
   home.packages = with pkgs; [
     # =========================================================================
-    # Shell & CLI Utilities / Search Tools
+    # Shell & CLI Utilities 
     # =========================================================================
     fastfetch
-    zoxide
-    eza
-    ripgrep
-    fzf
-    fd
 
     # =========================================================================
     # Archive & System Utilities
