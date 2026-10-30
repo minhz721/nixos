@@ -131,11 +131,11 @@ in {
       # Default File Manager
       "inode/directory" = ["nemo.desktop"];
 
-      # Web Browser (Thorium Browser)
-      "text/html" = ["thorium-browser.desktop"];
-      "x-scheme-handler/http" = ["thorium-browser.desktop"];
-      "x-scheme-handler/https" = ["thorium-browser.desktop"];
-      "x-scheme-handler/about" = ["thorium-browser.desktop"];
+      # Web Browser (Google Chrome)
+      "text/html" = ["google-chrome.desktop"];
+      "x-scheme-handler/http" = ["google-chrome.desktop"];
+      "x-scheme-handler/https" = ["google-chrome.desktop"];
+      "x-scheme-handler/about" = ["google-chrome.desktop"];
 
       # Image Viewer (IMV)
       "image/jpeg" = ["imv.desktop"];
