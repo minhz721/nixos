@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{pkgs, ...}: let
   prettierFormatter = {
     command = "prettier";
     args = ["--stdin-filepath" "%{buffer_name}"];
@@ -31,7 +27,7 @@ in {
     vscode-langservers-extracted
     yaml-language-server
     svelte-language-server
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
     marksman
     sqls
 
@@ -55,9 +51,11 @@ in {
     themes.catppuccin_mocha_custom = {
       inherits = "catppuccin_mocha";
 
+      "ui.background" = {};
+
       # TODO / FIXME / NOTE / HACK
       "comment.note" = {
-        fg = "#89b4fa";
+        # fg = "#89b4fa";
         modifiers = ["bold"];
       };
       "comment.warning" = {
@@ -141,7 +139,7 @@ in {
           auto-signature-help = true;
           display-signature-help-docs = true;
           display-inlay-hints = true;
-          inlay-hints-length-limit = 50;
+          inlay-hints-length-limit = 10;
           snippets = true;
           goto-reference-include-declaration = true;
           display-color-swatches = true;
@@ -190,33 +188,64 @@ in {
 
       keys = {
         normal = {
+          # Buffers
           "tab" = ":buffer-next";
           "S-tab" = ":buffer-previous";
+
           "C-a" = "select_all";
-          "C-s" = [ ":w" "normal_mode" ];
+          "C-s" = [":write" "normal_mode"];
+          "C-c" = ":clipboard-yank";
+          "C-p" = ":clipboard-paste-after";
 
-          "y" = [ "yank" ":clipboard-yank" ];
-          "p" = [ "paste_after" ":clipboard-paste-after" ];
-          "P" = [ "paste_before" ":clipboard-paste-before" ];
-          "R" = [ "replace" ":clipboard-paste-replace" ];
+          "y" = ["yank" ":clipboard-yank"];
+          "p" = ["paste_after" ":clipboard-paste-after"];
+          "P" = ["paste_before" ":clipboard-paste-before"];
+          "R" = ["replace_with_yanked"];
 
-          # Leader
+          "C-A-down" = ["extend_line_below" "yank" "paste_after"];
+          "C-A-up" = ["extend_line_below" "yank" "paste_before"];
+
+          "C-/" = "toggle_comments";
+
+          "C-d" = ["extend_line_below" "delete_selection"];
+
           "," = {
-            w = ":w";
-            q = ":q";
-            f = "file_picker";
-            b = "buffer_picker";
-            s = "symbol_picker";
+            "w" = ":write";
+            "q" = ":quit";
+            "f" = "file_picker";
+            "b" = "buffer_picker";
+            "s" = "symbol_picker";
           };
         };
 
         insert = {
-          "C-s" = [ ":w" "normal_mode" ];
           "C-a" = "select_all";
+          "C-s" = [":write" "normal_mode"];
+          "C-c" = ":clipboard-yank";
+          "C-p" = ":clipboard-paste-after";
+
+          "C-/" = "toggle_comments";
+
+          "C-d" = ["normal_mode" "kill_to_line_start" "kill_to_line_end" "insert_mode"];
         };
 
         select = {
-          "y" = [ "yank" ":clipboard-yank" ];
+          "C-a" = "select_all";
+          "C-s" = [":write" "normal_mode"];
+          "C-c" = ":clipboard-yank";
+          "C-p" = ":clipboard-paste-after";
+
+          "y" = ["yank" ":clipboard-yank"];
+          "p" = ["paste_after" ":clipboard-paste-after"];
+          "P" = ["paste_before" ":clipboard-paste-before"];
+          "R" = ["replace_with_yanked"];
+
+          "C-A-down" = ["yank" "paste_after"];
+          "C-A-up" = ["yank" "paste_before"];
+
+          "C-/" = "toggle_comments";
+
+          "C-d" = "delete_selection";
         };
       };
     };

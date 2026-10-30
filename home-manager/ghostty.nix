@@ -3,12 +3,13 @@
     enable = true;
 
     settings = {
-      # background-opacity = 0.8;
+      background-opacity = 0.7;
+      background-blur = true;
       # background-blur-radius = 30;
       # window-decoration = false;
       # theme = "Dark+";
       # theme = "TokyoNight";
-      # theme = "Catppuccin Mocha";
+      theme = "Catppuccin Mocha";
       font-family = "JetBrainsMono Nerd Font";
       font-size = 11;
       cursor-style = "block";
@@ -37,9 +38,9 @@
         "super+r=reload_config"
         "f10=toggle_fullscreen"
         "ctrl+v=paste_from_clipboard"
-        # "ctrl+t=new_tab"
+        "ctrl+t=new_tab"
         # "ctrl+n=new_window"
-        # "ctrl+w=close_tab"
+        "ctrl+w=close_tab"
         # "ctrl+q=close_window"
         # "ctrl+shift+q=close_all_windows"
       ];
