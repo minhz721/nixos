@@ -206,6 +206,7 @@ in {
           "C-A-up" = ["extend_line_below" "yank" "paste_before"];
 
           "C-/" = "toggle_comments";
+          "C-z" = "undo";
 
           "C-d" = ["extend_line_below" "delete_selection"];
 
@@ -226,6 +227,7 @@ in {
           "C-p" = ":clipboard-paste-after";
 
           "C-/" = "toggle_comments";
+          "C-z" = [ "normal_mode" "undo" "insert_mode" ];
 
           "C-d" = ["normal_mode" "kill_to_line_start" "kill_to_line_end" "insert_mode"];
         };
@@ -245,6 +247,7 @@ in {
           "C-A-up" = ["yank" "paste_before"];
 
           "C-/" = "toggle_comments";
+          "C-z" = "undo";
 
           "C-d" = "delete_selection";
         };
