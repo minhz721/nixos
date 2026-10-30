@@ -29,5 +29,6 @@
     xclip
     i3status-rust
     mesa-demos
+    simplescreenrecorder
   ];
 }
