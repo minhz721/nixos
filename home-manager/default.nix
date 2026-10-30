@@ -26,8 +26,7 @@
     # ./fuzzel
     # ./waybar
 
-    # nixvim
-    ./nixvim
+    # ./nixvim
     ./tmux/tmux.nix
   ];
   programs.direnv = {
@@ -48,50 +47,6 @@
     ripgrep
     fzf
     fd
-
-    # =========================================================================
-    # Runtimes & Development Toolchains
-    # =========================================================================
-    uv   # Python
-    ruff
-    bun  # JavaScript / TypeScript
-
-    # Rust toolchain & ecosystem
-    rustc
-    cargo
-    rustfmt
-    clippy
-    rust-analyzer
-    cargo-watch
-    cargo-nextest
-
-    # Compilers & Build Tools
-    gnumake
-
-    # =========================================================================
-    # Language Servers (LSPs) & Code Quality (Format / Lint)
-    # =========================================================================
-    # LSP Binaries & Tools
-    nil
-    vtsls
-    pyright
-    marksman    # Markdown LSP
-    bash-language-server
-    vscode-langservers-extracted
-    yaml-language-server
-    svelte-language-server
-    emmet-ls
-
-    # Linters & Formatters
-    prettier
-    shellcheck
-    shfmt
-    hadolint
-    alejandra
-    statix
-    deadnix
-    stylua
-    sqlfluff
 
     # =========================================================================
     # Archive & System Utilities
@@ -127,15 +82,12 @@
     telegram-desktop
     brave
 
-    # =========================================================================
-    # Development & Database Clients
-    # =========================================================================
+    # Development applications / CLI tools
     vscode
     bruno
     lazydocker
     lazygit
     lazysql
-    # dbeaver-bin
   ];
 
   programs.home-manager.enable = true;

@@ -1,6 +1,0 @@
-include "startup.kdl"
-include "input.kdl"
-include "layout.kdl"
-include "animations.kdl"
-include "rules.kdl"
-include "keybinds.kdl"
