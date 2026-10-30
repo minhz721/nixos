@@ -103,6 +103,8 @@
   wayland.windowManager.sway = {
     extraConfig = ''
       include ~/.config/sway/outputs
+
+      default_border pixel 2
     '';
     enable = true;
     wrapperFeatures.gtk = true;
