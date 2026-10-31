@@ -42,22 +42,6 @@
     # =========================================================================
     fastfetch
 
-    # Runtimes and toolchains
-    uv
-    bun
-    # Nix
-    alejandra     # Formatter
-    statix        # Linter
-
-    rustup
-    gnumake
-    ruff
-    shfmt
-    shellcheck
-    hadolint
-    sqlfluff
-
-
     # =========================================================================
     # Archive & System Utilities
     # =========================================================================
