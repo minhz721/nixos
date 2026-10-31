@@ -1,11 +1,54 @@
-{
+{pkgs, ...}: let
+  prettierFormatter = {
+    command = "prettier";
+    args = ["--stdin-filepath" "%{buffer_name}"];
+  };
+in {
+  home.packages = with pkgs; [
+    # Runtimes and toolchains
+    uv
+    bun
+    rustc
+    cargo
+    rustfmt
+    clippy
+    rust-analyzer
+    cargo-watch
+    cargo-nextest
+    gnumake
+
+    # Language servers
+    nil
+    lua-language-server
+    vtsls
+    emmet-language-server
+    pyright
+    bash-language-server
+    vscode-langservers-extracted
+    yaml-language-server
+    svelte-language-server
+    dockerfile-language-server
+    marksman
+    sqls
+
+    # Formatters and linters
+    ruff
+    prettier
+    alejandra
+    stylua
+    shfmt
+    shellcheck
+    hadolint
+    statix
+    deadnix
+    sqlfluff
+  ];
   programs.helix = {
     enable = true;
     defaultEditor = true;
 
     themes.catppuccin_mocha_custom = {
       inherits = "catppuccin_mocha";
-
       "ui.background" = {};
 
       # TODO / FIXME / NOTE / HACK
@@ -21,7 +64,6 @@
         fg = "#f38ba8";
         modifiers = ["bold"];
       };
-
       "special" = {
         fg = "#f9e2af";
         modifiers = ["bold"];
@@ -34,7 +76,6 @@
 
     settings = {
       theme = "catppuccin_mocha_custom";
-
       editor = {
         # General editing
         line-number = "relative";
@@ -73,14 +114,6 @@
           "spacer"
           "diff"
         ];
-
-        statusline = {
-          mode = {
-            normal = "NORMAL";
-            insert = "INSERT";
-            select = "SELECT";
-          };
-        };
 
         soft-wrap = {
           enable = true;
@@ -154,23 +187,18 @@
           # Buffers
           "tab" = ":buffer-next";
           "S-tab" = ":buffer-previous";
-
           "C-a" = "select_all";
           "C-s" = [":write" "normal_mode"];
           "C-c" = ":clipboard-yank";
           "C-p" = ":clipboard-paste-after";
-
           "y" = ["yank" ":clipboard-yank"];
           "p" = ["paste_after" ":clipboard-paste-after"];
           "P" = ["paste_before" ":clipboard-paste-before"];
           "R" = ["replace_with_yanked"];
-
           "C-A-down" = ["extend_line_below" "yank" "paste_after"];
           "C-A-up" = ["extend_line_below" "yank" "paste_before"];
-
           "C-/" = "toggle_comments";
           "C-z" = "undo";
-
           "C-d" = ["extend_line_below" "delete_selection"];
 
           "," = {
@@ -188,10 +216,8 @@
           "C-s" = [":write" "normal_mode"];
           "C-c" = ":clipboard-yank";
           "C-p" = ":clipboard-paste-after";
-
           "C-/" = "toggle_comments";
           "C-z" = ["normal_mode" "undo" "insert_mode"];
-
           "C-d" = ["normal_mode" "kill_to_line_start" "kill_to_line_end" "insert_mode"];
         };
 
@@ -200,24 +226,41 @@
           "C-s" = [":write" "normal_mode"];
           "C-c" = ":clipboard-yank";
           "C-p" = ":clipboard-paste-after";
-
           "y" = ["yank" ":clipboard-yank"];
           "p" = ["paste_after" ":clipboard-paste-after"];
           "P" = ["paste_before" ":clipboard-paste-before"];
           "R" = ["replace_with_yanked"];
-
           "C-A-down" = ["yank" "paste_after"];
           "C-A-up" = ["yank" "paste_before"];
-
           "C-/" = "toggle_comments";
           "C-z" = "undo";
-
           "C-d" = "delete_selection";
         };
       };
     };
 
     languages = {
+      language-server = {
+        vtsls = {
+          command = "vtsls";
+          args = ["--stdio"];
+        };
+
+        emmet-lsp = {
+          command = "emmet-language-server";
+          args = ["--stdio"];
+          config = {
+            showAbbreviationSuggestions = true;
+            showExpandedAbbreviation = "always";
+            showSuggestionsAsSnippets = false;
+            includeLanguages = {
+              jsx = "javascriptreact";
+              tsx = "typescriptreact";
+            };
+          };
+        };
+      };
+
       language = [
         {
           name = "nix";
@@ -225,6 +268,86 @@
           language-servers = ["nil"];
           auto-format = true;
           formatter.command = "alejandra";
+        }
+        {
+          name = "lua";
+          scope = "source.lua";
+          language-servers = ["lua-language-server"];
+          auto-format = true;
+          formatter = {
+            command = "stylua";
+            args = ["-"];
+          };
+        }
+        {
+          name = "typescript";
+          language-servers = ["vtsls"];
+          auto-format = true;
+          formatter = prettierFormatter;
+        }
+        {
+          name = "tsx";
+          language-servers = ["vtsls" "emmet-lsp"];
+          auto-format = true;
+          formatter = prettierFormatter;
+        }
+        {
+          name = "javascript";
+          language-servers = ["vtsls"];
+          auto-format = true;
+          formatter = prettierFormatter;
+        }
+        {
+          name = "jsx";
+          language-servers = ["vtsls" "emmet-lsp"];
+          auto-format = true;
+          formatter = prettierFormatter;
+        }
+
+        {
+          name = "html";
+          scope = "text.html.basic";
+          language-servers = ["vscode-html-language-server" "emmet-lsp"];
+          auto-format = true;
+          formatter = prettierFormatter;
+        }
+        {
+          name = "css";
+          scope = "source.css";
+          language-servers = ["vscode-css-language-server" "emmet-lsp"];
+          auto-format = true;
+          formatter = prettierFormatter;
+        }
+        {
+          name = "json";
+          scope = "source.json";
+          language-servers = ["vscode-json-language-server"];
+          auto-format = true;
+          formatter = prettierFormatter;
+        }
+        {
+          name = "yaml";
+          scope = "source.yaml";
+          language-servers = ["yaml-language-server"];
+          auto-format = true;
+          formatter = prettierFormatter;
+        }
+        {
+          name = "svelte";
+          scope = "source.svelte";
+          language-servers = ["svelteserver" "emmet-lsp"];
+          auto-format = true;
+          formatter = prettierFormatter;
+        }
+        {
+          name = "python";
+          scope = "source.python";
+          language-servers = ["pyright"];
+          auto-format = true;
+          formatter = {
+            command = "ruff";
+            args = ["format" "--stdin-filename" "%{buffer_name}" "-"];
+          };
         }
         {
           name = "bash";
@@ -235,6 +358,29 @@
             command = "shfmt";
             args = ["-i" "2"];
           };
+        }
+        {
+          name = "dockerfile";
+          scope = "source.dockerfile";
+          language-servers = ["docker-langserver"];
+        }
+        {
+          name = "rust";
+          scope = "source.rust";
+          language-servers = ["rust-analyzer"];
+          auto-format = true;
+        }
+        {
+          name = "markdown";
+          scope = "text.html.markdown";
+          language-servers = ["marksman"];
+          auto-format = true;
+          formatter = prettierFormatter;
+        }
+        {
+          name = "sql";
+          scope = "source.sql";
+          language-servers = ["sqls"];
         }
       ];
     };
