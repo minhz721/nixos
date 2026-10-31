@@ -6,7 +6,12 @@
       background-opacity = 0.7;
       background-blur = true;
       # background-blur-radius = 30;
-      # window-decoration = false;
+      # swayfx
+      window-decoration = false;
+      window-padding-x = 12;
+      window-padding-y = 12;
+      window-padding-balance = true;
+
       # theme = "Dark+";
       # theme = "TokyoNight";
       theme = "Catppuccin Mocha";

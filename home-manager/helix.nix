@@ -1,7 +1,10 @@
 {pkgs, ...}: let
   prettierFormatter = {
     command = "prettier";
-    args = ["--stdin-filepath" "%{buffer_name}"];
+    args = [
+      "--stdin-filepath"
+      "%{buffer_name}"
+    ];
   };
 in {
   home.packages = with pkgs; [
@@ -19,14 +22,12 @@ in {
 
     # Language servers
     nil
-    lua-language-server
     vtsls
     emmet-language-server
     pyright
     bash-language-server
     vscode-langservers-extracted
     yaml-language-server
-    svelte-language-server
     dockerfile-language-server
     marksman
     sqls
@@ -35,7 +36,6 @@ in {
     ruff
     prettier
     alejandra
-    stylua
     shfmt
     shellcheck
     hadolint
@@ -162,6 +162,11 @@ in {
         };
 
         statusline = {
+          mode = {
+            normal = "NORMAL";
+            insert = "INSERT";
+            select = "SELECT";
+          };
           left = [
             "mode"
             "spinner"
@@ -270,16 +275,6 @@ in {
           formatter.command = "alejandra";
         }
         {
-          name = "lua";
-          scope = "source.lua";
-          language-servers = ["lua-language-server"];
-          auto-format = true;
-          formatter = {
-            command = "stylua";
-            args = ["-"];
-          };
-        }
-        {
           name = "typescript";
           language-servers = ["vtsls"];
           auto-format = true;
@@ -287,7 +282,10 @@ in {
         }
         {
           name = "tsx";
-          language-servers = ["vtsls" "emmet-lsp"];
+          language-servers = [
+            "vtsls"
+            "emmet-lsp"
+          ];
           auto-format = true;
           formatter = prettierFormatter;
         }
@@ -299,7 +297,10 @@ in {
         }
         {
           name = "jsx";
-          language-servers = ["vtsls" "emmet-lsp"];
+          language-servers = [
+            "vtsls"
+            "emmet-lsp"
+          ];
           auto-format = true;
           formatter = prettierFormatter;
         }
@@ -307,14 +308,20 @@ in {
         {
           name = "html";
           scope = "text.html.basic";
-          language-servers = ["vscode-html-language-server" "emmet-lsp"];
+          language-servers = [
+            "vscode-html-language-server"
+            "emmet-lsp"
+          ];
           auto-format = true;
           formatter = prettierFormatter;
         }
         {
           name = "css";
           scope = "source.css";
-          language-servers = ["vscode-css-language-server" "emmet-lsp"];
+          language-servers = [
+            "vscode-css-language-server"
+            "emmet-lsp"
+          ];
           auto-format = true;
           formatter = prettierFormatter;
         }
@@ -333,20 +340,18 @@ in {
           formatter = prettierFormatter;
         }
         {
-          name = "svelte";
-          scope = "source.svelte";
-          language-servers = ["svelteserver" "emmet-lsp"];
-          auto-format = true;
-          formatter = prettierFormatter;
-        }
-        {
           name = "python";
           scope = "source.python";
           language-servers = ["pyright"];
           auto-format = true;
           formatter = {
             command = "ruff";
-            args = ["format" "--stdin-filename" "%{buffer_name}" "-"];
+            args = [
+              "format"
+              "--stdin-filename"
+              "%{buffer_name}"
+              "-"
+            ];
           };
         }
         {
@@ -356,7 +361,10 @@ in {
           auto-format = true;
           formatter = {
             command = "shfmt";
-            args = ["-i" "2"];
+            args = [
+              "-i"
+              "2"
+            ];
           };
         }
         {

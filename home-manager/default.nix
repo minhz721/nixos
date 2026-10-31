@@ -14,7 +14,7 @@
     ./yazi.nix
     ./fcitx5.nix
     ./helix.nix
-    ./zed.nix
+    ./gram.nix
 
     # ./rofi
     # ./dunst
@@ -22,7 +22,7 @@
     # ./flameshot.nix
     # ./i3.nix
 
-    ./sway.nix
+    ./swayfx.nix
     ./fuzzel
     ./waybar
 
