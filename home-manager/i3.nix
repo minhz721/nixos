@@ -56,7 +56,7 @@
           # Application shortcuts
           "${modifier}+e" = "exec nemo";
           "${modifier}+b" = "exec google-chrome";
-          "${modifier}+c" = "exec zeditor";
+          "${modifier}+c" = "exec gram";
 
           # Window layout controls
           "${modifier}+f" = "floating toggle";

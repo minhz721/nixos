@@ -11,11 +11,9 @@
     // "niri/workspaces",
     // "niri/window"
     "sway/workspaces",
-    "sway/window"
+    "sway/window",
   ],
-  "modules-center": [
-    "clock"
-  ],
+  "modules-center": ["clock"],
   "modules-right": [
     "tray",
     "cpu",
@@ -23,7 +21,7 @@
     "memory",
     "pulseaudio",
     "custom/wallpaper",
-    "custom/powermenu"
+    "custom/powermenu",
   ],
   // --- MODULE CONFIGURATIONS ---
   // "niri/workspaces": {
@@ -37,12 +35,12 @@
   //   "max-length": 40,
   //   "separate-outputs": true
   // },
-  // Sway Workspaces 
+  // Sway Workspaces
   "sway/workspaces": {
     "disable-scroll": true,
     "all-outputs": false,
     "sort-by-number": true,
-    "format": "{name}"
+    "format": "{name}",
     // "format-icons": {
     //     "default": "○",
     //     "focused": "●"
@@ -53,49 +51,45 @@
     "format": "{}",
     "max-length": 40,
     "icon": true,
-    "icon-size": 16
+    "icon-size": 16,
   },
   "clock": {
     "format": " {:%H:%M   %d/%m/%Y}",
     "format-alt": " {:%H:%M:%S   %A, %d %B %Y}",
-    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   },
   "cpu": {
-    // "format": " {usage}%",
     "format": "CPU: {usage}%",
     "interval": 3,
-    "on-click": ""
+    "on-click": "",
   },
   "memory": {
     "format": "RAM: {used}GB",
-    "interval": 3
+    "interval": 3,
   },
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": "🔇 Mute",
     "format-icons": {
-      "default": [
-        "",
-        "",
-        ""
-      ]
+      "default": ["", "", ""],
     },
-    "on-click": "pavucontrol"
+    "on-click": "pavucontrol",
+    "on-click-right": "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
   },
   "tray": {
     "icon-size": 18,
-    "spacing": 10
+    "spacing": 10,
   },
   "custom/powermenu": {
     "format": "",
     "tooltip": false,
-    "on-click": "$HOME/.config/waybar/scripts/powermenu.sh"
+    "on-click": "$HOME/.config/waybar/scripts/powermenu.sh",
   },
   "custom/wallpaper": {
     "format": "",
     "tooltip": true,
     "tooltip-format": "Toggle Wallpaper Panel",
-    "on-click": "$HOME/.config/waybar/scripts/wallpaper.sh"
+    "on-click": "$HOME/.config/waybar/scripts/wallpaper.sh",
   },
   "temperature": {
     "hwmon-path-abs": "/sys/class/hwmon",
@@ -103,6 +97,6 @@
     "critical-threshold": 80,
     "format-critical": "🔥 {temperatureC}°C",
     "format": " {temperatureC}°C",
-    "interval": 2
+    "interval": 2,
   },
 }

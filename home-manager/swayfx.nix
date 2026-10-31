@@ -30,24 +30,6 @@
     };
   };
 
-  services.swayidle = {
-    enable = true;
-    timeouts = [
-      {
-        timeout = 1200;
-        command = "${pkgs.hyprlock}/bin/hyprlock";
-      }
-      {
-        timeout = 1200;
-        command = "${pkgs.sway}/bin/swaymsg 'output * power off'";
-        resumeCommand = "${pkgs.sway}/bin/swaymsg 'output * power on'";
-      }
-    ];
-    events = {
-      before-sleep = "${pkgs.hyprlock}/bin/hyprlock";
-    };
-  };
-
   programs.hyprlock = {
     enable = true;
     settings = {
@@ -101,10 +83,17 @@
   };
 
   wayland.windowManager.sway = {
+    package = pkgs.swayfx;
+    checkConfig = false;
     extraConfig = ''
       include ~/.config/sway/outputs
 
       default_border pixel 2
+      client.focused          #f9e2af   #f9e2af   #1e1e2e   #f9e2af     #f9e2af
+      client.focused_inactive #313244   #313244   #cdd6f4   #313244     #313244
+      client.unfocused        #1e1e2e   #1e1e2e   #cdd6f4   #1e1e2e     #1e1e2e
+
+      corner_radius 10
     '';
     enable = true;
     wrapperFeatures.gtk = true;
@@ -188,7 +177,7 @@
           # Application shortcuts
           "${modifier}+e" = "exec nemo";
           "${modifier}+b" = "exec google-chrome";
-          "${modifier}+c" = "exec zeditor";
+          "${modifier}+c" = "exec gram";
 
           # Window layout controls
           "${modifier}+f" = "floating toggle";
@@ -262,10 +251,5 @@
     --ozone-platform-hint=auto
     --ozone-platform=wayland
     --enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer
-  '';
-  xdg.configFile."zeditor-flags.conf".text = ''
-    --ozone-platform-hint=auto
-    --ozone-platform=wayland
-    --enable-features=WaylandWindowDecorations
   '';
 }

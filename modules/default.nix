@@ -16,6 +16,6 @@
 
     # ./i3.nix
 
-    ./sway.nix
+    ./swayfx.nix
   ];
 }
