@@ -36,7 +36,6 @@
     wrapperFeatures.gtk = true;
     extraPackages = with pkgs; [
       grim
-      swayidle
     ];
   };
   programs.hyprlock.enable = true;

@@ -41,6 +41,7 @@ in {
     hadolint
     statix
     deadnix
+    kdlfmt
     sqlfluff
   ];
   programs.helix = {
@@ -205,6 +206,7 @@ in {
           "C-/" = "toggle_comments";
           "C-z" = "undo";
           "C-d" = ["extend_line_below" "delete_selection"];
+          "C-x" = ["goto_line_start" "extend_to_line_bounds" "delete_selection"];
 
           "," = {
             "w" = ":write";
@@ -224,6 +226,7 @@ in {
           "C-/" = "toggle_comments";
           "C-z" = ["normal_mode" "undo" "insert_mode"];
           "C-d" = ["normal_mode" "kill_to_line_start" "kill_to_line_end" "insert_mode"];
+          "C-x" = ["normal_mode" "goto_line_start" "extend_to_line_bounds" "delete_selection" "insert_mode"];
         };
 
         select = {
@@ -240,6 +243,7 @@ in {
           "C-/" = "toggle_comments";
           "C-z" = "undo";
           "C-d" = "delete_selection";
+          "C-x" = ["delete_selection"];
         };
       };
     };
@@ -250,7 +254,6 @@ in {
           command = "vtsls";
           args = ["--stdio"];
         };
-
         emmet-lsp = {
           command = "emmet-language-server";
           args = ["--stdio"];
@@ -267,6 +270,16 @@ in {
       };
 
       language = [
+        {
+          name = "kdl";
+          scope = "source.kdl";
+          file-types = ["kdl"];
+          auto-format = true;
+          formatter = {
+            command = "kdlfmt";
+            args = ["format" "-"];
+          };
+        }
         {
           name = "nix";
           scope = "source.nix";

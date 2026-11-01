@@ -12,10 +12,7 @@
     ./virt-manager.nix
     ./docker.nix
 
-    ./xdm.nix
-
     # ./i3.nix
-
     ./swayfx.nix
   ];
 }
