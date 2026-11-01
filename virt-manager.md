@@ -1,5 +1,6 @@
-# 1. Cấu hình NixOS Host
-```
+# 1. NixOS Host Configuration
+
+```nix
 {pkgs, ...}: {
   # Enable the virt-manager GUI application
   programs.virt-manager.enable = true;
@@ -12,8 +13,8 @@
   # Add your regular user to the libvirtd group
   users.users.leomin.extraGroups = ["libvirtd"];
 
-  environment.systemPackages = with pkgs; [ 
-    dnsmasq 
+  environment.systemPackages = with pkgs; [
+    dnsmasq
     spice-gtk
     spice
   ];
@@ -22,20 +23,22 @@
     enable = true;
     qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
   };
-
- 
 }
 ```
+
 Check `virtiofsd`:
-```
+
+```bash
 which virtiofsd
 ```
-Kết quả mong đợi:
+
+Expected output:
 
 ```text
 /run/current-system/sw/bin/virtiofsd
 ```
-Kiểm tra libvirt:
+
+Check libvirt status:
 
 ```bash
 systemctl status libvirtd
@@ -43,20 +46,21 @@ systemctl status libvirtd
 
 ---
 
-# 2. Tạo folder cần share
-Ví dụ share folder:
+# 2. Create the Shared Folder
+
+Example shared folder path:
 
 ```text
 /home/leomin/Share
 ```
 
-Tạo folder:
+Create the directory:
 
 ```bash
 mkdir -p ~/Share
 ```
 
-Có thể test:
+Test file creation:
 
 ```bash
 echo "Hello from NixOS" > ~/Share/test.txt
@@ -64,15 +68,15 @@ echo "Hello from NixOS" > ~/Share/test.txt
 
 ---
 
-# 3. Cấu hình VirtioFS trong virt-manager
+# 3. Configure VirtioFS in virt-manager
 
-Mở:
+Launch `virt-manager`:
 
-```text
+```bash
 virt-manager
 ```
 
-Chọn Arch Linux VM:
+Select your Arch Linux VM:
 
 ```text
 Open
@@ -81,7 +85,7 @@ Open
 → Filesystem
 ```
 
-Cấu hình:
+Configuration:
 
 ```text
 Driver:       virtiofs
@@ -89,7 +93,7 @@ Source path:  /home/leomin/Share
 Target path:  hostshare
 ```
 
-Ví dụ:
+For example:
 
 ```text
 Source path:
@@ -99,55 +103,49 @@ Target path:
     hostshare
 ```
 
-### Lưu ý
+### Note
 
-`Target path` là **VirtioFS mount tag**, không phải đường dẫn `/mnt/...` trong Arch.
+The `Target path` is the **VirtioFS mount tag**, not a directory path like `/mnt/...` inside Arch.
 
-Sau khi thêm Filesystem, shutdown VM rồi boot lại.
+After adding the Filesystem hardware, shut down the VM and boot it back up.
 
 ---
 
-### Mount VirtioFS trong Arch Linux
+### Mount VirtioFS in Arch Linux
 
-Trong Arch guest:
+Inside the Arch guest:
 
 ```bash
 sudo mkdir -p /mnt/hostshare
 ```
 
-Mount thử:
+Test mounting:
 
 ```bash
 sudo mount -t virtiofs hostshare /mnt/hostshare
 ```
 
-Kiểm tra:
+Verify the share:
 
 ```bash
 ls -la /mnt/hostshare
 ```
 
-Nếu thấy:
+If you see `test.txt`, VirtioFS is working properly.
 
-```text
-test.txt
-```
-
-thì VirtioFS đã hoạt động.
-
-Test từ Arch:
+Test writing from Arch:
 
 ```bash
 echo "Hello from Arch" | sudo tee /mnt/hostshare/arch.txt
 ```
 
-Trên NixOS:
+Check on the NixOS host:
 
 ```bash
 ls ~/Share
 ```
 
-Bạn sẽ thấy:
+You should see both files:
 
 ```text
 arch.txt
@@ -156,22 +154,21 @@ test.txt
 
 ---
 
+# 4. Bidirectional Clipboard with SPICE
 
-# 4. Clipboard 2 chiều với SPICE
+VirtioFS is only used for sharing files and folders.
 
-VirtioFS chỉ dùng để share file/folder.
-
-Để copy/paste text giữa:
+To copy and paste text between:
 
 ```text
 NixOS Host ↔ Arch Guest
 ```
 
-cần sử dụng **SPICE + spice-vdagent**.
+you must use **SPICE + spice-vdagent**.
 
-## 4.1. Kiểm tra Display
+## 4.1. Check Display
 
-Trong virt-manager:
+In `virt-manager`:
 
 ```text
 Arch VM
@@ -179,7 +176,7 @@ Arch VM
 → Display
 ```
 
-Display nên sử dụng:
+The Display type should be set to:
 
 ```text
 Type: SPICE
@@ -187,23 +184,23 @@ Type: SPICE
 
 ---
 
-# 5. Thêm SPICE Channel
+# 5. Add SPICE Channel
 
-Trong virt-manager:
+In `virt-manager`:
 
 ```text
 Add Hardware
 → Channel
 ```
 
-Cấu hình:
+Configuration:
 
 ```text
 Type: spicevmc
 Name: com.redhat.spice.0
 ```
 
-Kết quả sẽ tương tự:
+The result should look like:
 
 ```text
 Channel
@@ -211,36 +208,34 @@ Channel
     Name: com.redhat.spice.0
 ```
 
-Channel này cho phép SPICE agent trong Arch giao tiếp với host.
+This channel allows the SPICE agent inside Arch to communicate with the host.
 
 ---
 
-# 6. Cài spice-vdagent trong Arch
+# 6. Install spice-vdagent in Arch
 
-Trong Arch Linux:
+Inside Arch Linux:
 
 ```bash
 sudo pacman -S spice-vdagent
 ```
 
-Enable service:
+Enable and start the service:
 
 ```bash
 sudo systemctl enable --now spice-vdagentd
 ```
 
-Kiểm tra:
+Check status:
 
 ```bash
 systemctl status spice-vdagentd
 ```
 
-Nếu service đang chạy:
+If the service state is:
 
 ```text
 Active: active (running)
 ```
 
-thì agent đã hoạt động.
-
----
+then the agent is active and running.
