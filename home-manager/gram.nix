@@ -36,7 +36,6 @@
       mode = "dark";
       # light = "Catppuccin Mocha";
       light = "VSCode Dark";
-      # dark = "Tokyo Night";
       dark = "VSCode Dark";
     };
 
@@ -181,6 +180,14 @@
           external = {
             command = "alejandra";
             arguments = ["-"];
+          };
+        };
+      };
+      KDL = {
+        formatter = {
+          external = {
+            command = "kdlfmt";
+            arguments = ["format" "-"];
           };
         };
       };

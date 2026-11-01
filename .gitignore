@@ -1,1 +1,3 @@
 .zed/
+**/.ruff_cache/
+.ruff_cache/
