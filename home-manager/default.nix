@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ./ghostty.nix
     ./fish.nix
@@ -85,6 +80,5 @@
   ];
 
   programs.home-manager.enable = true;
-
   home.stateVersion = "26.05";
 }

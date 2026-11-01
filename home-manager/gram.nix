@@ -20,6 +20,9 @@
     }
   ];
 
+  xdg.configFile."gram/themes/vscode-dark.json".source =
+    ./vscode-dark.json;
+
   xdg.configFile."gram/settings.jsonc".text = builtins.toJSON {
     restore_on_startup = "last_session";
     base_keymap = "VSCode";
@@ -31,8 +34,10 @@
 
     theme = {
       mode = "dark";
-      light = "Catppuccin Mocha";
-      dark = "Catppuccin Mocha";
+      # light = "Catppuccin Mocha";
+      light = "VSCode Dark";
+      # dark = "Tokyo Night";
+      dark = "VSCode Dark";
     };
 
     ui_font_family = "Maple Mono";
@@ -44,6 +49,11 @@
     lsp = {
       nil = {
         binary.path = "${pkgs.nil}/bin/nil";
+        settings = {
+          nil.nix.flake = {
+            autoArchive = true;
+          };
+        };
       };
       pyright = {
         binary.path = "${pkgs.pyright}/bin/pyright-langserver";

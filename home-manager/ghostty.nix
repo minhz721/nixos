@@ -5,7 +5,6 @@
     settings = {
       background-opacity = 0.7;
       background-blur = true;
-      # background-blur-radius = 30;
       # swayfx
       window-decoration = false;
       window-padding-x = 12;
@@ -15,7 +14,6 @@
       # theme = "Dark+";
       # theme = "TokyoNight";
       theme = "Catppuccin Mocha";
-      # font-family = "Maple Mono";
       font-family = "Maple Mono";
       font-size = 11;
       font-feature = [

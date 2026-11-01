@@ -12,7 +12,7 @@
     ./virt-manager.nix
     ./docker.nix
 
-    ./xdm.nix
+    # ./xdm.nix
 
     # ./i3.nix
 

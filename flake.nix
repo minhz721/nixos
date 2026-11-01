@@ -9,10 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-xdm = {
-      url = "github:Diomeh/nix-xdm/0.0.4";
-      flake = false;
-    };
+    # nix-xdm = {
+    #   url = "github:Diomeh/nix-xdm/0.0.4";
+    #   flake = false;
+    # };
 
     noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
   };
@@ -20,7 +20,7 @@
   outputs = {
     nixpkgs,
     home-manager,
-    nix-xdm,
+    # nix-xdm,
     noctalia-greeter,
     ...
   } @ inputs: let

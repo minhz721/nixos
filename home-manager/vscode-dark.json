@@ -1,10 +1,10 @@
 {
   "$schema": "https://zed.dev/schema/themes/v0.2.0.json",
-  "name": "VSCode Dark Modern - Blurred",
+  "name": "VSCode Dark",
   "author": "enesbala5",
   "themes": [
     {
-      "name": "VSCode Dark Modern - Blurred",
+      "name": "VSCode Dark",
       "appearance": "dark",
       "style": {
         "background.appearance": "blurred",
