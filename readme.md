@@ -1,6 +1,6 @@
 # ❄️ My NixOS Configuration
 
-Welcome to my personal **NixOS** configuration repository. This setup manages my entire operating system, desktop environment, and user dotfiles in a fully declarative and reproducible way.
+Welcome to my personal **NixOS** configuration repository. This setup manages my entire operating system, window manager, and user dotfiles in a fully declarative and reproducible way using **SwayFX**.
 
 ---
 
@@ -8,8 +8,8 @@ Welcome to my personal **NixOS** configuration repository. This setup manages my
 
 - **Nix Flakes**: Modern dependency management with locked package versions (`flake.lock`).
 - **Home Manager**: Declarative configuration for user environments, CLI tools, and GUI dotfiles.
+- **SwayFX Compositor**: Advanced tiling window management powered by SwayFX with custom opacity, corner radiuses, and visual enhancements.
 - **Storage Optimization**: Configured with `auto-optimise-store = true` to eliminate duplicate files.
-- **System Maintenance**: Automated garbage collection to prevent disk space bloat.
 
 ---
 
@@ -20,7 +20,7 @@ Welcome to my personal **NixOS** configuration repository. This setup manages my
 ├── flake.nix                  # Main entry point defining inputs and outputs
 ├── flake.lock                 # Strict version lockfile for reproducible builds
 ├── configuration.nix          # Core system-level configuration
-├── hardware-configuration.nix #
+├── hardware-configuration.nix # Machine-specific hardware configuration
 ├── home-manager/              # User-level configurations and dotfiles
 └── modules/                   # Reusable system modules or packages
 ```
