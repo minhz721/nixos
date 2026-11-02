@@ -6,10 +6,7 @@
   "margin-left": 10,
   "margin-right": 10,
   "spacing": 8,
-  // Layout
   "modules-left": [
-    // "niri/workspaces",
-    // "niri/window"
     "sway/workspaces",
     "sway/window",
   ],
@@ -23,30 +20,12 @@
     "custom/wallpaper",
     "custom/powermenu",
   ],
-  // --- MODULE CONFIGURATIONS ---
-  // "niri/workspaces": {
-  //   "disable-scroll": true,
-  //   "all-outputs": false,
-  //   "sort-by-number": true,
-  //   "format": "{index}"
-  // },
-  // "niri/window": {
-  //   "format": "{}",
-  //   "max-length": 40,
-  //   "separate-outputs": true
-  // },
-  // Sway Workspaces
   "sway/workspaces": {
     "disable-scroll": true,
     "all-outputs": false,
     "sort-by-number": true,
     "format": "{name}",
-    // "format-icons": {
-    //     "default": "○",
-    //     "focused": "●"
-    // }
   },
-  // Sway Window Title
   "sway/window": {
     "format": "{}",
     "max-length": 40,
