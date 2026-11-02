@@ -1,9 +1,4 @@
-# home.nix
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.tmux = {
     enable = true;
     terminal = "screen-256color";

@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.java.package = pkgs.jdk21;
   programs.nix-ld.enable = true;
 

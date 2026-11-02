@@ -34,9 +34,6 @@
     enable = true;
     package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
-    extraPackages = with pkgs; [
-      grim
-    ];
   };
   programs.hyprlock.enable = true;
 

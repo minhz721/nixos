@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{pkgs, ...}: {
   home.sessionVariables = {
     XCURSOR_SIZE = "16";
   };
