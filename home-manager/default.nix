@@ -32,14 +32,10 @@
   home.homeDirectory = "/home/leomin";
 
   home.packages = with pkgs; [
-    # =========================================================================
     # Shell & CLI Utilities
-    # =========================================================================
     fastfetch
 
-    # =========================================================================
     # Archive & System Utilities
-    # =========================================================================
     unzip
     unrar
     p7zip
@@ -48,35 +44,77 @@
     poppler
     libgsf
     openjdk
-    czkawka # finder duplicate
+    czkawka # Duplicate finder
 
-    # =========================================================================
-    # File Manager & Desktop Applications
-    # =========================================================================
+    # File Managers
     yazi
     nemo-with-extensions
     nemo-fileroller
-    zathura
+
+    # Multimedia
     imv
     mpv
     ffmpeg
     cava
+
+    # Desktop Applications
+    zathura
     mission-center
     localsend
 
-    # =========================================================================
-    # Communication & Web
-    # =========================================================================
+    # Communication & Web Browsers
     discord
     telegram-desktop
     brave
     google-chrome
 
-    # Development applications / CLI tools
+    # Development Applications & CLI
     bruno
     lazydocker
     lazygit
     lazysql
+
+    # Runtimes & Toolchains
+    uv
+    bun
+
+    # Rust toolchain
+    rustc
+    cargo
+    rustfmt
+    clippy
+    rust-analyzer
+    cargo-watch
+    cargo-nextest
+
+    # Build tools
+    gnumake
+
+    # Language Servers (LSP)
+    nil
+    vtsls
+    emmet-language-server
+    pyright
+    bash-language-server
+    vscode-langservers-extracted
+    yaml-language-server
+    dockerfile-language-server
+    marksman
+    sqls
+
+    # Formatters
+    alejandra
+    ruff
+    prettier
+    shfmt
+    kdlfmt
+
+    # Linters & Static Analysis
+    shellcheck
+    hadolint
+    statix
+    deadnix
+    sqlfluff
   ];
 
   programs.home-manager.enable = true;

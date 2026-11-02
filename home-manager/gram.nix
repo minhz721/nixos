@@ -44,15 +44,12 @@
     buffer_font_family = "Maple Mono";
     buffer_font_size = 14.0;
     format_on_save = "on";
+    tab_size = 2;
+    colorize_brackets = true;
 
     lsp = {
       nil = {
         binary.path = "${pkgs.nil}/bin/nil";
-        settings = {
-          nil.nix.flake = {
-            autoArchive = true;
-          };
-        };
       };
       pyright = {
         binary.path = "${pkgs.pyright}/bin/pyright-langserver";

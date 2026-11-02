@@ -12,8 +12,8 @@
       window-padding-balance = true;
 
       # theme = "Dark+";
-      # theme = "TokyoNight";
-      theme = "Catppuccin Mocha";
+      # theme = "Catppuccin Mocha";
+
       font-family = "Maple Mono";
       font-size = 11;
       font-feature = [
@@ -30,6 +30,33 @@
       copy-on-select = "clipboard";
       focus-follows-mouse = true;
       link-url = true;
+
+      # --- vscode dark ---
+      background = "#121314";
+      foreground = "#bbbebf";
+      cursor-color = "#bbbebf";
+      cursor-text = "#121314";
+      selection-background = "#276782";
+      selection-foreground = "#ededed";
+      palette = [
+        "0=#191a1b"
+        "1=#ff7b72"
+        "2=#7ee787"
+        "3=#ffa657"
+        "4=#79c0ff"
+        "5=#d2a8ff"
+        "6=#a5d6ff"
+        "7=#bfbfbf"
+        "8=#8c8c8c"
+        "9=#ffa198"
+        "10=#7ee787"
+        "11=#ffa657"
+        "12=#79c0ff"
+        "13=#d2a8ff"
+        "14=#a5d6ff"
+        "15=#ededed"
+      ];
+      # --- end ---
 
       keybind = [
         "ctrl+1=goto_tab:1"

@@ -1,4 +1,4 @@
-{pkgs, ...}: let
+{...}: let
   prettierFormatter = {
     command = "prettier";
     args = [
@@ -7,51 +7,13 @@
     ];
   };
 in {
-  home.packages = with pkgs; [
-    # Runtimes and toolchains
-    uv
-    bun
-    rustc
-    cargo
-    rustfmt
-    clippy
-    rust-analyzer
-    cargo-watch
-    cargo-nextest
-    gnumake
-
-    # Language servers
-    nil
-    vtsls
-    emmet-language-server
-    pyright
-    bash-language-server
-    vscode-langservers-extracted
-    yaml-language-server
-    dockerfile-language-server
-    marksman
-    sqls
-
-    # Formatters and linters
-    ruff
-    prettier
-    alejandra
-    shfmt
-    shellcheck
-    hadolint
-    statix
-    deadnix
-    kdlfmt
-    sqlfluff
-  ];
   programs.helix = {
     enable = true;
     defaultEditor = true;
 
-    themes.catppuccin_mocha_custom = {
-      inherits = "catppuccin_mocha";
+    themes.dark_plus_custom = {
+      inherits = "dark_plus";
       "ui.background" = {};
-
       # TODO / FIXME / NOTE / HACK
       "comment.note" = {
         fg = "#89b4fa";
@@ -76,90 +38,35 @@ in {
     };
 
     settings = {
-      theme = "catppuccin_mocha_custom";
+      theme = "dark_plus_custom";
       editor = {
-        # General editing
         line-number = "relative";
-        scrolloff = 8;
-        mouse = true;
         cursorline = true;
-        cursorcolumn = false;
         color-modes = true;
         bufferline = "multiple";
-        text-width = 100;
-        indent-heuristic = "hybrid";
-        continue-comments = false;
-
-        # Completion
-        auto-completion = true;
-        completion-trigger-len = 2;
         completion-timeout = 5;
         completion-replace = true;
-        preview-completion-insert = true;
-        path-completion = true;
-        auto-info = true;
-
-        # File handling
-        insert-final-newline = true;
-        atomic-save = true;
-        trim-trailing-whitespace = true;
-
-        # Visual feedback
         popup-border = "all";
-        end-of-line-diagnostics = "disable";
 
-        gutters = [
-          "diagnostics"
-          "spacer"
-          "line-numbers"
-          "spacer"
-          "diff"
-        ];
+        indent-guides = {
+          render = true;
+        };
 
         soft-wrap = {
           enable = true;
           wrap-at-text-width = true;
-          max-wrap = 25;
-          max-indent-retain = 40;
-        };
-
-        cursor-shape = {
-          normal = "block";
-          insert = "bar";
-          select = "underline";
         };
 
         lsp = {
-          enable = true;
-          display-messages = true;
           display-progress-messages = true;
           auto-signature-help = true;
-          display-signature-help-docs = true;
           display-inlay-hints = true;
-          inlay-hints-length-limit = 10;
           snippets = true;
-          goto-reference-include-declaration = true;
-          display-color-swatches = true;
         };
 
         inline-diagnostics = {
           cursor-line = "warning";
-          other-lines = "disable";
           max-diagnostics = 5;
-        };
-
-        indent-guides = {
-          render = true;
-          character = "│";
-          skip-levels = 0;
-        };
-
-        file-picker = {
-          hidden = true;
-          follow-symlinks = true;
-          git-ignore = false;
-          git-exclude = true;
-          git-global = true;
         };
 
         statusline = {
@@ -168,23 +75,6 @@ in {
             insert = "INSERT";
             select = "SELECT";
           };
-          left = [
-            "mode"
-            "spinner"
-            "file-name"
-            "file-modification-indicator"
-          ];
-          center = ["version-control"];
-          right = [
-            "diagnostics"
-            "workspace-diagnostics"
-            "selections"
-            "position"
-            "position-percentage"
-            "file-encoding"
-            "file-line-ending"
-          ];
-          separator = "│";
         };
       };
 
@@ -196,16 +86,12 @@ in {
           "C-a" = "select_all";
           "C-s" = [":write" "normal_mode"];
           "C-c" = ":clipboard-yank";
-          "C-p" = ":clipboard-paste-after";
-          "y" = ["yank" ":clipboard-yank"];
-          "p" = ["paste_after" ":clipboard-paste-after"];
-          "P" = ["paste_before" ":clipboard-paste-before"];
-          "R" = ["replace_with_yanked"];
+          "C-v" = ":clipboard-paste-after";
           "C-A-down" = ["extend_line_below" "yank" "paste_after"];
           "C-A-up" = ["extend_line_below" "yank" "paste_before"];
           "C-/" = "toggle_comments";
           "C-z" = "undo";
-          "C-d" = ["extend_line_below" "delete_selection"];
+          "C-S-r" = "redo";
           "C-x" = ["goto_line_start" "extend_to_line_bounds" "delete_selection"];
 
           "," = {
@@ -222,10 +108,12 @@ in {
           "C-a" = "select_all";
           "C-s" = [":write" "normal_mode"];
           "C-c" = ":clipboard-yank";
-          "C-p" = ":clipboard-paste-after";
+          "C-v" = ":clipboard-paste-after";
+          "C-A-down" = ["normal_mode" "extend_line_below" "yank" "paste_after" "insert_mode"];
+          "C-A-up" = ["normal_mode" "extend_line_below" "yank" "paste_before" "insert_mode"];
           "C-/" = "toggle_comments";
           "C-z" = ["normal_mode" "undo" "insert_mode"];
-          "C-d" = ["normal_mode" "kill_to_line_start" "kill_to_line_end" "insert_mode"];
+          "C-S-z" = ["normal_mode" "redo" "insert_mode"];
           "C-x" = ["normal_mode" "goto_line_start" "extend_to_line_bounds" "delete_selection" "insert_mode"];
         };
 
@@ -233,16 +121,12 @@ in {
           "C-a" = "select_all";
           "C-s" = [":write" "normal_mode"];
           "C-c" = ":clipboard-yank";
-          "C-p" = ":clipboard-paste-after";
-          "y" = ["yank" ":clipboard-yank"];
-          "p" = ["paste_after" ":clipboard-paste-after"];
-          "P" = ["paste_before" ":clipboard-paste-before"];
-          "R" = ["replace_with_yanked"];
+          "C-v" = ":clipboard-paste-after";
+          "C-/" = "toggle_comments";
           "C-A-down" = ["yank" "paste_after"];
           "C-A-up" = ["yank" "paste_before"];
-          "C-/" = "toggle_comments";
           "C-z" = "undo";
-          "C-d" = "delete_selection";
+          "C-S-r" = "redo";
           "C-x" = ["delete_selection"];
         };
       };
