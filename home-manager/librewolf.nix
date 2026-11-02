@@ -1,5 +1,4 @@
-
-{ ... }: {
+{
   programs.librewolf = {
     enable = true;
     profiles.default = {
@@ -32,8 +31,7 @@
         "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
         # DNS over HTTPS - Cloudflare
         "network.trr.mode" = 3;
-        "network.trr.uri" =
-          "https://mozilla.cloudflare-dns.com/dns-query";
+        "network.trr.uri" = "https://mozilla.cloudflare-dns.com/dns-query";
         "network.trr.bootstrapAddress" = "1.1.1.1";
         # Privacy
         "extensions.pocket.enabled" = false;

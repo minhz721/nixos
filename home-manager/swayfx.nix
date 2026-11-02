@@ -8,7 +8,7 @@
     libnotify
     wl-clipboard
     swaybg
-    nwg-displays
+    # nwg-displays
     wlr-randr
     grim
     slurp
@@ -86,7 +86,7 @@
     package = pkgs.swayfx;
     checkConfig = false;
     extraConfig = ''
-      include ~/.config/sway/outputs
+      ## include ~/.config/sway/outputs
 
       default_border pixel 2
       client.focused          #f9e2af   #f9e2af   #1e1e2e   #f9e2af     #f9e2af
@@ -101,6 +101,16 @@
       modifier = "Mod4";
       terminal = "ghostty";
       menu = "fuzzel";
+      output = {
+        "DP-1" = {
+          mode = "2560x1440@200Hz";
+          pos = "0 0";
+        };
+        "HDMI-A-1" = {
+          mode = "1920x1080@60Hz";
+          pos = "320 1440";
+        };
+      };
       startup = [
         {command = "sh -c 'swaybg -i $(cat ~/.cache/wallpaper_current) -m fill'";}
         {command = "waybar";}

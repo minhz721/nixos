@@ -1,8 +1,4 @@
 {
-  config,
-  pkgs,
-  ...
-}: {
   networking.hostName = "leomin";
 
   # Enable networking
