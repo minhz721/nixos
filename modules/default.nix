@@ -11,6 +11,7 @@
     ./bluetooth.nix
     ./virt-manager.nix
     ./docker.nix
+    ./fcitx5.nix
 
     # ./i3.nix
     ./swayfx.nix
