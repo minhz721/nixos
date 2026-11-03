@@ -105,7 +105,6 @@
           };
         };
       };
-
       JavaScript = {
         formatter = {
           external = {

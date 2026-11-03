@@ -2,12 +2,10 @@
   home.sessionVariables = {
     XCURSOR_SIZE = "16";
   };
-
   xresources.properties = {
     "Xcursor.size" = 16;
     "Xcursor.theme" = "Adwaita";
   };
-
   gtk = {
     enable = true;
     theme = {
@@ -25,7 +23,6 @@
     gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
     gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
   };
-
   dconf.settings = {
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
@@ -34,12 +31,10 @@
       cursor-size = 16;
     };
   };
-
   qt = {
     enable = true;
     platformTheme.name = "gtk";
   };
-
   services.xsettingsd = {
     enable = true;
     settings = {
@@ -55,7 +50,6 @@
       "Net/ColorScheme" = "prefer-dark";
     };
   };
-
   home.pointerCursor = {
     gtk.enable = true;
     x11.enable = true;

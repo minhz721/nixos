@@ -1,8 +1,5 @@
 {pkgs, ...}: {
-  programs.java.package = pkgs.jdk21;
-  programs.nix-ld.enable = true;
-
-  # Nix store optimization and garbage collection
+  nixpkgs.config.allowUnfree = true;
   nix.settings.auto-optimise-store = true;
 
   nix.gc = {
@@ -11,9 +8,22 @@
     options = "--delete-older-than 7d";
   };
 
-  # polkit
-  security.polkit.enable = true;
+  programs.nix-ld.enable = true;
 
+  # Graphics & AMD GPU
+  boot.initrd.kernelModules = ["amdgpu"];
+  services.xserver.videoDrivers = ["amdgpu"];
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+
+  # Security & Authentication
+  security.polkit.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+
+  # Polkit Gnome Authentication Agent
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = ["graphical-session.target"];
@@ -28,22 +38,10 @@
     };
   };
 
-  services.gnome.gnome-keyring.enable = true;
+  # Storage & File Systems
   services.udisks2.enable = true;
   services.devmon.enable = true;
   services.gvfs.enable = true;
 
-  boot.initrd.kernelModules = ["amdgpu"];
-  services.xserver.videoDrivers = ["amdgpu"];
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
-
-  # Enable dconf for GTK/Nemo settings
   programs.dconf.enable = true;
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 }
