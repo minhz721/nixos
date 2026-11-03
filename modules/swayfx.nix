@@ -31,7 +31,6 @@
   # Enable core components
   programs.sway = {
     enable = true;
-    package = pkgs.swayfx;
     wrapperFeatures.gtk = true;
   };
   programs.hyprlock.enable = true;
