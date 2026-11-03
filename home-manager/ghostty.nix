@@ -2,7 +2,7 @@
   programs.ghostty = {
     enable = true;
     settings = {
-      background-opacity = 0.7;
+      background-opacity = 0.8;
       background-blur = true;
       # swayfx
       window-decoration = false;
