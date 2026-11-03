@@ -1,5 +1,7 @@
 {
   "check_for_updates": false,
+  "version": 3,
+  "theme": "builtin://dark",
   "editor": {
     "auto_save_enabled": true,
     "completion_popup_auto_show": true,
@@ -17,8 +19,6 @@
     "show_gitignored": true,
     "show_hidden": true
   },
-  "theme": "builtin://dark",
-  "version": 3,
   "plugins": {
     "git_explorer": {
       "settings": {
@@ -30,12 +30,12 @@
     "javascript": {
       "command": "vtsls",
       "enabled": true,
-      "auto_start": true,
-      "process_limits": {
-        "max_memory_percent": 50,
-        "max_cpu_percent": 90,
-        "enabled": true
-      }
+      "auto_start": true
+    },
+    "typescript": {
+      "command": "vtsls",
+      "enabled": true,
+      "auto_start": true
     },
     "python": [
       {
@@ -43,55 +43,20 @@
         "command": "ty",
         "args": ["server"],
         "enabled": true,
-        "auto_start": true,
-        "process_limits": {
-          "max_memory_percent": 50,
-          "max_cpu_percent": 90,
-          "enabled": true
-        }
+        "auto_start": true
       },
       {
         "name": "ruff",
         "command": "ruff",
         "args": ["server"],
         "enabled": true,
-        "auto_start": true,
-        "process_limits": {
-          "max_memory_percent": 50,
-          "max_cpu_percent": 90,
-          "enabled": true
-        }
+        "auto_start": true
       }
     ],
-    "typescript": {
-      "command": "vtsls",
-      "enabled": true,
-      "auto_start": true,
-      "process_limits": {
-        "max_memory_percent": 50,
-        "max_cpu_percent": 90,
-        "enabled": true
-      }
-    },
-    "json": {
-      "command": "",
-      "enabled": true,
-      "auto_start": true,
-      "process_limits": {
-        "max_memory_percent": 50,
-        "max_cpu_percent": 90,
-        "enabled": true
-      }
-    },
     "rust": {
-      "command": "",
+      "command": "rust-analyzer",
       "enabled": true,
       "auto_start": true,
-      "process_limits": {
-        "max_memory_percent": 50,
-        "max_cpu_percent": 90,
-        "enabled": true
-      },
       "root_markers": ["Cargo.toml"],
       "initialization_options": {
         "checkOnSave": {
@@ -100,55 +65,32 @@
       }
     },
     "bash": {
-      "command": "",
+      "command": "bash-language-server",
+      "args": ["start"],
       "enabled": true,
-      "auto_start": true,
-      "process_limits": {
-        "max_memory_percent": 50,
-        "max_cpu_percent": 90,
-        "enabled": true
-      }
+      "auto_start": true
     },
     "yaml": {
-      "command": "",
+      "command": "yaml-language-server",
+      "args": ["--stdio"],
       "enabled": true,
-      "auto_start": true,
-      "process_limits": {
-        "max_memory_percent": 50,
-        "max_cpu_percent": 90,
-        "enabled": true
-      }
+      "auto_start": true
     },
     "dockerfile": {
       "command": "docker-langserver",
       "args": ["--stdio"],
       "enabled": true,
-      "auto_start": true,
-      "process_limits": {
-        "max_memory_percent": 50,
-        "max_cpu_percent": 90,
-        "enabled": true
-      }
+      "auto_start": true
     },
     "markdown": {
-      "command": "",
+      "command": "marksman",
       "enabled": true,
-      "auto_start": true,
-      "process_limits": {
-        "max_memory_percent": 50,
-        "max_cpu_percent": 90,
-        "enabled": true
-      }
+      "auto_start": true
     },
     "sql": {
-      "command": "",
+      "command": "sqls",
       "enabled": true,
-      "auto_start": true,
-      "process_limits": {
-        "max_memory_percent": 50,
-        "max_cpu_percent": 90,
-        "enabled": true
-      }
+      "auto_start": true
     },
     "html": [
       {
@@ -156,24 +98,14 @@
         "command": "vscode-html-language-server",
         "args": ["--stdio"],
         "enabled": true,
-        "auto_start": true,
-        "process_limits": {
-          "max_memory_percent": 50,
-          "max_cpu_percent": 90,
-          "enabled": true
-        }
+        "auto_start": true
       },
       {
         "name": "emmet",
         "command": "emmet-language-server",
         "args": ["--stdio"],
         "enabled": true,
-        "auto_start": true,
-        "process_limits": {
-          "max_memory_percent": 50,
-          "max_cpu_percent": 90,
-          "enabled": true
-        }
+        "auto_start": true
       }
     ],
     "css": [
@@ -182,49 +114,31 @@
         "command": "vscode-css-language-server",
         "args": ["--stdio"],
         "enabled": true,
-        "auto_start": true,
-        "process_limits": {
-          "max_memory_percent": 50,
-          "max_cpu_percent": 90,
-          "enabled": true
-        }
+        "auto_start": true
       },
       {
         "name": "emmet",
         "command": "emmet-language-server",
         "args": ["--stdio"],
         "enabled": true,
-        "auto_start": true,
-        "process_limits": {
-          "max_memory_percent": 50,
-          "max_cpu_percent": 90,
-          "enabled": true
-        }
+        "auto_start": true
       }
     ],
     "nix": {
       "command": "nixd",
-      "args": [],
       "enabled": true,
-      "auto_start": true,
-      "process_limits": {
-        "max_memory_percent": 50,
-        "max_cpu_percent": 90,
-        "enabled": true
-      }
+      "auto_start": true
     }
   },
   "languages": {
     "python": {
+      "extensions": ["py", "pyi"],
+      "grammar": "python",
       "format_on_save": true,
       "formatter": {
         "command": "ruff",
-        "args": ["format", "--stdin-filename", "$FILE"],
-        "stdin": true,
-        "timeout_ms": 10000
-      },
-      "grammar": "python",
-      "extensions": ["py", "pyi"]
+        "args": ["format", "--stdin-filename", "$FILE", "-"]
+      }
     },
     "css": {
       "extensions": ["css"],
@@ -232,31 +146,24 @@
       "grammar": "CSS",
       "formatter": {
         "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"],
-        "stdin": true,
-        "timeout_ms": 10000
+        "args": ["--stdin-filepath", "$FILE"]
       }
     },
     "jsonc": {
       "extensions": ["jsonc"],
       "format_on_save": true,
+      "grammar": "jsonc",
       "formatter": {
         "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"],
-        "stdin": true,
-        "timeout_ms": 10000
-      },
-      "grammar": "jsonc"
+        "args": ["--stdin-filepath", "$FILE"]
+      }
     },
     "nix": {
       "extensions": ["nix"],
       "format_on_save": true,
       "grammar": "Nix",
       "formatter": {
-        "command": "alejandra",
-        "args": [],
-        "stdin": true,
-        "timeout_ms": 10000
+        "command": "alejandra"
       }
     },
     "html": {
@@ -265,54 +172,44 @@
       "grammar": "HTML",
       "formatter": {
         "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"],
-        "stdin": true,
-        "timeout_ms": 10000
+        "args": ["--stdin-filepath", "$FILE"]
       }
     },
     "json": {
       "extensions": ["json"],
       "format_on_save": true,
+      "grammar": "json",
       "formatter": {
         "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"],
-        "stdin": true,
-        "timeout_ms": 10000
-      },
-      "grammar": "json"
+        "args": ["--stdin-filepath", "$FILE"]
+      }
     },
     "rust": {
       "extensions": ["rs"],
       "format_on_save": true,
       "formatter": {
         "command": "rustfmt",
-        "args": ["--edition", "2021"],
-        "stdin": true,
-        "timeout_ms": 10000
+        "args": ["--edition", "2021"]
       },
       "grammar": "rust"
     },
     "typescript": {
       "extensions": ["ts", "tsx", "mts"],
       "format_on_save": true,
+      "grammar": "typescript",
       "formatter": {
         "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"],
-        "stdin": true,
-        "timeout_ms": 10000
-      },
-      "grammar": "typescript"
+        "args": ["--stdin-filepath", "$FILE"]
+      }
     },
     "javascript": {
       "extensions": ["js", "jsx", "mjs"],
       "format_on_save": true,
+      "grammar": "javascript",
       "formatter": {
         "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"],
-        "stdin": true,
-        "timeout_ms": 10000
-      },
-      "grammar": "javascript"
+        "args": ["--stdin-filepath", "$FILE"]
+      }
     },
     "sql": {
       "extensions": ["sql"],
@@ -325,9 +222,7 @@
       "format_on_save": true,
       "formatter": {
         "command": "shfmt",
-        "args": ["-i", "4"],
-        "stdin": true,
-        "timeout_ms": 10000
+        "args": ["-i", "4"]
       }
     },
     "yaml": {
@@ -336,21 +231,16 @@
       "format_on_save": true,
       "formatter": {
         "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"],
-        "stdin": true,
-        "timeout_ms": 10000
+        "args": ["--stdin-filepath", "$FILE"]
       }
     },
     "dockerfile": {
-      "extensions": ["Dockerfile"],
       "filenames": ["Dockerfile"],
       "grammar": "Dockerfile",
       "format_on_save": true,
       "formatter": {
         "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"],
-        "stdin": true,
-        "timeout_ms": 10000
+        "args": ["--stdin-filepath", "$FILE"]
       }
     },
     "markdown": {
@@ -359,9 +249,7 @@
       "format_on_save": true,
       "formatter": {
         "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"],
-        "stdin": true,
-        "timeout_ms": 10000
+        "args": ["--stdin-filepath", "$FILE"]
       }
     },
     "kdl": {
@@ -370,9 +258,7 @@
       "format_on_save": true,
       "formatter": {
         "command": "kdlfmt",
-        "args": ["format", "-"],
-        "stdin": true,
-        "timeout_ms": 10000
+        "args": ["format", "-"]
       }
     }
   }
