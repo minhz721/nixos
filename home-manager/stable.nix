@@ -68,6 +68,7 @@
     prettier
     shfmt
     kdlfmt
+    ruff
 
     # Linters & Static Analysis
     shellcheck
