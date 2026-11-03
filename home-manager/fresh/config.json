@@ -1,0 +1,481 @@
+{
+  "check_for_updates": false,
+  "lsp": {
+    "javascript": {
+      "command": "vtsls",
+      "enabled": true,
+      "auto_start": true,
+      "process_limits": {
+        "max_memory_percent": 50,
+        "max_cpu_percent": 90,
+        "enabled": true
+      }
+    },
+    "python": [
+      {
+        "name": "ty",
+        "command": "ty",
+        "args": ["server"],
+        "enabled": true,
+        "auto_start": true,
+        "process_limits": {
+          "max_memory_percent": 50,
+          "max_cpu_percent": 90,
+          "enabled": true
+        }
+      },
+      {
+        "name": "ruff",
+        "command": "ruff",
+        "args": ["server"],
+        "enabled": true,
+        "auto_start": true,
+        "process_limits": {
+          "max_memory_percent": 50,
+          "max_cpu_percent": 90,
+          "enabled": true
+        }
+      }
+    ],
+    "typescript": {
+      "command": "vtsls",
+      "enabled": true,
+      "auto_start": true,
+      "process_limits": {
+        "max_memory_percent": 50,
+        "max_cpu_percent": 90,
+        "enabled": true
+      }
+    },
+    "json": {
+      "command": "",
+      "enabled": true,
+      "auto_start": true,
+      "process_limits": {
+        "max_memory_percent": 50,
+        "max_cpu_percent": 90,
+        "enabled": true
+      }
+    },
+    "rust": {
+      "command": "",
+      "enabled": true,
+      "auto_start": true,
+      "process_limits": {
+        "max_memory_percent": 50,
+        "max_cpu_percent": 90,
+        "enabled": true
+      },
+      "root_markers": ["Cargo.toml"],
+      "initialization_options": {
+        "checkOnSave": {
+          "command": "clippy"
+        }
+      }
+    },
+    "bash": {
+      "command": "",
+      "enabled": true,
+      "auto_start": true,
+      "process_limits": {
+        "max_memory_percent": 50,
+        "max_cpu_percent": 90,
+        "enabled": true
+      }
+    },
+    "yaml": {
+      "command": "",
+      "enabled": true,
+      "auto_start": true,
+      "process_limits": {
+        "max_memory_percent": 50,
+        "max_cpu_percent": 90,
+        "enabled": true
+      }
+    },
+    "dockerfile": {
+      "command": "docker-langserver",
+      "args": ["--stdio"],
+      "enabled": true,
+      "auto_start": true,
+      "process_limits": {
+        "max_memory_percent": 50,
+        "max_cpu_percent": 90,
+        "enabled": true
+      }
+    },
+    "markdown": {
+      "command": "",
+      "enabled": true,
+      "auto_start": true,
+      "process_limits": {
+        "max_memory_percent": 50,
+        "max_cpu_percent": 90,
+        "enabled": true
+      }
+    },
+    "sql": {
+      "command": "",
+      "enabled": true,
+      "auto_start": true,
+      "process_limits": {
+        "max_memory_percent": 50,
+        "max_cpu_percent": 90,
+        "enabled": true
+      }
+    },
+    "html": [
+      {
+        "name": "html",
+        "command": "vscode-html-language-server",
+        "args": ["--stdio"],
+        "enabled": true,
+        "auto_start": true,
+        "process_limits": {
+          "max_memory_percent": 50,
+          "max_cpu_percent": 90,
+          "enabled": true
+        }
+      },
+      {
+        "name": "emmet",
+        "command": "emmet-language-server",
+        "args": ["--stdio"],
+        "enabled": true,
+        "auto_start": true,
+        "process_limits": {
+          "max_memory_percent": 50,
+          "max_cpu_percent": 90,
+          "enabled": true
+        }
+      }
+    ],
+    "css": [
+      {
+        "name": "css",
+        "command": "vscode-css-language-server",
+        "args": ["--stdio"],
+        "enabled": true,
+        "auto_start": true,
+        "process_limits": {
+          "max_memory_percent": 50,
+          "max_cpu_percent": 90,
+          "enabled": true
+        }
+      },
+      {
+        "name": "emmet",
+        "command": "emmet-language-server",
+        "args": ["--stdio"],
+        "enabled": true,
+        "auto_start": true,
+        "process_limits": {
+          "max_memory_percent": 50,
+          "max_cpu_percent": 90,
+          "enabled": true
+        }
+      }
+    ],
+    "nix": {
+      "enabled": false,
+      "auto_start": true,
+      "process_limits": {
+        "max_memory_percent": 50,
+        "max_cpu_percent": 90,
+        "enabled": true
+      }
+    }
+  },
+  "plugins": {
+    "welcome_screen": {
+      "enabled": true,
+      "settings": {
+        "showOnStartup": true
+      }
+    },
+    "vi_mode": {
+      "enabled": true,
+      "settings": {
+        "autoStart": false,
+        "arrowKeys": true,
+        "searchWordUnderCursor": true
+      }
+    }
+  },
+  "theme": "builtin://dark",
+  "version": 3,
+  "languages": {
+    "python": {
+      "auto_indent": true,
+      "comment_prefix": "#",
+      "format_on_save": true,
+      "formatter": {
+        "command": "ruff",
+        "args": ["format", "--stdin-filename", "$FILE"],
+        "stdin": true,
+        "timeout_ms": 10000
+      },
+      "grammar": "python",
+      "show_whitespace_tabs": true,
+      "auto_surround": true,
+      "extensions": ["py", "pyi"],
+      "line_wrap": true
+    },
+    "css": {
+      "auto_indent": true,
+      "auto_surround": true,
+      "extensions": ["css"],
+      "format_on_save": true,
+      "grammar": "CSS",
+      "line_wrap": true,
+      "show_whitespace_tabs": true,
+      "formatter": {
+        "command": "prettier",
+        "args": ["--stdin-filepath", "$FILE"],
+        "stdin": true,
+        "timeout_ms": 10000
+      }
+    },
+    "jsonc": {
+      "auto_indent": true,
+      "auto_surround": true,
+      "comment_prefix": "//",
+      "extensions": ["jsonc"],
+      "filenames": [
+        "devcontainer.json",
+        ".devcontainer.json",
+        "tsconfig.json",
+        "tsconfig.*.json",
+        "jsconfig.json",
+        "jsconfig.*.json",
+        ".eslintrc.json",
+        ".babelrc",
+        ".babelrc.json",
+        ".swcrc",
+        ".jshintrc",
+        ".hintrc",
+        "settings.json",
+        "keybindings.json",
+        "tasks.json",
+        "launch.json",
+        "extensions.json",
+        "argv.json",
+        "bun.lock"
+      ],
+      "format_on_save": true,
+      "formatter": {
+        "command": "prettier",
+        "args": ["--stdin-filepath", "$FILE"],
+        "stdin": true,
+        "timeout_ms": 10000
+      },
+      "grammar": "jsonc",
+      "line_wrap": true,
+      "show_whitespace_tabs": true
+    },
+    "nix": {
+      "auto_indent": true,
+      "auto_surround": true,
+      "comment_prefix": "#",
+      "extensions": ["nix"],
+      "format_on_save": true,
+      "grammar": "Nix",
+      "show_whitespace_tabs": true,
+      "formatter": {
+        "command": "alejandra",
+        "args": [],
+        "stdin": true,
+        "timeout_ms": 10000
+      },
+      "line_wrap": true
+    },
+    "html": {
+      "auto_indent": true,
+      "auto_surround": true,
+      "extensions": ["html", "htm"],
+      "format_on_save": true,
+      "grammar": "HTML",
+      "line_wrap": true,
+      "show_whitespace_tabs": true,
+      "formatter": {
+        "command": "prettier",
+        "args": ["--stdin-filepath", "$FILE"],
+        "stdin": true,
+        "timeout_ms": 10000
+      }
+    },
+    "json": {
+      "auto_indent": true,
+      "auto_surround": true,
+      "extensions": ["json"],
+      "format_on_save": true,
+      "formatter": {
+        "command": "prettier",
+        "args": ["--stdin-filepath", "$FILE"],
+        "stdin": true,
+        "timeout_ms": 10000
+      },
+      "grammar": "json",
+      "line_wrap": true,
+      "show_whitespace_tabs": true
+    },
+    "rust": {
+      "auto_indent": true,
+      "auto_surround": true,
+      "comment_prefix": "//",
+      "extensions": ["rs"],
+      "format_on_save": true,
+      "formatter": {
+        "command": "rustfmt",
+        "args": ["--edition", "2021"],
+        "stdin": true,
+        "timeout_ms": 10000
+      },
+      "grammar": "rust",
+      "line_wrap": true,
+      "show_whitespace_tabs": true
+    },
+    "typescript": {
+      "auto_indent": true,
+      "auto_surround": true,
+      "comment_prefix": "//",
+      "extensions": ["ts", "tsx", "mts"],
+      "format_on_save": true,
+      "formatter": {
+        "command": "prettier",
+        "args": ["--stdin-filepath", "$FILE"],
+        "stdin": true,
+        "timeout_ms": 10000
+      },
+      "grammar": "typescript",
+      "line_wrap": true,
+      "show_whitespace_tabs": true
+    },
+    "javascript": {
+      "auto_indent": true,
+      "auto_surround": true,
+      "comment_prefix": "//",
+      "extensions": ["js", "jsx", "mjs"],
+      "format_on_save": true,
+      "formatter": {
+        "command": "prettier",
+        "args": ["--stdin-filepath", "$FILE"],
+        "stdin": true,
+        "timeout_ms": 10000
+      },
+      "grammar": "javascript",
+      "show_whitespace_tabs": true,
+      "line_wrap": true
+    },
+    "sql": {
+      "auto_indent": true,
+      "auto_surround": true,
+      "comment_prefix": "--",
+      "extensions": ["sql"],
+      "format_on_save": true,
+      "grammar": "SQL",
+      "line_wrap": true,
+      "show_whitespace_tabs": true
+    },
+    "bash": {
+      "extensions": ["sh", "bash"],
+      "filenames": [
+        ".bashrc",
+        ".bash_profile",
+        ".bash_login",
+        ".profile",
+        ".bash_logout"
+      ],
+      "grammar": "bash",
+      "comment_prefix": "#",
+      "auto_indent": true,
+      "auto_surround": true,
+      "format_on_save": true,
+      "formatter": {
+        "command": "shfmt",
+        "args": ["-i", "4"],
+        "stdin": true,
+        "timeout_ms": 10000
+      },
+      "line_wrap": true,
+      "show_whitespace_tabs": true
+    },
+    "yaml": {
+      "extensions": ["yaml", "yml"],
+      "grammar": "yaml",
+      "comment_prefix": "#",
+      "auto_indent": true,
+      "auto_surround": true,
+      "format_on_save": true,
+      "formatter": {
+        "command": "prettier",
+        "args": ["--stdin-filepath", "$FILE"],
+        "stdin": true,
+        "timeout_ms": 10000
+      },
+      "line_wrap": true,
+      "show_whitespace_tabs": true
+    },
+    "dockerfile": {
+      "extensions": ["Dockerfile"],
+      "filenames": ["Dockerfile"],
+      "grammar": "Dockerfile",
+      "comment_prefix": "#",
+      "auto_indent": true,
+      "format_on_save": true,
+      "formatter": {
+        "command": "prettier",
+        "args": ["--stdin-filepath", "$FILE"],
+        "stdin": true,
+        "timeout_ms": 10000
+      },
+      "auto_surround": true,
+      "line_wrap": true,
+      "show_whitespace_tabs": true
+    },
+    "markdown": {
+      "extensions": ["md", "markdown", "mdx"],
+      "grammar": "Markdown",
+      "comment_prefix": "",
+      "auto_indent": true,
+      "auto_surround": true,
+      "format_on_save": true,
+      "formatter": {
+        "command": "prettier",
+        "args": ["--stdin-filepath", "$FILE"],
+        "stdin": true,
+        "timeout_ms": 10000
+      },
+      "line_wrap": true,
+      "show_whitespace_tabs": true
+    },
+    "kdl": {
+      "extensions": ["kdl"],
+      "grammar": "KDL",
+      "auto_indent": true,
+      "auto_surround": true,
+      "format_on_save": true,
+      "formatter": {
+        "command": "kdlfmt",
+        "args": ["format", "-"],
+        "stdin": true,
+        "timeout_ms": 10000
+      },
+      "line_wrap": true,
+      "show_whitespace_tabs": true
+    }
+  },
+  "editor": {
+    "auto_save_enabled": true,
+    "completion_popup_auto_show": true,
+    "rainbow_indentation": true,
+    "indentation_guide": "all"
+  },
+  "file_browser": {
+    "show_hidden": true
+  },
+  "file_explorer": {
+    "show_gitignored": true,
+    "show_hidden": true
+  }
+}
