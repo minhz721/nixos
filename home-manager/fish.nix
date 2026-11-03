@@ -102,9 +102,9 @@
       g = "git";
       ga = "git add";
       gaa = "git add --all";
-      gc = "git commit -m";
+      gcm = "git commit -m";
       gp = "git push";
-      ggf = "git push --force-with-lease";
+      gpf = "git push --force-with-lease";
       gst = "git status";
       gl = "git log --oneline --graph --decorate";
       gcan = "git commit --amend --no-edit";

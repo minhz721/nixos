@@ -30,7 +30,7 @@ in {
   };
 
   # Register core CLI tools and customized wrapper scripts to user environment
-  home.packages = with pkgs; [
+  home.packages = [
     myUnzip
     myUnrar
     myP7zip
@@ -68,15 +68,6 @@ in {
 
   # Define XDG compliant desktop entry launchers for file executions
   xdg.desktopEntries = {
-    # Java Runtime Launcher
-    "java-jar-launcher" = {
-      name = "Java Runtime Launcher";
-      exec = "${pkgs.jdk}/bin/java -jar %f";
-      mimeType = ["application/java-archive" "application/x-java-archive" "application/x-jar"];
-      terminal = false;
-      noDisplay = true;
-    };
-
     # Unzip Wrapper
     "unzip-launcher" = {
       name = "Unzip Extractor";
@@ -167,11 +158,6 @@ in {
       "application/x-bzip2" = ["p7zip-launcher.desktop"];
       "application/x-gzip" = ["p7zip-launcher.desktop"];
       "application/x-7z-compressed" = ["p7zip-launcher.desktop"];
-
-      # Routing Java Archive extensions to Java Runtime Launcher
-      "application/java-archive" = ["java-jar-launcher.desktop"];
-      "application/x-java-archive" = ["java-jar-launcher.desktop"];
-      "application/x-jar" = ["java-jar-launcher.desktop"];
     };
   };
 

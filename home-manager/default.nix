@@ -21,7 +21,7 @@
 
     ./swayfx.nix
     ./fuzzel
-    ./waybar
+    ./waybar.nix
   ];
   programs.direnv = {
     enable = true;
