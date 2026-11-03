@@ -1,5 +1,37 @@
 {
   "check_for_updates": false,
+  "editor": {
+    "auto_save_enabled": true,
+    "completion_popup_auto_show": true,
+    "rainbow_indentation": true,
+    "indentation_guide": "active",
+    "nerd_font_icons": true,
+    "quick_suggestions_delay_ms": 10,
+    "mouse_wheel_scroll_lines": 5,
+    "diagnostics_inline_text": true
+  },
+  "file_browser": {
+    "show_hidden": true
+  },
+  "file_explorer": {
+    "show_gitignored": true,
+    "show_hidden": true
+  },
+  "theme": "builtin://dark",
+  "version": 3,
+  "plugins": {
+    "welcome_screen": {
+      "enabled": true,
+      "settings": {
+        "showOnStartup": true
+      }
+    },
+    "git_explorer": {
+      "settings": {
+        "colorNames": true
+      }
+    }
+  },
   "lsp": {
     "javascript": {
       "command": "vtsls",
@@ -186,24 +218,6 @@
       }
     }
   },
-  "plugins": {
-    "welcome_screen": {
-      "enabled": true,
-      "settings": {
-        "showOnStartup": true
-      }
-    },
-    "vi_mode": {
-      "enabled": true,
-      "settings": {
-        "autoStart": false,
-        "arrowKeys": true,
-        "searchWordUnderCursor": true
-      }
-    }
-  },
-  "theme": "builtin://dark",
-  "version": 3,
   "languages": {
     "python": {
       "auto_indent": true,
@@ -464,18 +478,5 @@
       "line_wrap": true,
       "show_whitespace_tabs": true
     }
-  },
-  "editor": {
-    "auto_save_enabled": true,
-    "completion_popup_auto_show": true,
-    "rainbow_indentation": true,
-    "indentation_guide": "all"
-  },
-  "file_browser": {
-    "show_hidden": true
-  },
-  "file_explorer": {
-    "show_gitignored": true,
-    "show_hidden": true
   }
 }
