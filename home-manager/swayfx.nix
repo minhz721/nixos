@@ -81,15 +81,11 @@
   };
 
   wayland.windowManager.sway = {
-    package = pkgs.swayfx;
-    checkConfig = false;
     extraConfig = ''
       default_border pixel 2
       client.focused          #f9e2af   #f9e2af   #1e1e2e   #f9e2af     #f9e2af
       client.focused_inactive #313244   #313244   #cdd6f4   #313244     #313244
       client.unfocused        #1e1e2e   #1e1e2e   #cdd6f4   #1e1e2e     #1e1e2e
-
-      corner_radius 10
     '';
     enable = true;
     wrapperFeatures.gtk = true;
