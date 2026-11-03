@@ -58,8 +58,8 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting
-      # zoxide
       zoxide init fish | source
+      starship init fish | source
     '';
     plugins = with pkgs.fishPlugins; [
       # Notify when command finishes
