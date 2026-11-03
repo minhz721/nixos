@@ -20,7 +20,7 @@
     # ./flameshot.nix
     # ./i3.nix
 
-    ./swayfx.nix
+    ./sway.nix
     ./fuzzel
     ./waybar.nix
   ];
