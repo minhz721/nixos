@@ -11,26 +11,26 @@ options="$op_poweroff\n$op_reboot\n$op_lock\n$op_suspend\n$op_logout"
 
 # Launch Fuzzel in dmenu mode
 chosen=$(echo -e "$options" | fuzzel --dmenu \
-  --prompt="⚡ Power Menu: " \
-  --lines=5 \
-  --width=25 \
-  --font="Maple Mono:size=12")
+    --prompt="⚡ Power Menu: " \
+    --lines=5 \
+    --width=25 \
+    --font="Maple Mono:size=12")
 
 # Execute selected option
 case "$chosen" in
 "$op_poweroff")
-  systemctl poweroff
-  ;;
+    systemctl poweroff
+    ;;
 "$op_reboot")
-  systemctl reboot
-  ;;
+    systemctl reboot
+    ;;
 "$op_lock")
-  swaylock
-  ;;
+    swaylock
+    ;;
 "$op_suspend")
-  systemctl suspend
-  ;;
+    systemctl suspend
+    ;;
 "$op_logout")
-  niri msg action quit
-  ;;
+    niri msg action quit
+    ;;
 esac

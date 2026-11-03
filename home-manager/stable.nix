@@ -53,7 +53,7 @@
     gnumake
 
     # Language Servers (LSP)
-    nil
+    nixd
     vtsls
     emmet-language-server
     bash-language-server
