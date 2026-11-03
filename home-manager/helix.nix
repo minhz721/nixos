@@ -175,7 +175,7 @@ in {
         {
           name = "nix";
           scope = "source.nix";
-          language-servers = ["nil"];
+          language-servers = ["nixd"];
           auto-format = true;
           formatter.command = "alejandra";
         }

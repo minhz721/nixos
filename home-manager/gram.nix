@@ -48,8 +48,8 @@
     colorize_brackets = true;
 
     lsp = {
-      nil = {
-        binary.path = "${pkgs.nil}/bin/nil";
+      nixd = {
+        binary.path = "${pkgs.nixd}/bin/nixd";
       };
       # Python
       ruff = {
