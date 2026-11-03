@@ -51,9 +51,25 @@
       nil = {
         binary.path = "${pkgs.nil}/bin/nil";
       };
-      pyright = {
-        binary.path = "${pkgs.pyright}/bin/pyright-langserver";
+      # Python
+      ruff = {
+        binary = {
+          path = "${pkgs.ruff}/bin/ruff";
+          arguments = ["server"];
+        };
       };
+      ty = {
+        binary = {
+          path = "${pkgs.ty}/bin/ty";
+          arguments = ["server"];
+        };
+        initialization_options = {
+          experimental = {
+            useUv = "on";
+          };
+        };
+      };
+      # End
       bash-language-server = {
         binary.path = "${pkgs.bash-language-server}/bin/bash-language-server";
         arguments = ["start"];
@@ -188,11 +204,17 @@
         };
       };
       Python = {
+        language_servers = [
+          "ty"
+          "ruff"
+        ];
         formatter = {
           external = {
             command = "ruff";
             arguments = [
               "format"
+              "--stdin-filename"
+              "{buffer_path}"
               "-"
             ];
           };

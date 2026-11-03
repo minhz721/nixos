@@ -1,5 +1,6 @@
 {pkgsUnstable, ...}: {
-  home.packages = [
-    pkgsUnstable.fresh-editor
+  home.packages = with pkgsUnstable; [
+    fresh-editor
+    ty
   ];
 }

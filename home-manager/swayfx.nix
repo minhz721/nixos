@@ -7,7 +7,6 @@
     libnotify
     wl-clipboard
     swaybg
-    # nwg-displays
     wlr-randr
     grim
     slurp
@@ -85,8 +84,6 @@
     package = pkgs.swayfx;
     checkConfig = false;
     extraConfig = ''
-      ## include ~/.config/sway/outputs
-
       default_border pixel 2
       client.focused          #f9e2af   #f9e2af   #1e1e2e   #f9e2af     #f9e2af
       client.focused_inactive #313244   #313244   #cdd6f4   #313244     #313244
@@ -112,14 +109,15 @@
       };
       startup = [
         {command = "sh -c 'swaybg -i $(cat ~/.cache/wallpaper_current) -m fill'";}
-        {command = "waybar";}
         {command = "fcitx5 -d";}
         {command = "mako";}
         {command = "blueman-applet";}
       ];
-      bars = [];
+      bars = [
+        {command = "${pkgs.waybar}/bin/waybar";}
+      ];
       window = {
-        border = 5;
+        border = 8;
         titlebar = false;
       };
       floating = {
@@ -182,51 +180,11 @@
           "${modifier}+f" = "floating toggle";
           "${modifier}+Shift+f" = "focus mode_toggle";
 
-          # "${modifier}+r" = "mode resize";
-          "${modifier}+Ctrl+h" = "resize shrink width 20 px";
-          "${modifier}+Ctrl+j" = "resize grow height 20 px";
-          "${modifier}+Ctrl+k" = "resize shrink height 20 px";
-          "${modifier}+Ctrl+l" = "resize grow width 20 px";
-
           # Direct window resizing using arrow keys
           "${modifier}+Ctrl+Left" = "resize shrink width 20 px";
           "${modifier}+Ctrl+Down" = "resize grow height 20 px";
           "${modifier}+Ctrl+Up" = "resize shrink height 20 px";
           "${modifier}+Ctrl+Right" = "resize grow width 20 px";
-
-          # Switch to workspace
-          "${modifier}+1" = "workspace number 1";
-          "${modifier}+2" = "workspace number 2";
-          "${modifier}+3" = "workspace number 3";
-          "${modifier}+4" = "workspace number 4";
-          "${modifier}+5" = "workspace number 5";
-          "${modifier}+6" = "workspace number 6";
-          "${modifier}+7" = "workspace number 7";
-          "${modifier}+8" = "workspace number 8";
-          "${modifier}+9" = "workspace number 9";
-
-          # Move focused container to workspace
-          "${modifier}+Shift+1" = "move container to workspace number 1";
-          "${modifier}+Shift+2" = "move container to workspace number 2";
-          "${modifier}+Shift+3" = "move container to workspace number 3";
-          "${modifier}+Shift+4" = "move container to workspace number 4";
-          "${modifier}+Shift+5" = "move container to workspace number 5";
-          "${modifier}+Shift+6" = "move container to workspace number 6";
-          "${modifier}+Shift+7" = "move container to workspace number 7";
-          "${modifier}+Shift+8" = "move container to workspace number 8";
-          "${modifier}+Shift+9" = "move container to workspace number 9";
-
-          # Move focused window (Vim keys)
-          "${modifier}+Shift+h" = "move left";
-          "${modifier}+Shift+j" = "move down";
-          "${modifier}+Shift+k" = "move up";
-          "${modifier}+Shift+l" = "move right";
-
-          # Move focused window (Arrow keys)
-          "${modifier}+Shift+Left" = "move left";
-          "${modifier}+Shift+Down" = "move down";
-          "${modifier}+Shift+Up" = "move up";
-          "${modifier}+Shift+Right" = "move right";
 
           # Layout
           "${modifier}+v" = "splitv";

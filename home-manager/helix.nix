@@ -151,6 +151,14 @@ in {
             };
           };
         };
+        ty = {
+          command = "ty";
+          args = ["server"];
+        };
+        ruff = {
+          command = "ruff";
+          args = ["server"];
+        };
       };
 
       language = [
@@ -238,18 +246,12 @@ in {
         }
         {
           name = "python";
-          scope = "source.python";
-          language-servers = ["pyright"];
           auto-format = true;
           formatter = {
             command = "ruff";
-            args = [
-              "format"
-              "--stdin-filename"
-              "%{buffer_name}"
-              "-"
-            ];
+            args = ["format" "-"];
           };
+          language-servers = ["ty" "ruff"];
         }
         {
           name = "bash";
