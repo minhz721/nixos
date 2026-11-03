@@ -11,7 +11,6 @@
       };
     };
   };
-
   home.activation.createScreenshotDir = config.lib.dag.entryAfter ["writeBoundary"] ''
     mkdir -p "${config.home.homeDirectory}/Pictures/Screenshots"
   '';

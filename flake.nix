@@ -45,12 +45,6 @@
           home-manager.users.leomin =
             import ./home-manager/default.nix;
         }
-        {
-          services.xserver = {
-            enable = true;
-            videoDrivers = ["amdgpu"];
-          };
-        }
       ];
     };
   };

@@ -30,7 +30,6 @@
 
   home.username = "leomin";
   home.homeDirectory = "/home/leomin";
-
   programs.home-manager.enable = true;
   home.stateVersion = "26.05";
 }

@@ -1,10 +1,4 @@
 {pkgs, ...}: {
-  # services.screen-locker = {
-  #   enable = true;
-  #   inactiveInterval = 20;
-  #   lockCmd = "${pkgs.lightlocker}/bin/light-locker-command --lock";
-  # };
-
   xsession.windowManager.i3 = {
     enable = true;
     config = {

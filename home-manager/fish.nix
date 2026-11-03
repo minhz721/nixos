@@ -6,7 +6,6 @@
     EDITOR = "hx";
     VISUAL = "hx";
   };
-
   home.packages = with pkgs; [
     fzf
     fd
@@ -59,30 +58,25 @@
     enable = true;
     interactiveShellInit = ''
       set fish_greeting
-
       # zoxide
       zoxide init fish | source
     '';
-
     plugins = with pkgs.fishPlugins; [
       # Notify when command finishes
       {
         name = "done";
         src = done.src;
       }
-
       # FZF integration
       {
         name = "fzf-fish";
         src = fzf-fish.src;
       }
-
       # Auto close brackets and quotes
       {
         name = "autopair";
         src = autopair.src;
       }
-
       # Run Bash commands/scripts from Fish
       {
         name = "bass";
@@ -97,13 +91,11 @@
       # --------------------------------------------------------
       # Files
       # --------------------------------------------------------
-
       ls = "eza";
       ll = "eza -l";
       la = "eza -la";
       lt = "eza --tree";
       l = "eza -lah --git --icons";
-
       # --------------------------------------------------------
       # Git
       # --------------------------------------------------------
@@ -118,19 +110,16 @@
       gcan = "git commit --amend --no-edit";
       gpo = "git pull origin";
       gco = "git checkout";
-
       # Stash
       gs = "git stash";
       gsa = "git stash apply";
       gsl = "git stash list";
       gsp = "git stash pop";
       gsc = "git stash clear";
-
       # Lazygit
       lg = "lazygit";
       ld = "lazydocker";
       lsql = "lazysql";
-
       # --------------------------------------------------------
       # NixOS
       # --------------------------------------------------------

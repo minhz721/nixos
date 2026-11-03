@@ -1,7 +1,6 @@
 {
   programs.ghostty = {
     enable = true;
-
     settings = {
       background-opacity = 0.7;
       background-blur = true;
@@ -10,10 +9,8 @@
       window-padding-x = 12;
       window-padding-y = 12;
       window-padding-balance = true;
-
       # theme = "Dark+";
       # theme = "Catppuccin Mocha";
-
       font-family = "Maple Mono";
       font-size = 11;
       font-feature = [
@@ -24,13 +21,11 @@
       cursor-style-blink = false;
       cursor-invert-fg-bg = true;
       mouse-hide-while-typing = true;
-
       # Extras
       shell-integration-features = true;
       copy-on-select = "clipboard";
       focus-follows-mouse = true;
       link-url = true;
-
       # --- vscode dark ---
       background = "#121314";
       foreground = "#bbbebf";

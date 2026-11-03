@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  inputs,
   ...
 }: {
   home.packages = with pkgs; [
@@ -155,16 +154,6 @@
         {
           command = "floating enable, move center";
           criteria.app_id = "fcitx5-configtool";
-        }
-        {
-          command = "floating enable, move center";
-          criteria.app_id = "xdm-app";
-        }
-        {
-          command = "floating enable, move center";
-          criteria = {
-            class = "com-abdownloadmanager-desktop-AppKt";
-          };
         }
         {
           command = "floating enable, move center";

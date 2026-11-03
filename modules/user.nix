@@ -6,7 +6,5 @@
     description = "leomin";
     shell = pkgs.fish;
     extraGroups = ["networkmanager" "wheel"];
-    packages = with pkgs; [
-    ];
   };
 }
