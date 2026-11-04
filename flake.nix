@@ -10,6 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
+    mitos.url = "github:mitos-editor/mitos";
   };
   outputs = {
     nixpkgs,
