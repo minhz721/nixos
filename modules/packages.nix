@@ -24,5 +24,7 @@
     # =========================================================================
     gnome-themes-extra
     adwaita-icon-theme
+
+    inputs.mitos.packages.${pkgs.system}.default
   ];
 }
