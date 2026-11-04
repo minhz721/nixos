@@ -1,4 +1,12 @@
-{...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  home.packages = with pkgs; [
+    inputs.mitos.packages.${pkgs.system}.default
+  ];
+
   xdg.configFile."mitos/config.toml".text = ''
     theme = "dark_plus"
 
