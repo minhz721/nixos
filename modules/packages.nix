@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   nix.settings.experimental-features = ["nix-command" "flakes"];
   environment.systemPackages = with pkgs; [
     # =========================================================================
@@ -20,5 +24,7 @@
     # =========================================================================
     gnome-themes-extra
     adwaita-icon-theme
+
+    inputs.mitos.packages.${pkgs.system}.default
   ];
 }

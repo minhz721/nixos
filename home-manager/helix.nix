@@ -98,6 +98,7 @@ in {
             "w" = ":write";
             "q" = ":quit";
             "f" = "file_picker";
+            "e" = "file_explorer_in_current_directory";
             "b" = "buffer_picker";
             "s" = "symbol_picker";
             "/" = "global_search";

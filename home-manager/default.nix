@@ -12,7 +12,8 @@
     ./tmux/tmux.nix
     ./stable.nix
     ./unstale.nix
-    ./fresh/fresh.nix
+    # ./fresh/fresh.nix
+    ./mitos.nix
 
     # ./rofi
     # ./dunst
