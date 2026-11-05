@@ -26,239 +26,234 @@
       }
     }
   },
-  "lsp": {
-    "javascript": {
-      "command": "vtsls",
-      "enabled": true,
-      "auto_start": true
-    },
-    "typescript": {
-      "command": "vtsls",
-      "enabled": true,
-      "auto_start": true
-    },
-    "python": [
-      {
-        "name": "ty",
-        "command": "ty",
-        "args": ["server"],
+  {
+    "lsp": {
+      "javascript": {
+        "command": "vtsls",
         "enabled": true,
         "auto_start": true
       },
-      {
-        "name": "ruff",
-        "command": "ruff",
-        "args": ["server"],
+      "typescript": {
+        "command": "vtsls",
         "enabled": true,
         "auto_start": true
-      }
-    ],
-    "rust": {
-      "command": "rust-analyzer",
-      "enabled": true,
-      "auto_start": true,
-      "root_markers": ["Cargo.toml"],
-      "initialization_options": {
-        "checkOnSave": {
-          "command": "clippy"
+      },
+      "python": [
+        {
+          "name": "ty",
+          "command": "ty",
+          "args": ["server"],
+          "enabled": true,
+          "auto_start": true
+        },
+        {
+          "name": "ruff",
+          "command": "ruff",
+          "args": ["server"],
+          "enabled": true,
+          "auto_start": true
         }
-      }
-    },
-    "bash": {
-      "command": "bash-language-server",
-      "args": ["start"],
-      "enabled": true,
-      "auto_start": true
-    },
-    "yaml": {
-      "command": "yaml-language-server",
-      "args": ["--stdio"],
-      "enabled": true,
-      "auto_start": true
-    },
-    "dockerfile": {
-      "command": "docker-langserver",
-      "args": ["--stdio"],
-      "enabled": true,
-      "auto_start": true
-    },
-    "markdown": {
-      "command": "marksman",
-      "enabled": true,
-      "auto_start": true
-    },
-    "sql": {
-      "command": "sqls",
-      "enabled": true,
-      "auto_start": true
-    },
-    "html": [
-      {
-        "name": "html",
-        "command": "vscode-html-language-server",
-        "args": ["--stdio"],
+      ],
+      "rust": {
+        "command": "rust-analyzer",
+        "enabled": true,
+        "auto_start": true,
+        "root_markers": ["Cargo.toml"],
+        "initialization_options": {
+          "checkOnSave": {
+            "command": "clippy"
+          }
+        }
+      },
+      "bash": {
+        "command": "bash-language-server",
+        "args": ["start"],
         "enabled": true,
         "auto_start": true
       },
-      {
-        "name": "emmet",
-        "command": "emmet-language-server",
-        "args": ["--stdio"],
-        "enabled": true,
-        "auto_start": true
-      }
-    ],
-    "css": [
-      {
-        "name": "css",
-        "command": "vscode-css-language-server",
-        "args": ["--stdio"],
+      "html": [
+        {
+          "name": "html",
+          "command": "vscode-html-language-server",
+          "args": ["--stdio"],
+          "enabled": true,
+          "auto_start": true
+        },
+        {
+          "name": "emmet",
+          "command": "emmet-language-server",
+          "args": ["--stdio"],
+          "enabled": true,
+          "auto_start": true
+        }
+      ],
+      "css": [
+        {
+          "name": "css",
+          "command": "vscode-css-language-server",
+          "args": ["--stdio"],
+          "enabled": true,
+          "auto_start": true
+        },
+        {
+          "name": "emmet",
+          "command": "emmet-language-server",
+          "args": ["--stdio"],
+          "enabled": true,
+          "auto_start": true
+        }
+      ],
+      "nix": {
+        "command": "nixd",
         "enabled": true,
         "auto_start": true
       },
-      {
-        "name": "emmet",
-        "command": "emmet-language-server",
-        "args": ["--stdio"],
+      "toml": {
+        "command": "taplo",
+        "args": ["lsp", "stdio"],
         "enabled": true,
         "auto_start": true
       }
-    ],
-    "nix": {
-      "command": "nixd",
-      "enabled": true,
-      "auto_start": true
-    }
-  },
-  "languages": {
-    "python": {
-      "extensions": ["py", "pyi"],
-      "grammar": "python",
-      "format_on_save": true,
-      "formatter": {
-        "command": "ruff",
-        "args": ["format", "--stdin-filename", "$FILE", "-"]
-      }
     },
-    "css": {
-      "extensions": ["css"],
-      "format_on_save": true,
-      "grammar": "CSS",
-      "formatter": {
-        "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"]
-      }
-    },
-    "jsonc": {
-      "extensions": ["jsonc"],
-      "format_on_save": true,
-      "grammar": "jsonc",
-      "formatter": {
-        "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"]
-      }
-    },
-    "nix": {
-      "extensions": ["nix"],
-      "format_on_save": true,
-      "grammar": "Nix",
-      "formatter": {
-        "command": "alejandra"
-      }
-    },
-    "html": {
-      "extensions": ["html", "htm"],
-      "format_on_save": true,
-      "grammar": "HTML",
-      "formatter": {
-        "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"]
-      }
-    },
-    "json": {
-      "extensions": ["json"],
-      "format_on_save": true,
-      "grammar": "json",
-      "formatter": {
-        "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"]
-      }
-    },
-    "rust": {
-      "extensions": ["rs"],
-      "format_on_save": true,
-      "formatter": {
-        "command": "rustfmt",
-        "args": ["--edition", "2021"]
+    "languages": {
+      "python": {
+        "extensions": ["py", "pyi"],
+        "grammar": "python",
+        "format_on_save": true,
+        "formatter": {
+          "command": "ruff",
+          "args": ["format", "--stdin-filename", "$FILE", "-"]
+        }
       },
-      "grammar": "rust"
-    },
-    "typescript": {
-      "extensions": ["ts", "tsx", "mts"],
-      "format_on_save": true,
-      "grammar": "typescript",
-      "formatter": {
-        "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"]
-      }
-    },
-    "javascript": {
-      "extensions": ["js", "jsx", "mjs"],
-      "format_on_save": true,
-      "grammar": "javascript",
-      "formatter": {
-        "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"]
-      }
-    },
-    "sql": {
-      "extensions": ["sql"],
-      "format_on_save": true,
-      "grammar": "SQL"
-    },
-    "bash": {
-      "extensions": ["sh", "bash"],
-      "grammar": "bash",
-      "format_on_save": true,
-      "formatter": {
-        "command": "shfmt",
-        "args": ["-i", "4"]
-      }
-    },
-    "yaml": {
-      "extensions": ["yaml", "yml"],
-      "grammar": "yaml",
-      "format_on_save": true,
-      "formatter": {
-        "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"]
-      }
-    },
-    "dockerfile": {
-      "filenames": ["Dockerfile"],
-      "grammar": "Dockerfile",
-      "format_on_save": true,
-      "formatter": {
-        "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"]
-      }
-    },
-    "markdown": {
-      "extensions": ["md", "markdown", "mdx"],
-      "grammar": "Markdown",
-      "format_on_save": true,
-      "formatter": {
-        "command": "prettier",
-        "args": ["--stdin-filepath", "$FILE"]
-      }
-    },
-    "kdl": {
-      "extensions": ["kdl"],
-      "grammar": "KDL",
-      "format_on_save": true,
-      "formatter": {
-        "command": "kdlfmt",
-        "args": ["format", "-"]
+      "css": {
+        "extensions": ["css"],
+        "format_on_save": true,
+        "grammar": "CSS",
+        "formatter": {
+          "command": "prettier",
+          "args": ["--stdin-filepath", "$FILE"]
+        }
+      },
+      "jsonc": {
+        "extensions": ["jsonc"],
+        "format_on_save": true,
+        "grammar": "jsonc",
+        "formatter": {
+          "command": "prettier",
+          "args": ["--stdin-filepath", "$FILE"]
+        }
+      },
+      "nix": {
+        "extensions": ["nix"],
+        "format_on_save": true,
+        "grammar": "Nix",
+        "formatter": {
+          "command": "alejandra"
+        }
+      },
+      "html": {
+        "extensions": ["html", "htm"],
+        "format_on_save": true,
+        "grammar": "HTML",
+        "formatter": {
+          "command": "prettier",
+          "args": ["--stdin-filepath", "$FILE"]
+        }
+      },
+      "json": {
+        "extensions": ["json"],
+        "format_on_save": true,
+        "grammar": "json",
+        "formatter": {
+          "command": "prettier",
+          "args": ["--stdin-filepath", "$FILE"]
+        }
+      },
+      "rust": {
+        "extensions": ["rs"],
+        "format_on_save": true,
+        "formatter": {
+          "command": "rustfmt",
+          "args": ["--edition", "2021"]
+        },
+        "grammar": "rust"
+      },
+      "typescript": {
+        "extensions": ["ts", "tsx", "mts"],
+        "format_on_save": true,
+        "grammar": "typescript",
+        "formatter": {
+          "command": "prettier",
+          "args": ["--stdin-filepath", "$FILE"]
+        }
+      },
+      "javascript": {
+        "extensions": ["js", "jsx", "mjs"],
+        "format_on_save": true,
+        "grammar": "javascript",
+        "formatter": {
+          "command": "prettier",
+          "args": ["--stdin-filepath", "$FILE"]
+        }
+      },
+      "sql": {
+        "extensions": ["sql"],
+        "format_on_save": true,
+        "grammar": "SQL"
+      },
+      "bash": {
+        "extensions": ["sh", "bash"],
+        "grammar": "bash",
+        "format_on_save": true,
+        "formatter": {
+          "command": "shfmt",
+          "args": ["-i", "4"]
+        }
+      },
+      "yaml": {
+        "extensions": ["yaml", "yml"],
+        "grammar": "yaml",
+        "format_on_save": true,
+        "formatter": {
+          "command": "prettier",
+          "args": ["--stdin-filepath", "$FILE"]
+        }
+      },
+      "dockerfile": {
+        "filenames": ["Dockerfile"],
+        "grammar": "Dockerfile",
+        "format_on_save": true,
+        "formatter": {
+          "command": "prettier",
+          "args": ["--stdin-filepath", "$FILE"]
+        }
+      },
+      "markdown": {
+        "extensions": ["md", "markdown", "mdx"],
+        "grammar": "Markdown",
+        "format_on_save": true,
+        "formatter": {
+          "command": "prettier",
+          "args": ["--stdin-filepath", "$FILE"]
+        }
+      },
+      "kdl": {
+        "extensions": ["kdl"],
+        "grammar": "KDL",
+        "format_on_save": true,
+        "formatter": {
+          "command": "kdlfmt",
+          "args": ["format", "-"]
+        }
+      },
+      "toml": {
+        "extensions": ["toml"],
+        "grammar": "toml",
+        "format_on_save": true,
+        "formatter": {
+          "command": "taplo",
+          "args": ["fmt", "-"]
+        }
       }
     }
   }

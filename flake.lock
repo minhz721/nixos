@@ -26,11 +26,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1793746106,
-        "narHash": "sha256-afhscghJ6vYOlIfv7IQ5K7KF0OXI/o1EEgJ8ssfxB1A=",
+        "lastModified": 1793792899,
+        "narHash": "sha256-gyn/9+quFjF2kh4r8pN7oWJsNpmM7kp59nmebaCCj7g=",
         "owner": "mitos-editor",
         "repo": "mitos",
-        "rev": "80be66e147da4c78c35fd9d57799937d44387cfa",
+        "rev": "a111b632613e75f10fd834e9f0854f740b496404",
         "type": "github"
       },
       "original": {
@@ -57,11 +57,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1793540411,
-        "narHash": "sha256-fiPJ88izTVucjeo2EQ3jk4aWmLg03I1D4vxnX2QjEgE=",
+        "lastModified": 1793726008,
+        "narHash": "sha256-jQp1wKvbwWdLBASTXkSi/VYmDJ5AbBi1WvcMt9HWJC8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0bb2eedc20e4739f29e8045034f2828ad7054f8f",
+        "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
         "type": "github"
       },
       "original": {
