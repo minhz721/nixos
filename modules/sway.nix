@@ -28,9 +28,16 @@
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+    extraPackages = [];
   };
   programs.hyprlock.enable = true;
 
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-  environment.sessionVariables.ELECTRON_OZONE_PLATFORM_HINT = "auto";
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+    MOZ_ENABLE_WAYLAND = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    SDL_VIDEODRIVER = "wayland";
+    QT_QPA_PLATFORM = "wayland;xcb";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
+  };
 }

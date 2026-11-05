@@ -70,28 +70,6 @@
       "enabled": true,
       "auto_start": true
     },
-    "yaml": {
-      "command": "yaml-language-server",
-      "args": ["--stdio"],
-      "enabled": true,
-      "auto_start": true
-    },
-    "dockerfile": {
-      "command": "docker-langserver",
-      "args": ["--stdio"],
-      "enabled": true,
-      "auto_start": true
-    },
-    "markdown": {
-      "command": "marksman",
-      "enabled": true,
-      "auto_start": true
-    },
-    "sql": {
-      "command": "sqls",
-      "enabled": true,
-      "auto_start": true
-    },
     "html": [
       {
         "name": "html",
@@ -126,6 +104,12 @@
     ],
     "nix": {
       "command": "nixd",
+      "enabled": true,
+      "auto_start": true
+    },
+    "toml": {
+      "command": "taplo",
+      "args": ["lsp", "stdio"],
       "enabled": true,
       "auto_start": true
     }
@@ -259,6 +243,15 @@
       "formatter": {
         "command": "kdlfmt",
         "args": ["format", "-"]
+      }
+    },
+    "toml": {
+      "extensions": ["toml"],
+      "grammar": "toml",
+      "format_on_save": true,
+      "formatter": {
+        "command": "taplo",
+        "args": ["fmt", "-"]
       }
     }
   }
