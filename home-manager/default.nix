@@ -7,12 +7,12 @@
     ./gtk.nix
     ./librewolf.nix
     ./yazi.nix
-    ./helix.nix
     ./gram.nix
     ./tmux/tmux.nix
     ./stable.nix
     ./unstale.nix
     # ./fresh/fresh.nix
+    ./helix.nix
     ./mitos.nix
 
     # ./rofi

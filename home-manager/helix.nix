@@ -1,4 +1,4 @@
-{...}: let
+let
   prettierFormatter = {
     command = "prettier";
     args = [
@@ -145,7 +145,7 @@ in {
           config = {
             showAbbreviationSuggestions = true;
             showExpandedAbbreviation = "always";
-            showSuggestionsAsSnippets = false;
+            showSuggestionsAsSnippets = true;
             includeLanguages = {
               jsx = "javascriptreact";
               tsx = "typescriptreact";
@@ -160,9 +160,22 @@ in {
           command = "ruff";
           args = ["server"];
         };
+        taplo = {
+          command = "taplo";
+          args = ["lsp" "stdio"];
+        };
       };
 
       language = [
+        {
+          name = "python";
+          auto-format = true;
+          formatter = {
+            command = "ruff";
+            args = ["format" "-"];
+          };
+          language-servers = ["ty" "ruff"];
+        }
         {
           name = "kdl";
           scope = "source.kdl";
@@ -241,18 +254,18 @@ in {
         {
           name = "yaml";
           scope = "source.yaml";
-          language-servers = ["yaml-language-server"];
           auto-format = true;
           formatter = prettierFormatter;
         }
         {
-          name = "python";
+          name = "toml";
+          scope = "source.toml";
+          language-servers = ["taplo"];
           auto-format = true;
           formatter = {
-            command = "ruff";
-            args = ["format" "-"];
+            command = "taplo";
+            args = ["fmt" "-"];
           };
-          language-servers = ["ty" "ruff"];
         }
         {
           name = "bash";
@@ -268,11 +281,6 @@ in {
           };
         }
         {
-          name = "dockerfile";
-          scope = "source.dockerfile";
-          language-servers = ["docker-langserver"];
-        }
-        {
           name = "rust";
           scope = "source.rust";
           language-servers = ["rust-analyzer"];
@@ -281,14 +289,8 @@ in {
         {
           name = "markdown";
           scope = "text.html.markdown";
-          language-servers = ["marksman"];
           auto-format = true;
           formatter = prettierFormatter;
-        }
-        {
-          name = "sql";
-          scope = "source.sql";
-          language-servers = ["sqls"];
         }
       ];
     };

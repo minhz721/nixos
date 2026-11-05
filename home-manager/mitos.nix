@@ -4,7 +4,7 @@
   ...
 }: {
   home.packages = with pkgs; [
-    inputs.mitos.packages.${pkgs.system}.default
+    inputs.mitos.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   xdg.configFile."mitos/config.toml".text = ''
@@ -92,7 +92,6 @@
     "C-x" = ["delete_selection"]
   '';
 
-  # LSP & Format
   xdg.configFile."mitos/languages.toml".text = ''
     [language-server.vtsls]
     command = "vtsls"
@@ -105,7 +104,7 @@
     [language-server.emmet-lsp.config]
     showAbbreviationSuggestions = true
     showExpandedAbbreviation = "always"
-    showSuggestionsAsSnippets = false
+    showSuggestionsAsSnippets = true
 
     [language-server.emmet-lsp.config.includeLanguages]
     jsx = "javascriptreact"
@@ -118,6 +117,10 @@
     [language-server.ruff]
     command = "ruff"
     args = ["server"]
+
+    [language-server.taplo]
+    command = "taplo"
+    args = ["lsp", "stdio"]
 
     [[language]]
     name = "kdl"
@@ -181,9 +184,15 @@
     [[language]]
     name = "yaml"
     scope = "source.yaml"
-    language-servers = ["yaml-language-server"]
     auto-format = true
     formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
+
+    [[language]]
+    name = "toml"
+    scope = "source.toml"
+    language-servers = ["taplo"]
+    auto-format = true
+    formatter = { command = "taplo", args = ["fmt", "-"] }
 
     [[language]]
     name = "python"
@@ -199,12 +208,6 @@
     formatter = { command = "shfmt", args = ["-i", "2"] }
 
     [[language]]
-    name = "dockerfile"
-    scope = "source.dockerfile"
-    auto-format = true
-    language-servers = ["docker-langserver"]
-
-    [[language]]
     name = "rust"
     scope = "source.rust"
     language-servers = ["rust-analyzer"]
@@ -213,14 +216,7 @@
     [[language]]
     name = "markdown"
     scope = "text.html.markdown"
-    language-servers = ["marksman"]
     auto-format = true
     formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
-
-    [[language]]
-    name = "sql"
-    scope = "source.sql"
-    auto-format = true
-    language-servers = ["sqls"]
   '';
 }

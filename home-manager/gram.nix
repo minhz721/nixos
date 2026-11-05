@@ -14,7 +14,6 @@
     {
       context = "Terminal";
       bindings = {
-        # "ctrl-c" = "terminal::Copy";
         "ctrl-v" = "terminal::Paste";
       };
     }
@@ -69,7 +68,7 @@
           };
         };
       };
-      # End
+      # Web & Config LSPs
       bash-language-server = {
         binary.path = "${pkgs.bash-language-server}/bin/bash-language-server";
         arguments = ["start"];
@@ -78,19 +77,14 @@
         binary.path = "${pkgs.vscode-langservers-extracted}/bin/vscode-json-language-server";
         arguments = ["--stdio"];
       };
-      yaml-language-server = {
-        binary.path = "${pkgs.yaml-language-server}/bin/yaml-language-server";
-        arguments = ["--stdio"];
+      # TOML
+      taplo = {
+        binary.path = "${pkgs.taplo}/bin/taplo";
+        arguments = ["lsp" "stdio"];
       };
       dockerfile-language-server = {
         binary.path = "${pkgs.dockerfile-language-server}/bin/docker-language-server";
         arguments = ["--stdio"];
-      };
-      marksman = {
-        binary.path = "${pkgs.marksman}/bin/marksman";
-      };
-      sqls = {
-        binary.path = "${pkgs.sqls}/bin/sqls";
       };
       rust-analyzer = {
         binary.path = "${pkgs.rust-analyzer}/bin/rust-analyzer";
@@ -187,6 +181,29 @@
           };
         };
       };
+      YAML = {
+        formatter = {
+          external = {
+            command = "prettier";
+            arguments = [
+              "--parser"
+              "yaml"
+            ];
+          };
+        };
+      };
+      TOML = {
+        language_servers = ["taplo"];
+        formatter = {
+          external = {
+            command = "taplo";
+            arguments = [
+              "fmt"
+              "-"
+            ];
+          };
+        };
+      };
       Nix = {
         formatter = {
           external = {
@@ -239,17 +256,6 @@
             arguments = [
               "--parser"
               "markdown"
-            ];
-          };
-        };
-      };
-      SQL = {
-        formatter = {
-          external = {
-            command = "sqlfluff";
-            arguments = [
-              "format"
-              "-"
             ];
           };
         };

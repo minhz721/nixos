@@ -2,6 +2,7 @@
   home.packages = with pkgs; [
     # Shell & CLI Utilities
     fastfetch
+    btop
     # Archive & System Utilities
     unzip
     unrar
@@ -10,8 +11,7 @@
     ffmpegthumbnailer
     poppler
     libgsf
-    openjdk
-    czkawka # Duplicate finder
+    czkawka
     # File Managers
     yazi
     nemo-with-extensions
@@ -21,6 +21,12 @@
     mpv
     ffmpeg
     cava
+    # Disk / Filesystem GUI & Automount
+    gnome-disk-utility
+    udiskie
+    # System Themes / Icons
+    gnome-themes-extra
+    adwaita-icon-theme
     # Desktop Applications
     zathura
     mission-center
@@ -39,42 +45,29 @@
     # Runtimes & Toolchains
     uv
     bun
-
-    # Rust toolchain
+    # --- Rust Toolchain ---
     rustc
     cargo
-    rustfmt
-    clippy
     rust-analyzer
-    cargo-watch
-    cargo-nextest
-
-    # Build tools
-    gnumake
-
-    # Language Servers (LSP)
-    nixd
-    vtsls
-    emmet-language-server
-    bash-language-server
-    vscode-langservers-extracted
-    yaml-language-server
-    dockerfile-language-server
-    marksman
-    sqls
-
-    # Formatters
+    # --- Nix Ecosystem ---
+    nil
     alejandra
-    prettier
-    shfmt
-    kdlfmt
-    ruff
-
-    # Linters & Static Analysis
-    shellcheck
-    hadolint
     statix
     deadnix
-    sqlfluff
+    # --- Web & Scripting ---
+    vtsls
+    vscode-langservers-extracted
+    emmet-language-server
+    prettier
+    # --- Python & Shell ---
+    ruff
+    bash-language-server
+    shellcheck
+    shfmt
+    # --- Build Tools ---
+    gnumake
+    # Formats (TOML & YAML & KDL)
+    kdlfmt
+    taplo
   ];
 }
