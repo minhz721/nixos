@@ -249,17 +249,17 @@
           };
         };
       };
-      Markdown = {
-        formatter = {
-          external = {
-            command = "prettier";
-            arguments = [
-              "--parser"
-              "markdown"
-            ];
-          };
-        };
-      };
+      # Markdown = {
+      #   formatter = {
+      #     external = {
+      #       command = "prettier";
+      #       arguments = [
+      #         "--parser"
+      #         "markdown"
+      #       ];
+      #     };
+      #   };
+      # };
     };
   };
 }

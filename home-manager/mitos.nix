@@ -53,19 +53,18 @@
     "C-v" = ":clipboard-paste-after"
     "C-A-down" = ["extend_line_below", "yank", "paste_after"]
     "C-A-up" = ["extend_line_below", "yank", "paste_before"]
-    "C-/" = "toggle_comments"
     "C-z" = "undo"
     "C-S-r" = "redo"
     "C-x" = ["goto_line_start", "extend_to_line_bounds", "delete_selection"]
 
     [keys.normal.","]
-    w = ":write"
-    q = ":quit"
-    e = "file_explorer_in_current_directory"
-    f = "file_picker"
-    b = "buffer_picker"
-    s = "symbol_picker"
-    "/" = "global_search"
+    "w" = ":write"
+    "q" = ":quit"
+    "f" = "file_picker"
+    "e" = "file_explorer_in_current_directory"
+    "b" = "buffer_picker"
+    "s" = "symbol_picker"
+    "/" = "toggle_comments"
 
     [keys.insert]
     "C-a" = "select_all"
@@ -74,7 +73,6 @@
     "C-v" = ":clipboard-paste-after"
     "C-A-down" = ["normal_mode", "extend_line_below", "yank", "paste_after", "insert_mode"]
     "C-A-up" = ["normal_mode", "extend_line_below", "yank", "paste_before", "insert_mode"]
-    "C-/" = "toggle_comments"
     "C-z" = ["normal_mode", "undo", "insert_mode"]
     "C-S-z" = ["normal_mode", "redo", "insert_mode"]
     "C-x" = ["normal_mode", "goto_line_start", "extend_to_line_bounds", "delete_selection", "insert_mode"]
@@ -84,7 +82,6 @@
     "C-s" = [":write", "normal_mode"]
     "C-c" = ":clipboard-yank"
     "C-v" = ":clipboard-paste-after"
-    "C-/" = "toggle_comments"
     "C-A-down" = ["yank", "paste_after"]
     "C-A-up" = ["yank", "paste_before"]
     "C-z" = "undo"
@@ -212,11 +209,5 @@
     scope = "source.rust"
     language-servers = ["rust-analyzer"]
     auto-format = true
-
-    [[language]]
-    name = "markdown"
-    scope = "text.html.markdown"
-    auto-format = true
-    formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
   '';
 }

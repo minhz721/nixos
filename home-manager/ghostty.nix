@@ -68,9 +68,9 @@
         "super+r=reload_config"
         "f10=toggle_fullscreen"
         "ctrl+v=paste_from_clipboard"
-        "ctrl+t=new_tab"
+        # "ctrl+t=new_tab"
         # "ctrl+n=new_window"
-        "ctrl+w=close_tab"
+        # "ctrl+w=close_tab"
         # "ctrl+q=close_window"
         # "ctrl+shift+q=close_all_windows"
       ];
