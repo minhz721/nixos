@@ -51,24 +51,20 @@ in {
         indent-guides = {
           render = true;
         };
-
         soft-wrap = {
           enable = true;
           wrap-at-text-width = true;
         };
-
         lsp = {
           display-progress-messages = true;
           auto-signature-help = true;
           display-inlay-hints = true;
           snippets = true;
         };
-
         inline-diagnostics = {
           cursor-line = "warning";
           max-diagnostics = 5;
         };
-
         statusline = {
           mode = {
             normal = "NORMAL";
@@ -89,7 +85,6 @@ in {
           "C-v" = ":clipboard-paste-after";
           "C-A-down" = ["extend_line_below" "yank" "paste_after"];
           "C-A-up" = ["extend_line_below" "yank" "paste_before"];
-          "C-/" = "toggle_comments";
           "C-z" = "undo";
           "C-S-r" = "redo";
           "C-x" = ["goto_line_start" "extend_to_line_bounds" "delete_selection"];
@@ -100,8 +95,7 @@ in {
             "f" = "file_picker";
             "e" = "file_explorer_in_current_directory";
             "b" = "buffer_picker";
-            "s" = "symbol_picker";
-            "/" = "global_search";
+            "/" = "toggle_comments";
           };
         };
 
@@ -112,7 +106,6 @@ in {
           "C-v" = ":clipboard-paste-after";
           "C-A-down" = ["normal_mode" "extend_line_below" "yank" "paste_after" "insert_mode"];
           "C-A-up" = ["normal_mode" "extend_line_below" "yank" "paste_before" "insert_mode"];
-          "C-/" = "toggle_comments";
           "C-z" = ["normal_mode" "undo" "insert_mode"];
           "C-S-z" = ["normal_mode" "redo" "insert_mode"];
           "C-x" = ["normal_mode" "goto_line_start" "extend_to_line_bounds" "delete_selection" "insert_mode"];
@@ -123,7 +116,6 @@ in {
           "C-s" = [":write" "normal_mode"];
           "C-c" = ":clipboard-yank";
           "C-v" = ":clipboard-paste-after";
-          "C-/" = "toggle_comments";
           "C-A-down" = ["yank" "paste_after"];
           "C-A-up" = ["yank" "paste_before"];
           "C-z" = "undo";
@@ -285,12 +277,6 @@ in {
           scope = "source.rust";
           language-servers = ["rust-analyzer"];
           auto-format = true;
-        }
-        {
-          name = "markdown";
-          scope = "text.html.markdown";
-          auto-format = true;
-          formatter = prettierFormatter;
         }
       ];
     };

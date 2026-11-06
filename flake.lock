@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "helix-fork": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1790649139,
+        "narHash": "sha256-ZjMduEHRsY0H8OHJ5oiF/AcxOBhIiCBwo7D+g1yYwKc=",
+        "owner": "minhz721",
+        "repo": "helix",
+        "rev": "ba40e547426b0f9896c8bdc699a4ab11f2b37dbc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "minhz721",
+        "repo": "helix",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -120,6 +136,7 @@
     },
     "root": {
       "inputs": {
+        "helix-fork": "helix-fork",
         "home-manager": "home-manager",
         "mitos": "mitos",
         "nixpkgs": "nixpkgs_2",

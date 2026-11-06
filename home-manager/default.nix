@@ -8,12 +8,12 @@
     ./librewolf.nix
     ./yazi.nix
     ./gram.nix
-    ./tmux/tmux.nix
     ./stable.nix
     ./unstale.nix
     # ./fresh/fresh.nix
     ./helix.nix
     ./mitos.nix
+    ./zellj.nix
 
     # ./rofi
     # ./dunst
