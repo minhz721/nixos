@@ -32,9 +32,7 @@
     mission-center
     localsend
     # Communication & Web Browsers
-    discord
     telegram-desktop
-    brave
     google-chrome
     # Development Applications & CLI
     bruno

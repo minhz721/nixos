@@ -90,7 +90,7 @@
       gaa = "git add --all";
       gcm = "git commit -m";
       gp = "git push";
-      gpf = "git push --force-with-lease";
+      gpf = "git push -f";
       gst = "git status";
       gl = "git log --oneline --graph --decorate";
       gcan = "git commit --amend --no-edit";

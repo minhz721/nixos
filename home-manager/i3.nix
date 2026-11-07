@@ -49,7 +49,7 @@
 
           # Application shortcuts
           "${modifier}+e" = "exec nemo";
-          "${modifier}+b" = "exec google-chrome";
+          "${modifier}+b" = "exec thorium";
           "${modifier}+c" = "exec gram";
 
           # Window layout controls

@@ -123,10 +123,10 @@ in {
       "inode/directory" = ["nemo.desktop"];
 
       # Web Browser (Google Chrome)
-      "text/html" = ["google-chrome.desktop"];
-      "x-scheme-handler/http" = ["google-chrome.desktop"];
-      "x-scheme-handler/https" = ["google-chrome.desktop"];
-      "x-scheme-handler/about" = ["google-chrome.desktop"];
+      "text/html" = ["thorium.desktop"];
+      "x-scheme-handler/http" = ["thorium.desktop"];
+      "x-scheme-handler/https" = ["thorium.desktop"];
+      "x-scheme-handler/about" = ["thorium.desktop"];
 
       # Image Viewer (IMV)
       "image/jpeg" = ["imv.desktop"];
