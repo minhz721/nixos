@@ -6,6 +6,16 @@ let
       "%{buffer_name}"
     ];
   };
+
+  indentTab = {
+    tab-width = 4;
+    unit = "\t";
+  };
+
+  indentYaml = {
+    tab-width = 2;
+    unit = "  ";
+  };
 in {
   programs.helix = {
     enable = true;
@@ -156,23 +166,64 @@ in {
           command = "taplo";
           args = ["lsp" "stdio"];
         };
+        rust-analyzer = {
+          command = "rust-analyzer";
+          config = {
+            check = {
+              command = "clippy";
+              extraArgs = ["--all-targets"];
+            };
+            cargo = {
+              allFeatures = true;
+              buildScripts.enable = true;
+            };
+            procMacro.enable = true;
+            inlayHints = {
+              bindingModeHints.enable = true;
+              closingBraceHints.enable = true;
+              closureReturnTypeHints.enable = "with_block";
+              discriminantHints.enable = "fieldless";
+              lifetimeElisionHints.enable = "skip_trivial";
+              typeHints.enable = true;
+            };
+          };
+        };
+        bash-language-server = {
+          command = "bash-language-server";
+          args = ["start"];
+        };
+        vscode-html-language-server = {
+          command = "vscode-html-language-server";
+          args = ["--stdio"];
+        };
+        vscode-css-language-server = {
+          command = "vscode-css-language-server";
+          args = ["--stdio"];
+        };
+        vscode-json-language-server = {
+          command = "vscode-json-language-server";
+          args = ["--stdio"];
+        };
       };
 
       language = [
         {
           name = "python";
           auto-format = true;
+          language-servers = ["ty" "ruff"];
+          indent = indentTab;
           formatter = {
             command = "ruff";
             args = ["format" "-"];
           };
-          language-servers = ["ty" "ruff"];
         }
         {
           name = "kdl";
           scope = "source.kdl";
           file-types = ["kdl"];
           auto-format = true;
+          indent = indentTab;
+
           formatter = {
             command = "kdlfmt";
             args = ["format" "-"];
@@ -183,39 +234,37 @@ in {
           scope = "source.nix";
           language-servers = ["nixd"];
           auto-format = true;
+          indent = indentTab;
           formatter.command = "alejandra";
         }
         {
           name = "typescript";
           language-servers = ["vtsls"];
           auto-format = true;
+          indent = indentTab;
           formatter = prettierFormatter;
         }
         {
           name = "tsx";
-          language-servers = [
-            "vtsls"
-            "emmet-lsp"
-          ];
+          language-servers = ["vtsls" "emmet-lsp"];
           auto-format = true;
+          indent = indentTab;
           formatter = prettierFormatter;
         }
         {
           name = "javascript";
           language-servers = ["vtsls"];
           auto-format = true;
+          indent = indentTab;
           formatter = prettierFormatter;
         }
         {
           name = "jsx";
-          language-servers = [
-            "vtsls"
-            "emmet-lsp"
-          ];
+          language-servers = ["vtsls" "emmet-lsp"];
           auto-format = true;
+          indent = indentTab;
           formatter = prettierFormatter;
         }
-
         {
           name = "html";
           scope = "text.html.basic";
@@ -224,6 +273,7 @@ in {
             "emmet-lsp"
           ];
           auto-format = true;
+          indent = indentTab;
           formatter = prettierFormatter;
         }
         {
@@ -234,6 +284,7 @@ in {
             "emmet-lsp"
           ];
           auto-format = true;
+          indent = indentTab;
           formatter = prettierFormatter;
         }
         {
@@ -241,12 +292,14 @@ in {
           scope = "source.json";
           language-servers = ["vscode-json-language-server"];
           auto-format = true;
+          indent = indentTab;
           formatter = prettierFormatter;
         }
         {
           name = "yaml";
           scope = "source.yaml";
           auto-format = true;
+          indent = indentYaml;
           formatter = prettierFormatter;
         }
         {
@@ -254,6 +307,7 @@ in {
           scope = "source.toml";
           language-servers = ["taplo"];
           auto-format = true;
+          indent = indentTab;
           formatter = {
             command = "taplo";
             args = ["fmt" "-"];
@@ -264,12 +318,10 @@ in {
           scope = "source.bash";
           language-servers = ["bash-language-server"];
           auto-format = true;
+          indent = indentTab;
           formatter = {
             command = "shfmt";
-            args = [
-              "-i"
-              "2"
-            ];
+            args = ["-i" "2"];
           };
         }
         {
@@ -277,6 +329,11 @@ in {
           scope = "source.rust";
           language-servers = ["rust-analyzer"];
           auto-format = true;
+          indent = indentTab;
+          formatter = {
+            command = "rustfmt";
+            args = ["--edition"];
+          };
         }
       ];
     };
