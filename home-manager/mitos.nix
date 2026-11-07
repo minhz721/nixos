@@ -223,7 +223,6 @@
     language-servers = ["rust-analyzer"]
     auto-format = true
     indent = { tab-width = 4, unit = "\t" }
-    indent = { tab-width = 4, unit = "\t" }
-    formatter = { command = "rustfmt", args = ["--edition"] }
+    formatter = { command = "rustfmt" }
   '';
 }

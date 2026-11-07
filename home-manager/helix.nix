@@ -332,7 +332,6 @@ in {
           indent = indentTab;
           formatter = {
             command = "rustfmt";
-            args = ["--edition"];
           };
         }
       ];

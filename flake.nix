@@ -11,11 +11,17 @@
     };
     noctalia-greeter.url = "github:noctalia-dev/noctalia-greeter";
     mitos.url = "github:mitos-editor/mitos";
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = {
     nixpkgs,
     home-manager,
     noctalia-greeter,
+    fenix,
+    mitos,
     ...
   } @ inputs: let
     system = "x86_64-linux";
@@ -39,9 +45,10 @@
           home-manager.useUserPackages = true;
           home-manager.backupFileExtension = "bak";
 
-          # Pass Unstable to Home Manager
+          # Pass Unstable, Fenix to Home Manager
           home-manager.extraSpecialArgs = {
             inherit inputs pkgsUnstable;
+            inherit fenix;
           };
           home-manager.users.leomin =
             import ./home-manager/default.nix;
