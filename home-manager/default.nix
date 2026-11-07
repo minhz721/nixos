@@ -13,7 +13,8 @@
     # ./fresh/fresh.nix
     ./helix.nix
     ./mitos.nix
-    ./zellj.nix
+    # ./zellj.nix
+    ./tmux.nix
     ./rust.nix
     ./thorium.nix
 
