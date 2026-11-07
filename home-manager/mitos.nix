@@ -124,6 +124,7 @@
     scope = "source.kdl"
     file-types = ["kdl"]
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
     formatter = { command = "kdlfmt", args = ["format", "-"] }
 
     [[language]]
@@ -131,30 +132,35 @@
     scope = "source.nix"
     language-servers = ["nixd"]
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
     formatter = { command = "alejandra" }
 
     [[language]]
     name = "typescript"
     language-servers = ["vtsls"]
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
     formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
 
     [[language]]
     name = "tsx"
     language-servers = ["vtsls", "emmet-lsp"]
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
     formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
 
     [[language]]
     name = "javascript"
     language-servers = ["vtsls"]
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
     formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
 
     [[language]]
     name = "jsx"
     language-servers = ["vtsls", "emmet-lsp"]
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
     formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
 
     [[language]]
@@ -162,6 +168,7 @@
     scope = "text.html.basic"
     language-servers = ["vscode-html-language-server", "emmet-lsp"]
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
     formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
 
     [[language]]
@@ -169,6 +176,7 @@
     scope = "source.css"
     language-servers = ["vscode-css-language-server", "emmet-lsp"]
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
     formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
 
     [[language]]
@@ -176,12 +184,14 @@
     scope = "source.json"
     language-servers = ["vscode-json-language-server"]
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
     formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
 
     [[language]]
     name = "yaml"
     scope = "source.yaml"
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
     formatter = { command = "prettier", args = ["--stdin-filepath", "%{buffer_name}"] }
 
     [[language]]
@@ -189,11 +199,13 @@
     scope = "source.toml"
     language-servers = ["taplo"]
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
     formatter = { command = "taplo", args = ["fmt", "-"] }
 
     [[language]]
     name = "python"
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
     formatter = { command = "ruff", args = ["format", "-"] }
     language-servers = ["ty", "ruff"]
 
@@ -202,6 +214,7 @@
     scope = "source.bash"
     language-servers = ["bash-language-server"]
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
     formatter = { command = "shfmt", args = ["-i", "2"] }
 
     [[language]]
@@ -209,5 +222,8 @@
     scope = "source.rust"
     language-servers = ["rust-analyzer"]
     auto-format = true
+    indent = { tab-width = 4, unit = "\t" }
+    indent = { tab-width = 4, unit = "\t" }
+    formatter = { command = "rustfmt", args = ["--edition"] }
   '';
 }

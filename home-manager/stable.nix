@@ -46,9 +46,13 @@
     uv
     bun
     # --- Rust Toolchain ---
-    rustc
-    cargo
-    rust-analyzer
+    rustup
+    bacon
+    cargo-nextest
+    cargo-expand
+    cargo-audit
+    cargo-deny
+    cargo-machete
     # --- Nix Ecosystem ---
     nil
     alejandra
