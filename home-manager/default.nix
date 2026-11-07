@@ -15,6 +15,7 @@
     ./mitos.nix
     ./zellj.nix
     ./rust.nix
+    ./thorium.nix
 
     # ./rofi
     # ./dunst

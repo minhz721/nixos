@@ -169,7 +169,7 @@
 
           # Application shortcuts
           "${modifier}+e" = "exec nemo";
-          "${modifier}+b" = "exec google-chrome";
+          "${modifier}+b" = "exec thorium";
           "${modifier}+c" = "exec gram";
 
           # Window layout controls
@@ -195,11 +195,6 @@
     };
   };
 
-  xdg.configFile."thorium-flags.conf".text = ''
-    --ozone-platform-hint=auto
-    --ozone-platform=wayland
-    --enable-features=WaylandWindowDecorations
-  '';
   xdg.configFile."chrome-flags.conf".text = ''
     --ozone-platform-hint=auto
     --ozone-platform=wayland

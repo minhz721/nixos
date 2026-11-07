@@ -15,6 +15,7 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    thorium.url = "github:Rishabh5321/custom-packages-flake";
   };
   outputs = {
     nixpkgs,
