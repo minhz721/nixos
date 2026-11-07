@@ -33,7 +33,7 @@
     localsend
     # Communication & Web Browsers
     telegram-desktop
-    google-chrome
+    # google-chrome
     # Development Applications & CLI
     bruno
     lazydocker
