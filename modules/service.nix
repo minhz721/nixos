@@ -44,4 +44,12 @@
   services.gvfs.enable = true;
 
   programs.dconf.enable = true;
+
+  # Prevent the system from shutting down or sleeping when receiving a rogue Power key signal from the keyboard knob (e.g., Xinmeng M75)
+  services.logind.settings = {
+    Login = {
+      HandlePowerKey = "ignore";
+      HandlePowerKeyLongPress = "ignore";
+    };
+  };
 }
