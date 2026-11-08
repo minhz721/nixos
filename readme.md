@@ -34,8 +34,8 @@ Welcome to my personal **NixOS** configuration repository. This setup manages my
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com ~/.config/nixos
-cd ~/.config/nixos
+git clone https://github.com/minhz721/nixos
+cd ~/nixos
 ```
 
 ### 2. Generate your hardware configuration (For new machines)
@@ -43,7 +43,7 @@ cd ~/.config/nixos
 Backup or overwrite the repository's hardware file with your own local setup:
 
 ```bash
-sudo cp /etc/nixos/hardware-configuration.nix ~/.config/nixos/
+sudo cp /etc/nixos/hardware-configuration.nix .
 ```
 
 ### 3. Apply the configuration
