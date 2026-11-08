@@ -5,7 +5,7 @@
     ./git.nix
     ./nemo
     ./gtk.nix
-    ./librewolf.nix
+    # ./librewolf.nix
     ./yazi.nix
     ./gram.nix
     ./stable.nix
@@ -13,8 +13,8 @@
     # ./fresh/fresh.nix
     ./helix.nix
     ./mitos.nix
-    # ./zellj.nix
-    ./tmux.nix
+    ./zellj.nix
+    # ./tmux.nix
     ./rust.nix
     ./thorium.nix
 
