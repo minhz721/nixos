@@ -1,5 +1,7 @@
 {pkgs, ...}: {
   nixpkgs.config.allowUnfree = true;
+  hardware.enableAllFirmware = true;
+  boot.kernelParams = ["usbcore.autosuspend=-1"];
   nix.settings.auto-optimise-store = true;
 
   nix.gc = {
