@@ -86,7 +86,6 @@
       bind -n M-S-Left resize-pane -L 5
       bind -n M-S-Right resize-pane -R 5
       bind -n M-S-Up resize-pane -U 5
-      bind -n M-S-Down resize-pane -D 5
       bind -n M-f resize-pane -Z
 
       # =====================================================================

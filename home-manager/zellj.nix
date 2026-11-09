@@ -7,9 +7,7 @@
       default_layout = "default";
       default_mode = "normal";
       # UI
-      pane_frames = true;
-      simplified_ui = false;
-      show_startup_tips = false;
+      show_startup_tips = true;
       mouse_mode = true;
       pane_viewport_serialization = true;
       # Theme
@@ -20,12 +18,6 @@
       scroll_buffer_size = 10000;
       # Session
       session_serialization = true;
-      # Built-in UI
-      ui = {
-        pane_frames = {
-          rounded_corners = true;
-        };
-      };
     };
     extraConfig = ''
     '';
