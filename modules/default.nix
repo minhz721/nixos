@@ -12,6 +12,7 @@
     ./virt-manager.nix
     ./docker.nix
     ./fcitx5.nix
+    ./adguard.nix
 
     # ./i3.nix
     ./sway.nix
