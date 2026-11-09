@@ -63,7 +63,7 @@ in {
         };
         soft-wrap = {
           enable = true;
-          wrap-at-text-width = true;
+          wrap-at-text-width = false;
         };
         lsp = {
           display-progress-messages = true;
@@ -106,6 +106,7 @@ in {
             "e" = "file_explorer_in_current_directory";
             "b" = "buffer_picker";
             "/" = "toggle_comments";
+            "r" = ":reload";
           };
         };
 
@@ -119,6 +120,8 @@ in {
           "C-z" = ["normal_mode" "undo" "insert_mode"];
           "C-S-z" = ["normal_mode" "redo" "insert_mode"];
           "C-x" = ["normal_mode" "goto_line_start" "extend_to_line_bounds" "delete_selection" "insert_mode"];
+          "tab" = "insert_tab";
+          "S-tab" = "unindent";
         };
 
         select = {
