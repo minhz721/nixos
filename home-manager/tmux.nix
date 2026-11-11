@@ -28,6 +28,10 @@
       # =====================================================================
       set -g @catppuccin_flavor 'mocha'
       set -g @catppuccin_window_status_style "rounded"
+
+       set -g @catppuccin_window_current_text "  #[bold]#W  "
+      set -g @catppuccin_window_default_text " #W "
+
       set -g @catppuccin_status_modules_right "directory session date_time"
       set -g @catppuccin_date_time_text "%H:%M %d-%m-%Y"
       set -g @catppuccin_status_left_separator  " │ "
