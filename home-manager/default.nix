@@ -14,7 +14,7 @@
     ./helix.nix
     ./mitos.nix
     ./zellj.nix
-    # ./tmux.nix
+    ./tmux.nix
     ./rust.nix
     ./thorium.nix
 

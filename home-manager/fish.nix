@@ -3,16 +3,6 @@
     EDITOR = "hx";
     VISUAL = "hx";
   };
-  # CLI tools
-  home.packages = with pkgs; [
-    fzf
-    fd
-    ripgrep
-    zoxide
-    curl
-    jq
-    poppler
-  ];
 
   # Eza - modern replacement for ls
   programs.eza = {
@@ -107,11 +97,15 @@
       ld = "lazydocker";
       lsql = "lazysql";
 
-      ze = "zellij";
+      zj = "zellij";
       # NixOS
       rebuild = "sudo nixos-rebuild switch --flake";
       flake-update = "nix flake update";
       nix-clean = "sudo nix-collect-garbage -d";
+
+      # Nh
+      nhos = "nh os switch";
+      nhca = "nh clean all";
     };
   };
 }
