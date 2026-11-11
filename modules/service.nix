@@ -4,11 +4,11 @@
   boot.kernelParams = ["usbcore.autosuspend=-1"];
   nix.settings.auto-optimise-store = true;
 
-  nix.gc = {
-    automatic = true;
-    dates = "weekly";
-    options = "--delete-older-than 7d";
-  };
+  # nix.gc = {
+  #   automatic = true;
+  #   dates = "weekly";
+  #   options = "--delete-older-than 7d";
+  # };
 
   programs.nix-ld.enable = true;
 

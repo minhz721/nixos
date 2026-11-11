@@ -34,6 +34,18 @@
     # Communication & Web Browsers
     telegram-desktop
     # google-chrome
+
+    # CLI tools
+    fzf
+    fd
+    ripgrep
+    zoxide
+    curl
+    jq
+    yq
+    poppler
+    bat
+
     # Development Applications & CLI
     bruno
     lazydocker

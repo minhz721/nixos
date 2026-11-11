@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       background-opacity = 0.8;
-      background-blur = 20;
+      background-blur = 30;
       # swayfx
       window-decoration = false;
       window-padding-x = 12;
