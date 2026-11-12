@@ -3,7 +3,7 @@
     enable = true;
     config = {
       modifier = "Mod4";
-      terminal = "ghostty";
+      terminal = "alacritty";
       startup = [
         {
           command = "xset s off -dpms s noblank";
@@ -39,7 +39,7 @@
       in
         pkgs.lib.mkOptionDefault {
           # Core shortcuts
-          "${modifier}+Return" = "exec ghostty";
+          "${modifier}+Return" = "exec alacritty";
           "${modifier}+d" = "exec rofi -show drun";
           "${modifier}+q" = "kill";
           "${modifier}+Shift+r" = "reload";

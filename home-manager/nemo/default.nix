@@ -24,9 +24,9 @@
     ${pkgs.p7zip}/bin/7z x "$FILE" -o"$DIR"
   '';
 in {
-  # Link custom Nemo Action for right-click "Open in Ghostty" integration
-  home.file.".local/share/nemo/actions/ghostty.nemo_action" = {
-    source = ./ghostty.nemo_action;
+  # Link custom Nemo Action for right-click "Open in Alacritty" integration
+  home.file.".local/share/nemo/actions/alacritty.nemo_action" = {
+    source = ./alacritty.nemo_action;
   };
 
   # Register core CLI tools and customized wrapper scripts to user environment
@@ -46,7 +46,7 @@ in {
     };
 
     "org/nemo/preferences/menu-config" = {
-      # Hide default Cinnamon terminal menus to prioritize Ghostty Nemo Action
+      # Hide default Cinnamon terminal menus to prioritize Alacritty Nemo Action
       background-menu-open-in-terminal = false;
       selection-menu-open-in-terminal = false;
     };
