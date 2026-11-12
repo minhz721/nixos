@@ -92,7 +92,7 @@
     wrapperFeatures.gtk = true;
     config = {
       modifier = "Mod4";
-      terminal = "ghostty";
+      terminal = "alacritty";
       menu = "fuzzel";
       output = {
         "DP-1" = {
@@ -160,7 +160,7 @@
       in
         pkgs.lib.mkOptionDefault {
           # Core shortcuts
-          "${modifier}+Return" = "exec ghostty";
+          "${modifier}+Return" = "exec alacritty";
           "${modifier}+d" = "exec fuzzel";
           "${modifier}+q" = "kill";
           "${modifier}+Shift+r" = "reload";

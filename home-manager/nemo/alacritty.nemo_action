@@ -1,0 +1,9 @@
+[Nemo Action]
+Active=true
+Name=Open in Alacritty
+Comment=Open Alacritty terminal in the current directory
+Exec=alacritty --working-directory=%P
+Icon-Name=com.mitchellh.alacritty
+Selection=none
+Extensions=dir;
+Quote=double

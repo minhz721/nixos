@@ -1,6 +1,6 @@
 {
   imports = [
-    ./ghostty.nix
+    # ./ghostty.nix
     ./fish.nix
     ./git.nix
     ./nemo
@@ -17,6 +17,7 @@
     ./tmux.nix
     ./rust.nix
     ./thorium.nix
+    ./alacritty.nix
 
     # ./rofi
     # ./dunst
