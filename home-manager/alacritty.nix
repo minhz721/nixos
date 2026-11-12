@@ -29,13 +29,14 @@
           key = "C";
           mods = "Control";
           action = "Copy";
+          mode = "Vi";
         }
         # SIGINT
-        {
-          key = "C";
-          mods = "Control";
-          chars = "\\u0003";
-        }
+        # {
+        #   key = "C";
+        #   mods = "Control";
+        #   chars = "\\u0003";
+        # }
         {
           key = "P";
           mods = "Control";
