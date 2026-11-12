@@ -5,6 +5,7 @@
       general.import = [
         "${pkgs.alacritty-theme}/share/alacritty-theme/dark_plus.toml"
       ];
+      colors.primary.background = "#121314";
       window = {
         opacity = 0.8;
         blur = true;
@@ -23,30 +24,14 @@
           style = "Regular";
         };
       };
-
+      selection = {
+        save_to_clipboard = true;
+      };
       keyboard.bindings = [
         {
-          key = "C";
-          mods = "Control";
-          action = "Copy";
-          mode = "Vi";
-        }
-        # SIGINT
-        # {
-        #   key = "C";
-        #   mods = "Control";
-        #   chars = "\\u0003";
-        # }
-        {
-          key = "P";
+          key = "V";
           mods = "Control";
           action = "Paste";
-        }
-        # Reload configuration bằng Super + R
-        {
-          key = "R";
-          mods = "Super";
-          action = "ReceiveChar";
         }
       ];
     };
