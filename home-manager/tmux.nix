@@ -29,7 +29,7 @@
       set -g @catppuccin_flavor 'mocha'
       set -g @catppuccin_window_status_style "rounded"
 
-       set -g @catppuccin_window_current_text "  #[bold]#W  "
+      set -g @catppuccin_window_current_text "  #[bold]#W  "
       set -g @catppuccin_window_default_text " #W "
 
       set -g @catppuccin_status_modules_right "directory session date_time"
@@ -60,14 +60,16 @@
       bind Up    select-pane -U
       bind Down  select-pane -D
 
-      # Panes
+      # Panes & Yazi Sidebar (25%)
       bind -n M-n if-shell "$is_hx" "send-keys M-n" "split-window -v -c '#{pane_current_path}'"
       bind -n M-p if-shell "$is_hx" "send-keys M-p" "split-window -h -c '#{pane_current_path}'"
       bind -n M-x if-shell "$is_hx" "send-keys M-x" "kill-pane"
+      bind -n M-e if-shell "$is_hx" "send-keys M-e" "split-window -h -b -l 25% -c '#{pane_current_path}' 'yazi'"
 
       bind n split-window -v -c "#{pane_current_path}"
       bind p split-window -h -c "#{pane_current_path}"
       bind x kill-pane
+      bind e split-window -h -b -l 25% -c "#{pane_current_path}" "yazi"
 
       # Windows / Tabs
       bind -n M-t if-shell "$is_hx" "send-keys M-t" "new-window -c '#{pane_current_path}'"
@@ -113,31 +115,36 @@
       set -g menu-border-style "fg=#89b4fa"
       set -g menu-border-lines "rounded"
 
-      bind Space display-menu -T "#[align=centre,bold,fg=#cba6f7]    Tmux Which-Key " -x C -y C \
+      bind Space display-menu -T "#[align=centre,bold,fg=#cba6f7]  Tmux Which-Key (Prefix: Ctrl+g)  " -x C -y C \
+        "#[fg=#fab387]── TOOLS (CÔNG CỤ) ──" "" "" \
+        "Yazi File Tree 25% (Ctrl+g e)"    e "split-window -h -b -l 25% -c '#{pane_current_path}' 'yazi'" \
+        "" \
         "#[fg=#a6e3a1]── PANES (CỬA SỔ CHIA) ──" "" "" \
-        "Split Vertical (Chia dọc)"       p "split-window -h -c '#{pane_current_path}'" \
-        "Split Horizontal (Chia ngang)"   n "split-window -v -c '#{pane_current_path}'" \
-        "Zoom / Unzoom Pane (Phóng to)"   f "resize-pane -Z" \
-        "Close Pane (Đóng pane)"          x "kill-pane" \
+        "Split Vertical (Ctrl+g p)"        p "split-window -h -c '#{pane_current_path}'" \
+        "Split Horizontal (Ctrl+g n)"      n "split-window -v -c '#{pane_current_path}'" \
+        "Zoom / Unzoom Pane (Ctrl+g f)"    f "resize-pane -Z" \
+        "Close Pane (Ctrl+g x)"            x "kill-pane" \
         "" \
         "#[fg=#89b4fa]── TABS / WINDOWS ──" "" "" \
-        "New Tab (Tab mới)"               t "new-window -c '#{pane_current_path}'" \
-        "Rename Tab (Đổi tên tab)"        , "command-prompt -I '#W' 'rename-window \"%%\"'" \
-        "Close Tab (Đóng tab)"            q "kill-window" \
+        "New Tab (Ctrl+g t)"               t "new-window -c '#{pane_current_path}'" \
+        "Rename Tab (Ctrl+g ,)"            , "command-prompt -I '#W' 'rename-window \"%%\"'" \
+        "Close Tab (Ctrl+g q)"             q "kill-window" \
         "" \
         "#[fg=#f9e2af]── SESSIONS (PHIÊN LÀM VIỆC) ──" "" "" \
-        "Switch Session (Danh sách)"      s "choose-tree -sZ" \
-        "New Session (Tạo mới)"           w "command-prompt -p 'New Session Name:' 'new-session -s \"%%\"'" \
-        "Rename Session (Đổi tên)"        r "command-prompt -I '#S' 'rename-session \"%%\"'" \
-        "Detach Session (Thoát ngầm)"     d "detach-client" \
+        "Switch Session (Ctrl+g s)"        s "choose-tree -sZ" \
+        "New Session (Ctrl+g w)"           w "command-prompt -p 'New Session Name:' 'new-session -s \"%%\"'" \
+        "Rename Session (Ctrl+g r)"        r "command-prompt -I '#S' 'rename-session \"%%\"'" \
+        "Detach Session (Ctrl+g d)"        d "detach-client" \
         "" \
-        "#[fg=#f38ba8]── KHÁC ──" "" "" \
-        "Copy Mode (Cuộn / Copy)"         v "copy-mode" \
-        "Exit Menu (Thoát menu)"          Escape ""
+        "#[fg=#f38ba8]── KHÁC & LƯU SESSION ──" "" "" \
+        "Copy Mode (Ctrl+g v)"             v "copy-mode" \
+        "Save Session (Ctrl+g Ctrl+s)"     C-s "run-shell '${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/scripts/save.sh'" \
+        "Exit Menu (Esc)"                  Escape ""
 
       # =====================================================================
       # PLUGIN CONFIGURATIONS
       # =====================================================================
+      set -g @resurrect-processes 'hx yazi'
       set -g @resurrect-capture-pane-contents 'on'
       set -g @continuum-restore 'on'
       set -g @continuum-save-interval '15'
