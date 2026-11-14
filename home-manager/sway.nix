@@ -1,8 +1,43 @@
 {
   config,
   pkgs,
+  lib,
   ...
-}: {
+}: let
+  mod = "Mod4";
+
+  screenshot = pkgs.writeShellApplication {
+    name = "screenshot";
+    runtimeInputs = with pkgs; [grim slurp wl-clipboard libnotify coreutils];
+    text = ''
+      dir="''${XDG_PICTURES_DIR:-$HOME/Pictures}/Screenshots"
+      mkdir -p "$dir"
+      file="$dir/$(date +'%Y-%m-%d_%H-%M-%S').png"
+
+      case "''${1:-region}" in
+        region)
+          geometry="$(slurp)" || exit 0
+          grim -g "$geometry" "$file"
+          ;;
+        full)
+          grim "$file"
+          ;;
+        *)
+          echo "usage: screenshot [region|full]" >&2
+          exit 1
+          ;;
+      esac
+
+      wl-copy --type image/png < "$file"
+      notify-send -t 2000 "Screenshot saved" "$file"
+    '';
+  };
+
+  browserFlags = ''
+    --ozone-platform-hint=auto
+    --enable-features=WebRTCPipeWireCapturer
+  '';
+in {
   home.packages = with pkgs; [
     libnotify
     wl-clipboard
@@ -38,7 +73,7 @@
       };
       background = [
         {
-          path = "/home/leomin/Pictures/wallpaper.jpg";
+          path = "${config.home.homeDirectory}/Pictures/wallpaper.jpg";
           blur_passes = 2;
           blur_size = 7;
           noise = 0.0117;
@@ -81,23 +116,25 @@
   };
 
   wayland.windowManager.sway = {
+    enable = true;
+    package = null;
+
     extraConfig = ''
-      default_border pixel 2
       exec --no-startup-id swaymsg workspace 1
       client.focused          #f9e2af   #f9e2af   #1e1e2e   #f9e2af     #f9e2af
       client.focused_inactive #313244   #313244   #cdd6f4   #313244     #313244
       client.unfocused        #1e1e2e   #1e1e2e   #cdd6f4   #1e1e2e     #1e1e2e
     '';
-    enable = true;
-    wrapperFeatures.gtk = true;
+
     config = {
-      modifier = "Mod4";
+      modifier = mod;
       terminal = "alacritty";
       menu = "fuzzel";
       output = {
         "DP-1" = {
           mode = "2560x1440@200Hz";
           pos = "0 0";
+          adaptive_sync = "on";
         };
         "HDMI-A-1" = {
           mode = "1920x1080@60Hz";
@@ -105,17 +142,24 @@
         };
       };
       startup = [
-        {command = "sh -c 'swaybg -i $(cat ~/.cache/wallpaper_current) -m fill'";}
+        {command = "sh -c 'swaybg -i \"$(cat ~/.cache/wallpaper_current)\" -m fill'";}
         {command = "fcitx5 -d";}
-        {command = "mako";}
         {command = "blueman-applet";}
       ];
       bars = [
         {command = "${pkgs.waybar}/bin/waybar";}
       ];
       window = {
-        border = 8;
+        border = 2;
         titlebar = false;
+        commands =
+          map (criteria: {
+            command = "floating enable, move position center";
+            inherit criteria;
+          }) [
+            {app_id = "^(mpv|imv|cava|fcitx5-configtool|blueman-manager.*)$";}
+            {title = "(?i)Mission Center";}
+          ];
       };
       floating = {
         border = 5;
@@ -125,80 +169,43 @@
         inner = 6;
         outer = 4;
       };
-      window.commands = [
-        {
-          command = "floating enable, move center";
-          criteria.app_id = "blueman-manager";
-        }
-        {
-          command = "floating enable, move center";
-          criteria.app_id = "blueman-manager-wrapped";
-        }
-        {
-          command = "floating enable, move center";
-          criteria.app_id = "mpv";
-        }
-        {
-          command = "floating enable, move center";
-          criteria.app_id = "imv";
-        }
-        {
-          command = "floating enable, move center";
-          criteria.app_id = "cava";
-        }
-        {
-          command = "floating enable, move center";
-          criteria.app_id = "fcitx5-configtool";
-        }
-        {
-          command = "floating enable, move center";
-          criteria.title = "(?i)(Mission Center)";
-        }
-      ];
-      keybindings = let
-        modifier = "Mod4";
-      in
-        pkgs.lib.mkOptionDefault {
-          # Core shortcuts
-          "${modifier}+Return" = "exec alacritty";
-          "${modifier}+d" = "exec fuzzel";
-          "${modifier}+q" = "kill";
-          "${modifier}+Shift+r" = "reload";
-          "${modifier}+Shift+s" = "exec grim -g \"$(slurp)\" - | tee ~/Pictures/Screenshots/$(date +'%Y-%m-%d_%H-%M-%S').png | wl-copy";
-          "${modifier}+l" = "exec hyprlock";
-          "${modifier}+Tab" = "exec ${config.home.homeDirectory}/.config/fuzzel/scripts/sway-window-switcher.sh";
 
-          # Application shortcuts
-          "${modifier}+e" = "exec nemo";
-          "${modifier}+b" = "exec thorium";
-          "${modifier}+c" = "exec gram";
+      keybindings = lib.mkOptionDefault {
+        # Core
+        "${mod}+q" = "kill";
+        "${mod}+Shift+r" = "reload";
+        "${mod}+l" = "exec hyprlock";
+        "${mod}+Tab" = "exec ${config.home.homeDirectory}/.config/fuzzel/scripts/sway-window-switcher.sh";
 
-          # Window layout controls
-          "${modifier}+f" = "floating toggle";
-          "${modifier}+Shift+f" = "focus mode_toggle";
+        # Screenshot
+        "${mod}+Shift+s" = "exec ${screenshot}/bin/screenshot region";
+        "Print" = "exec ${screenshot}/bin/screenshot full";
 
-          # Direct window resizing using arrow keys
-          "${modifier}+Ctrl+Left" = "resize shrink width 20 px";
-          "${modifier}+Ctrl+Down" = "resize grow height 20 px";
-          "${modifier}+Ctrl+Up" = "resize shrink height 20 px";
-          "${modifier}+Ctrl+Right" = "resize grow width 20 px";
+        # Apps
+        "${mod}+e" = "exec nemo";
+        "${mod}+b" = "exec thorium";
+        "${mod}+c" = "exec gram";
 
-          # Layout
-          "${modifier}+v" = "splitv";
-          "${modifier}+Shift+b" = "splith";
+        # Layout
+        "${mod}+f" = "fullscreen toggle";
+        "${mod}+Shift+f" = "floating toggle";
+        "${mod}+t" = "layout toggle split";
+        "${mod}+Shift+b" = "splith";
 
-          # Hardware Media keys (Migrated from your Qtile config with limit 1.0)
-          "--locked XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0";
-          "--locked XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
-          "--locked XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
-          "--locked XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
-        };
+        # Resize
+        "${mod}+Ctrl+Left" = "resize shrink width 20 px";
+        "${mod}+Ctrl+Down" = "resize grow height 20 px";
+        "${mod}+Ctrl+Up" = "resize shrink height 20 px";
+        "${mod}+Ctrl+Right" = "resize grow width 20 px";
+
+        # Media keys
+        "--locked XF86AudioRaiseVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05+ -l 1.0";
+        "--locked XF86AudioLowerVolume" = "exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.05-";
+        "--locked XF86AudioMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
+        "--locked XF86AudioMicMute" = "exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
+      };
     };
   };
 
-  xdg.configFile."chrome-flags.conf".text = ''
-    --ozone-platform-hint=auto
-    --ozone-platform=wayland
-    --enable-features=WaylandWindowDecorations,WebRTCPipeWireCapturer
-  '';
+  xdg.configFile."chrome-flags.conf".text = browserFlags;
 }
