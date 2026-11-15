@@ -8,9 +8,9 @@
     type = "fcitx5";
     fcitx5 = {
       waylandFrontend = true;
-      addons = [
+      addons = with pkgs; [
         pkgsUnstable.fcitx5-lotus
-        pkgs.fcitx5-gtk
+        fcitx5-gtk
       ];
       settings = {
         inputMethod = {
@@ -30,7 +30,6 @@
       };
     };
   };
-
   environment.sessionVariables = {
     GTK_IM_MODULE = "fcitx";
     QT_IM_MODULE = "fcitx";

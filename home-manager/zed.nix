@@ -9,12 +9,8 @@ in {
   programs.zed-editor = {
     enable = true;
     extensions = [
-      "vscode-dark-modern" #
-      "nix"
-      "toml"
-      "dockerfile"
+      "vscode-dark-modern"
       "kdl"
-      "html"
     ];
 
     userKeymaps = [
@@ -38,6 +34,12 @@ in {
           "ctrl-v" = "terminal::Paste";
         };
       }
+      {
+        context = "Terminal && text_selected";
+        bindings = {
+          "ctrl-c" = "terminal::Copy";
+        };
+      }
     ];
 
     userSettings = {
@@ -49,7 +51,6 @@ in {
         dock = "right";
         threads_sidebar.position = "right";
       };
-
       theme = {
         mode = "dark";
         light = "VSCode Dark Modern";
@@ -75,7 +76,6 @@ in {
 
       lsp = {
         nixd.binary.path = lib.getExe pkgs.nixd;
-
         ruff.binary = {
           path = lib.getExe pkgs.ruff;
           arguments = ["server"];
@@ -87,7 +87,6 @@ in {
           };
           initialization_options.experimental.useUv = "on";
         };
-
         bash-language-server.binary = {
           path = lib.getExe pkgs.bash-language-server;
           arguments = ["start"];
@@ -104,7 +103,6 @@ in {
           path = lib.getExe pkgs.dockerfile-language-server;
           arguments = ["--stdio"];
         };
-
         rust-analyzer.initialization_options.inlayHints = {
           maxLength = null;
           lifetimeElisionHints = {

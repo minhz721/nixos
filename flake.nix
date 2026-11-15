@@ -11,6 +11,7 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Rust toolchain
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,8 +20,10 @@
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mitos.url = "github:mitos-editor/mitos";
-    thorium.url = "github:Rishabh5321/custom-packages-flake";
+    thorium = {
+      url = "github:Rishabh5321/custom-packages-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

@@ -1,15 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    # Shell & CLI Utilities
-    fastfetch
-    btop
     # Archive & System Utilities
-    unzip
-    unrar
-    p7zip
     file-roller
-    ffmpegthumbnailer
-    poppler
     libgsf
     czkawka
     # File Managers
@@ -23,19 +15,13 @@
     cava
     # Disk / Filesystem GUI & Automount
     gnome-disk-utility
-    udiskie
-    # System Themes / Icons
-    gnome-themes-extra
-    adwaita-icon-theme
     # Desktop Applications
     zathura
     mission-center
     localsend
     # Communication & Web Browsers
     telegram-desktop
-    # google-chrome
 
-    nodejs
     # CLI tools
     fzf
     fd
@@ -56,6 +42,7 @@
     # Runtimes & Toolchains
     uv
     bun
+    nodejs
     # --- Nix Ecosystem ---
     nil
     alejandra
