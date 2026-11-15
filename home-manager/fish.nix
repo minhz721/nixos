@@ -4,6 +4,10 @@
     VISUAL = "hx";
   };
 
+  home.sessionPath = [
+    "$HOME/.bun/bin"
+  ];
+
   # Eza - modern replacement for ls
   programs.eza = {
     enable = true;

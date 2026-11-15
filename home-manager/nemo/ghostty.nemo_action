@@ -1,9 +1,0 @@
-[Nemo Action]
-Active=true
-Name=Open in Ghostty
-Comment=Open Ghostty terminal in the current directory
-Exec=ghostty --working-directory=%P
-Icon-Name=com.mitchellh.ghostty
-Selection=none
-Extensions=dir;
-Quote=double
