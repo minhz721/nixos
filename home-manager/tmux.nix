@@ -7,6 +7,7 @@
   # Wrap tmux command in "...", auto-escape " and \
   q = command: "\"${lib.escape ["\"" "\\"] command}\"";
   cwd = "-c '#{pane_current_path}'";
+
   # Common commands for Alt-binds and the which-key menu
   cmd = {
     splitDown = "split-window -v ${cwd}";
@@ -17,6 +18,7 @@
     renameSession = "command-prompt -I '#S' \"rename-session '%%'\"";
     renameWindow = "command-prompt -I '#W' \"rename-window '%%'\"";
   };
+
   # Zellij-style Alt-binds: if the pane is running Helix, send keys to Helix,
   # otherwise let tmux handle it.
   alt = key: command: "bind -n ${key} if-shell -F \"$is_hx\" \"send-keys ${key}\" ${q command}";
@@ -62,7 +64,6 @@
   header = color: title: "${q "#[fg=${color}]── ${title} ──"} \"\" \"\"";
   item = label: key: command: "${q label} ${key} ${q command}";
   separator = "\"\"";
-
   menu = lib.concatStringsSep " \\\n        " [
     (header "#fab387" "TOOLS")
     (item "Yazi File Tree 25% (Alt+e)" "e" cmd.yazi)
@@ -112,9 +113,7 @@ in {
           set -g @catppuccin_session_color "#{E:@thm_green}"
         '';
       }
-
       yank
-
       {
         plugin = resurrect;
         extraConfig = ''
@@ -122,14 +121,9 @@ in {
           set -g @resurrect-capture-pane-contents 'on'
         '';
       }
-
       {
         plugin = continuum;
         extraConfig = ''
-          set -g status-left ""
-          set -g status-right-length 100
-          set -g status-right "#{E:@catppuccin_status_directory}#{E:@catppuccin_status_session}#{E:@catppuccin_status_date_time}"
-
           set -g @continuum-restore 'on'
           set -g @continuum-save-interval '15'
         '';
@@ -147,6 +141,11 @@ in {
 
       set -g renumber-windows on
       set -g status-position top
+
+      # Status bar customization (tách từ phần continuum cho chuẩn)
+      set -g status-left ""
+      set -g status-right-length 100
+      set -g status-right "#{E:@catppuccin_status_directory}#{E:@catppuccin_status_session}#{E:@catppuccin_status_date_time}"
 
       # =====================================================================
       # HELIX DETECTION (avoid spawning processes like ps)

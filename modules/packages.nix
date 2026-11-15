@@ -1,8 +1,7 @@
 {pkgs, ...}: {
   nix.settings = {
     experimental-features = ["nix-command" "flakes"];
-    keep-outputs = true;
-    keep-derivations = true;
+    auto-optimise-store = true;
   };
   environment.systemPackages = with pkgs; [
     # NixOS / System Management
@@ -12,5 +11,18 @@
     ntfs3g
     exfat
     exfatprogs
+    gnome-disk-utility
+
+    # Core CLI & Archives
+    fastfetch
+    btop
+    unzip
+    unrar
+    p7zip
+    ffmpeg
+
+    # System Themes / Icons
+    gnome-themes-extra
+    adwaita-icon-theme
   ];
 }

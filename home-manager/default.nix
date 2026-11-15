@@ -9,7 +9,6 @@
     ./stable.nix
     ./unstale.nix
     ./helix.nix
-    ./mitos.nix
     ./zellj.nix
     ./tmux.nix
     ./rust.nix

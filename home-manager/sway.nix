@@ -32,7 +32,7 @@
     '';
   };
 
-  browserFlags = ''
+  google-chrome-flags = ''
     --ozone-platform-hint=auto
     --enable-features=WebRTCPipeWireCapturer
   '';
@@ -141,8 +141,6 @@ in {
       };
       startup = [
         {command = "sh -c 'swaybg -i \"$(cat ~/.cache/wallpaper_current)\" -m fill'";}
-        {command = "fcitx5 -d";}
-        {command = "blueman-applet";}
       ];
       bars = [
         {command = "${pkgs.waybar}/bin/waybar";}
@@ -205,5 +203,5 @@ in {
     };
   };
 
-  xdg.configFile."chrome-flags.conf".text = browserFlags;
+  xdg.configFile."chrome-flags.conf".text = google-chrome-flags;
 }
