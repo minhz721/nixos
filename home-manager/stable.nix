@@ -35,6 +35,7 @@
     telegram-desktop
     # google-chrome
 
+    nodejs
     # CLI tools
     fzf
     fd

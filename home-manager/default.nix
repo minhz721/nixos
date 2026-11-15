@@ -3,7 +3,7 @@
     # ./ghostty.nix
     ./fish.nix
     ./git.nix
-    ./nemo
+    ./nemo.nix
     ./gtk.nix
     # ./librewolf.nix
     ./yazi.nix
@@ -18,7 +18,7 @@
     ./rust.nix
     ./thorium.nix
     ./alacritty.nix
-
+    ./zed.nix
     # ./rofi
     # ./dunst
     # ./picom.nix

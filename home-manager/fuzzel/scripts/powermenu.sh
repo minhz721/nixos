@@ -1,36 +1,20 @@
-#!/usr/bin/env bash
+options=(
+  "⚡ Power Off"
+  "🔄 Reboot"
+  "🔒 Lock Screen"
+  "🌙 Suspend"
+  "🚪 Log Out"
+)
 
-# Options
-op_poweroff="⚡ Power Off"
-op_reboot="🔄 Reboot"
-op_lock="🔒 Lock Screen"
-op_suspend="🌙 Suspend"
-op_logout="🚪 Log Out"
+choice=$(
+  printf '%s\n' "${options[@]}" |
+    fuzzel --dmenu --index --lines=5 --minimal-lines --width=25 --prompt="⚡ Power Menu: "
+) || exit 0
 
-options="$op_poweroff\n$op_reboot\n$op_lock\n$op_suspend\n$op_logout"
-
-# Launch Fuzzel in dmenu mode
-chosen=$(echo -e "$options" | fuzzel --dmenu \
-    --prompt="⚡ Power Menu: " \
-    --lines=5 \
-    --width=25 \
-    --font="Maple Mono:size=12")
-
-# Execute selected option
-case "$chosen" in
-"$op_poweroff")
-    systemctl poweroff
-    ;;
-"$op_reboot")
-    systemctl reboot
-    ;;
-"$op_lock")
-    swaylock
-    ;;
-"$op_suspend")
-    systemctl suspend
-    ;;
-"$op_logout")
-    niri msg action quit
-    ;;
+case "$choice" in
+  0) systemctl poweroff ;;
+  1) systemctl reboot ;;
+  2) hyprlock ;;
+  3) systemctl suspend ;;
+  4) swaymsg exit ;;
 esac

@@ -157,7 +157,7 @@ in {
             command = "floating enable, move position center";
             inherit criteria;
           }) [
-            {app_id = "^(mpv|imv|cava|fcitx5-configtool|blueman-manager.*)$";}
+            {app_id = "^(mpv|imv|cava|fcitx5-configtool|blueman-manager)$";}
             {title = "(?i)Mission Center";}
           ];
       };

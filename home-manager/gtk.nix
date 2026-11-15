@@ -1,60 +1,84 @@
-{pkgs, ...}: {
-  home.sessionVariables = {
-    XCURSOR_SIZE = "16";
+{
+  config,
+  pkgs,
+  ...
+}: let
+  themeName = "adw-gtk3-dark";
+  iconThemeName = "Adwaita";
+
+  font = {
+    name = "Maple Mono";
+    size = 12;
   };
-  xresources.properties = {
-    "Xcursor.size" = 16;
-    "Xcursor.theme" = "Adwaita";
+
+  cursor = {
+    name = "Adwaita";
+    size = 16;
+    package = pkgs.adwaita-icon-theme;
   };
+
+  dirs = config.xdg.userDirs;
+
+  recentOff = {
+    gtk-recent-files-max-age = 0;
+    gtk-recent-files-limit = 0;
+  };
+in {
+  home.pointerCursor = {
+    inherit (cursor) name package size;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
   gtk = {
     enable = true;
     theme = {
-      name = "adw-gtk3-dark";
+      name = themeName;
       package = pkgs.adw-gtk3;
     };
     iconTheme = {
-      name = "Adwaita";
+      name = iconThemeName;
       package = pkgs.adwaita-icon-theme;
     };
-    font = {
-      name = "Maple Mono";
-      size = 12;
+    inherit font;
+
+    gtk3 = {
+      extraConfig = recentOff;
+      bookmarks = [
+        "file://${dirs.download} Downloads"
+        "file://${dirs.documents} Documents"
+        "file://${dirs.videos} Videos"
+        "file://${dirs.music} Music"
+        "file://${dirs.pictures} Pictures"
+      ];
     };
-    gtk3.extraConfig.gtk-application-prefer-dark-theme = 1;
-    gtk4.extraConfig.gtk-application-prefer-dark-theme = 1;
+    gtk4.extraConfig = recentOff;
   };
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-      gtk-theme = "adw-gtk3-dark";
-      cursor-theme = "Adwaita";
-      cursor-size = 16;
-    };
+
+  dconf.settings."org/gnome/desktop/interface" = {
+    color-scheme = "prefer-dark";
+    cursor-theme = cursor.name;
+    cursor-size = cursor.size;
   };
+
   qt = {
     enable = true;
     platformTheme.name = "gtk";
   };
+
   services.xsettingsd = {
     enable = true;
     settings = {
-      "Net/ThemeName" = "adw-gtk3-dark";
+      "Net/ThemeName" = themeName;
+      "Net/IconThemeName" = iconThemeName;
+      "Gtk/FontName" = "${font.name} ${toString font.size}";
+      "Gtk/CursorThemeName" = cursor.name;
+      "Gtk/CursorThemeSize" = cursor.size;
       "Gtk/DecorationLayout" = "menu:";
       "Gtk/PrimaryButtonWarpsSlider" = 0;
       "Gtk/ToolbarStyle" = 3;
       "Gtk/MenuImages" = 1;
       "Gtk/ButtonImages" = 1;
-      "Gtk/CursorThemeName" = "Adwaita";
-      "Gtk/CursorThemeSize" = 16;
-      "Gtk/ShellShowsAppMenu" = 0;
-      "Net/ColorScheme" = "prefer-dark";
     };
-  };
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    name = "Adwaita";
-    package = pkgs.adwaita-icon-theme;
-    size = 16;
   };
 }
