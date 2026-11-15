@@ -8,7 +8,6 @@
 
   screenshot = pkgs.writeShellApplication {
     name = "screenshot";
-    runtimeInputs = with pkgs; [grim slurp wl-clipboard libnotify coreutils];
     text = ''
       dir="''${XDG_PICTURES_DIR:-$HOME/Pictures}/Screenshots"
       mkdir -p "$dir"
@@ -134,7 +133,6 @@ in {
         "DP-1" = {
           mode = "2560x1440@200Hz";
           pos = "0 0";
-          adaptive_sync = "on";
         };
         "HDMI-A-1" = {
           mode = "1920x1080@60Hz";
@@ -157,7 +155,7 @@ in {
             command = "floating enable, move position center";
             inherit criteria;
           }) [
-            {app_id = "^(mpv|imv|cava|fcitx5-configtool|blueman-manager)$";}
+            {app_id = "^(mpv|imv|cava|\\.blueman-manager-wrapped|blueman-manager|org\\.fcitx\\.)$";}
             {title = "(?i)Mission Center";}
           ];
       };
@@ -179,12 +177,12 @@ in {
 
         # Screenshot
         "${mod}+Shift+s" = "exec ${screenshot}/bin/screenshot region";
-        "Print" = "exec ${screenshot}/bin/screenshot full";
+        "${mod}+p" = "exec ${screenshot}/bin/screenshot full";
 
         # Apps
         "${mod}+e" = "exec nemo";
         "${mod}+b" = "exec thorium";
-        "${mod}+c" = "exec gram";
+        "${mod}+c" = "exec zeditor";
 
         # Layout
         "${mod}+f" = "fullscreen toggle";

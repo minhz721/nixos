@@ -5,12 +5,9 @@
     ./git.nix
     ./nemo.nix
     ./gtk.nix
-    # ./librewolf.nix
     ./yazi.nix
-    ./gram.nix
     ./stable.nix
     ./unstale.nix
-    # ./fresh/fresh.nix
     ./helix.nix
     ./mitos.nix
     ./zellj.nix
@@ -19,11 +16,6 @@
     ./thorium.nix
     ./alacritty.nix
     ./zed.nix
-    # ./rofi
-    # ./dunst
-    # ./picom.nix
-    # ./flameshot.nix
-    # ./i3.nix
 
     ./sway.nix
     ./fuzzel

@@ -4,12 +4,9 @@
   ...
 }: let
   resurrectScripts = "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/scripts";
-
   # Wrap tmux command in "...", auto-escape " and \
   q = command: "\"${lib.escape ["\"" "\\"] command}\"";
-
   cwd = "-c '#{pane_current_path}'";
-
   # Common commands for Alt-binds and the which-key menu
   cmd = {
     splitDown = "split-window -v ${cwd}";
@@ -20,11 +17,9 @@
     renameSession = "command-prompt -I '#S' \"rename-session '%%'\"";
     renameWindow = "command-prompt -I '#W' \"rename-window '%%'\"";
   };
-
   # Zellij-style Alt-binds: if the pane is running Helix, send keys to Helix,
   # otherwise let tmux handle it.
   alt = key: command: "bind -n ${key} if-shell -F \"$is_hx\" \"send-keys ${key}\" ${q command}";
-
   altBindings =
     {
       # Navigation
@@ -32,24 +27,20 @@
       "M-Right" = "select-pane -R";
       "M-Up" = "select-pane -U";
       "M-Down" = "select-pane -D";
-
       # Panes
       "M-n" = cmd.splitDown;
       "M-p" = cmd.splitRight;
       "M-x" = "kill-pane";
       "M-e" = cmd.yazi;
       "M-f" = "resize-pane -Z";
-
       # Windows / Tabs
       "M-t" = cmd.newWindow;
       "M-q" = "kill-window";
-
       # Sessions
       "M-s" = "choose-tree -sZ";
       "M-w" = cmd.newSession;
       "M-r" = cmd.renameSession;
       "M-d" = "detach-client";
-
       # Resizing
       "M-S-Left" = "resize-pane -L 5";
       "M-S-Right" = "resize-pane -R 5";
