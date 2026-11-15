@@ -5,20 +5,16 @@
 }: let
   themeName = "adw-gtk3-dark";
   iconThemeName = "Adwaita";
-
   font = {
     name = "Maple Mono";
     size = 12;
   };
-
   cursor = {
     name = "Adwaita";
     size = 16;
     package = pkgs.adwaita-icon-theme;
   };
-
   dirs = config.xdg.userDirs;
-
   recentOff = {
     gtk-recent-files-max-age = 0;
     gtk-recent-files-limit = 0;
@@ -29,7 +25,6 @@ in {
     gtk.enable = true;
     x11.enable = true;
   };
-
   gtk = {
     enable = true;
     theme = {
@@ -54,18 +49,15 @@ in {
     };
     gtk4.extraConfig = recentOff;
   };
-
   dconf.settings."org/gnome/desktop/interface" = {
     color-scheme = "prefer-dark";
     cursor-theme = cursor.name;
     cursor-size = cursor.size;
   };
-
   qt = {
     enable = true;
     platformTheme.name = "gtk";
   };
-
   services.xsettingsd = {
     enable = true;
     settings = {

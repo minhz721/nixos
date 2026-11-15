@@ -13,9 +13,6 @@
     ./docker.nix
     ./fcitx5.nix
     ./nh.nix
-    # ./adguard.nix
-
-    # ./i3.nix
     ./sway.nix
   ];
 }
