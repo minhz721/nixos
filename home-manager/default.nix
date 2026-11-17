@@ -3,18 +3,17 @@
     # ./ghostty.nix
     ./fish.nix
     ./git.nix
-    ./nemo.nix
     ./gtk.nix
     ./yazi.nix
     ./stable.nix
     ./unstale.nix
     ./helix.nix
-    ./zellj.nix
     ./tmux.nix
     ./rust.nix
     ./thorium.nix
     ./alacritty.nix
     ./zed.nix
+    ./nemo.nix
 
     ./sway.nix
     ./fuzzel

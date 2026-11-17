@@ -16,9 +16,6 @@
     # Core CLI & Archives
     fastfetch
     btop
-    unzip
-    unrar
-    p7zip
     ffmpeg
 
     # System Themes / Icons

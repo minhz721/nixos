@@ -70,7 +70,10 @@
 
   assoc = app: types: lib.genAttrs types (_: [app]);
 in {
-  home.packages = [extract];
+  home.packages = with pkgs; [
+    nemo
+    extract
+  ];
 
   xdg.dataFile."nemo/actions/alacritty.nemo_action".text = ''
     [Nemo Action]

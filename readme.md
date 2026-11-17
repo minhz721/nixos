@@ -4,8 +4,8 @@ Welcome to my personal **NixOS** configuration repository. This setup manages my
 
 ## ✨ Features
 
-- **Nix Flakes (26.05 & Unstable)**: Reproducible dependency management with locked package versions (`flake.lock`) alongside bleeding-edge packages via `nixpkgs-unstable` and custom inputs (`fenix`, `mitos`, `thorium`).
-- **Home Manager**: Declarative user environments including terminals (`alacritty`, `ghostty`), editors (`zed`, `helix`, `mitos`), multiplexers (`zellij`, `tmux`), shell (`fish`), and file managers (`yazi`, `nemo`).
+- **Nix Flakes (26.05 & Unstable)**: Reproducible dependency management with locked package versions (`flake.lock`) alongside bleeding-edge packages via `nixpkgs-unstable` and custom inputs (`fenix`, `thorium`).
+- **Home Manager**: Declarative user environments including terminals (`alacritty`, `ghostty`), editors (`zed`, `helix`), multiplexers (`zellij`, `tmux`), shell (`fish`), and file managers (`yazi`, `nemo`).
 - **Sway Window Manager**: Wayland tiling window management paired with **Noctalia Greeter** (Catppuccin theme), `waybar`, custom `fuzzel` scripts (powermenu, window switcher, wallpaper selector), `mako`, and `hyprlock`.
 - **NH (Nix Helper)**: Streamlined system rebuilds and automated garbage collection (`--keep-since 4d --keep 3`).
 - **Vietnamese Input**: Pre-configured `fcitx5` with `fcitx5-lotus` for seamless Vietnamese typing on Wayland.
@@ -24,9 +24,8 @@ Welcome to my personal **NixOS** configuration repository. This setup manages my
 │   ├── fuzzel/                # Application launcher config & custom Wayland scripts
 │   ├── alacritty.nix          # Terminal configurations (Alacritty, Ghostty)
 │   ├── ghostty.nix
-│   ├── helix.nix              # Code editors (Helix, Zed, Mitos)
+│   ├── helix.nix              # Code editors (Helix, Zed)
 │   ├── zed.nix
-│   ├── mitos.nix
 │   ├── rust.nix               # Rust toolchain via Fenix
 │   ├── sway.nix               # Sway keybindings, outputs, and startup rules
 │   ├── waybar.nix             # Status bar configuration
