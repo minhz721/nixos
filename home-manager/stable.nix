@@ -1,13 +1,9 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
     # Archive & System Utilities
-    file-roller
-    libgsf
     czkawka
     # File Managers
     yazi
-    nemo-with-extensions
-    nemo-fileroller
     # Multimedia
     imv
     mpv
@@ -30,7 +26,6 @@
     curl
     jq
     yq
-    poppler
     bat
 
     # Development Applications & CLI
@@ -44,7 +39,7 @@
     bun
     nodejs
     # --- Nix Ecosystem ---
-    nil
+    nixd
     alejandra
     statix
     deadnix

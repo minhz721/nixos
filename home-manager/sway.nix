@@ -141,6 +141,8 @@ in {
       };
       startup = [
         {command = "sh -c 'swaybg -i \"$(cat ~/.cache/wallpaper_current)\" -m fill'";}
+        {command = "fcitx5 -d";}
+        {command = "blueman-applet";}
       ];
       bars = [
         {command = "${pkgs.waybar}/bin/waybar";}
