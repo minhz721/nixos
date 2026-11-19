@@ -15,9 +15,10 @@
     ./zed.nix
     ./nemo.nix
 
-    ./sway.nix
-    ./fuzzel
-    ./waybar.nix
+    ./umbriel.nix
+    # ./sway.nix
+    # ./fuzzel
+    # ./waybar.nix
   ];
   programs.direnv = {
     enable = true;

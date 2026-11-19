@@ -101,7 +101,8 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "noctalia-greeter": "noctalia-greeter",
-        "thorium": "thorium"
+        "thorium": "thorium",
+        "umbriel": "umbriel"
       }
     },
     "rust-analyzer-src": {
@@ -138,6 +139,48 @@
       "original": {
         "owner": "Rishabh5321",
         "repo": "custom-packages-flake",
+        "type": "github"
+      }
+    },
+    "umbriel": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ],
+        "xdg-desktop-portal-umbriel": "xdg-desktop-portal-umbriel"
+      },
+      "locked": {
+        "lastModified": 1795045510,
+        "narHash": "sha256-7iZxXhHWYjB8YkJuWUSBOLQSI0sP13+UN8y/H5W7Gmg=",
+        "owner": "noctalia-dev",
+        "repo": "umbriel",
+        "rev": "bf3d293dc20b6bc72a0298775feb868a77393e9d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "umbriel",
+        "type": "github"
+      }
+    },
+    "xdg-desktop-portal-umbriel": {
+      "inputs": {
+        "nixpkgs": [
+          "umbriel",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795045469,
+        "narHash": "sha256-lphiX1RrKkoSM4ZDCwK3/4WNgPdu8raU/8n5WfWBMMI=",
+        "owner": "noctalia-dev",
+        "repo": "xdg-desktop-portal-umbriel",
+        "rev": "765774bd4b4aa3c1f8f0625b0aca09a05f4d0572",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "xdg-desktop-portal-umbriel",
         "type": "github"
       }
     }
