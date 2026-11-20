@@ -14,7 +14,6 @@
     ./alacritty.nix
     ./zed.nix
     ./nemo.nix
-
     ./umbriel.nix
     # ./sway.nix
     # ./fuzzel

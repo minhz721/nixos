@@ -6,8 +6,9 @@
 
   programs.umbriel.enable = true;
 
-  services.upower.enable = true;
-  services.power-profiles-daemon.enable = true;
+  # Laptop
+  # services.upower.enable = true;
+  # services.power-profiles-daemon.enable = true;
 
   # Noctalia Greeter
   services.displayManager.noctalia-greeter = {
