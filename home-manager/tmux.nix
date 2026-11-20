@@ -19,9 +19,8 @@
     renameWindow = "command-prompt -I '#W' \"rename-window '%%'\"";
   };
 
-  # Zellij-style Alt-binds: if the pane is running Helix, send keys to Helix,
-  # otherwise let tmux handle it.
-  alt = key: command: "bind -n ${key} if-shell -F \"$is_hx\" \"send-keys ${key}\" ${q command}";
+  # Bind Alt keys directly in tmux so the shortcuts keep working inside Helix.
+  alt = key: command: "bind -n ${key} ${q command}";
   altBindings =
     {
       # Navigation
@@ -148,12 +147,7 @@ in {
       set -g status-right "#{E:@catppuccin_status_directory}#{E:@catppuccin_status_session}#{E:@catppuccin_status_date_time}"
 
       # =====================================================================
-      # HELIX DETECTION (avoid spawning processes like ps)
-      # =====================================================================
-      %hidden is_hx="#{||:#{==:#{pane_current_command},hx},#{==:#{pane_current_command},.hx-wrapped}}"
-
-      # =====================================================================
-      # ALT BINDINGS (Zellij-style, passing keys to Helix when active)
+      # ALT BINDINGS (tmux shortcuts work while Helix is active)
       # =====================================================================
       ${altBinds}
 
