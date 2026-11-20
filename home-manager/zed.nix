@@ -44,6 +44,16 @@ in {
 
     userSettings = {
       auto_update = false;
+      disable_ai = true;
+      collaboration_panel = {
+        button = false;
+      };
+      features = {
+        copilot = false;
+      };
+      assistant = {
+        enabled = false;
+      };
       restore_on_startup = "last_session";
       base_keymap = "VSCode";
       project_panel.dock = "left";
@@ -126,7 +136,10 @@ in {
             language_servers = ["taplo"];
             formatter = fmt "taplo" ["fmt" "-"];
           };
-          Nix.formatter = fmt "alejandra" ["-"];
+          Nix = {
+            language_servers = ["nixd"];
+            formatter = fmt "alejandra" ["-"];
+          };
           KDL.formatter = fmt "kdlfmt" ["format" "-"];
           Bash.formatter = fmt "shfmt" ["-i" "2" "-"];
         };
