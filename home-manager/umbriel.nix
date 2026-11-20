@@ -123,8 +123,6 @@ in {
         // {
           # Launcher, Window Switcher, Session
           "Mod+D" = "spawn noctalia msg panel-toggle launcher";
-          "Alt+Tab" = "spawn noctalia msg panel-toggle windows";
-          "Mod+Shift+X" = "spawn noctalia msg panel-toggle session";
 
           # Screenshot
           "Mod+Shift+S" = "spawn ${screenshot}/bin/screenshot region";
