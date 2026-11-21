@@ -1,18 +1,33 @@
 {
+  config,
   lib,
-  pkgs,
+  pkgsUnstable,
   ...
-}: let
-  fmt = command: arguments: {external = {inherit command arguments;};};
-  prettier = fmt "prettier" ["--stdin-filepath" "{buffer_path}"];
-in {
+}:
+let
+  fmt = command: arguments: { external = { inherit command arguments; }; };
+  biomeConfigDir = "${config.xdg.configHome}/biome";
+
+  biomeFmt = fmt (lib.getExe pkgsUnstable.biome) [
+    "format"
+    "--stdin-file-path"
+    "{buffer_path}"
+    "--config-path"
+    biomeConfigDir
+  ];
+in
+{
   programs.zed-editor = {
     enable = true;
+    package = pkgsUnstable.zed-editor;
+
     extensions = [
       "vscode-dark-modern"
       "kdl"
       "path-server-lsp"
       "emmet"
+      "biome"
+      "nix"
     ];
 
     userKeymaps = [
@@ -47,15 +62,9 @@ in {
     userSettings = {
       auto_update = false;
       disable_ai = true;
-      collaboration_panel = {
-        button = false;
-      };
-      features = {
-        copilot = false;
-      };
-      assistant = {
-        enabled = false;
-      };
+      collaboration_panel.button = false;
+      features.copilot = false;
+      assistant.enabled = false;
       restore_on_startup = "last_session";
       base_keymap = "VSCode";
       project_panel.dock = "left";
@@ -79,21 +88,27 @@ in {
       buffer_font_size = 14.0;
       colorize_brackets = true;
       format_on_save = "on";
-      tab_size = 2;
+      tab_size = 4;
+      hard_tabs = true;
       show_completions_on_input = true;
 
       node = {
-        path = lib.getExe pkgs.nodejs;
-        npm_path = lib.getExe' pkgs.nodejs "npm";
+        path = lib.getExe pkgsUnstable.nodejs;
+        npm_path = lib.getExe' pkgsUnstable.nodejs "npm";
       };
 
       lsp = {
-        nil.binary.path = lib.getExe pkgs.nil;
+        nixd = {
+          binary.path = lib.getExe pkgsUnstable.nixd;
+          settings.formatting.command = [ (lib.getExe pkgsUnstable.nixfmt) ];
+        };
+        biome = {
+          binary.path = lib.getExe pkgsUnstable.biome;
+          settings.config_path = biomeConfigDir;
+        };
         path-server-lsp = {
           settings = {
-            completion = {
-              triggerNextCompletion = true;
-            };
+            completion.triggerNextCompletion = true;
             highlight = {
               enable = true;
               highlightDirectory = true;
@@ -101,31 +116,30 @@ in {
           };
         };
         ruff.binary = {
-          path = lib.getExe pkgs.ruff;
-          arguments = ["server"];
+          path = lib.getExe pkgsUnstable.ruff;
+          arguments = [ "server" ];
         };
         ty = {
           binary = {
-            path = lib.getExe pkgs.ty;
-            arguments = ["server"];
+            path = lib.getExe pkgsUnstable.ty;
+            arguments = [ "server" ];
           };
           initialization_options.experimental.useUv = "on";
         };
         bash-language-server.binary = {
-          path = lib.getExe pkgs.bash-language-server;
-          arguments = ["start"];
+          path = lib.getExe pkgsUnstable.bash-language-server;
+          arguments = [ "start" ];
         };
         vscode-json-language-server.binary = {
-          path = lib.getExe' pkgs.vscode-langservers-extracted "vscode-json-language-server";
-          arguments = ["--stdio"];
+          path = lib.getExe' pkgsUnstable.vscode-langservers-extracted "vscode-json-language-server";
+          arguments = [ "--stdio" ];
         };
         taplo.binary = {
-          path = lib.getExe pkgs.taplo;
-          arguments = ["lsp" "stdio"];
-        };
-        dockerfile-language-server.binary = {
-          path = lib.getExe pkgs.dockerfile-language-server;
-          arguments = ["--stdio"];
+          path = lib.getExe pkgsUnstable.taplo;
+          arguments = [
+            "lsp"
+            "stdio"
+          ];
         };
         rust-analyzer.initialization_options.inlayHints = {
           maxLength = null;
@@ -138,24 +152,69 @@ in {
       };
 
       languages =
-        lib.genAttrs ["JavaScript" "TypeScript" "TSX" "HTML" "CSS" "JSON" "YAML"] (_: {
-          formatter = prettier;
+        lib.genAttrs [ "JavaScript" "TypeScript" "TSX" "HTML" "CSS" "JSON" ] (_: {
+          language_servers = [
+            "vtsls"
+            "biome"
+            "..."
+          ];
+          formatter = biomeFmt;
         })
         // {
           Python = {
-            language_servers = ["ty" "ruff" "path-server-lsp"];
-            formatter = fmt "ruff" ["format" "--stdin-filename" "{buffer_path}" "-"];
+            hard_tabs = false;
+            tab_size = 4;
+            language_servers = [
+              "ty"
+              "ruff"
+              "path-server-lsp"
+            ];
+            formatter = fmt (lib.getExe pkgsUnstable.ruff) [
+              "format"
+              "--stdin-filename"
+              "{buffer_path}"
+              "-"
+            ];
+          };
+          Rust = {
+            hard_tabs = false;
+            tab_size = 4;
           };
           TOML = {
-            language_servers = ["taplo"];
-            formatter = fmt "taplo" ["fmt" "-"];
+            hard_tabs = false;
+            tab_size = 2;
+            language_servers = [ "taplo" ];
+            formatter = fmt (lib.getExe pkgsUnstable.taplo) [
+              "fmt"
+              "-"
+            ];
           };
           Nix = {
-            language_servers = ["nil" "path-server-lsp"];
-            formatter = fmt "alejandra" ["-"];
+            hard_tabs = false;
+            tab_size = 2;
+            language_servers = [
+              "nixd"
+              "path-server-lsp"
+            ];
+            formatter = fmt (lib.getExe pkgsUnstable.nixfmt) [ ];
           };
-          KDL.formatter = fmt "kdlfmt" ["format" "-"];
-          Bash.formatter = fmt "shfmt" ["-i" "2" "-"];
+          YAML = {
+            hard_tabs = false;
+            tab_size = 2;
+            formatter = biomeFmt;
+          };
+          KDL = {
+            hard_tabs = false;
+            tab_size = 4;
+            formatter = fmt (lib.getExe pkgsUnstable.kdlfmt) [
+              "format"
+              "-"
+            ];
+          };
+          Bash.formatter = fmt (lib.getExe pkgsUnstable.shfmt) [
+            "-i"
+            "0"
+          ];
         };
     };
   };

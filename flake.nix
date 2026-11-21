@@ -16,6 +16,11 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     thorium = {
       url = "github:Rishabh5321/custom-packages-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,6 +29,9 @@
     umbriel = {
       url = "github:noctalia-dev/umbriel";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
     };
     noctalia-greeter = {
       url = "github:noctalia-dev/noctalia-greeter";

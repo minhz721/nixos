@@ -1,4 +1,8 @@
-let
+{config, ...}: let
+  biomeConfigDir = "${config.xdg.configHome}/biome";
+  flakePath = "${config.home.homeDirectory}/nixos";
+  hostName = config.home.username;
+
   indentTab = {
     tab-width = 4;
     unit = "\t";
@@ -9,33 +13,9 @@ let
     unit = builtins.concatStringsSep "" (builtins.genList (_: " ") n);
   };
 
-  prettier = {
-    command = "prettier";
-    args = [
-      "--stdin-filepath"
-      "%{buffer_name}"
-      "--use-tabs"
-      "--tab-width"
-      "4"
-      "--config-precedence"
-      "prefer-file"
-    ];
-  };
-
-  prettierYaml = {
-    command = "prettier";
-    args = [
-      "--stdin-filepath"
-      "%{buffer_name}"
-    ];
-  };
-
-  webLanguage = name: servers: {
-    inherit name;
-    language-servers = servers;
-    auto-format = true;
-    indent = indentTab;
-    formatter = prettier;
+  biomeFormatter = {
+    command = "biome";
+    args = ["format" "--stdin-file-path" "%{buffer_name}" "--config-path" biomeConfigDir];
   };
 
   sharedKeys = {
@@ -55,7 +35,6 @@ in {
     themes.dark_plus_custom = {
       inherits = "dark_plus";
       "ui.background" = {};
-      # TODO / FIXME / NOTE / HACK
       "comment.note" = {
         fg = "#89b4fa";
         modifiers = ["bold"];
@@ -116,7 +95,6 @@ in {
         normal =
           sharedKeys
           // {
-            # Buffers
             "tab" = ":buffer-next";
             "S-tab" = ":buffer-previous";
             "C-A-down" = ["extend_line_below" "yank" "paste_after"];
@@ -165,6 +143,10 @@ in {
           command = "vtsls";
           args = ["--stdio"];
         };
+        biome = {
+          command = "biome";
+          args = ["lsp-proxy" "--config-path" biomeConfigDir];
+        };
         emmet-lsp = {
           command = "emmet-language-server";
           args = ["--stdio"];
@@ -186,7 +168,16 @@ in {
           command = "ruff";
           args = ["server"];
         };
-        nil.command = "nil";
+        nixd = {
+          command = "nixd";
+          config.nixd = {
+            formatting.command = ["nixfmt"];
+            options = {
+              nixos.expr = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${hostName}.options";
+              home-manager.expr = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${hostName}.options.home-manager.users.type.getSubOptions []";
+            };
+          };
+        };
         rust-analyzer.config = {
           check = {
             command = "clippy";
@@ -209,14 +200,55 @@ in {
       };
 
       language = [
-        (webLanguage "typescript" ["vtsls"])
-        (webLanguage "tsx" ["vtsls" "emmet-lsp"])
-        (webLanguage "javascript" ["vtsls"])
-        (webLanguage "jsx" ["vtsls" "emmet-lsp"])
-        (webLanguage "html" ["vscode-html-language-server" "emmet-lsp"])
-        (webLanguage "css" ["vscode-css-language-server" "emmet-lsp"])
-        (webLanguage "json" ["vscode-json-language-server"])
-
+        {
+          name = "typescript";
+          language-servers = ["vtsls" "biome"];
+          auto-format = true;
+          indent = indentTab;
+          formatter = biomeFormatter;
+        }
+        {
+          name = "tsx";
+          language-servers = ["vtsls" "biome" "emmet-lsp"];
+          auto-format = true;
+          indent = indentTab;
+          formatter = biomeFormatter;
+        }
+        {
+          name = "javascript";
+          language-servers = ["vtsls" "biome"];
+          auto-format = true;
+          indent = indentTab;
+          formatter = biomeFormatter;
+        }
+        {
+          name = "jsx";
+          language-servers = ["vtsls" "biome" "emmet-lsp"];
+          auto-format = true;
+          indent = indentTab;
+          formatter = biomeFormatter;
+        }
+        {
+          name = "css";
+          language-servers = ["vscode-css-language-server" "biome" "emmet-lsp"];
+          auto-format = true;
+          indent = indentTab;
+          formatter = biomeFormatter;
+        }
+        {
+          name = "json";
+          language-servers = ["vscode-json-language-server" "biome"];
+          auto-format = true;
+          indent = indentTab;
+          formatter = biomeFormatter;
+        }
+        {
+          name = "html";
+          language-servers = ["vscode-html-language-server" "emmet-lsp"];
+          auto-format = true;
+          indent = indentTab;
+          formatter = biomeFormatter;
+        }
         {
           name = "bash";
           auto-format = true;
@@ -226,7 +258,6 @@ in {
             args = ["-i" "0"];
           };
         }
-
         {
           name = "python";
           auto-format = true;
@@ -244,16 +275,16 @@ in {
         }
         {
           name = "nix";
-          language-servers = ["nil"];
+          language-servers = ["nixd"];
           auto-format = true;
           indent = indentSpaces 2;
-          formatter.command = "alejandra";
+          formatter.command = "nixfmt";
         }
         {
           name = "yaml";
           auto-format = true;
           indent = indentSpaces 2;
-          formatter = prettierYaml;
+          formatter = biomeFormatter;
         }
         {
           name = "toml";

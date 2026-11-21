@@ -38,7 +38,6 @@ in {
     wlr-randr
     grim
     slurp
-    jq
   ];
 
   wayland.windowManager.sway = {
