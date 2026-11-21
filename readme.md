@@ -42,7 +42,7 @@ Welcome to my personal **NixOS** configuration repository. This setup manages my
 │   ├── bootloader.nix         # systemd-boot setup
 │   ├── docker.nix             # Docker daemon & compose
 │   ├── fcitx5.nix             # Vietnamese input method (fcitx5-lotus)
-│   ├── fonts.nix              # Nerd Fonts & Maple Mono
+│   ├── fonts.nix              # Nerd Fonts & Maple Mono NF
 │   ├── locales.nix            # Timezone (Asia/Ho_Chi_Minh) & locale settings
 │   ├── network.nix            # NetworkManager & firewall rules (LocalSend)
 │   ├── nh.nix                 # Nix Helper & automated GC

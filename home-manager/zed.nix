@@ -73,9 +73,9 @@ in {
         light = "Zed (Default)";
         dark = "Zed (Default)";
       };
-      ui_font_family = "Maple Mono";
+      ui_font_family = "Maple Mono NF";
       ui_font_size = 14.0;
-      buffer_font_family = "Maple Mono";
+      buffer_font_family = "Maple Mono NF";
       buffer_font_size = 14.0;
       colorize_brackets = true;
       format_on_save = "on";

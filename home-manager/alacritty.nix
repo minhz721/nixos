@@ -20,7 +20,7 @@
         # Font Ligatures
         builtin_box_drawing = true;
         normal = {
-          family = "Maple Mono";
+          family = "Maple Mono NF";
           style = "Regular";
         };
       };

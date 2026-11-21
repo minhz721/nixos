@@ -6,7 +6,7 @@
   themeName = "adw-gtk3-dark";
   iconThemeName = "Adwaita";
   font = {
-    name = "Maple Mono";
+    name = "Maple Mono NF";
     size = 12;
   };
   cursor = {

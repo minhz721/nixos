@@ -3,7 +3,7 @@
     enable = true;
     settings = {
       default-timeout = 5000;
-      font = "Maple Mono";
+      font = "Maple Mono NF";
       background-color = "#1e1e2eff";
       text-color = "#cdd6f4ff";
       border-color = "#cba6f7ff";
@@ -57,7 +57,7 @@
           text = "$TIME";
           color = "rgba(205, 214, 244, 1.0)";
           font_size = 120;
-          font_family = "Maple Mono";
+          font_family = "Maple Mono NF";
           position = "0, 80";
           halign = "center";
           valign = "center";

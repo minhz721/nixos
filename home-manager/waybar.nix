@@ -97,7 +97,7 @@
       * {
         border: none;
         border-radius: 0;
-        font-family: "Maple Mono", "Inter", sans-serif;
+        font-family: "Maple Mono NF", "Inter", sans-serif;
         font-weight: bold;
         font-size: 15px;
         min-height: 0;
