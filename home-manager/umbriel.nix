@@ -83,6 +83,9 @@ in
         keyboard = {
           layout = "us";
         };
+        focus = {
+          follows_mouse = "always";
+        };
       };
       output = {
         "DP-1" = {
