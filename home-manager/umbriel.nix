@@ -138,7 +138,7 @@ in {
 
           # Applications
           "Mod+D" = "spawn fuzzel";
-          "Mod+Return" = "spawn alacritty";
+          "Mod+Return" = "spawn ghostty";
           "Mod+E" = "spawn nemo";
           "Mod+B" = "spawn thorium";
           "Mod+C" = "spawn zeditor";

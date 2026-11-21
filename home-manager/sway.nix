@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   ...
@@ -55,7 +54,7 @@ in {
 
     config = {
       modifier = mod;
-      terminal = "alacritty";
+      terminal = "ghostty";
       menu = "fuzzel";
       output = {
         "DP-1" = {

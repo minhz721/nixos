@@ -7,10 +7,9 @@
     ./stable.nix
     ./unstale.nix
     ./helix.nix
-    ./tmux.nix
     ./rust.nix
     ./thorium.nix
-    ./alacritty.nix
+    ./ghostty.nix
     ./zed.nix
     ./nemo.nix
     ./umbriel.nix

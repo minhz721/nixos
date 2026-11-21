@@ -4,13 +4,14 @@
     settings = {
       background-opacity = 0.8;
       background-blur = 30;
-      # swayfx
       window-decoration = false;
       window-padding-x = 12;
       window-padding-y = 12;
       window-padding-balance = true;
-      # theme = "Dark+";
-      # theme = "Catppuccin Mocha";
+
+      theme = "Dark+";
+      background = "#121314";
+
       font-family = "Maple Mono NF";
       font-size = 11;
       font-feature = [
@@ -26,32 +27,6 @@
       copy-on-select = "clipboard";
       focus-follows-mouse = true;
       link-url = true;
-      # --- vscode dark ---
-      background = "#121314";
-      foreground = "#bbbebf";
-      cursor-color = "#bbbebf";
-      cursor-text = "#121314";
-      selection-background = "#276782";
-      selection-foreground = "#ededed";
-      palette = [
-        "0=#191a1b"
-        "1=#ff7b72"
-        "2=#7ee787"
-        "3=#ffa657"
-        "4=#79c0ff"
-        "5=#d2a8ff"
-        "6=#a5d6ff"
-        "7=#bfbfbf"
-        "8=#8c8c8c"
-        "9=#ffa198"
-        "10=#7ee787"
-        "11=#ffa657"
-        "12=#79c0ff"
-        "13=#d2a8ff"
-        "14=#a5d6ff"
-        "15=#ededed"
-      ];
-      # --- end ---
 
       keybind = [
         "ctrl+1=goto_tab:1"
@@ -68,11 +43,17 @@
         "super+r=reload_config"
         "f10=toggle_fullscreen"
         "ctrl+v=paste_from_clipboard"
-        # "ctrl+t=new_tab"
-        # "ctrl+n=new_window"
-        # "ctrl+w=close_tab"
-        # "ctrl+q=close_window"
-        # "ctrl+shift+q=close_all_windows"
+
+        # Split panes
+        "alt+p=new_split:right"
+        "alt+n=new_split:down"
+        "alt+x=close_surface"
+
+        # Resize panes
+        "alt+shift+left=resize_split:left,20"
+        "alt+shift+right=resize_split:right,20"
+        "alt+shift+up=resize_split:up,20"
+        "alt+shift+down=resize_split:down,20"
       ];
     };
   };
