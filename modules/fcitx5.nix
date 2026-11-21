@@ -36,5 +36,6 @@
     XMODIFIERS = "@im=fcitx";
     SDL_IM_MODULE = "fcitx";
     GLFW_IM_MODULE = "ibus";
+    NIXOS_OZONE_WL = "1";
   };
 }

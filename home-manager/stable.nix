@@ -15,48 +15,8 @@
     zathura
     mission-center
     localsend
-    # Communication & Web Browsers
+    # Communication & Applications
     telegram-desktop
-
-    # CLI tools
-    fzf
-    fd
-    ripgrep
-    zoxide
-    curl
-    jq
-    yq
-    bat
-
-    # Development Applications & CLI
     bruno
-    lazydocker
-    lazygit
-    lazysql
-
-    # Runtimes & Toolchains
-    uv
-    bun
-    nodejs
-    # --- Nix Ecosystem ---
-    nil
-    alejandra
-    statix
-    deadnix
-    # --- Web & Scripting ---
-    vtsls
-    vscode-langservers-extracted
-    emmet-language-server
-    prettier
-    # --- Python & Shell ---
-    ruff
-    bash-language-server
-    shellcheck
-    shfmt
-    # --- Build Tools ---
-    gnumake
-    # Formats (TOML & YAML & KDL)
-    kdlfmt
-    taplo
   ];
 }

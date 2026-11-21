@@ -1,0 +1,17 @@
+{
+  imports = [
+    ./treesitter.nix
+    ./blink-cmp.nix
+    ./fzf-lua.nix
+    ./gitsigns.nix
+    ./lualine.nix
+    ./bufferline.nix
+    ./which-key.nix
+    ./conform.nix
+    ./editing.nix
+    ./undo-tree.nix
+    ./snacks.nix
+    ./colorizer.nix
+    ./flash.nix
+  ];
+}

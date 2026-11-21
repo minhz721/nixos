@@ -1,6 +1,7 @@
-{
+{pkgsUnstable, ...}: {
   programs.ghostty = {
     enable = true;
+    package = pkgsUnstable.ghostty;
     settings = {
       background-opacity = 0.8;
       background-blur = 30;
@@ -48,6 +49,12 @@
         "alt+p=new_split:right"
         "alt+n=new_split:down"
         "alt+x=close_surface"
+
+        # Move focus between panes
+        "alt+left=goto_split:left"
+        "alt+right=goto_split:right"
+        "alt+up=goto_split:up"
+        "alt+down=goto_split:down"
 
         # Resize panes
         "alt+shift+left=resize_split:left,20"

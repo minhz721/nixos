@@ -13,10 +13,13 @@
     ./zed.nix
     ./nemo.nix
     ./umbriel.nix
+    ./nixvim
+    # ./tmux.nix
+    # ./alacritty.nix
     # ./sway.nix
-    ./fuzzel
-    ./waybar.nix
-    ./wayland-tools.nix
+    # ./fuzzel
+    # ./waybar.nix
+    # ./wayland-tools.nix
   ];
   programs.direnv = {
     enable = true;
