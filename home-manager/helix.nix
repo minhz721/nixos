@@ -186,7 +186,7 @@ in {
           command = "ruff";
           args = ["server"];
         };
-        nixd.command = "nixd";
+        nil.command = "nil";
         rust-analyzer.config = {
           check = {
             command = "clippy";
@@ -244,7 +244,7 @@ in {
         }
         {
           name = "nix";
-          language-servers = ["nixd"];
+          language-servers = ["nil"];
           auto-format = true;
           indent = indentSpaces 2;
           formatter.command = "alejandra";

@@ -11,6 +11,8 @@ in {
     extensions = [
       "vscode-dark-modern"
       "kdl"
+      "path-server-lsp"
+      "emmet"
     ];
 
     userKeymaps = [
@@ -78,6 +80,7 @@ in {
       colorize_brackets = true;
       format_on_save = "on";
       tab_size = 2;
+      show_completions_on_input = true;
 
       node = {
         path = lib.getExe pkgs.nodejs;
@@ -85,7 +88,18 @@ in {
       };
 
       lsp = {
-        nixd.binary.path = lib.getExe pkgs.nixd;
+        nil.binary.path = lib.getExe pkgs.nil;
+        path-server-lsp = {
+          settings = {
+            completion = {
+              triggerNextCompletion = true;
+            };
+            highlight = {
+              enable = true;
+              highlightDirectory = true;
+            };
+          };
+        };
         ruff.binary = {
           path = lib.getExe pkgs.ruff;
           arguments = ["server"];
@@ -129,7 +143,7 @@ in {
         })
         // {
           Python = {
-            language_servers = ["ty" "ruff"];
+            language_servers = ["ty" "ruff" "path-server-lsp"];
             formatter = fmt "ruff" ["format" "--stdin-filename" "{buffer_path}" "-"];
           };
           TOML = {
@@ -137,7 +151,7 @@ in {
             formatter = fmt "taplo" ["fmt" "-"];
           };
           Nix = {
-            language_servers = ["nixd"];
+            language_servers = ["nil" "path-server-lsp"];
             formatter = fmt "alejandra" ["-"];
           };
           KDL.formatter = fmt "kdlfmt" ["format" "-"];
