@@ -22,7 +22,7 @@ in {
     enable = true;
     settings = {
       main = {
-        font = "Maple Mono:size=13";
+        font = "Maple Mono NF:size=13";
         dpi-aware = "yes";
         icon-theme = "Papirus-Dark";
         terminal = "alacritty -e";

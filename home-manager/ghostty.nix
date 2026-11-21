@@ -11,7 +11,7 @@
       window-padding-balance = true;
       # theme = "Dark+";
       # theme = "Catppuccin Mocha";
-      font-family = "Maple Mono";
+      font-family = "Maple Mono NF";
       font-size = 11;
       font-feature = [
         "calt"

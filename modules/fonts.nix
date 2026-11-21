@@ -1,6 +1,15 @@
 {pkgs, ...}: {
-  fonts.packages = with pkgs; [
-    nerd-fonts.jetbrains-mono
-    maple-mono.truetype
-  ];
+  fonts = {
+    packages = with pkgs; [
+      maple-mono.NF
+    ];
+
+    fontconfig = {
+      enable = true;
+      defaultFonts = {
+        monospace = ["Maple Mono NF"];
+        sansSerif = ["Maple Mono NF"];
+      };
+    };
+  };
 }
