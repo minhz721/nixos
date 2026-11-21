@@ -10,9 +10,13 @@
       margin-left = 10;
       margin-right = 10;
       spacing = 8;
+      # modules-left = [
+      #   "sway/workspaces"
+      #   "sway/window"
+      # ];
       modules-left = [
-        "sway/workspaces"
-        "sway/window"
+        "ext/workspaces"
+        "wlr/taskbar"
       ];
       modules-center = [
         "clock"
@@ -82,7 +86,7 @@
       temperature = {
         hwmon-path-abs = "/sys/class/hwmon";
         input-filename = "temp1_input";
-        ritical-threshold = 80;
+        critical-threshold = 80;
         format-critical = "🔥 {temperatureC}°C";
         format = " {temperatureC}°C";
         interval = 2;
@@ -193,7 +197,6 @@
       #pulseaudio:hover,
       #cpu:hover,
       #memory:hover,
-      #battery:hover,
       #tray:hover,
       #temperature:hover,
       #custom-wallpaper:hover,

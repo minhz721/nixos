@@ -1,6 +1,5 @@
 {
   imports = [
-    # ./ghostty.nix
     ./fish.nix
     ./git.nix
     ./gtk.nix
@@ -16,8 +15,9 @@
     ./nemo.nix
     ./umbriel.nix
     # ./sway.nix
-    # ./fuzzel
-    # ./waybar.nix
+    ./fuzzel
+    ./waybar.nix
+    ./wayland-tools.nix
   ];
   programs.direnv = {
     enable = true;

@@ -39,7 +39,7 @@
     bun
     nodejs
     # --- Nix Ecosystem ---
-    nixd
+    nil
     alejandra
     statix
     deadnix

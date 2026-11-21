@@ -13,7 +13,6 @@
     };
 
   powermenu = mkScript "fuzzel-powermenu" [fuzzel pkgs.hyprlock] ./scripts/powermenu.sh;
-  windowSwitcher = mkScript "fuzzel-window-switcher" [fuzzel pkgs.jq] ./scripts/sway-window-switcher.sh;
   wallpaper =
     mkScript "fuzzel-wallpaper"
     (with pkgs; [fuzzel swaybg libnotify findutils procps util-linux coreutils])
@@ -51,14 +50,12 @@ in {
 
   home.packages = [
     powermenu
-    windowSwitcher
     wallpaper
     pkgs.papirus-icon-theme
   ];
 
   xdg.configFile = {
     "fuzzel/scripts/powermenu.sh".source = lib.getExe powermenu;
-    "fuzzel/scripts/sway-window-switcher.sh".source = lib.getExe windowSwitcher;
     "fuzzel/scripts/wallpaper-select.sh".source = lib.getExe wallpaper;
   };
 }

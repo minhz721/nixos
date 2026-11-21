@@ -47,17 +47,16 @@
 in {
   imports = [
     inputs.umbriel.homeModules.default
-    inputs.noctalia.homeModules.default
   ];
 
   home.packages = with pkgs; [
     libnotify
     wl-clipboard
+    swaybg
     wlr-randr
     grim
     slurp
     jq
-    screenshot
   ];
 
   programs.umbriel = {
@@ -68,7 +67,9 @@ in {
         mod_key = "Super";
         autostart = [
           "fcitx5 -d"
-          "noctalia"
+          "waybar"
+          "sh -c 'swaybg -i \"$(cat ~/.cache/wallpaper_current)\" -m fill'"
+          "blueman-applet"
         ];
       };
       layout = {
@@ -121,9 +122,6 @@ in {
       keybinds =
         mkWorkspaceBinds
         // {
-          # Launcher, Window Switcher, Session
-          "Mod+D" = "spawn noctalia msg panel-toggle launcher";
-
           # Screenshot
           "Mod+Shift+S" = "spawn ${screenshot}/bin/screenshot region";
           "Mod+P" = "spawn ${screenshot}/bin/screenshot full";
@@ -131,7 +129,7 @@ in {
           # Window management
           "Mod+Q" = "window-close";
           "Mod+Shift+R" = "config-reload";
-          "Mod+L" = "spawn noctalia msg session lock";
+          "Mod+L" = "spawn hyprlock";
 
           # Layout
           "Mod+T" = "workspace-set-layout toggle";
@@ -139,6 +137,7 @@ in {
           "Mod+Shift+F" = "window-toggle-floating";
 
           # Applications
+          "Mod+D" = "spawn fuzzel";
           "Mod+Return" = "spawn alacritty";
           "Mod+E" = "spawn nemo";
           "Mod+B" = "spawn thorium";
@@ -156,65 +155,6 @@ in {
           "XF86AudioMute" = "spawn wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle";
           "XF86AudioMicMute" = "spawn wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle";
         };
-    };
-  };
-
-  programs.noctalia = {
-    enable = true;
-    settings = {
-      bar = {
-        default = {
-          enabled = true;
-          position = "top";
-          capsule = true;
-          start = [
-            "control-center"
-            "workspaces"
-          ];
-          center = [
-            "clock"
-          ];
-          end = [
-            "cpu"
-            "temp"
-            "ram"
-            "volume"
-            "clipboard"
-            "bluetooth"
-            "tray"
-            "wallpaper"
-            "session"
-          ];
-        };
-      };
-
-      widget = {
-        cpu = {
-          type = "sysmon";
-          stat = "cpu_usage";
-          show_value = true;
-          show_glyph = true;
-        };
-        temp = {
-          type = "sysmon";
-          stat = "cpu_temp";
-          show_value = true;
-          show_glyph = true;
-        };
-        ram = {
-          type = "sysmon";
-          stat = "ram_used";
-          show_value = true;
-          show_glyph = true;
-        };
-        clock = {
-          format = "{:%H:%M} {:%d/%m/%Y}";
-        };
-        workspaces = {
-          show_labels = true;
-          labels_only_when_occupied = false;
-        };
-      };
     };
   };
 }

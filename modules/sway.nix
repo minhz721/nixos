@@ -1,20 +1,4 @@
-{inputs, ...}: {
-  imports = [
-    inputs.noctalia-greeter.nixosModules.default
-  ];
-
-  # Noctalia Greeter
-  services.displayManager.noctalia-greeter = {
-    enable = true;
-    settings = {
-      appearance.scheme = "Catppuccin";
-      keyboard.layout = "us";
-      output.name = "DP-1";
-      session.default = "sway";
-      user.default = "leomin";
-    };
-  };
-
+{
   # Sway
   programs.sway = {
     enable = true;
