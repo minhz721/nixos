@@ -8,10 +8,6 @@
         python = [ "ruff" ];
         sh = [ "shellcheck" ];
         bash = [ "shellcheck" ];
-        nix = [
-          "statix"
-          "deadnix"
-        ];
       };
 
       # Trigger linting on file events

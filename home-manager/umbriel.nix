@@ -179,6 +179,9 @@ in
     enable = true;
     package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
     settings = {
+      shell = {
+        font_family = "Maple Mono NF";
+      };
       bar = {
         default = {
           enabled = true;
@@ -230,6 +233,10 @@ in
           show_labels = true;
           labels_only_when_occupied = false;
         };
+      };
+      location = {
+        auto_locate = true;
+        address = "Hanoi, Viet Nam";
       };
     };
   };
