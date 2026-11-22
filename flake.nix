@@ -16,6 +16,9 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    mitos = {
+      url = "github:mitos-editor/mitos";
+    };
     nixvim = {
       url = "github:nix-community/nixvim/nixos-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -39,45 +42,48 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    home-manager,
-    ...
-  } @ inputs: let
-    system = "x86_64-linux";
+  outputs =
+    {
+      nixpkgs,
+      home-manager,
+      ...
+    }@inputs:
+    let
+      system = "x86_64-linux";
 
-    # package unstable
-    pkgsUnstable = import inputs.nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-  in {
-    nixosConfigurations.leomin = nixpkgs.lib.nixosSystem {
-      inherit system;
-
-      specialArgs = {
-        inherit inputs pkgsUnstable;
+      # package unstable
+      pkgsUnstable = import inputs.nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
       };
+    in
+    {
+      nixosConfigurations.leomin = nixpkgs.lib.nixosSystem {
+        inherit system;
 
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            backupFileExtension = "bak";
+        specialArgs = {
+          inherit inputs pkgsUnstable;
+        };
 
-            # unstable + fenix Home Manager
-            extraSpecialArgs = {
-              inherit inputs pkgsUnstable;
-              inherit (inputs) fenix;
+        modules = [
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              backupFileExtension = "bak";
+
+              # unstable + fenix Home Manager
+              extraSpecialArgs = {
+                inherit inputs pkgsUnstable;
+                inherit (inputs) fenix;
+              };
+
+              users.leomin = import ./home-manager/default.nix;
             };
-
-            users.leomin = import ./home-manager/default.nix;
-          };
-        }
-      ];
+          }
+        ];
+      };
     };
-  };
 }

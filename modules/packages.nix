@@ -1,12 +1,15 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+
+{
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     auto-optimise-store = true;
   };
-  environment.systemPackages = with pkgs; [
-    # NixOS / System Management
-    home-manager
 
+  environment.systemPackages = with pkgs; [
     # Disk / Filesystem
     ntfs3g
     exfat

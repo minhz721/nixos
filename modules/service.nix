@@ -1,14 +1,23 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+
+{
   nixpkgs.config.allowUnfree = true;
   hardware.enableAllFirmware = true;
-  boot.kernelParams = ["usbcore.autosuspend=-1"];
-  nix.settings.auto-optimise-store = true;
+  boot.kernelParams = [ "usbcore.autosuspend=-1" ];
 
-  programs.nix-ld.enable = true;
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc
+      zlib
+      openssl
+      curl
+    ];
+  };
 
   # Graphics & AMD GPU
-  boot.initrd.kernelModules = ["amdgpu"];
-  services.xserver.videoDrivers = ["amdgpu"];
+  boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   hardware.graphics = {
     enable = true;
@@ -26,7 +35,7 @@
 
   programs.dconf.enable = true;
 
-  # Prevent the system from shutting down or sleeping when receiving a rogue Power key signal from the keyboard knob (e.g., Xinmeng M75)
+  # Prevent unintended sleep/shutdown from keyboard knob (Xinmeng M75)
   services.logind.settings = {
     Login = {
       HandlePowerKey = "ignore";
@@ -37,9 +46,9 @@
   # Polkit Gnome Authentication Agent
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
-    wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
-    after = ["graphical-session.target"];
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
