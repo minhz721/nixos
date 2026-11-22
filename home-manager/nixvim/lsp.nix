@@ -1,11 +1,14 @@
 {
   config,
   pkgsUnstable,
+  rustToolchain,
   ...
-}: let
+}:
+let
   flakePath = "${config.home.homeDirectory}/nixos";
   hostName = config.home.username;
-in {
+in
+{
   programs.nixvim = {
     plugins.lsp = {
       enable = true;
@@ -23,21 +26,22 @@ in {
       };
 
       servers = {
-        # Rust
+        # Rust (Fenix toolchain)
         rust_analyzer = {
           enable = true;
-          package = null;
+          package = rustToolchain;
           installCargo = false;
           installRustc = false;
           settings = {
             "rust-analyzer" = {
               check = {
                 command = "clippy";
-                extraArgs = ["--all-targets"];
+                extraArgs = [ "--all-targets" ];
               };
               cargo = {
                 allFeatures = true;
                 buildScripts.enable = true;
+                sysrootSrc = "${rustToolchain}/lib/rustlib/src/rust/library";
               };
               procMacro.enable = true;
               inlayHints = {
@@ -57,7 +61,7 @@ in {
           enable = true;
           package = pkgsUnstable.nixd;
           settings = {
-            formatting.command = ["nixfmt"];
+            formatting.command = [ "nixfmt" ];
             options = {
               nixos.expr = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${hostName}.options";
               home-manager.expr = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${hostName}.options.home-manager.users.type.getSubOptions []";
@@ -92,7 +96,7 @@ in {
           extraOptions = {
             init_options = {
               showAbbreviationSuggestions = true;
-              showExpandedAbbreviation = "always";
+              showExpandedbreviation = "always";
               showSuggestionsAsSnippets = true;
               includeLanguages = {
                 jsx = "javascriptreact";

@@ -13,5 +13,7 @@
     ./snacks.nix
     ./colorizer.nix
     ./flash.nix
+    ./trouble.nix
+    ./noice.nix
   ];
 }

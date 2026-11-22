@@ -1,28 +1,30 @@
-{
+{ pkgsUnstable, ... }: {
   programs.nixvim = {
     plugins.lint = {
       enable = true;
-
-      # Linters mapped by filetype
       lintersByFt = {
         python = [ "ruff" ];
-        sh = [ "shellcheck" ];
         bash = [ "shellcheck" ];
+        sh = [ "shellcheck" ];
       };
+      linters = {
+        ruff.cmd = "${pkgsUnstable.ruff}/bin/ruff";
+        shellcheck.cmd = "${pkgsUnstable.shellcheck}/bin/shellcheck";
+      };
+    };
 
-      # Trigger linting on file events
-      autoCmd = {
+    autoCmd = [
+      {
+        event = [
+          "BufEnter"
+          "BufWritePost"
+        ];
         callback.__raw = ''
           function()
             require("lint").try_lint()
           end
         '';
-        event = [
-          "BufEnter"
-          "BufWritePost"
-          "InsertLeave"
-        ];
-      };
-    };
+      }
+    ];
   };
 }

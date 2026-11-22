@@ -2,7 +2,11 @@
   programs.nixvim.keymaps = [
     # File operations
     {
-      mode = ["n" "i" "v"];
+      mode = [
+        "n"
+        "i"
+        "v"
+      ];
       key = "<C-s>";
       action = "<Esc><cmd>w<CR>";
       options = {
@@ -48,19 +52,25 @@
       options.desc = "Undo";
     }
     {
-      mode = ["n" "i"];
+      mode = [
+        "n"
+        "i"
+      ];
       key = "<C-S-z>";
       action = "<Esc><C-r>";
       options.desc = "Redo";
     }
     {
-      mode = ["n" "i"];
+      mode = [
+        "n"
+        "i"
+      ];
       key = "<C-S-r>";
       action = "<Esc><C-r>";
       options.desc = "Redo";
     }
 
-    # Copy / Cut line / Paste (matching Helix C-c, C-x, C-v behavior)
+    # Copy / Cut line / Paste
     {
       mode = "v";
       key = "<C-c>";
@@ -92,7 +102,7 @@
       options.desc = "Paste clipboard";
     }
 
-    # Duplicate line up/down (matching Helix C-A-down / C-A-up)
+    # Duplicate line up/down
     {
       mode = "n";
       key = "<C-A-down>";
@@ -132,13 +142,19 @@
 
     # Move lines & indentation
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<A-j>";
       action = ":m '>+1<CR>gv=gv";
       options.desc = "Move line down";
     }
     {
-      mode = ["n" "v"];
+      mode = [
+        "n"
+        "v"
+      ];
       key = "<A-k>";
       action = ":m '<-2<CR>gv=gv";
       options.desc = "Move line up";
@@ -156,7 +172,7 @@
       options.desc = "Outdent selection";
     }
 
-    # Buffer navigation (Tab / Shift-Tab like Helix)
+    # Buffer & Window navigation
     {
       mode = "n";
       key = "<Tab>";
@@ -175,20 +191,32 @@
       action = "<cmd>bdelete<CR>";
       options.desc = "Close buffer";
     }
+    {
+      mode = "n";
+      key = "<C-h>";
+      action = "<C-w>h";
+      options.desc = "Go to left window";
+    }
+    {
+      mode = "n";
+      key = "<C-j>";
+      action = "<C-w>j";
+      options.desc = "Go to lower window";
+    }
+    {
+      mode = "n";
+      key = "<C-k>";
+      action = "<C-w>k";
+      options.desc = "Go to upper window";
+    }
+    {
+      mode = "n";
+      key = "<C-l>";
+      action = "<C-w>l";
+      options.desc = "Go to right window";
+    }
 
-    # Helix leader shortcuts (,f ,b ,/ ,nh ,q)
-    {
-      mode = "n";
-      key = "<leader>f";
-      action = "<cmd>FzfLua files<CR>";
-      options.desc = "File picker";
-    }
-    {
-      mode = "n";
-      key = "<leader>b";
-      action = "<cmd>FzfLua buffers<CR>";
-      options.desc = "Buffer picker";
-    }
+    # Leader shortcuts
     {
       mode = "n";
       key = "<leader>/";
@@ -209,7 +237,7 @@
     }
     {
       mode = "n";
-      key = "<leader>nh";
+      key = "<leader>ch";
       action = "<cmd>nohlsearch<CR>";
       options.desc = "Clear search highlight";
     }
