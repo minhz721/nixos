@@ -79,7 +79,7 @@ in
         mode = "scrolling";
         scrolling = {
           default_extent_fraction = 0.5;
-          center_underfull_strip = false;
+          center_underfull_strip = true;
         };
       };
       input = {
@@ -241,10 +241,9 @@ in
           labels_only_when_occupied = false;
         };
       };
-      # location = {
-      #   auto_locate = true;
-      #   address = "Hanoi, Viet Nam";
-      # };
+      location = {
+        auto_locate = true;
+      };
     };
   };
 }

@@ -1,21 +1,17 @@
-{...}: {
+{ ... }: {
   programs.nixvim = {
     plugins = {
-      # Next-generation autocompletion engine optimized for performance
       blink-cmp = {
         enable = true;
         settings = {
-          # Keybinding presets configuration
           keymap = {
             preset = "super-tab";
           };
 
-          # Font configuration for icons inside completion menu
           appearance = {
             nerd_font_variant = "mono";
           };
 
-          # Core completion behavior and visual styles
           completion = {
             accept = {
               auto_brackets = {
@@ -34,12 +30,10 @@
             };
           };
 
-          # Snippet expansion engine integration
           snippets = {
             preset = "luasnip";
           };
 
-          # Aggregated sources optimized for local runtime environments (bun / uv / cargo)
           sources = {
             default = [
               "lsp"
@@ -49,15 +43,36 @@
             ];
           };
 
-          # Function signature help configuration
           signature = {
             enabled = true;
           };
         };
       };
 
-      # LuaSnip engine required by blink-cmp preset fallback
-      luasnip.enable = true;
+      luasnip = {
+        enable = true;
+        fromLua = [ ];
+        fromSnipmate = [ ];
+      };
+
+      friendly-snippets = {
+        enable = true;
+      };
     };
+
+    autoCmd = [
+      {
+        event = [ "InsertEnter" ];
+        once = true;
+        callback.__raw = ''
+          function()
+            local ok, loader = pcall(require, "luasnip.loaders.from_vscode")
+            if ok then
+              loader.lazy_load()
+            end
+          end
+        '';
+      }
+    ];
   };
 }

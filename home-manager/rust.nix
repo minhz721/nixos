@@ -3,7 +3,8 @@
   pkgsUnstable,
   fenix,
   ...
-}: let
+}:
+let
   toolchain = fenix.packages.${pkgs.stdenv.hostPlatform.system}.stable.withComponents [
     "cargo"
     "rustc"
@@ -12,15 +13,20 @@
     "rust-analyzer"
     "rust-src"
   ];
-in {
-  home.packages =
-    [toolchain pkgs.gcc]
-    ++ (with pkgsUnstable; [
-      bacon
-      cargo-nextest
-      cargo-expand
-      cargo-audit
-      cargo-deny
-      cargo-machete
-    ]);
+in
+{
+  _module.args.rustToolchain = toolchain;
+
+  home.packages = [
+    toolchain
+    pkgs.gcc
+  ]
+  ++ (with pkgsUnstable; [
+    bacon
+    cargo-nextest
+    cargo-expand
+    cargo-audit
+    cargo-deny
+    cargo-machete
+  ]);
 }

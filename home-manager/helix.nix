@@ -42,7 +42,6 @@ in
   programs.helix = {
     enable = true;
     defaultEditor = true;
-
     themes.dark_plus_custom = {
       inherits = "dark_plus";
       "ui.background" = { };

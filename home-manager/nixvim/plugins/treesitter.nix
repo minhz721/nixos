@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   programs.nixvim = {
     plugins = {
       treesitter = {
@@ -26,7 +26,6 @@
           bash
           yaml
           toml
-          kdl
 
           # Docs & Languages
           markdown
@@ -38,22 +37,6 @@
 
       # Rainbow brackets
       rainbow-delimiters.enable = true;
-
-      # Enhanced Markdown rendering
-      render-markdown = {
-        enable = true;
-        settings = {
-          heading = {
-            sign = true;
-            icons = ["1 " "2 " "3 " "4 " "5 " "6 "];
-          };
-          checkbox = {
-            enabled = true;
-            unchecked.icon = "   ";
-            checked.icon = "   ";
-          };
-        };
-      };
     };
   };
 }

@@ -3,7 +3,16 @@
     plugins.snacks = {
       enable = true;
       settings = {
-        explorer.enabled = true;
+        explorer = {
+          enabled = true;
+          replace_netrw = false;
+        };
+        lazygit.enabled = true;
+        input.enabled = true;
+        notifier = {
+          enabled = true;
+          timeout = 3000;
+        };
         indent = {
           enabled = true;
           char = "│";
@@ -20,6 +29,8 @@
           };
         };
         bigfile.enabled = true;
+        quickfile.enabled = true;
+        words.enabled = true;
       };
     };
 
@@ -27,8 +38,32 @@
       {
         mode = "n";
         key = "<leader>e";
-        action.__raw = ''function() Snacks.explorer() end'';
+        action.__raw = "function() Snacks.explorer() end";
         options.desc = "Toggle file explorer";
+      }
+      {
+        mode = "n";
+        key = "<leader>gg";
+        action.__raw = "function() Snacks.lazygit() end";
+        options.desc = "Open Lazygit";
+      }
+      {
+        mode = [
+          "n"
+          "t"
+        ];
+        key = "]]";
+        action.__raw = "function() Snacks.words.jump(vim.v.count1) end";
+        options.desc = "Next reference";
+      }
+      {
+        mode = [
+          "n"
+          "t"
+        ];
+        key = "[[";
+        action.__raw = "function() Snacks.words.jump(-vim.v.count1) end";
+        options.desc = "Prev reference";
       }
     ];
   };
