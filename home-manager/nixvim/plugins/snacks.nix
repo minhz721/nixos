@@ -7,7 +7,6 @@
           enabled = true;
           replace_netrw = false;
         };
-        lazygit.enabled = true;
         input.enabled = true;
         notifier = {
           enabled = true;
@@ -40,12 +39,6 @@
         key = "<leader>e";
         action.__raw = "function() Snacks.explorer() end";
         options.desc = "Toggle file explorer";
-      }
-      {
-        mode = "n";
-        key = "<leader>gg";
-        action.__raw = "function() Snacks.lazygit() end";
-        options.desc = "Open Lazygit";
       }
       {
         mode = [
