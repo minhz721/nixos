@@ -15,14 +15,14 @@ in
   ];
 
   xdg.configFile."mitos/config.toml".text = ''
-    theme = "dark_plus_custom"
+    theme = "dark_plus"
 
     [editor]
     line-number = "relative"
     cursorline = true
     color-modes = true
     true-color = true
-    popup-border = "all"
+    # popup-border = "all"
 
     [editor.completion]
     trigger-delay = 5
@@ -81,7 +81,6 @@ in
     "w" = ":write"
     "q" = ":quit"
     "f" = "file_picker"
-    "e" = [":open %sh{yazi --chooser-file=/dev/stdout}"]
     "g" = ":sh lazygit"
     "b" = "buffer_picker"
     "s" = "symbol_picker"
