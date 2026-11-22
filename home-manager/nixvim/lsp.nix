@@ -23,10 +23,15 @@ in
           "<leader>rn" = "rename";
           "<leader>ca" = "code_action";
         };
+        diagnostic = {
+          "<leader>d" = "open_float";
+          "[d" = "goto_prev";
+          "]d" = "goto_next";
+        };
       };
 
       servers = {
-        # Rust (Fenix toolchain)
+        # Rust
         rust_analyzer = {
           enable = true;
           package = rustToolchain;
@@ -61,6 +66,7 @@ in
           enable = true;
           package = pkgsUnstable.nixd;
           settings = {
+            nixpkgs.expr = "import (builtins.getFlake \"${flakePath}\").inputs.nixpkgs { }";
             formatting.command = [ "nixfmt" ];
             options = {
               nixos.expr = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${hostName}.options";
@@ -96,7 +102,7 @@ in
           extraOptions = {
             init_options = {
               showAbbreviationSuggestions = true;
-              showExpandedbreviation = "always";
+              showExpandedAbbreviation = "always";
               showSuggestionsAsSnippets = true;
               includeLanguages = {
                 jsx = "javascriptreact";
@@ -116,7 +122,7 @@ in
           package = pkgsUnstable.ruff;
         };
 
-        # Shell & Config
+        # Shell
         bashls = {
           enable = true;
           package = pkgsUnstable.bash-language-server;

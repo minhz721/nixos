@@ -42,9 +42,8 @@
     taplo
   ];
 
-  # Global Biome fallback config (Tab width 4 for code, 2 spaces for YAML/MD)
   xdg.configFile."biome/biome.json".text = builtins.toJSON {
-    "$schema" = "https://biomejs.dev";
+    "$schema" = "https://biomejs.dev/schemas/2.0.0/schema.json";
     formatter = {
       enabled = true;
       indentStyle = "tab";
@@ -55,18 +54,5 @@
         semicolons = "always";
       };
     };
-    overrides = [
-      {
-        includes = [
-          "*.yml"
-          "*.yaml"
-          "*.md"
-        ];
-        formatter = {
-          indentStyle = "space";
-          indentWidth = 2;
-        };
-      }
-    ];
   };
 }

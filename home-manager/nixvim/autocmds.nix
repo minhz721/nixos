@@ -5,7 +5,11 @@
       {
         event = [ "TextYankPost" ];
         pattern = [ "*" ];
-        command = "silent! lua vim.highlight.on_yank()";
+        callback.__raw = ''
+          function()
+            (vim.hl or vim.highlight).on_yank()
+          end
+        '';
       }
       # Close help windows with 'q'
       {
@@ -18,12 +22,6 @@
         event = [ "BufEnter" ];
         pattern = [ "*" ];
         command = "set formatoptions-=cro";
-      }
-      # Conceallevel = 2 for Markdown so render-markdown renders cleanly
-      {
-        event = [ "FileType" ];
-        pattern = [ "markdown" ];
-        command = "setlocal conceallevel=2";
       }
       # Enable LSP inlay hints automatically
       {
@@ -48,6 +46,7 @@
           "html"
           "css"
           "json"
+          "jsonc"
           "sh"
           "bash"
         ];

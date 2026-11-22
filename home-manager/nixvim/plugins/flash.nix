@@ -1,4 +1,4 @@
-{...}: {
+{ ... }: {
   programs.nixvim = {
     # High-performance motion engine for ultra-fast screen navigation
     plugins.flash = {
@@ -8,7 +8,6 @@
         # Visual configurations for jump labels
         labels = "asdfghjklqwertyuiopzxcvbnm";
         search = {
-          # Automatically trigger flash when typing search patterns
           multi_window = true;
           forward = true;
           wrap = true;
@@ -19,7 +18,11 @@
     # Precision keyboard mappings for immediate motion execution
     keymaps = [
       {
-        mode = ["n" "x" "o"];
+        mode = [
+          "n"
+          "x"
+          "o"
+        ];
         key = "s";
         action.__raw = ''function() require("flash").jump() end'';
         options = {
@@ -28,7 +31,10 @@
         };
       }
       {
-        mode = ["n" "x" "o"];
+        mode = [
+          "n"
+          "o"
+        ];
         key = "S";
         action.__raw = ''function() require("flash").treesitter() end'';
         options = {
