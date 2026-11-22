@@ -159,6 +159,8 @@ in
         "Mod+Right" = "window-focus-right";
         "Mod+Up" = "window-focus-up";
         "Mod+Down" = "window-focus-down";
+        "Mod+WheelDown" = "layout-scroll-right";
+        "Mod+WheelUp" = "layout-scroll-left";
 
         # Resize
         "Mod+Ctrl+Left" = "window-modify-primary-extent -0.02";
@@ -234,10 +236,10 @@ in
           labels_only_when_occupied = false;
         };
       };
-      location = {
-        auto_locate = true;
-        address = "Hanoi, Viet Nam";
-      };
+      # location = {
+      #   auto_locate = true;
+      #   address = "Hanoi, Viet Nam";
+      # };
     };
   };
 }
