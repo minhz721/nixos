@@ -11,16 +11,16 @@
     ./ghostty.nix
     ./zed.nix
     ./nemo.nix
-    ./umbriel.nix
+    # ./umbriel.nix
     ./nixvim
     ./mitos.nix
     # ./helix.nix
     # ./tmux.nix
     # ./alacritty.nix
-    # ./sway.nix
-    # ./fuzzel
-    # ./waybar.nix
-    # ./wayland-tools.nix
+    ./sway.nix
+    ./fuzzel
+    ./waybar.nix
+    ./wayland-tools.nix
   ];
   programs.direnv = {
     enable = true;
