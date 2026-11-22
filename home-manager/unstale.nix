@@ -1,4 +1,4 @@
-{pkgsUnstable, ...}: {
+{ pkgsUnstable, ... }: {
   home.packages = with pkgsUnstable; [
     # CLI tools
     fzf
@@ -39,7 +39,6 @@
 
     # Build & Config Tools
     gnumake
-    kdlfmt
     taplo
   ];
 
@@ -58,7 +57,11 @@
     };
     overrides = [
       {
-        includes = ["*.yml" "*.yaml" "*.md"];
+        includes = [
+          "*.yml"
+          "*.yaml"
+          "*.md"
+        ];
         formatter = {
           indentStyle = "space";
           indentWidth = 2;

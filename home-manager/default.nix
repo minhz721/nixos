@@ -6,7 +6,6 @@
     ./yazi.nix
     ./stable.nix
     ./unstale.nix
-    ./helix.nix
     ./rust.nix
     ./thorium.nix
     ./ghostty.nix
@@ -14,6 +13,8 @@
     ./nemo.nix
     ./umbriel.nix
     ./nixvim
+    ./mitos.nix
+    # ./helix.nix
     # ./tmux.nix
     # ./alacritty.nix
     # ./sway.nix

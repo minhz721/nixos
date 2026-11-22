@@ -142,7 +142,7 @@ in
         "Mod+L" = "spawn noctalia msg session lock";
 
         # Layout
-        "Mod+T" = "workspace-set-layout toggle";
+        # "Mod+T" = "workspace-set-layout toggle";
         "Mod+F" = "window-toggle-fullscreen";
         "Mod+Shift+F" = "window-toggle-floating";
         "Mod+Ctrl+F" = "window-toggle-maximize";

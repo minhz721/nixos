@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.sessionVariables = {
     EDITOR = "hx";
     VISUAL = "hx";
@@ -97,7 +97,6 @@
       ld = "lazydocker";
       lsql = "lazysql";
 
-      zj = "zellij";
       # NixOS
       rebuild = "sudo nixos-rebuild switch --flake";
       flake-update = "nix flake update";

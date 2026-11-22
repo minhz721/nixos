@@ -2,9 +2,11 @@
   config,
   pkgsUnstable,
   ...
-}: let
+}:
+let
   biomeConfigDir = "${config.xdg.configHome}/biome";
-in {
+in
+{
   programs.nixvim = {
     plugins.conform-nvim = {
       enable = true;
@@ -12,25 +14,24 @@ in {
       settings = {
         formatters_by_ft = {
           # Web & Markup (Biome v2 handles JS/TS/JSX/TSX/JSON/CSS/HTML/YAML/MD)
-          javascript = ["biome"];
-          javascriptreact = ["biome"];
-          typescript = ["biome"];
-          typescriptreact = ["biome"];
-          json = ["biome"];
-          jsonc = ["biome"];
-          css = ["biome"];
-          html = ["biome"];
-          yaml = ["biome"];
-          markdown = ["biome"];
+          javascript = [ "biome" ];
+          javascriptreact = [ "biome" ];
+          typescript = [ "biome" ];
+          typescriptreact = [ "biome" ];
+          json = [ "biome" ];
+          jsonc = [ "biome" ];
+          css = [ "biome" ];
+          html = [ "biome" ];
+          yaml = [ "biome" ];
+          markdown = [ "biome" ];
 
           # Python, Shell & Systems
-          python = ["ruff_format"];
-          sh = ["shfmt"];
-          bash = ["shfmt"];
-          nix = ["nixfmt"];
-          rust = ["rustfmt"];
-          toml = ["taplo"];
-          kdl = ["kdlfmt"];
+          python = [ "ruff_format" ];
+          sh = [ "shfmt" ];
+          bash = [ "shfmt" ];
+          nix = [ "nixfmt" ];
+          rust = [ "rustfmt" ];
+          toml = [ "taplo" ];
         };
 
         formatters = {
@@ -48,7 +49,10 @@ in {
             command = "${pkgsUnstable.nixfmt}/bin/nixfmt";
           };
           shfmt = {
-            prepend_args = ["-i" "0"];
+            prepend_args = [
+              "-i"
+              "0"
+            ];
           };
         };
 

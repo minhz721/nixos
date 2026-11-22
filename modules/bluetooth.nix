@@ -1,5 +1,5 @@
 {
-  boot.kernelModules = ["uhid"];
+  boot.kernelModules = [ "uhid" ];
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -8,12 +8,14 @@
         Privacy = "off";
         JustWorksRepairing = "confirm";
         FastConnectable = false;
+        Experimental = true;
+        KernelExperimental = true;
       };
       Policy = {
         AutoEnable = true;
       };
     };
   };
-
   # services.blueman.enable = true;
+
 }

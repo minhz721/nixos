@@ -203,14 +203,6 @@ in
             tab_size = 2;
             formatter = biomeFmt;
           };
-          KDL = {
-            hard_tabs = false;
-            tab_size = 4;
-            formatter = fmt (lib.getExe pkgsUnstable.kdlfmt) [
-              "format"
-              "-"
-            ];
-          };
           Bash.formatter = fmt (lib.getExe pkgsUnstable.shfmt) [
             "-i"
             "0"
