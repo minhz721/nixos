@@ -142,22 +142,28 @@
 
     # Move lines & indentation
     {
-      mode = [
-        "n"
-        "v"
-      ];
+      mode = "n";
       key = "<A-j>";
-      action = ":m '>+1<CR>gv=gv";
+      action = "<cmd>m .+1<CR>==";
       options.desc = "Move line down";
     }
     {
-      mode = [
-        "n"
-        "v"
-      ];
+      mode = "n";
+      key = "<A-k>";
+      action = "<cmd>m .-2<CR>==";
+      options.desc = "Move line up";
+    }
+    {
+      mode = "v";
+      key = "<A-j>";
+      action = ":m '>+1<CR>gv=gv";
+      options.desc = "Move selection down";
+    }
+    {
+      mode = "v";
       key = "<A-k>";
       action = ":m '<-2<CR>gv=gv";
-      options.desc = "Move line up";
+      options.desc = "Move selection up";
     }
     {
       mode = "v";

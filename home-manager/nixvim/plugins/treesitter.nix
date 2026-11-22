@@ -1,12 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.nixvim = {
     plugins = {
       treesitter = {
         enable = true;
-        settings = {
-          highlight.enable = true;
-          indent.enable = true;
-        };
+        highlight.enable = true;
+        indent.enable = true;
         grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
           # Core & Nix
           lua
@@ -32,6 +31,8 @@
           markdown_inline
           python
           rust
+
+          regex
         ];
       };
 

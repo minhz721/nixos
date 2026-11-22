@@ -1,21 +1,9 @@
 {
-  pkgs,
+  config,
   pkgsUnstable,
   rustToolchain,
   ...
 }:
-let
-  biomeConfigDir = pkgs.writeTextDir "biome.json" ''
-    {
-      "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
-      "formatter": {
-        "enabled": true,
-        "indentStyle": "tab",
-        "indentWidth": 4
-      }
-    }
-  '';
-in
 {
   programs.nixvim = {
     plugins.conform-nvim = {
@@ -44,13 +32,15 @@ in
         formatters = {
           biome = {
             command = "${pkgsUnstable.biome}/bin/biome";
-            args = [
-              "format"
-              "--stdin-file-path"
-              "$FILENAME"
-              "--config-path"
-              biomeConfigDir
-            ];
+            args.__raw = ''
+              function(_, ctx)
+                local args = { "format", "--stdin-file-path", "$FILENAME" }
+                if not vim.fs.root(ctx.filename, { "biome.json", "biome.jsonc" }) then
+                  vim.list_extend(args, { "--config-path", "${config.xdg.configHome}/biome" })
+                end
+                return args
+              end
+            '';
           };
           nixfmt = {
             command = "${pkgsUnstable.nixfmt}/bin/nixfmt";
