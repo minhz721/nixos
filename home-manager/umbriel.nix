@@ -76,8 +76,11 @@ in
         ];
       };
       layout = {
-        # mode = "dwindle";
         mode = "scrolling";
+        scrolling = {
+          default_extent_fraction = 0.5;
+          center_underfull_strip = false;
+        };
       };
       input = {
         keyboard = {
@@ -161,6 +164,8 @@ in
         "Mod+Down" = "window-focus-down";
         "Mod+WheelDown" = "layout-scroll-right";
         "Mod+WheelUp" = "layout-scroll-left";
+        "Mod+Shift+WheelDown" = "window-focus-right";
+        "Mod+Shift+WheelUp" = "window-focus-left";
 
         # Resize
         "Mod+Ctrl+Left" = "window-modify-primary-extent -0.02";
