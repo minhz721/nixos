@@ -11,12 +11,8 @@
     ./ghostty.nix
     ./zed.nix
     ./nemo.nix
-    # ./umbriel.nix
     ./nixvim
     ./mitos.nix
-    # ./helix.nix
-    # ./tmux.nix
-    # ./alacritty.nix
     ./sway.nix
     ./fuzzel
     ./waybar.nix

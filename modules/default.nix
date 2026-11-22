@@ -15,6 +15,5 @@
     ./nh.nix
     ./greeter.nix
     ./sway.nix
-    # ./umbriel.nix
   ];
 }

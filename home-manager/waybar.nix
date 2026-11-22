@@ -45,7 +45,6 @@
       clock = {
         format = " {:%H:%M   %d/%m/%Y}";
         format-alt = " {:%H:%M:%S   %A, %d %B %Y}";
-        tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
       };
       cpu = {
         format = "CPU: {usage}%";
