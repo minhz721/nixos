@@ -258,6 +258,14 @@ in
             typeHints.enable = true;
           };
         };
+        lua-language-server = {
+          command = "lua-language-server";
+          config.Lua = {
+            runtime.version = "LuaJIT";
+            diagnostics.globals = [ "vim" ];
+            telemetry.enable = false;
+          };
+        };
       };
 
       language = [
@@ -390,6 +398,20 @@ in
             command = "taplo";
             args = [
               "fmt"
+              "-"
+            ];
+          };
+        }
+        {
+          name = "lua";
+          language-servers = [ "lua-language-server" ];
+          auto-format = true;
+          indent = indentSpaces 2;
+          formatter = {
+            command = "stylua";
+            args = [
+              "--stdin-filepath"
+              "%{buffer_name}"
               "-"
             ];
           };

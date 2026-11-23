@@ -11,12 +11,11 @@
     ./ghostty.nix
     ./zed.nix
     ./nemo.nix
-    ./nixvim
     ./mitos.nix
     ./sway.nix
     ./fuzzel
     ./waybar.nix
-    ./wayland-tools.nix
+    ./nixcats
   ];
   programs.direnv = {
     enable = true;

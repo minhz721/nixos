@@ -115,6 +115,17 @@ in
   '';
 
   xdg.configFile."mitos/languages.toml".text = ''
+    [language-server.lua-language-server]
+    command = "lua-language-server"
+
+    [language-server.lua-language-server.config.Lua.runtime]
+    version = "LuaJIT"
+
+    [language-server.lua-language-server.config.Lua.diagnostics]
+    globals = ["vim"]
+
+    [language-server.lua-language-server.config.Lua.telemetry]
+    enable = false
     [language-server.vtsls]
     command = "vtsls"
     args = ["--stdio"]
@@ -272,5 +283,13 @@ in
     auto-format = true
     indent = { tab-width = 2, unit = "  " }
     formatter = { command = "taplo", args = ["fmt", "-"] }
+
+    [[language]]
+    name = "lua"
+    scope = "source.lua"
+    language-servers = ["lua-language-server"]
+    auto-format = true
+    indent = { tab-width = 2, unit = "  " }
+    formatter = { command = "stylua", args = ["--stdin-filepath", "%{buffer_name}", "-"] }
   '';
 }
