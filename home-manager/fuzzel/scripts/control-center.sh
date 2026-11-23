@@ -79,8 +79,6 @@ fi
 options=(
 	"  Change Theme"
 	"  Change Wallpaper"
-	"  Suspend"
-	"󰍃  Log out"
 	"  Power Off"
 	"  Reboot"
 	"  Lock Screen"
@@ -105,18 +103,12 @@ case "$choice" in
 	exec "$SCRIPT_DIR/change-wallpaper.sh"
 	;;
 2)
-	systemctl suspend
-	;;
-3)
-	swaymsg exit
-	;;
-4)
 	systemctl poweroff
 	;;
-5)
+3)
 	systemctl reboot
 	;;
-6)
+4)
 	setsid -f hyprlock >/dev/null 2>&1
 	;;
 esac
