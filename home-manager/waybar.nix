@@ -11,8 +11,8 @@
       margin-right = 10;
       spacing = 8;
       modules-left = [
-        "ext/workspaces"
-        "wlr/taskbar"
+        "sway/workspaces"
+        "sway/window"
       ];
       modules-center = [
         "clock"
@@ -41,6 +41,7 @@
       clock = {
         format = " {:%H:%M   %d/%m/%Y}";
         format-alt = " {:%H:%M:%S   %A, %d %B %Y}";
+        tooltip = false;
       };
       cpu = {
         format = "CPU: {usage}%";

@@ -16,20 +16,12 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # mitos = {
-    #   url = "github:mitos-editor/mitos";
-    # };
     nixCats = {
       url = "github:BirdeeHub/nixCats-nvim";
     };
 
     thorium = {
       url = "github:Rishabh5321/custom-packages-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    noctalia-greeter = {
-      url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

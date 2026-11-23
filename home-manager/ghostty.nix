@@ -1,4 +1,4 @@
-{pkgsUnstable, ...}: {
+{ pkgsUnstable, ... }: {
   programs.ghostty = {
     enable = true;
     package = pkgsUnstable.ghostty;
@@ -23,6 +23,7 @@
       cursor-style-blink = false;
       cursor-invert-fg-bg = true;
       mouse-hide-while-typing = true;
+      unfocused-split-opacity = 1;
       # Extras
       shell-integration-features = true;
       copy-on-select = "clipboard";
