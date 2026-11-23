@@ -1,17 +1,12 @@
 {
   imports = [
-    ./fish.nix
-    ./git.nix
+    ./shell.nix
+    ./dev.nix
+    ./desktop.nix
     ./gtk.nix
-    ./yazi.nix
-    ./stable.nix
-    ./unstale.nix
-    ./rust.nix
     ./thorium.nix
     ./ghostty.nix
     ./zed.nix
-    ./nemo.nix
-    ./mitos.nix
     ./sway.nix
     ./fuzzel
     ./waybar.nix

@@ -16,12 +16,8 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    mitos = {
-      url = "github:mitos-editor/mitos";
-    };
-    # nixvim = {
-    #   url = "github:nix-community/nixvim/nixos-26.05";
-    #   inputs.nixpkgs.follows = "nixpkgs";
+    # mitos = {
+    #   url = "github:mitos-editor/mitos";
     # };
     nixCats = {
       url = "github:BirdeeHub/nixCats-nvim";

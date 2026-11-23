@@ -113,12 +113,20 @@ in
   wayland.windowManager.sway = {
     enable = true;
     package = null;
+    # Swayfx
+    checkConfig = false;
 
     extraConfig = ''
       exec --no-startup-id swaymsg workspace 1
       client.focused          #f9e2af   #f9e2af   #1e1e2e   #f9e2af     #f9e2af
       client.focused_inactive #313244   #313244   #cdd6f4   #313244     #313244
       client.unfocused        #1e1e2e   #1e1e2e   #cdd6f4   #1e1e2e     #1e1e2e
+
+      # Swayfx
+      corner_radius 8
+      animation_duration_ms 250
+      blur disable
+      shadows disable
     '';
 
     config = {
@@ -136,7 +144,10 @@ in
         };
       };
       startup = [
-        { command = "sh -c 'swaybg -i \"$(cat ~/.cache/wallpaper_current)\" -m fill'"; }
+        {
+          command = "sh -c 'pkill -x swaybg || true; swaybg -i \"$(cat ~/.cache/wallpaper_current)\" -m fill'";
+          always = true;
+        }
         { command = "fcitx5 -d"; }
         { command = "blueman-applet"; }
       ];

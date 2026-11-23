@@ -20,7 +20,8 @@ opt.undofile = true
 opt.updatetime = 250
 opt.completeopt = { "menu", "menuone", "noselect" }
 opt.mouse = "a"
-opt.wrap = false
+opt.wrap = true
+opt.linebreak = true
 opt.signcolumn = "yes"
 opt.conceallevel = 0
 opt.pumheight = 15
@@ -34,7 +35,7 @@ opt.foldenable = true
 
 -- Theme VSCode
 require("vscode").setup({
-  style = "dark",
-  transparent = false,
+	style = "dark",
+	transparent = false,
 })
 vim.cmd.colorscheme("vscode")

@@ -13,7 +13,7 @@
     ./docker.nix
     ./fcitx5.nix
     ./nh.nix
-    ./greeter.nix
+    # ./greeter.nix
     ./sway.nix
   ];
 }
