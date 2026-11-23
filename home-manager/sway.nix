@@ -6,41 +6,13 @@
 }:
 let
   mod = "Mod4";
-
-  screenshot = pkgs.writeShellApplication {
-    name = "screenshot";
-    text = ''
-      dir="''${XDG_PICTURES_DIR:-$HOME/Pictures}/Screenshots"
-      mkdir -p "$dir"
-      file="$dir/$(date +'%Y-%m-%d_%H-%M-%S').png"
-
-      case "''${1:-region}" in
-        region)
-          geometry="$(slurp)" || exit 0
-          grim -g "$geometry" "$file"
-          ;;
-        full)
-          grim "$file"
-          ;;
-        *)
-          echo "usage: screenshot [region|full]" >&2
-          exit 1
-          ;;
-      esac
-
-      wl-copy --type image/png < "$file"
-      notify-send -t 2000 "Screenshot saved" "$file"
-    '';
-  };
 in
 {
   home.packages = with pkgs; [
-    libnotify
-    wl-clipboard
     swaybg
-    wlr-randr
     grim
     slurp
+    wl-clipboard
   ];
 
   services.mako = {
@@ -113,7 +85,6 @@ in
   wayland.windowManager.sway = {
     enable = true;
     package = null;
-    # Swayfx
     checkConfig = false;
 
     extraConfig = ''
@@ -122,9 +93,9 @@ in
       client.focused_inactive #313244   #313244   #cdd6f4   #313244     #313244
       client.unfocused        #1e1e2e   #1e1e2e   #cdd6f4   #1e1e2e     #1e1e2e
 
-      # Swayfx
+      # SwayFX 
       corner_radius 8
-      animation_duration_ms 250
+      default_dim_inactive 0.0
       blur disable
       shadows disable
     '';
@@ -133,16 +104,29 @@ in
       modifier = mod;
       terminal = "ghostty";
       menu = "fuzzel";
+
+      input = {
+        "type:keyboard" = {
+          repeat_delay = "200";
+          repeat_rate = "40";
+        };
+        "type:pointer" = {
+          accel_profile = "flat";
+        };
+      };
+
       output = {
         "DP-1" = {
           mode = "2560x1440@200Hz";
           pos = "0 0";
+          adaptive_sync = "on";
         };
         "HDMI-A-1" = {
           mode = "1920x1080@60Hz";
           pos = "320 1440";
         };
       };
+
       startup = [
         {
           command = "sh -c 'pkill -x swaybg || true; swaybg -i \"$(cat ~/.cache/wallpaper_current)\" -m fill'";
@@ -151,9 +135,11 @@ in
         { command = "fcitx5 -d"; }
         { command = "blueman-applet"; }
       ];
+
       bars = [
         { command = "${pkgs.waybar}/bin/waybar"; }
       ];
+
       window = {
         border = 2;
         titlebar = false;
@@ -164,14 +150,16 @@ in
               inherit criteria;
             })
             [
-              { app_id = "^(mpv|imv|cava|\\.blueman-manager-wrapped|blueman-manager|org\\.fcitx\\.)$"; }
+              { app_id = "^(mpv|imv|cava|\\.blueman-manager-wrapped|blueman-manager|org\\.fcitx\\..*)$"; }
               { title = "(?i)Mission Center"; }
             ];
       };
+
       floating = {
         border = 5;
         titlebar = false;
       };
+
       gaps = {
         inner = 6;
         outer = 4;
@@ -184,8 +172,10 @@ in
         "${mod}+l" = "exec hyprlock";
 
         # Screenshot
-        "${mod}+Shift+s" = "exec ${screenshot}/bin/screenshot region";
-        "${mod}+p" = "exec ${screenshot}/bin/screenshot full";
+        "${mod}+Shift+s" =
+          "exec sh -c 'mkdir -p ~/Pictures/Screenshots && grim -g \"$(slurp)\" - | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy'";
+        "${mod}+p" =
+          "exec sh -c 'mkdir -p ~/Pictures/Screenshots && grim - | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy'";
 
         # Apps
         "${mod}+e" = "exec nemo";

@@ -1,8 +1,10 @@
 { pkgs, ... }:
 
 {
-  # 1. Firmware & Kernel Tweaks (Tối ưu cho PC AMD)
-  hardware.enableAllFirmware = true;
+  # 1. Firmware & Kernel Tweaks (Ryzen 5 4600G - Zen 2 + Vega 7 iGPU)
+  hardware.enableRedistributableFirmware = true;
+  hardware.cpu.amd.updateMicrocode = true;
+
   boot.kernelParams = [
     "usbcore.autosuspend=-1"
     "amd_pstate=active"
@@ -20,29 +22,21 @@
   };
 
   boot.kernel.sysctl = {
-    "vm.swappiness" = 10;
+    "vm.swappiness" = 100;
+    "vm.page-cluster" = 0;
     "vm.vfs_cache_pressure" = 50;
     "vm.dirty_ratio" = 10;
     "vm.dirty_background_ratio" = 5;
   };
 
-  # 4. I/O Scheduler Optimization NVMe & SSD
-  services.udev.extraRules = ''
-    ACTION=="add|change", KERNEL=="nvme[0-9]n[0-9]", ATTR{queue/scheduler}="none"
-    ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="0", ATTR{queue/scheduler}="mq-deadline"
-  '';
+  # 4. Storage: TRIM định kỳ cho NVMe/SSD
+  services.fstrim.enable = true;
 
-  # 5. Graphics, AMD GPU & Hardware Video Acceleration (VA-API / Vulkan)
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  services.xserver.videoDrivers = [ "amdgpu" ];
-
+  # 5. Graphics: Vega 7 iGPU
+  hardware.amdgpu.initrd.enable = true;
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    extraPackages = with pkgs; [
-      libva-vdpau-driver
-      libvdpau-va-gl
-    ];
   };
 
   # 6. Networking & Firewall (LocalSend)
@@ -55,7 +49,6 @@
   };
 
   # 7. Audio (PipeWire)
-  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -70,18 +63,10 @@
   boot.kernelModules = [ "uhid" ];
   hardware.bluetooth = {
     enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Privacy = "off";
-        JustWorksRepairing = "confirm";
-        FastConnectable = false;
-        Experimental = true;
-        KernelExperimental = true;
-      };
-      Policy = {
-        AutoEnable = true;
-      };
+    settings.General = {
+      JustWorksRepairing = "confirm";
+      Experimental = true;
+      KernelExperimental = true;
     };
   };
   services.blueman.enable = true;
@@ -105,8 +90,8 @@
   };
 
   # 10. Storage & File Systems
+  # udisks2 + gvfs lo automount cho file manager;
   services.udisks2.enable = true;
-  services.devmon.enable = true;
   services.gvfs.enable = true;
   programs.dconf.enable = true;
 
@@ -117,4 +102,6 @@
       HandlePowerKeyLongPress = "ignore";
     };
   };
+
+  systemd.settings.Manager.DefaultTimeoutStopSec = "15s";
 }
