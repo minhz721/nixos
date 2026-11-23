@@ -3,21 +3,29 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   fuzzel = config.programs.fuzzel.package;
 
-  mkScript = name: runtimeInputs: file:
+  mkScript =
+    name: runtimeInputs: file:
     pkgs.writeShellApplication {
       inherit name runtimeInputs;
       text = builtins.readFile file;
     };
 
-  powermenu = mkScript "fuzzel-powermenu" [fuzzel pkgs.hyprlock] ./scripts/powermenu.sh;
-  wallpaper =
-    mkScript "fuzzel-wallpaper"
-    (with pkgs; [fuzzel swaybg libnotify findutils procps util-linux coreutils])
-    ./scripts/wallpaper-select.sh;
-in {
+  powermenu = mkScript "fuzzel-powermenu" [ fuzzel pkgs.hyprlock ] ./scripts/powermenu.sh;
+  wallpaper = mkScript "fuzzel-wallpaper" (with pkgs; [
+    fuzzel
+    swaybg
+    libnotify
+    findutils
+    procps
+    util-linux
+    coreutils
+  ]) ./scripts/wallpaper-select.sh;
+in
+{
   programs.fuzzel = {
     enable = true;
     settings = {
@@ -31,6 +39,7 @@ in {
         horizontal-pad = 20;
         vertical-pad = 15;
         inner-pad = 10;
+        exit-on-keyboard-focus-loss = false;
       };
       colors = {
         background = "1e1e2eff";

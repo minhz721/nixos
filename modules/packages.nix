@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+
   nix.settings = {
     experimental-features = [
       "nix-command"
@@ -9,17 +11,25 @@
     auto-optimise-store = true;
   };
 
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      stdenv.cc.cc
+      zlib
+      openssl
+      curl
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
     # Disk / Filesystem
     ntfs3g
     exfat
     exfatprogs
-    gnome-disk-utility
 
     # Core CLI & Archives
     fastfetch
     btop
-    ffmpeg
 
     # System Themes / Icons
     gnome-themes-extra
