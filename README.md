@@ -6,7 +6,7 @@ Welcome to my personal **NixOS** configuration repository. This setup manages my
 
 - **Nix Flakes (26.05 & Unstable)**: Reproducible dependency management with locked package versions (`flake.lock`) alongside bleeding-edge packages via `nixpkgs-unstable` and custom inputs (`fenix`, `thorium`, `nixCats`, `nixvim`).
 - **Home Manager**: Declarative user environments including terminals (`alacritty`, `ghostty`), editors (`neovim` via nixCats/nixvim, `zed`), multiplexer (`tmux`), shell (`fish`), and file manager (`nemo`).
-- **SwayFX Window Manager**: Wayland tiling window management with smooth animations and rounded corners, paired with **ReGreet** (Noctalia-inspired dark theme), `waybar`, custom `fuzzel` scripts (`powermenu.sh`, `wallpaper-select.sh`), `mako`, and `hyprlock`.
+- **SwayFX Window Manager**: Wayland tiling window management with smooth animations and rounded corners, paired with **ReGreet** (Noctalia-inspired dark theme), `waybar`, custom `fuzzel` scripts (`powermenu.sh`, `change-wallpaper.sh`), `mako`, and `hyprlock`.
 - **NH (Nix Helper)**: Streamlined system rebuilds and automated garbage collection (`--keep-since 4d --keep 3`).
 - **Vietnamese Input**: Pre-configured `fcitx5` with `fcitx5-lotus` for seamless Vietnamese typing on Wayland.
 - **Development & Virtualization**: Ready-to-use `Rust` (via Fenix), `Docker` (on-demand socket activation), and `Virt-Manager` (QEMU/KVM + SPICE) setups.
@@ -32,7 +32,7 @@ Welcome to my personal **NixOS** configuration repository. This setup manages my
 │   │   ├── default.nix
 │   │   └── scripts/
 │   │       ├── powermenu.sh
-│   │       └── wallpaper-select.sh
+│   │       └── change-wallpaper.sh
 │   ├── alacritty.nix          # Terminal emulators (Alacritty, Ghostty)
 │   ├── ghostty.nix
 │   ├── gtk.nix                # GTK, Qt, cursor & font theming
@@ -90,21 +90,21 @@ sudo nixos-rebuild switch --flake .#leomin
 ## 🛠️ Useful Commands
 
 - **Update all flake inputs:**
-  ```bash
-  nix flake update
-  ```
+    ```bash
+    nix flake update
+    ```
 - **Rebuild and switch using NH:**
-  ```bash
-  nh os switch
-  ```
+    ```bash
+    nh os switch
+    ```
 - **Clean up old generations manually:**
-  ```bash
-  nh clean all --keep 3
-  ```
+    ```bash
+    nh clean all --keep 3
+    ```
 - **Optimize the Nix store:**
-  ```bash
-  nix-store --optimise
-  ```
+    ```bash
+    nix-store --optimise
+    ```
 
 ## 🔍 Troubleshooting & Utilities
 
@@ -141,4 +141,3 @@ sudo ventoy -i /dev/sdX
 - **GitHub:** [@minhz721](https://github.com)
 
 Feel free to fork this repository or borrow snippets for your own NixOS journey!
-

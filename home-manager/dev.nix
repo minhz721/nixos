@@ -38,6 +38,7 @@ in
     jq
     yq
     bat
+    fzf
 
     # Development Applications & CLI
     lazydocker
