@@ -13,21 +13,12 @@ in
     grim
     slurp
     wl-clipboard
+    libnotify
+    zenity
   ];
 
   services.mako = {
     enable = true;
-    settings = {
-      default-timeout = 5000;
-      font = "Maple Mono NF";
-      background-color = "#1e1e2eff";
-      text-color = "#cdd6f4ff";
-      border-color = "#cba6f7ff";
-      border-size = 2;
-      border-radius = 8;
-      margin = "10,10";
-      padding = "10";
-    };
   };
 
   programs.hyprlock = {
@@ -93,7 +84,7 @@ in
       client.focused_inactive #313244   #313244   #cdd6f4   #313244     #313244
       client.unfocused        #1e1e2e   #1e1e2e   #cdd6f4   #1e1e2e     #1e1e2e
 
-      # SwayFX 
+      # SwayFX
       corner_radius 8
       default_dim_inactive 0.0
       blur disable
