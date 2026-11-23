@@ -5,9 +5,9 @@ map({ "n", "i", "v" }, "<C-s>", "<Esc><cmd>write<CR>", {
 	silent = true,
 	desc = "Save file",
 })
-map("n", "<leader>w", "<cmd>write<CR>", {
+map({ "n", "i", "v" }, "<leader>w", "<Esc><cmd>write<CR>", {
 	silent = true,
-	desc = "Write file",
+	desc = "Write file and return to Normal mode",
 })
 
 -- Select all
@@ -43,18 +43,17 @@ map("v", "<A-k>", ":move '<-2<CR>gv=gv", { desc = "Move selection up" })
 map("v", "<Tab>", ">gv", { desc = "Indent selection" })
 map("v", "<S-Tab>", "<gv", { desc = "Outdent selection" })
 
--- Buffer & Window navigation
+-- Buffer navigation & close all
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", {
 	desc = "Next buffer",
 })
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", {
 	desc = "Previous buffer",
 })
-map("n", "<leader>x", "<cmd>bdelete<CR>", { desc = "Close buffer" })
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+map("n", "<leader>ba", "<cmd>%bdelete<CR>", {
+	silent = true,
+	desc = "Close all open buffers",
+})
 
 -- Leader shortcuts
 map("n", "<leader>/", "gcc", {
@@ -64,8 +63,5 @@ map("n", "<leader>/", "gcc", {
 map("v", "<leader>/", "gc", {
 	remap = true,
 	desc = "Toggle comment",
-})
-map("n", "<leader>ch", "<cmd>nohlsearch<CR>", {
-	desc = "Clear search highlight",
 })
 map("n", "<leader>q", "<cmd>quit<CR>", { desc = "Quit Neovim" })

@@ -10,10 +10,6 @@
       margin-left = 10;
       margin-right = 10;
       spacing = 8;
-      # modules-left = [
-      #   "sway/workspaces"
-      #   "sway/window"
-      # ];
       modules-left = [
         "ext/workspaces"
         "wlr/taskbar"

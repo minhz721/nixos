@@ -1,17 +1,15 @@
 { pkgs, ... }: {
-  home.sessionVariables = {
-    EDITOR = "hx";
-    VISUAL = "hx";
-  };
   home.sessionPath = [
     "$HOME/.bun/bin"
   ];
-  # Eza - modern replacement for ls
+
+  # Eza
   programs.eza = {
     enable = true;
     enableFishIntegration = true;
   };
-  # Starship - shell prompt
+
+  # Starship
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
@@ -44,37 +42,30 @@
       starship init fish | source
     '';
     plugins = with pkgs.fishPlugins; [
-      # Notify when command finishes
       {
         name = "done";
         src = done.src;
       }
-      # FZF integration
       {
         name = "fzf-fish";
         src = fzf-fish.src;
       }
-      # Auto close brackets and quotes
       {
         name = "autopair";
         src = autopair.src;
       }
-      # Run Bash commands/scripts from Fish
       {
         name = "bass";
         src = bass.src;
       }
     ];
-
-    # Aliases
     shellAliases = {
-      # Files
       ls = "eza";
       ll = "eza -l";
       la = "eza -la";
       lt = "eza --tree";
       l = "eza -lah --git --icons";
-      # Git
+
       g = "git";
       ga = "git add";
       gaa = "git add --all";
@@ -86,25 +77,36 @@
       gcan = "git commit --amend --no-edit";
       gpo = "git pull origin";
       gco = "git checkout";
-      # Stash
+
       gs = "git stash";
       gsa = "git stash apply";
       gsl = "git stash list";
       gsp = "git stash pop";
       gsc = "git stash clear";
-      # Lazygit
+
       lg = "lazygit";
       ld = "lazydocker";
       lsql = "lazysql";
 
-      # NixOS
       rebuild = "sudo nixos-rebuild switch --flake";
       flake-update = "nix flake update";
       nix-clean = "sudo nix-collect-garbage -d";
-
-      # Nh
       nhos = "nh os switch";
       nhca = "nh clean all";
+    };
+  };
+
+  # Git
+  programs.git = {
+    enable = true;
+    settings = {
+      user = {
+        name = "leomin";
+        email = "minhtd721@gmail.com";
+      };
+      init.defaultBranch = "master";
+      push.autoSetupRemote = true;
+      color.ui = "auto";
     };
   };
 }

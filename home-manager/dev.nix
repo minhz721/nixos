@@ -1,8 +1,36 @@
-{ pkgsUnstable, ... }:
 {
-  home.packages = with pkgsUnstable; [
+  pkgs,
+  pkgsUnstable,
+  fenix,
+  ...
+}:
+let
+  toolchain = fenix.packages.${pkgs.stdenv.hostPlatform.system}.stable.withComponents [
+    "cargo"
+    "rustc"
+    "clippy"
+    "rustfmt"
+    "rust-analyzer"
+    "rust-src"
+  ];
+in
+{
+  _module.args.rustToolchain = toolchain;
+
+  home.packages = [
+    toolchain
+    pkgs.gcc
+  ]
+  ++ (with pkgsUnstable; [
+    # Rust tools
+    bacon
+    cargo-nextest
+    cargo-expand
+    cargo-audit
+    cargo-deny
+    cargo-machete
+
     # CLI tools
-    fzf
     fd
     ripgrep
     zoxide
@@ -21,11 +49,11 @@
     bun
     nodejs
 
-    # Nix Ecosystem (Flake-aware LSP & official RFC formatter)
+    # Nix Ecosystem
     nixd
     nixfmt
 
-    # Web & Scripting (Pure Rust Biome v2)
+    # Web & Scripting
     vtsls
     vscode-langservers-extracted
     emmet-language-server
@@ -45,7 +73,7 @@
     # Build & Config Tools
     gnumake
     taplo
-  ];
+  ]);
 
   xdg.configFile."biome/biome.json".text = builtins.toJSON {
     "$schema" = "https://biomejs.dev";
@@ -54,11 +82,7 @@
       indentStyle = "tab";
       indentWidth = 4;
     };
-    javascript = {
-      formatter = {
-        semicolons = "always";
-      };
-    };
+    javascript.formatter.semicolons = "always";
     overrides = [
       {
         includes = [

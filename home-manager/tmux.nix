@@ -2,71 +2,65 @@
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   resurrectScripts = "${pkgs.tmuxPlugins.resurrect}/share/tmux-plugins/resurrect/scripts";
-  # Wrap tmux command in "...", auto-escape " and \
-  q = command: "\"${lib.escape ["\"" "\\"] command}\"";
+  q = command: "\"${lib.escape [ "\"" "\\" ] command}\"";
   cwd = "-c '#{pane_current_path}'";
 
-  # Common commands for Alt-binds and the which-key menu
   cmd = {
     splitDown = "split-window -v ${cwd}";
     splitRight = "split-window -h ${cwd}";
-    yazi = "split-window -h -b -l 25% ${cwd} 'yazi'";
     newWindow = "new-window ${cwd}";
     newSession = "command-prompt -p 'New Session Name:' \"new-session -s '%%'\"";
     renameSession = "command-prompt -I '#S' \"rename-session '%%'\"";
     renameWindow = "command-prompt -I '#W' \"rename-window '%%'\"";
   };
 
-  # Bind Alt keys directly in tmux so the shortcuts keep working inside Helix.
   alt = key: command: "bind -n ${key} ${q command}";
-  altBindings =
-    {
-      # Navigation
-      "M-Left" = "select-pane -L";
-      "M-Right" = "select-pane -R";
-      "M-Up" = "select-pane -U";
-      "M-Down" = "select-pane -D";
-      # Panes
-      "M-n" = cmd.splitDown;
-      "M-p" = cmd.splitRight;
-      "M-x" = "kill-pane";
-      "M-e" = cmd.yazi;
-      "M-f" = "resize-pane -Z";
-      # Windows / Tabs
-      "M-t" = cmd.newWindow;
-      "M-q" = "kill-window";
-      # Sessions
-      "M-s" = "choose-tree -sZ";
-      "M-w" = cmd.newSession;
-      "M-r" = cmd.renameSession;
-      "M-d" = "detach-client";
-      # Resizing
-      "M-S-Left" = "resize-pane -L 5";
-      "M-S-Right" = "resize-pane -R 5";
-      "M-S-Up" = "resize-pane -U 5";
-      "M-S-Down" = "resize-pane -D 5";
-    }
-    # Alt+1..9 select window
-    // lib.listToAttrs (lib.genList (
-        i: let
-          n = toString (i + 1);
-        in
-          lib.nameValuePair "M-${n}" "select-window -t ${n}"
-      )
-      9);
+  altBindings = {
+    # Navigation
+    "M-Left" = "select-pane -L";
+    "M-Right" = "select-pane -R";
+    "M-Up" = "select-pane -U";
+    "M-Down" = "select-pane -D";
+    # Panes
+    "M-n" = cmd.splitDown;
+    "M-p" = cmd.splitRight;
+    "M-x" = "kill-pane";
+    "M-f" = "resize-pane -Z";
+    # Windows / Tabs
+    "M-t" = cmd.newWindow;
+    "M-q" = "kill-window";
+    # Sessions
+    "M-s" = "choose-tree -sZ";
+    "M-w" = cmd.newSession;
+    "M-r" = cmd.renameSession;
+    "M-d" = "detach-client";
+    # Resizing
+    "M-S-Left" = "resize-pane -L 5";
+    "M-S-Right" = "resize-pane -R 5";
+    "M-S-Up" = "resize-pane -U 5";
+    "M-S-Down" = "resize-pane -D 5";
+  }
+  // lib.listToAttrs (
+    lib.genList (
+      i:
+      let
+        n = toString (i + 1);
+      in
+      lib.nameValuePair "M-${n}" "select-window -t ${n}"
+    ) 9
+  );
 
   altBinds = lib.concatStringsSep "\n" (lib.mapAttrsToList alt altBindings);
 
-  # --- Which-key menu (Alt+Space) ---
   header = color: title: "${q "#[fg=${color}]── ${title} ──"} \"\" \"\"";
-  item = label: key: command: "${q label} ${key} ${q command}";
+  item =
+    label: key: command:
+    "${q label} ${key} ${q command}";
   separator = "\"\"";
   menu = lib.concatStringsSep " \\\n        " [
-    (header "#fab387" "TOOLS")
-    (item "Yazi File Tree 25% (Alt+e)" "e" cmd.yazi)
-    separator
     (header "#a6e3a1" "PANES")
     (item "Split Vertical (Alt+p)" "p" cmd.splitRight)
     (item "Split Horizontal (Alt+n)" "n" cmd.splitDown)
@@ -90,7 +84,8 @@
     (item "Restore Session" "C-r" "run-shell '${resurrectScripts}/restore.sh'")
     (item "Exit Menu (Esc)" "Escape" "")
   ];
-in {
+in
+{
   programs.tmux = {
     enable = true;
     mouse = true;
@@ -116,7 +111,7 @@ in {
       {
         plugin = resurrect;
         extraConfig = ''
-          set -g @resurrect-processes 'hx yazi'
+          set -g @resurrect-processes 'hx'
           set -g @resurrect-capture-pane-contents 'on'
         '';
       }
@@ -130,9 +125,6 @@ in {
     ];
 
     extraConfig = ''
-      # =====================================================================
-      # TERMINAL: extended keys for Helix + true color
-      # =====================================================================
       set -g extended-keys on
       set -as terminal-features 'xterm*:extkeys'
       set -as terminal-features 'alacritty*:extkeys'
@@ -141,19 +133,12 @@ in {
       set -g renumber-windows on
       set -g status-position top
 
-      # Status bar customization (tách từ phần continuum cho chuẩn)
       set -g status-left ""
       set -g status-right-length 100
       set -g status-right "#{E:@catppuccin_status_directory}#{E:@catppuccin_status_session}#{E:@catppuccin_status_date_time}"
 
-      # =====================================================================
-      # ALT BINDINGS (tmux shortcuts work while Helix is active)
-      # =====================================================================
       ${altBinds}
 
-      # =====================================================================
-      # WHICH-KEY POPUP MENU (Alt + Space)
-      # =====================================================================
       set -g menu-style "bg=#1e1e2e,fg=#cdd6f4"
       set -g menu-selected-style "bg=#89b4fa,fg=#1e1e2e,bold"
       set -g menu-border-style "fg=#89b4fa"
