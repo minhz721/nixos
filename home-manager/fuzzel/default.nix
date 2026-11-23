@@ -35,10 +35,4 @@
     executable = true;
   };
 
-  home.activation.initTheme = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    if [ ! -f "${config.home.homeDirectory}/.cache/current-theme/name" ]; then
-      ${pkgs.bash}/bin/bash ${./scripts/control-center.sh} --init
-    fi
-  '';
-
 }

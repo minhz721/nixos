@@ -69,7 +69,9 @@ EOF
 
 # Initialize default theme on startup if cache does not exist
 if [ "${1:-}" = "--init" ]; then
-	[ ! -f "$THEME_DIR/waybar.css" ] && apply_theme "${THEME_LIST}"
+	if [ ! -f "$THEME_DIR/waybar.css" ] && [ "${#THEME_LIST[@]}" -gt 0 ]; then
+		apply_theme "${THEME_LIST[0]}"
+	fi
 	exit 0
 fi
 
@@ -77,6 +79,8 @@ fi
 options=(
 	"  Change Theme"
 	"  Change Wallpaper"
+	"  Suspend"
+	"󰍃  Log out"
 	"  Power Off"
 	"  Reboot"
 	"  Lock Screen"
@@ -84,7 +88,7 @@ options=(
 
 choice=$(
 	printf '%s\n' "${options[@]}" |
-		fuzzel --dmenu --index --lines=5 --width=26 --prompt=" Control Center: "
+		fuzzel --dmenu --index --lines="${#options[@]}" --width=26 --prompt=" Control Center: "
 ) || exit 0
 
 case "$choice" in
@@ -93,19 +97,26 @@ case "$choice" in
 		printf '%s\n' "${THEME_LIST[@]}" |
 			fuzzel --dmenu --index --lines="${#THEME_LIST[@]}" --width=26 --prompt=" Select Theme: "
 	) || exit 0
-	apply_theme "${THEME_LIST[$t_choice]}"
+	if [[ "$t_choice" =~ ^[0-9]+$ ]] && [ "$t_choice" -lt "${#THEME_LIST[@]}" ]; then
+		apply_theme "${THEME_LIST[$t_choice]}"
+	fi
 	;;
 1)
 	exec "$SCRIPT_DIR/change-wallpaper.sh"
 	;;
 2)
-	systemctl poweroff
+	systemctl suspend
 	;;
 3)
-	systemctl reboot
+	swaymsg exit
 	;;
 4)
+	systemctl poweroff
+	;;
+5)
+	systemctl reboot
+	;;
+6)
 	setsid -f hyprlock >/dev/null 2>&1
 	;;
 esac
-ac
