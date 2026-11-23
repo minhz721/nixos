@@ -1,15 +1,15 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   # Docker (On-demand socket activation)
   virtualisation.docker = {
     enable = true;
+    enableOnBoot = false;
     autoPrune = {
       enable = true;
       dates = "weekly";
     };
   };
-  systemd.services.docker.wantedBy = lib.mkForce [ ];
 
   # Virt-Manager (QEMU/KVM + SPICE)
   programs.virt-manager.enable = true;
@@ -18,7 +18,6 @@
   virtualisation.libvirtd = {
     enable = true;
     qemu = {
-      package = pkgs.qemu_kvm;
       vhostUserPackages = with pkgs; [ virtiofsd ];
     };
   };

@@ -8,23 +8,18 @@
       "nix-command"
       "flakes"
     ];
-    auto-optimise-store = true;
+    download-buffer-size = 524288000;
   };
 
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      stdenv.cc.cc
-      zlib
-      openssl
-      curl
-    ];
+  nix.optimise = {
+    automatic = true;
+    dates = [ "weekly" ];
   };
+
+  programs.nix-ld.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # Disk / Filesystem
-    ntfs3g
-    exfat
+    # Disk / Filesystem    ntfs3g
     exfatprogs
 
     # Core CLI & Archives
