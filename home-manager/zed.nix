@@ -28,6 +28,7 @@ in
       "emmet"
       "biome"
       "nix"
+      "lua"
     ];
 
     userKeymaps = [
@@ -149,6 +150,14 @@ in
           };
           closureReturnTypeHints.enable = "always";
         };
+        lua-language-server = {
+          binary.path = lib.getExe pkgsUnstable.lua-language-server;
+          settings.Lua = {
+            runtime.version = "LuaJIT";
+            diagnostics.globals = [ "vim" ];
+            telemetry.enable = false;
+          };
+        };
       };
 
       languages =
@@ -207,6 +216,19 @@ in
             "-i"
             "0"
           ];
+          Lua = {
+            hard_tabs = false;
+            tab_size = 2;
+            language_servers = [
+              "lua-language-server"
+              "path-server-lsp"
+            ];
+            formatter = fmt (lib.getExe pkgsUnstable.stylua) [
+              "--stdin-filepath"
+              "{buffer_path}"
+              "-"
+            ];
+          };
         };
     };
   };

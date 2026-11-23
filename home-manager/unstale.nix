@@ -1,4 +1,5 @@
-{ pkgsUnstable, ... }: {
+{ pkgsUnstable, ... }:
+{
   home.packages = with pkgsUnstable; [
     # CLI tools
     fzf
@@ -37,13 +38,17 @@
     shellcheck
     shfmt
 
+    # Lua
+    lua-language-server
+    stylua
+
     # Build & Config Tools
     gnumake
     taplo
   ];
 
   xdg.configFile."biome/biome.json".text = builtins.toJSON {
-    "$schema" = "https://biomejs.dev/schemas/2.0.0/schema.json";
+    "$schema" = "https://biomejs.dev";
     formatter = {
       enabled = true;
       indentStyle = "tab";
@@ -54,5 +59,17 @@
         semicolons = "always";
       };
     };
+    overrides = [
+      {
+        includes = [
+          "**/*.yaml"
+          "**/*.yml"
+        ];
+        formatter = {
+          indentStyle = "space";
+          indentWidth = 2;
+        };
+      }
+    ];
   };
 }
