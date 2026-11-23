@@ -1,4 +1,3 @@
-{ config, ... }:
 {
   programs.waybar = {
     enable = true;
@@ -24,7 +23,8 @@
         "temperature"
         "memory"
         "pulseaudio"
-        "custom/control-center"
+        "custom/wallpaper"
+        "custom/powermenu"
       ];
       "sway/workspaces" = {
         disable-scroll = true;
@@ -68,11 +68,16 @@
         icon-size = 18;
         spacing = 10;
       };
-      "custom/control-center" = {
-        format = "";
+      "custom/powermenu" = {
+        format = "";
+        tooltip = false;
+        on-click = "$HOME/.config/fuzzel/scripts/powermenu.sh";
+      };
+      "custom/wallpaper" = {
+        format = "";
         tooltip = true;
-        tooltip-format = "Control Center";
-        on-click = "$HOME/.config/fuzzel/scripts/control-center.sh";
+        tooltip-format = "Toggle Wallpaper Panel";
+        on-click = "$HOME/.config/fuzzel/scripts/change-wallpaper.sh";
       };
       temperature = {
         hwmon-path-abs = "/sys/class/hwmon";
@@ -85,8 +90,6 @@
     };
 
     style = ''
-      @import url("${config.home.homeDirectory}/.cache/current-theme/waybar.css");
-
       * {
         border: none;
         border-radius: 0;
@@ -98,7 +101,7 @@
 
       window#waybar {
         background-color: transparent;
-        color: @fg;
+        color: #cdd6f4;
       }
 
       #workspaces,
@@ -108,23 +111,22 @@
       #cpu,
       #memory,
       #temperature,
-      #tray,
-      #custom-control-center {
-        background-color: @bg;
+      #tray {
+        background-color: #1e1e2e;
         padding: 4px 12px;
         border-radius: 12px;
-        border: 1px solid @surface;
+        border: 1px solid #313244;
       }
 
       #workspaces button {
         padding: 0 5px;
-        color: @muted;
+        color: #6c7086;
         background: transparent;
       }
 
       #workspaces button.active,
       #workspaces button.focused {
-        color: @accent;
+        color: #cba6f7;
       }
 
       #workspaces button:hover {
@@ -133,25 +135,58 @@
         background: transparent;
       }
 
-      #window { color: @subtext; }
-      #clock { color: @blue; }
-      #pulseaudio { color: @yellow; }
-      #cpu { color: @green; }
-      #memory { color: @teal; }
-      #tray { color: @fg; }
+      #window {
+        color: #bac2de;
+      }
 
-      #tray > .passive { opacity: 0.6; }
-      #tray > .needs-attention { color: @red; }
+      #clock {
+        color: #89b4fa;
+      }
+
+      #pulseaudio {
+        color: #f9e2af;
+      }
+
+      #cpu {
+        color: #a6e3a1;
+      }
+
+      #memory {
+        color: #94e2d5;
+      }
+
+      #tray {
+        color: #cdd6f4;
+      }
+
+      #tray > .passive {
+        opacity: 0.6;
+      }
+
+      #tray > .needs-attention {
+        color: #f38ba8;
+      }
+
       #tray menu {
-        background: @bg;
-        color: @fg;
+        background: #1e1e2e;
+        color: #cdd6f4;
         border-radius: 8px;
         padding: 8px;
       }
 
-      #custom-control-center {
-        color: @accent;
-        padding: 4px 15px 4px 12px;
+      #custom-powermenu {
+        color: #f38ba8;
+        background-color: #1e1e2e;
+        border-radius: 12px;
+        border: 1px solid #313244;
+        padding: 4px 16px 4px 12px;
+      }
+
+      #custom-wallpaper {
+        background-color: #1e1e2e;
+        border-radius: 12px;
+        border: 1px solid #313244;
+        padding: 4px 16px 4px 12px;
       }
 
       #clock:hover,
@@ -160,19 +195,9 @@
       #memory:hover,
       #tray:hover,
       #temperature:hover,
-      #custom-control-center:hover {
-        background-color: @surface;
-      }
-
-      tooltip {
-        background-color: @bg;
-        border: 1px solid @accent;
-        border-radius: 10px;
-      }
-
-      tooltip label {
-        color: @fg;
-        padding: 4px 8px;
+      #custom-wallpaper:hover,
+      #custom-powermenu:hover {
+        background-color: #313244;
       }
     '';
   };

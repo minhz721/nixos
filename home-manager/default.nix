@@ -8,6 +8,7 @@
     ./ghostty.nix
     ./zed.nix
     ./sway.nix
+    ./swaybar.nix
     ./fuzzel
     ./waybar.nix
     ./nixcats

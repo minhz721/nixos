@@ -127,7 +127,38 @@ in
       ];
 
       bars = [
-        { command = "${pkgs.waybar}/bin/waybar"; }
+        {
+          command = "/run/current-system/sw/bin/swaybar";
+          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${config.xdg.configHome}/i3status-rust/config-default.toml";
+          position = "top";
+          workspaceButtons = true;
+          trayOutput = "none";
+          fonts = {
+            names = [
+              "Maple Mono NF"
+            ];
+            size = 12.0;
+          };
+          colors = {
+            statusline = "#cdd6f4";
+            background = "#1e1e2e";
+            inactiveWorkspace = {
+              border = "#1e1e2e";
+              background = "#1e1e2e";
+              text = "#6c7086";
+            };
+            focusedWorkspace = {
+              border = "#89b4fa";
+              background = "#89b4fa";
+              text = "#1e1e2e";
+            };
+            activeWorkspace = {
+              border = "#313244";
+              background = "#313244";
+              text = "#cdd6f4";
+            };
+          };
+        }
       ];
 
       window = {
