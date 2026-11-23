@@ -119,7 +119,6 @@ in
         "DP-1" = {
           mode = "2560x1440@200Hz";
           pos = "0 0";
-          adaptive_sync = "on";
         };
         "HDMI-A-1" = {
           mode = "1920x1080@60Hz";
