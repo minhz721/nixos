@@ -116,7 +116,7 @@ in
 
           {
             block = "custom";
-            interval = 60;
+            interval = 5;
             command = "${btCommand}/bin/i3rs-bt";
             format = " $text ";
             theme_overrides = {
