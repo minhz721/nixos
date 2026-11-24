@@ -152,7 +152,7 @@ in
 
           {
             block = "time";
-            format = "  $timestamp.datetime(f:'%H:%M')   $timestamp.datetime(f:'%d/%m/%y') ";
+            format = "  $timestamp.datetime(f:'%H:%M')  $timestamp.datetime(f:'%d/%m/%y') ";
             interval = 5;
             theme_overrides = {
               idle_fg = "#dbb35c";
