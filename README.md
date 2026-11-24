@@ -42,9 +42,6 @@ Welcome to my personal **NixOS** configuration repository. This setup manages my
 │   │   ├── default.nix
 │   │   ├── init.lua
 │   │   └── lua/
-│   └── nixvim/                # Neovim configuration via Nixvim (Nix-based)
-│       ├── default.nix
-│       └── ...
 ├── modules/                   # Modular system-level configurations
 │   ├── default.nix            # System module aggregator
 │   ├── core.nix               # Bootloader, timezone, locales, user & NH setup
