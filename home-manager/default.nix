@@ -6,11 +6,11 @@
     ./gtk.nix
     ./thorium.nix
     ./ghostty.nix
+    ./nixcats
     ./zed.nix
     ./sway.nix
     ./fuzzel
     ./waybar.nix
-    ./nixcats
   ];
   programs.direnv = {
     enable = true;

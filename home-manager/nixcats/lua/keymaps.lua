@@ -34,13 +34,13 @@ map({ "n", "v" }, "c", '"_c', { desc = "Change without yanking" })
 map({ "n", "v" }, "C", '"_C', { desc = "Change to end of line without yanking" })
 map("x", "p", '"_dP', { desc = "Paste over selection without losing clipboard" })
 
--- Duplicate line up/down (dùng thanh ghi nội bộ "a để không ghi đè clipboard)
-map("n", "<C-A-down>", '"ayy"ap', { desc = "Duplicate line down" })
-map("n", "<C-A-up>", '"ayy"aP', { desc = "Duplicate line up" })
-map("i", "<C-A-down>", '<Esc>"ayy"api', { desc = "Duplicate line down" })
-map("i", "<C-A-up>", '<Esc>"ayy"aPi', { desc = "Duplicate line up" })
-map("v", "<C-A-down>", '"ay\'>"ap', { desc = "Duplicate selection down" })
-map("v", "<C-A-up>", '"ay\'<"aP', { desc = "Duplicate selection up" })
+-- Duplicate line up/down
+map("n", "<C-A-down>", "<cmd>t.<cr>", { desc = "Duplicate line down" })
+map("n", "<C-A-up>", "<cmd>t.-1<cr>", { desc = "Duplicate line up" })
+map("i", "<C-A-down>", "<Esc><cmd>t.<cr>gi", { desc = "Duplicate line down" })
+map("i", "<C-A-up>", "<Esc><cmd>t.-1<cr>gi", { desc = "Duplicate line up" })
+map("v", "<C-A-down>", ":t'><cr>gv", { silent = true, desc = "Duplicate selection down" })
+map("v", "<C-A-up>", ":t'<-1<cr>gv", { silent = true, desc = "Duplicate selection up" })
 
 -- Move lines & indentation
 map("v", "<Tab>", ">gv", { desc = "Indent selection" })
