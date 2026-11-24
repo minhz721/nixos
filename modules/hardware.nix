@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  # 1. Firmware & Kernel Tweaks (Ryzen 5 4600G - Zen 2 + Vega 7 iGPU)
+  # Firmware & Kernel Tweaks (Ryzen 5 4600G - Zen 2 + Vega 7 iGPU)
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = true;
 
@@ -10,26 +10,14 @@
     "amd_pstate=active"
   ];
 
-  # 2. Power Profiles & Performance (Balanced / Performance)
-  services.power-profiles-daemon.enable = true;
-  programs.gamemode.enable = true;
-
-  # 3. Memory & ZRAM Optimization
+  # Memory & ZRAM Optimization
   zramSwap = {
     enable = true;
     algorithm = "zstd";
     memoryPercent = 50;
   };
 
-  boot.kernel.sysctl = {
-    "vm.swappiness" = 100;
-    "vm.page-cluster" = 0;
-    "vm.vfs_cache_pressure" = 50;
-    "vm.dirty_ratio" = 10;
-    "vm.dirty_background_ratio" = 5;
-  };
-
-  # 4. Storage: TRIM định kỳ cho NVMe/SSD
+  # Storage: TRIM định kỳ cho NVMe/SSD
   services.fstrim.enable = true;
 
   # 5. Graphics: Vega 7 iGPU
@@ -39,7 +27,7 @@
     enable32Bit = true;
   };
 
-  # 6. Networking & Firewall (LocalSend)
+  # Networking & Firewall (LocalSend)
   networking.hostName = "leomin";
   networking.networkmanager.enable = true;
   networking.firewall = {
@@ -48,7 +36,7 @@
     allowedUDPPorts = [ 53317 ];
   };
 
-  # 7. Audio (PipeWire)
+  # Audio (PipeWire)
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -59,7 +47,7 @@
     pulse.enable = true;
   };
 
-  # 8. Bluetooth & Blueman
+  #Bluetooth & Blueman
   boot.kernelModules = [ "uhid" ];
   hardware.bluetooth = {
     enable = true;
@@ -71,7 +59,7 @@
   };
   services.blueman.enable = true;
 
-  # 9. Security & Authentication
+  #Security & Authentication
   security.polkit.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
@@ -89,13 +77,13 @@
     };
   };
 
-  # 10. Storage & File Systems
-  # udisks2 + gvfs lo automount cho file manager;
+  # Storage & File Systems
+  # udsks2 + gvfs lo automount cho file manager;
   services.udisks2.enable = true;
   services.gvfs.enable = true;
   programs.dconf.enable = true;
 
-  # 11. Prevent unintended sleep/shutdown from keyboard knob (Xinmeng M75)
+  # Prevent unintended sleep/shutdown from keyboard knob (Xinmeng M75)
   services.logind.settings = {
     Login = {
       HandlePowerKey = "ignore";
