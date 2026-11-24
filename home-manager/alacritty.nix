@@ -21,7 +21,6 @@
         builtin_box_drawing = true;
         normal = {
           family = "Maple Mono NF";
-          style = "Regular";
         };
       };
       selection = {
