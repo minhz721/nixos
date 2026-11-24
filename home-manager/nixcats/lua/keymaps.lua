@@ -11,8 +11,7 @@ map({ "n", "i", "v" }, "<leader>w", "<Esc><cmd>write<CR>", {
 })
 
 -- Select all
-map("n", "<C-a>", "ggVG", { desc = "Select all" })
-map("i", "<C-a>", "<Esc>ggVG", { desc = "Select all" })
+map({ "n", "i", "v" }, "<C-a>", "<Esc>ggVG", { desc = "Select all" })
 
 -- Undo & Redo
 map("n", "<C-z>", "u", { desc = "Undo" })
@@ -25,7 +24,7 @@ map("v", "<C-c>", '"+y', { desc = "Copy selection" })
 map("v", "<C-x>", '"+d', { desc = "Cut selection" })
 map("n", "<C-x>", '"+dd', { desc = "Cut current line" })
 map("i", "<C-x>", '<Esc>"+ddi', { desc = "Cut current line" })
-map("v", "<C-S-v>", '"_d"+P', { desc = "Paste clipboard over selection without losing clipboard" })
+map("v", "<C-v>", '"_d"+P', { desc = "Paste clipboard over selection without losing clipboard" })
 
 -- Delete without overwriting system clipboard (khi bật unnamedplus)
 map({ "n", "v" }, "d", '"_d', { desc = "Delete without yanking" })
@@ -44,10 +43,6 @@ map("v", "<C-A-down>", '"ay\'>"ap', { desc = "Duplicate selection down" })
 map("v", "<C-A-up>", '"ay\'<"aP', { desc = "Duplicate selection up" })
 
 -- Move lines & indentation
-map("n", "<A-j>", "<cmd>move .+1<CR>==", { desc = "Move line down" })
-map("n", "<A-k>", "<cmd>move .-2<CR>==", { desc = "Move line up" })
-map("v", "<A-j>", ":move '>+1<CR>gv=gv", { desc = "Move selection down" })
-map("v", "<A-k>", ":move '<-2<CR>gv=gv", { desc = "Move selection up" })
 map("v", "<Tab>", ">gv", { desc = "Indent selection" })
 map("v", "<S-Tab>", "<gv", { desc = "Outdent selection" })
 

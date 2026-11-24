@@ -1,5 +1,4 @@
 {
-  config,
   pkgs,
   lib,
   ...
@@ -31,7 +30,6 @@ in
       };
       background = [
         {
-          path = "${config.home.homeDirectory}/Pictures/wallpaper.jpg";
           blur_passes = 2;
           blur_size = 7;
           noise = 0.0117;
@@ -86,6 +84,7 @@ in
 
       # SwayFX
       corner_radius 8
+      animation_duration_ms 250
       default_dim_inactive 0.0
       blur disable
       shadows disable
@@ -119,7 +118,7 @@ in
 
       startup = [
         {
-          command = "sh -c 'pkill -x swaybg || true; swaybg -i \"$(cat ~/.cache/wallpaper_current)\" -m fill'";
+          command = "sh -c 'pkill -x swaybg || true; [ -s ~/.cache/wallpaper_current ] && swaybg -i \"$(cat ~/.cache/wallpaper_current)\" -m fill'";
           always = true;
         }
         { command = "fcitx5 -d"; }
@@ -128,38 +127,44 @@ in
 
       bars = [
         {
-          command = "/run/current-system/sw/bin/swaybar";
-          statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${config.xdg.configHome}/i3status-rust/config-default.toml";
-          position = "top";
-          workspaceButtons = true;
-          trayOutput = "none";
-          fonts = {
-            names = [
-              "Maple Mono NF"
-            ];
-            size = 12.0;
-          };
-          colors = {
-            statusline = "#cdd6f4";
-            background = "#1e1e2e";
-            inactiveWorkspace = {
-              border = "#1e1e2e";
-              background = "#1e1e2e";
-              text = "#6c7086";
-            };
-            focusedWorkspace = {
-              border = "#89b4fa";
-              background = "#89b4fa";
-              text = "#1e1e2e";
-            };
-            activeWorkspace = {
-              border = "#313244";
-              background = "#313244";
-              text = "#cdd6f4";
-            };
-          };
+          command = "${pkgs.waybar}/bin/waybar";
         }
       ];
+
+      # bars = [
+      #   {
+      #     command = "/run/current-system/sw/bin/swaybar";
+      #     statusCommand = "${pkgs.i3status-rust}/bin/i3status-rs ${config.xdg.configHome}/i3status-rust/config-default.toml";
+      #     position = "top";
+      #     workspaceButtons = true;
+      #     trayOutput = "none";
+      #     fonts = {
+      #       names = [
+      #         "Maple Mono NF"
+      #       ];
+      #       size = 12.0;
+      #     };
+      #     colors = {
+      #       statusline = "#cdd6f4";
+      #       background = "#1e1e2e";
+      #       inactiveWorkspace = {
+      #         border = "#1e1e2e";
+      #         background = "#1e1e2e";
+      #         text = "#6c7086";
+      #       };
+      #       focusedWorkspace = {
+      #         border = "#89b4fa";
+      #         background = "#89b4fa";
+      #         text = "#1e1e2e";
+      #       };
+      #       activeWorkspace = {
+      #         border = "#313244";
+      #         background = "#313244";
+      #         text = "#cdd6f4";
+      #       };
+      #     };
+      #   }
+      # ];
 
       window = {
         border = 2;
@@ -194,9 +199,9 @@ in
 
         # Screenshot
         "${mod}+Shift+s" =
-          "exec sh -c 'mkdir -p ~/Pictures/Screenshots && grim -g \"$(slurp)\" - | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy'";
+          "exec sh -c 'mkdir -p ~/Pictures/Screenshots && geom=$(slurp) && grim -g \"$geom\" - | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy'";
         "${mod}+p" =
-          "exec sh -c 'mkdir -p ~/Pictures/Screenshots && grim - | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy'";
+          "exec sh -c 'mkdir -p ~/Pictures/Screenshots && out=$(swaymsg -t get_outputs | ${pkgs.jq}/bin/jq -r \".[] | select(.focused) | .name\") && grim -o \"$out\" - | tee ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).png | wl-copy'";
 
         # Apps
         "${mod}+e" = "exec nemo";
