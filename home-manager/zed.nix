@@ -127,10 +127,6 @@ in
           };
           initialization_options.experimental.useUv = "on";
         };
-        bash-language-server.binary = {
-          path = lib.getExe pkgsUnstable.bash-language-server;
-          arguments = [ "start" ];
-        };
         vscode-json-language-server.binary = {
           path = lib.getExe' pkgsUnstable.vscode-langservers-extracted "vscode-json-language-server";
           arguments = [ "--stdio" ];
@@ -142,13 +138,16 @@ in
             "stdio"
           ];
         };
-        rust-analyzer.initialization_options.inlayHints = {
-          maxLength = null;
-          lifetimeElisionHints = {
-            enable = "skip_trivial";
-            useParameterNames = true;
+        rust-analyzer = {
+          binary.path = lib.getExe pkgsUnstable.rust-analyzer;
+          initialization_options.inlayHints = {
+            maxLength = null;
+            lifetimeElisionHints = {
+              enable = "skip_trivial";
+              useParameterNames = true;
+            };
+            closureReturnTypeHints.enable = "always";
           };
-          closureReturnTypeHints.enable = "always";
         };
         lua-language-server = {
           binary.path = lib.getExe pkgsUnstable.lua-language-server;

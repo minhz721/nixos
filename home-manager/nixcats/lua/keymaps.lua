@@ -5,9 +5,9 @@ map({ "n", "i", "v" }, "<C-s>", "<Esc><cmd>write<CR>", {
 	silent = true,
 	desc = "Save file",
 })
-map({ "n", "i", "v" }, "<leader>w", "<Esc><cmd>write<CR>", {
+map({ "n", "v" }, "<leader>w", "<cmd>write<CR>", {
 	silent = true,
-	desc = "Write file and return to Normal mode",
+	desc = "Write file",
 })
 
 -- Select all
@@ -24,7 +24,7 @@ map("v", "<C-c>", '"+y', { desc = "Copy selection" })
 map("v", "<C-x>", '"+d', { desc = "Cut selection" })
 map("n", "<C-x>", '"+dd', { desc = "Cut current line" })
 map("i", "<C-x>", '<Esc>"+ddi', { desc = "Cut current line" })
-map("v", "<C-v>", '"_d"+P', { desc = "Paste clipboard over selection without losing clipboard" })
+map("v", "<C-v>", '"+P', { desc = "Paste clipboard over selection" })
 
 -- Delete without overwriting system clipboard (khi bật unnamedplus)
 map({ "n", "v" }, "d", '"_d', { desc = "Delete without yanking" })
@@ -32,7 +32,7 @@ map({ "n", "v" }, "D", '"_D', { desc = "Delete to end of line without yanking" }
 map({ "n", "v" }, "x", '"_x', { desc = "Delete character without yanking" })
 map({ "n", "v" }, "c", '"_c', { desc = "Change without yanking" })
 map({ "n", "v" }, "C", '"_C', { desc = "Change to end of line without yanking" })
-map("x", "p", '"_dP', { desc = "Paste over selection without losing clipboard" })
+map("x", "p", "P", { desc = "Paste over selection without overwriting yank" })
 
 -- Duplicate line up/down
 map("n", "<C-A-down>", "<cmd>t.<cr>", { desc = "Duplicate line down" })
@@ -43,6 +43,10 @@ map("v", "<C-A-down>", ":t'><cr>gv", { silent = true, desc = "Duplicate selectio
 map("v", "<C-A-up>", ":t'<-1<cr>gv", { silent = true, desc = "Duplicate selection up" })
 
 -- Move lines & indentation
+map("n", "<A-j>", "<cmd>m .+1<cr>==", { silent = true, desc = "Move line down" })
+map("n", "<A-k>", "<cmd>m .-2<cr>==", { silent = true, desc = "Move line up" })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv", { silent = true, desc = "Move selection down" })
+map("v", "<A-k>", ":m '<-2<cr>gv=gv", { silent = true, desc = "Move selection up" })
 map("v", "<Tab>", ">gv", { desc = "Indent selection" })
 map("v", "<S-Tab>", "<gv", { desc = "Outdent selection" })
 

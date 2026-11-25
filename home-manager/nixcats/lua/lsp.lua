@@ -1,7 +1,5 @@
 local map = vim.keymap.set
 
--- This configuration uses the native vim.lsp.config()/vim.lsp.enable()
--- API introduced in Neovim 0.11.
 if vim.fn.has("nvim-0.11") ~= 1 then
 	vim.notify("This LSP configuration requires Neovim 0.11 or newer.", vim.log.levels.ERROR)
 	return
@@ -19,13 +17,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			silent = true,
 		}
 
-		map("n", "gd", vim.lsp.buf.definition, opts)
+		map("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", opts)
 		map("n", "gD", vim.lsp.buf.declaration, opts)
-		map("n", "gi", vim.lsp.buf.implementation, opts)
-		map("n", "gr", vim.lsp.buf.references, opts)
+		map("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", opts)
+		map("n", "gr", "<cmd>FzfLua lsp_references<CR>", opts)
 		map("n", "K", vim.lsp.buf.hover, opts)
 		map("n", "<leader>rn", vim.lsp.buf.rename, opts)
-		map("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+		map("n", "<leader>ca", "<cmd>FzfLua lsp_code_actions<CR>", opts)
+		map("n", "<leader>ds", "<cmd>FzfLua lsp_document_symbols<CR>", opts)
+		map("n", "<leader>ws", "<cmd>FzfLua lsp_workspace_symbols<CR>", opts)
 		map("n", "<leader>d", vim.diagnostic.open_float, opts)
 
 		map("n", "[d", function()
@@ -38,41 +38,33 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-local servers = {
-	rust_analyzer = {
-		cmd = { "rust-analyzer" },
-		filetypes = { "rust" },
-		root_markers = { "Cargo.toml", "rust-project.json", ".git" },
-		settings = {
-			["rust-analyzer"] = {
-				check = {
-					command = "check",
-				},
-				cargo = {
-					allFeatures = true,
-					buildScripts = { enable = true },
-				},
-				procMacro = { enable = true },
-				inlayHints = {
-					bindingModeHints = { enable = true },
-					closingBraceHints = { enable = true },
-					closureReturnTypeHints = { enable = "with_block" },
-					discriminantHints = { enable = "fieldless" },
-					lifetimeElisionHints = { enable = "skip_trivial" },
-					typeHints = { enable = true },
-				},
-			},
-		},
-	},
+local flake_dir = vim.fn.expand("~/nixos")
+local nixos_expr = string.format('(builtins.getFlake "%s").nixosConfigurations.leomin.options', flake_dir)
+local hm_expr = string.format(
+	'(builtins.getFlake "%s").nixosConfigurations.leomin.options.home-manager.users.type.getSubOptions []',
+	flake_dir
+)
 
+local servers = {
 	nixd = {
 		cmd = { "nixd" },
 		filetypes = { "nix" },
 		root_markers = { "flake.nix", ".git" },
 		settings = {
 			nixd = {
+				nixpkgs = {
+					expr = string.format('import (builtins.getFlake "%s").inputs.nixpkgs-unstable { }', flake_dir),
+				},
 				formatting = {
 					command = { "nixfmt" },
+				},
+				options = {
+					nixos = {
+						expr = nixos_expr,
+					},
+					home_manager = {
+						expr = hm_expr,
+					},
 				},
 			},
 		},
@@ -92,7 +84,7 @@ local servers = {
 			Lua = {
 				runtime = { version = "LuaJIT" },
 				diagnostics = {
-					globals = { "vim", "nixCats", "Snacks" },
+					globals = { "nixCats", "Snacks" },
 				},
 				workspace = {
 					checkThirdParty = false,
@@ -195,11 +187,6 @@ local servers = {
 			".ruff.toml",
 			".git",
 		},
-	},
-
-	bashls = {
-		cmd = { "bash-language-server", "start" },
-		filetypes = { "sh", "bash" },
 	},
 
 	taplo = {
