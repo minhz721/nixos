@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 				RGB = true,
 				RRGGBB = true,
 				RRGGBBAA = true,
-				names = true,
+				names = false,
 				mode = "background",
 				tailwind = false,
 			},

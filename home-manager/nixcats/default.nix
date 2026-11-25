@@ -67,7 +67,7 @@ in
           nvim-autopairs
           nvim-ts-autotag
           nvim-surround
-          comment-nvim
+          ts-comments-nvim
           todo-comments-nvim
           undotree
           nvim-colorizer-lua
@@ -75,15 +75,21 @@ in
           fzf-lua
           trouble-nvim
           render-markdown-nvim
+          rustaceanvim
+          crates-nvim
+          lazydev-nvim
+          SchemaStore-nvim
+        ];
+
+        ide = with pkgsUnstable.vimPlugins; [
+          persistence-nvim
+          grug-far-nvim
         ];
       };
 
-      # Keep external tools in the NixCats package so LSP/formatters/linters
-      # are available on Neovim's PATH without per-tool nixCats settings.
       lspsAndRuntimeDeps = {
         general = with pkgsUnstable; [
           # LSP servers
-          rust-analyzer
           nixd
           lua-language-server
           vtsls
@@ -92,12 +98,22 @@ in
           emmet-language-server
           ty
           ruff
-          bash-language-server
           taplo
 
-          # Formatters / linters / supporting tools
+          # Formatters / linters / CLI tools
           nixfmt
-          shellcheck
+          stylua
+          shfmt
+          markdownlint-cli2
+          statix
+          deadnix
+          yamllint
+          wl-clipboard
+          ripgrep
+          fd
+          fzf
+          git
+          lazygit
         ];
       };
     };
@@ -110,6 +126,7 @@ in
 
         categories = {
           general = true;
+          ide = true;
         };
       };
     };

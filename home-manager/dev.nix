@@ -1,80 +1,78 @@
 {
   pkgs,
   pkgsUnstable,
-  fenix,
   ...
 }:
 let
-  toolchain = fenix.packages.${pkgs.stdenv.hostPlatform.system}.stable.withComponents [
-    "cargo"
-    "rustc"
-    "clippy"
-    "rustfmt"
-    "rust-analyzer"
-    "rust-src"
+  rustToolchain = with pkgsUnstable; [
+    rustc
+    cargo
+    clippy
+    rustfmt
+    rust-analyzer
   ];
 in
 {
-  _module.args.rustToolchain = toolchain;
+  _module.args.rustToolchain = rustToolchain;
 
-  home.packages = [
-    toolchain
-    pkgs.gcc
-  ]
-  ++ (with pkgsUnstable; [
-    # Rust tools
-    bacon
-    cargo-nextest
-    cargo-expand
-    cargo-audit
-    cargo-deny
-    cargo-machete
+  home.packages =
+    rustToolchain
+    ++ [
+      pkgs.gcc
+    ]
+    ++ (with pkgsUnstable; [
+      # Rust tools
+      bacon
+      cargo-nextest
+      cargo-expand
+      cargo-audit
+      cargo-deny
+      cargo-machete
 
-    # CLI tools
-    fd
-    ripgrep
-    zoxide
-    curl
-    jq
-    yq
-    bat
-    fzf
+      # CLI tools
+      fd
+      ripgrep
+      zoxide
+      curl
+      jq
+      yq
+      bat
+      fzf
 
-    # Development Applications & CLI
-    lazydocker
-    lazygit
-    lazysql
+      # Development Applications & CLI
+      lazydocker
+      lazygit
+      lazysql
 
-    # Runtimes & Toolchains
-    uv
-    bun
-    nodejs
+      # Runtimes & Toolchains
+      uv
+      bun
+      nodejs
 
-    # Nix Ecosystem
-    nixd
-    nixfmt
+      # Nix Ecosystem
+      nixd
+      nixfmt
 
-    # Web & Scripting
-    vtsls
-    vscode-langservers-extracted
-    emmet-language-server
-    biome
+      # Web & Scripting
+      vtsls
+      vscode-langservers-extracted
+      emmet-language-server
+      biome
 
-    # Python & Shell
-    ruff
-    ty
-    bash-language-server
-    shellcheck
-    shfmt
+      # Python & Shell
+      ruff
+      ty
+      shellcheck
+      shfmt
 
-    # Lua
-    lua-language-server
-    stylua
+      # Lua
+      lua-language-server
+      stylua
 
-    # Build & Config Tools
-    gnumake
-    taplo
-  ]);
+      # Build & Config Tools
+      gnumake
+      taplo
+    ]);
 
   xdg.configFile."biome/biome.json".text = builtins.toJSON {
     "$schema" = "https://biomejs.dev";
