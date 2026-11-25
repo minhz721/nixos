@@ -12,7 +12,6 @@ in
     grim
     slurp
     wl-clipboard
-    libnotify
     zenity
   ];
 
