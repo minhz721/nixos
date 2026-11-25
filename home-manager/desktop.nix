@@ -104,18 +104,29 @@ in
     bruno
   ];
 
-  xdg.dataFile."nemo/actions/alacritty.nemo_action".text = ''
+  # xdg.dataFile."nemo/actions/alacritty.nemo_action".text = ''
+  #   [Nemo Action]
+  #   Active=true
+  #   Name=Open in Alacritty
+  #   Comment=Open Alacritty terminal in the current directory
+  #   Exec=alacritty --working-directory=%P
+  #   Icon-Name=Alacritty
+  #   Selection=none
+  #   Extensions=dir;
+  #   Quote=double
+  # '';
+
+  xdg.dataFile."nemo/actions/ghostty.nemo_action".text = ''
     [Nemo Action]
     Active=true
-    Name=Open in Alacritty
-    Comment=Open Alacritty terminal in the current directory
-    Exec=alacritty --working-directory=%P
-    Icon-Name=Alacritty
+    Name=Open in Ghostty
+    Comment=Open Ghostty terminal in the current directory
+    Exec=ghostty --working-directory=%P
+    Icon-Name=com.mitchellh.ghostty
     Selection=none
     Extensions=dir;
     Quote=double
   '';
-
   dconf.settings = {
     "org/nemo/preferences" = {
       default-folder-viewer = "list-view";
