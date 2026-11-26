@@ -16,7 +16,7 @@ require("which-key").setup({
 		{ "<leader>gc", group = "Conflict" },
 		{ "<leader>c", group = "Code" },
 		{ "<leader>s", group = "Search / Replace" },
-		{ "<leader>q", group = "Session" },
+		{ "<leader>p", group = "Session" },
 		{ "<leader>R", group = "Rust" },
 		{ "<leader>b", group = "Buffer" },
 		{ "z", group = "Fold" },
