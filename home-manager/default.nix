@@ -7,10 +7,11 @@
     ./thorium.nix
     ./ghostty.nix
     ./nixcats
-    ./zed.nix
     ./sway.nix
     ./fuzzel
     ./waybar.nix
+    # ./fresh.nix
+    ./gram.nix
   ];
   programs.direnv = {
     enable = true;

@@ -113,7 +113,7 @@ in
           "crates-nvim"
           "diffview-nvim"
           "grug-far-nvim"
-          "inc-rename.nvim"
+          "inc-rename-nvim"
         ];
 
         extras = pick [

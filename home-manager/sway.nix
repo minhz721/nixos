@@ -205,7 +205,7 @@ in
         # Apps
         "${mod}+e" = "exec nemo";
         "${mod}+b" = "exec thorium";
-        "${mod}+c" = "exec zeditor";
+        "${mod}+c" = "exec gram";
 
         # Layout
         "${mod}+f" = "fullscreen toggle";
