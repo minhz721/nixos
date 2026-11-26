@@ -8,42 +8,44 @@ require("gitsigns").setup({
 		changedelete = { text = "~" },
 	},
 	on_attach = function(bufnr)
-		local gs = package.loaded.gitsigns
-		local map = function(mode, lhs, rhs, desc)
-			vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
+		local gs = require("gitsigns")
+
+		local function map(mode, lhs, rhs, desc)
+			vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
 		end
 
 		map("n", "]c", function()
 			if vim.wo.diff then
-				return "]c"
-			end
-			vim.schedule(function()
+				vim.cmd.normal({ "]c", bang = true })
+			else
 				gs.nav_hunk("next")
-			end)
-			return "<Ignore>"
-		end, "Next git hunk")
-
+			end
+		end, "Next hunk")
 		map("n", "[c", function()
 			if vim.wo.diff then
-				return "[c"
-			end
-			vim.schedule(function()
+				vim.cmd.normal({ "[c", bang = true })
+			else
 				gs.nav_hunk("prev")
-			end)
-			return "<Ignore>"
-		end, "Prev git hunk")
+			end
+		end, "Previous hunk")
 
-		map("n", "<leader>gs", gs.stage_hunk, "Stage hunk")
+		map("n", "<leader>gs", gs.stage_hunk, "Stage/unstage hunk")
 		map("n", "<leader>gr", gs.reset_hunk, "Reset hunk")
 		map("v", "<leader>gs", function()
 			gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-		end, "Stage selected hunk")
+		end, "Stage selected lines")
 		map("v", "<leader>gr", function()
 			gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-		end, "Reset selected hunk")
+		end, "Reset selected lines")
+		map("n", "<leader>gS", gs.stage_buffer, "Stage buffer")
+		map("n", "<leader>gR", gs.reset_buffer, "Reset buffer")
 		map("n", "<leader>gp", gs.preview_hunk, "Preview hunk")
 		map("n", "<leader>gb", function()
 			gs.blame_line({ full = true })
-		end, "Blame line")
+		end, "Blame line (full)")
+		map("n", "<leader>gt", gs.toggle_current_line_blame, "Toggle line blame")
+		map("n", "<leader>gd", gs.diffthis, "Diff against index")
+
+		map({ "o", "x" }, "ih", "<cmd>Gitsigns select_hunk<CR>", "Select hunk")
 	end,
 })

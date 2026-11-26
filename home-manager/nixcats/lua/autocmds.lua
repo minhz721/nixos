@@ -14,13 +14,11 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- Enable native Treesitter highlighting when a parser is available.
+-- Enable Treesitter highlighting when a parser is available.
 vim.api.nvim_create_autocmd("FileType", {
 	group = group,
 	callback = function(args)
-		if vim.bo[args.buf].buftype == "" then
-			pcall(vim.treesitter.start, args.buf)
-		end
+		pcall(vim.treesitter.start, args.buf)
 	end,
 })
 
@@ -45,15 +43,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	end,
 })
 
--- Enable inlay hints and code lens when the attached LSP supports them.
+-- Enable inlay hints when the attached LSP supports them.
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = group,
 	callback = function(args)
 		if vim.lsp.inlay_hint and vim.lsp.inlay_hint.enable then
 			vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
-		end
-		if vim.lsp.codelens and vim.lsp.codelens.enable then
-			pcall(vim.lsp.codelens.enable, true, { bufnr = args.buf })
 		end
 	end,
 })

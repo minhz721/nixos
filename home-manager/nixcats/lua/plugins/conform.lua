@@ -2,7 +2,10 @@ local map = vim.keymap.set
 
 local function setting(key, default)
 	local v = nixCats("settings." .. key)
-	return (type(v) == "string" and v ~= "") and v or default
+	if type(v) == "string" and v ~= "" then
+		return v
+	end
+	return default
 end
 
 local rust_tc = setting("rustToolchainPath", "")
@@ -23,9 +26,10 @@ require("conform").setup({
 		css = { "biome" },
 		html = { "biome" },
 		yaml = { "biome" },
+		markdown = { "biome" },
 		nix = { "nixfmt" },
 		lua = { "stylua" },
-		python = { "ruff_fix", "ruff_organize_imports", "ruff_format" },
+		python = { "ruff_format", "ruff_organize_imports" },
 		rust = { "rustfmt" },
 		sh = { "shfmt" },
 		bash = { "shfmt" },

@@ -5,6 +5,14 @@ if vim.fn.has("nvim-0.11") ~= 1 then
 	return
 end
 
+local ok_util, util = pcall(require, "plugins.util")
+local function pick(fzf_cmd, native)
+	if ok_util then
+		return util.fzf(fzf_cmd)
+	end
+	return native
+end
+
 local group = vim.api.nvim_create_augroup("UserLspKeymaps", {
 	clear = true,
 })
@@ -17,16 +25,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			silent = true,
 		}
 
-		map("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", opts)
+		map("n", "gd", pick("lsp_definitions", vim.lsp.buf.definition), opts)
 		map("n", "gD", vim.lsp.buf.declaration, opts)
-		map("n", "gi", "<cmd>FzfLua lsp_implementations<CR>", opts)
-		map("n", "gr", "<cmd>FzfLua lsp_references<CR>", opts)
+		map("n", "gi", pick("lsp_implementations", vim.lsp.buf.implementation), opts)
+		map("n", "gr", pick("lsp_references", vim.lsp.buf.references), opts)
+		map("n", "gy", pick("lsp_typedefs", vim.lsp.buf.type_definition), opts)
 		map("n", "K", vim.lsp.buf.hover, opts)
-		map("n", "<leader>rn", vim.lsp.buf.rename, opts)
-		map("n", "<leader>ca", "<cmd>FzfLua lsp_code_actions<CR>", opts)
-		map("n", "<leader>ds", "<cmd>FzfLua lsp_document_symbols<CR>", opts)
-		map("n", "<leader>ws", "<cmd>FzfLua lsp_workspace_symbols<CR>", opts)
-		map("n", "<leader>d", vim.diagnostic.open_float, opts)
+
+		map("n", "<leader>rn", function()
+			if vim.fn.exists(":IncRename") == 2 then
+				vim.api.nvim_feedkeys(":IncRename " .. vim.fn.expand("<cword>"), "n", false)
+			else
+				vim.lsp.buf.rename()
+			end
+		end, opts)
+
+		map("n", "<leader>ca", pick("lsp_code_actions", vim.lsp.buf.code_action), opts)
+		map("n", "<leader>cd", vim.diagnostic.open_float, opts)
+
+		map("n", "<leader>ih", function()
+			local enabled = vim.lsp.inlay_hint.is_enabled({ bufnr = ev.buf })
+			vim.lsp.inlay_hint.enable(not enabled, { bufnr = ev.buf })
+		end, vim.tbl_extend("force", opts, { desc = "Toggle inlay hints" }))
 
 		map("n", "[d", function()
 			vim.diagnostic.jump({ count = -1, float = true })
@@ -38,12 +58,31 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
-local flake_dir = vim.fn.expand("~/nixos")
-local nixos_expr = string.format('(builtins.getFlake "%s").nixosConfigurations.leomin.options', flake_dir)
-local hm_expr = string.format(
-	'(builtins.getFlake "%s").nixosConfigurations.leomin.options.home-manager.users.type.getSubOptions []',
-	flake_dir
-)
+local function extend_settings(client, extra)
+	client.settings = vim.tbl_deep_extend("force", client.settings or {}, extra)
+	client:notify("workspace/didChangeConfiguration", { settings = client.settings })
+end
+
+local rust_analyzer_settings = {
+	["rust-analyzer"] = {
+		check = {
+			command = "check",
+		},
+		cargo = {
+			allFeatures = true,
+			buildScripts = { enable = true },
+		},
+		procMacro = { enable = true },
+		inlayHints = {
+			bindingModeHints = { enable = true },
+			closingBraceHints = { enable = true },
+			closureReturnTypeHints = { enable = "with_block" },
+			discriminantHints = { enable = "fieldless" },
+			lifetimeElisionHints = { enable = "skip_trivial" },
+			typeHints = { enable = true },
+		},
+	},
+}
 
 local servers = {
 	nixd = {
@@ -52,51 +91,30 @@ local servers = {
 		root_markers = { "flake.nix", ".git" },
 		settings = {
 			nixd = {
-				nixpkgs = {
-					expr = string.format('import (builtins.getFlake "%s").inputs.nixpkgs-unstable { }', flake_dir),
-				},
 				formatting = {
 					command = { "nixfmt" },
 				},
-				options = {
-					nixos = {
-						expr = nixos_expr,
-					},
-					home_manager = {
-						expr = hm_expr,
-					},
-				},
 			},
 		},
-	},
-
-	lua_ls = {
-		cmd = { "lua-language-server" },
-		filetypes = { "lua" },
-		root_markers = {
-			".luarc.json",
-			".luarc.jsonc",
-			".stylua.toml",
-			"stylua.toml",
-			".git",
-		},
-		settings = {
-			Lua = {
-				runtime = { version = "LuaJIT" },
-				diagnostics = {
-					globals = { "nixCats", "Snacks" },
+		on_init = function(client)
+			local root = client.root_dir
+			if not root or vim.fn.filereadable(root .. "/flake.nix") ~= 1 then
+				return
+			end
+			local flake = string.format('(builtins.getFlake "%s")', root)
+			extend_settings(client, {
+				nixd = {
+					nixpkgs = { expr = string.format("import %s.inputs.nixpkgs { }", flake) },
+					options = {
+						nixos = { expr = flake .. ".nixosConfigurations.leomin.options" },
+						["home-manager"] = {
+							expr = flake
+								.. ".nixosConfigurations.leomin.options.home-manager.users.type.getSubOptions [ ]",
+						},
+					},
 				},
-				workspace = {
-					checkThirdParty = false,
-				},
-				telemetry = {
-					enable = false,
-				},
-				hint = {
-					enable = true,
-				},
-			},
-		},
+			})
+		end,
 	},
 
 	vtsls = {
@@ -125,7 +143,6 @@ local servers = {
 			"json",
 			"jsonc",
 			"css",
-			"yaml",
 		},
 		root_markers = {
 			"biome.json",
@@ -194,6 +211,22 @@ local servers = {
 		filetypes = { "toml" },
 	},
 }
+
+vim.g.rustaceanvim = {
+	server = {
+		default_settings = rust_analyzer_settings,
+	},
+}
+local has_rustaceanvim = #vim.api.nvim_get_runtime_file("ftplugin/rust.lua", false) > 0
+
+if not has_rustaceanvim then
+	servers.rust_analyzer = {
+		cmd = { "rust-analyzer" },
+		filetypes = { "rust" },
+		root_markers = { "Cargo.toml", "rust-project.json", ".git" },
+		settings = rust_analyzer_settings,
+	}
+end
 
 for name, config in pairs(servers) do
 	vim.lsp.config(name, config)

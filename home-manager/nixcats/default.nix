@@ -4,33 +4,47 @@
   ...
 }:
 let
+  pick =
+    names:
+    builtins.filter (p: p != null) (
+      map (
+        n:
+        pkgsUnstable.vimPlugins.${n} or (builtins.trace "nixcats: vimPlugins.${n} not found, skipped" null)
+      ) names
+    );
+
+  grammars = [
+    "bash"
+    "css"
+    "diff"
+    "git_config"
+    "gitcommit"
+    "gitignore"
+    "html"
+    "javascript"
+    "jsdoc"
+    "json"
+    "jsonc"
+    "kdl"
+    "lua"
+    "luadoc"
+    "markdown"
+    "markdown_inline"
+    "nix"
+    "python"
+    "query"
+    "regex"
+    "rust"
+    "toml"
+    "tsx"
+    "typescript"
+    "vim"
+    "vimdoc"
+    "yaml"
+  ];
+
   treesitterWithGrammars = pkgsUnstable.vimPlugins.nvim-treesitter.withPlugins (
-    grammars: with grammars; [
-      # Core & Nix
-      lua
-      vim
-      vimdoc
-      nix
-
-      # Web
-      javascript
-      typescript
-      tsx
-      html
-      css
-      json
-
-      # Shell & Config
-      bash
-      yaml
-      toml
-
-      # Docs & Languages
-      markdown
-      markdown_inline
-      python
-      rust
-    ]
+    p: builtins.filter (g: g != null) (map (n: p.${n} or null) grammars)
   );
 in
 {
@@ -46,44 +60,71 @@ in
     luaPath = ./.;
 
     categoryDefinitions.replace = _: {
+      # Core UI plugins loaded immediately at startup
       startupPlugins = {
-        general = with pkgsUnstable.vimPlugins; [
-          nvim-web-devicons
-          vscode-nvim
-          lualine-nvim
-          bufferline-nvim
-          which-key-nvim
-          gitsigns-nvim
-          snacks-nvim
-          noice-nvim
-          nui-nvim
-          nvim-lspconfig
-          blink-cmp
-          friendly-snippets
-          conform-nvim
-          nvim-lint
+        general = [
           treesitterWithGrammars
-          rainbow-delimiters-nvim
-          nvim-autopairs
-          nvim-ts-autotag
-          nvim-surround
-          ts-comments-nvim
-          todo-comments-nvim
-          undotree
-          nvim-colorizer-lua
-          flash-nvim
-          fzf-lua
-          trouble-nvim
-          render-markdown-nvim
-          rustaceanvim
-          crates-nvim
-          lazydev-nvim
-          SchemaStore-nvim
+        ]
+        ++ pick [
+          "nvim-web-devicons"
+          "vscode-nvim"
+          "lualine-nvim"
+          "bufferline-nvim"
+          "which-key-nvim"
+          "snacks-nvim"
+          "noice-nvim"
+          "nui-nvim"
+          "plenary-nvim"
         ];
 
-        ide = with pkgsUnstable.vimPlugins; [
-          persistence-nvim
-          grug-far-nvim
+        ide = pick [
+          "persistence-nvim"
+        ];
+      };
+
+      # Lazy-loaded plugins (BufRead, InsertEnter, VeryLazy, FileType)
+      optionalPlugins = {
+        general = pick [
+          # BufRead / BufNewFile
+          "gitsigns-nvim"
+          "nvim-lspconfig"
+          "conform-nvim"
+          "nvim-lint"
+          "rainbow-delimiters-nvim"
+          "nvim-ts-autotag"
+          "nvim-surround"
+          "ts-comments-nvim"
+          "todo-comments-nvim"
+          "nvim-colorizer-lua"
+
+          # InsertEnter
+          "blink-cmp"
+          "friendly-snippets"
+          "nvim-autopairs"
+
+          # VeryLazy / On-demand
+          "flash-nvim"
+          "fzf-lua"
+          "trouble-nvim"
+          "undotree"
+          "render-markdown-nvim"
+        ];
+
+        ide = pick [
+          "rustaceanvim"
+          "crates-nvim"
+          "diffview-nvim"
+          "grug-far-nvim"
+          "inc-rename.nvim"
+        ];
+
+        extras = pick [
+          "git-conflict-nvim"
+          "refactoring-nvim"
+          "dropbar-nvim"
+          "nvim-treesitter-context"
+          "mini-ai"
+          "nvim-treesitter-textobjects"
         ];
       };
 
@@ -91,7 +132,6 @@ in
         general = with pkgsUnstable; [
           # LSP servers
           nixd
-          lua-language-server
           vtsls
           biome
           vscode-langservers-extracted
@@ -114,8 +154,10 @@ in
           fzf
           git
           lazygit
+          curl
         ];
       };
+
     };
 
     packageDefinitions.replace = {
@@ -127,6 +169,7 @@ in
         categories = {
           general = true;
           ide = true;
+          extras = true;
         };
       };
     };
