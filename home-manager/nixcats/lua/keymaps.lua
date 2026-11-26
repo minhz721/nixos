@@ -88,6 +88,3 @@ map("v", "<leader>/", "gc", {
 	desc = "Toggle comment",
 })
 map("n", "<leader>q", "<cmd>quit<CR>", { desc = "Quit Neovim" })
-
-
-})

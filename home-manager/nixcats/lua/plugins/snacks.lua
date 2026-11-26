@@ -37,13 +37,6 @@ map({ "n", "v" }, "<leader>gB", function()
 	Snacks.gitbrowse()
 end, { desc = "Open in browser" })
 
-map({ "n", "t" }, "<C-/>", function()
-	Snacks.terminal()
-end, { desc = "Toggle terminal" })
-map({ "n", "t" }, "<C-_>", function()
-	Snacks.terminal()
-end, { desc = "Toggle terminal" })
-
 map("n", "<leader>cR", function()
 	Snacks.rename.rename_file()
 end, { desc = "Rename file (LSP)" })
