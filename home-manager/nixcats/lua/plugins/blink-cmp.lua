@@ -23,8 +23,6 @@ require("blink.cmp").setup({
 		menu = { border = "rounded" },
 		ghost_text = { enabled = true },
 	},
-	sources = {
-		default = { "lsp", "snippets", "path", "buffer" },
-	},
+	sources = sources,
 	signature = { enabled = true },
 })

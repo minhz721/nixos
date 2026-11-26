@@ -33,6 +33,7 @@ let
     "nix"
     "python"
     "query"
+    "regex"
     "rust"
     "toml"
     "tsx"
