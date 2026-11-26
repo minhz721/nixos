@@ -26,6 +26,10 @@ opt.signcolumn = "yes"
 opt.conceallevel = 0
 opt.pumheight = 15
 opt.swapfile = false
+opt.ignorecase = true
+opt.smartcase = true
+opt.inccommand = "split"
+opt.confirm = true
 
 -- Treesitter folding
 opt.foldmethod = "expr"

@@ -16,8 +16,6 @@ let
   };
 in
 {
-  _module.args.rustToolchain = rustToolchain;
-
   home.packages = [
     rustToolchain
     pkgs.gcc
@@ -70,12 +68,12 @@ in
   ]);
 
   xdg.configFile."biome/biome.json".text = builtins.toJSON {
-    "$schema" = "https://biomejs.dev";
     formatter = {
       enabled = true;
       indentStyle = "tab";
       indentWidth = 4;
     };
+    html.formatter.enabled = true;
     javascript.formatter.semicolons = "always";
     overrides = [
       {

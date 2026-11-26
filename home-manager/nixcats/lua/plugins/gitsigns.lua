@@ -31,10 +31,10 @@ require("gitsigns").setup({
 
 		map("n", "<leader>gs", gs.stage_hunk, "Stage/unstage hunk")
 		map("n", "<leader>gr", gs.reset_hunk, "Reset hunk")
-		map("v", "<leader>gs", function()
+		map("x", "<leader>gs", function()
 			gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 		end, "Stage selected lines")
-		map("v", "<leader>gr", function()
+		map("x", "<leader>gr", function()
 			gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
 		end, "Reset selected lines")
 		map("n", "<leader>gS", gs.stage_buffer, "Stage buffer")

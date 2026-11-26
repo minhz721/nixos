@@ -1,21 +1,23 @@
 local map = vim.keymap.set
-local loaded = false
+
+-- This file is only required after fzf-lua was packadd'ed (see plugins/init.lua),
+-- so it is safe to configure fzf-lua eagerly here.
+require("fzf-lua").setup({
+	winopts = { height = 0.85, width = 0.80, border = "rounded" },
+	previewers = { builtin = { syntax = true } },
+})
 
 local function fzf(cmd)
 	return function()
-		if not loaded then
-			loaded = true
-			require("fzf-lua").setup({
-				winopts = { height = 0.85, width = 0.80, border = "rounded" },
-				previewer = { builtin = { syntax = true } },
-			})
-		end
 		if cmd == "TodoFzfLua" then
 			pcall(vim.cmd.packadd, "todo-comments.nvim")
-			pcall(require("todo-comments").setup, {
-				highlight = { multiline = true },
-				search = { command = "rg" },
-			})
+			local ok, todo = pcall(require, "todo-comments")
+			if ok then
+				todo.setup({
+					highlight = { multiline = true },
+					search = { command = "rg" },
+				})
+			end
 		end
 		vim.cmd(cmd)
 	end

@@ -19,6 +19,8 @@ vim.api.nvim_create_autocmd("User", {
 			"grug-far.nvim",
 			"refactoring.nvim",
 			"diffview.nvim",
+			"inc-rename.nvim",
+			"todo-comments.nvim",
 		}
 		for _, p in ipairs(lazy_plugins) do
 			pcall(vim.cmd.packadd, p)

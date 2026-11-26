@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
 require("snacks").setup({
-	explorer = { enabled = true, replace_netrw = false },
+	explorer = { enabled = true, replace_netrw = true },
 	input = { enabled = true },
 	indent = { enabled = true, char = "│", animate = { enabled = false } },
 	scroll = {
@@ -33,7 +33,7 @@ end, { desc = "Lazygit log" })
 map("n", "<leader>gf", function()
 	Snacks.lazygit.log_file()
 end, { desc = "Lazygit file history" })
-map({ "n", "v" }, "<leader>gB", function()
+map({ "n", "x" }, "<leader>gB", function()
 	Snacks.gitbrowse()
 end, { desc = "Open in browser" })
 

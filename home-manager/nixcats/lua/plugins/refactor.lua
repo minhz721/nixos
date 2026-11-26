@@ -35,7 +35,7 @@ map(
 )
 
 map(
-	"v",
+	"x",
 	"<leader>sr",
 	grug(function(g)
 		g.with_visual_selection()

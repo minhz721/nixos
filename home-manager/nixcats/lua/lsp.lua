@@ -5,16 +5,26 @@ if vim.fn.has("nvim-0.11") ~= 1 then
 	return
 end
 
-local ok_util, util = pcall(require, "plugins.util")
-local function pick(fzf_cmd, native)
-	if ok_util then
-		return util.fzf(fzf_cmd)
+-- Use fzf-lua when it is loaded, otherwise fall back to the native LSP function.
+local function pick(fzf_fn, native)
+	return function()
+		local ok, fzf = pcall(require, "fzf-lua")
+		if ok and type(fzf[fzf_fn]) == "function" then
+			fzf[fzf_fn]()
+		else
+			native()
+		end
 	end
-	return native
 end
 
 local group = vim.api.nvim_create_augroup("UserLspKeymaps", {
 	clear = true,
+})
+
+vim.diagnostic.config({
+	virtual_text = { spacing = 2, source = "if_many" },
+	severity_sort = true,
+	float = { border = "rounded", source = true },
 })
 
 vim.api.nvim_create_autocmd("LspAttach", {
