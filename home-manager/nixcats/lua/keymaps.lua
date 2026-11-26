@@ -59,10 +59,18 @@ map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", {
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", {
 	desc = "Previous buffer",
 })
-map("n", "<leader>ba", "<cmd>%bdelete<CR>", {
+map("n", "<leader>ba", function()
+	local ok, snacks = pcall(require, "snacks")
+	if ok then
+		snacks.bufdelete.all()
+	else
+		vim.cmd("%bdelete!")
+	end
+end, {
 	silent = true,
 	desc = "Close all open buffers",
 })
+
 map("n", "<leader>bd", function()
 	local ok, snacks = pcall(require, "snacks")
 	if ok then
