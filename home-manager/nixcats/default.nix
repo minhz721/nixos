@@ -33,7 +33,6 @@ let
     "nix"
     "python"
     "query"
-    "regex"
     "rust"
     "toml"
     "tsx"
@@ -74,7 +73,6 @@ in
           "snacks-nvim"
           "noice-nvim"
           "nui-nvim"
-          "plenary-nvim"
         ];
 
         ide = pick [
