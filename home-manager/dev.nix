@@ -62,6 +62,9 @@ in
     ty
     shfmt
 
+    # Lua
+    stylua
+
     # Build & Config Tools
     gnumake
     taplo

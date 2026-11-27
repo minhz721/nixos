@@ -11,7 +11,8 @@
     ./sway.nix
     ./waybar.nix
     # ./swaybar.nix
-    ./zed.nix
+    # ./zed.nix
+    ./sublime-text.nix
 
   ];
   programs.direnv = {
