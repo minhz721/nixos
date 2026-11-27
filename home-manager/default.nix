@@ -10,9 +10,8 @@
     ./fuzzel
     ./sway.nix
     ./waybar.nix
-    # ./swaybar.nix
-    # ./zed.nix
     ./sublime-text.nix
+    # ./swaybar.nix
 
   ];
   programs.direnv = {
