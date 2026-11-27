@@ -11,8 +11,8 @@
     ./sway.nix
     ./waybar.nix
     # ./swaybar.nix
-    # ./fresh.nix
-    ./gram.nix
+    ./zed.nix
+
   ];
   programs.direnv = {
     enable = true;
