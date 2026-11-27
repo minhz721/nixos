@@ -130,7 +130,7 @@ in
       lspsAndRuntimeDeps = {
         general = with pkgsUnstable; [
           # LSP servers
-          nixd
+          nil
           vtsls
           biome
           vscode-langservers-extracted

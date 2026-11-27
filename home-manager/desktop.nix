@@ -81,6 +81,7 @@ in
     # File Manager & Extraction
     nemo
     extract
+    libnotify # notify-send (wallpaper script, fish "done" plugin)
 
     # Archive & System Utilities
     czkawka
@@ -103,18 +104,6 @@ in
     telegram-desktop
     bruno
   ];
-
-  # xdg.dataFile."nemo/actions/alacritty.nemo_action".text = ''
-  #   [Nemo Action]
-  #   Active=true
-  #   Name=Open in Alacritty
-  #   Comment=Open Alacritty terminal in the current directory
-  #   Exec=alacritty --working-directory=%P
-  #   Icon-Name=Alacritty
-  #   Selection=none
-  #   Extensions=dir;
-  #   Quote=double
-  # '';
 
   xdg.dataFile."nemo/actions/ghostty.nemo_action".text = ''
     [Nemo Action]

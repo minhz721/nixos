@@ -9,19 +9,19 @@ let
       gnused
     ];
     text = ''
-      powered=$(bluetoothctl show 2>/dev/null | sed -E 's/\x1b\[[0-9;]*m//g; s/\r//g' | awk '/Powered:/{print $2}')
+      powered=$(bluetoothctl show 2>/dev/null | sed -E 's/\x1b\[[0-9;]*m//g; s/\r//g' | awk '/Powered:/{print $2}' || true)
       if [ "$powered" != "yes" ]; then
         printf "   Off"
         exit 0
       fi
 
-      dev=$(bluetoothctl devices Connected 2>/dev/null | sed -E 's/\x1b\[[0-9;]*m//g; s/\r//g' | head -n1)
+      dev=$(bluetoothctl devices Connected 2>/dev/null | sed -E 's/\x1b\[[0-9;]*m//g; s/\r//g' | sed -n '1p' || true)
       if [ -z "$dev" ]; then
         printf " On"
       else
         mac=$(printf '%s\n' "$dev" | awk '{print $2}')
         name=$(printf '%s\n' "$dev" | cut -d' ' -f3-)
-        bat=$(bluetoothctl info "$mac" 2>/dev/null | sed -E 's/\x1b\[[0-9;]*m//g; s/\r//g' | sed -n 's/.*Battery Percentage:.*(\([0-9]*\)).*/\1/p')
+        bat=$(bluetoothctl info "$mac" 2>/dev/null | sed -E 's/\x1b\[[0-9;]*m//g; s/\r//g' | sed -n 's/.*Battery Percentage:.*(\([0-9]*\)).*/\1/p' || true)
         if [ -n "$bat" ]; then
           printf "   %s (%s%%)" "$name" "$bat"
         else
@@ -98,7 +98,7 @@ in
           {
             block = "temperature";
             format = "  $max ";
-            interval = 2;
+            interval = 10;
             theme_overrides = {
               idle_fg = "#f38ba8";
               good_fg = "#f38ba8";
@@ -110,7 +110,7 @@ in
           {
             block = "memory";
             format = " RAM: $mem_used.eng(w:4) ";
-            interval = 2;
+            interval = 5;
             theme_overrides = {
               idle_fg = "#94e2d5";
             };

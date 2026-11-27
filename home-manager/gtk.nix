@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: let
+}:
+let
   themeName = "adw-gtk3-dark";
   iconThemeName = "Adwaita";
   font = {
@@ -19,7 +20,8 @@
     gtk-recent-files-max-age = 0;
     gtk-recent-files-limit = 0;
   };
-in {
+in
+{
   home.pointerCursor = {
     inherit (cursor) name package size;
     gtk.enable = true;
@@ -69,8 +71,6 @@ in {
       "Gtk/DecorationLayout" = "menu:";
       "Gtk/PrimaryButtonWarpsSlider" = 0;
       "Gtk/ToolbarStyle" = 3;
-      "Gtk/MenuImages" = 1;
-      "Gtk/ButtonImages" = 1;
     };
   };
 }

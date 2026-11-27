@@ -25,6 +25,7 @@
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
 
   outputs =
@@ -59,10 +60,8 @@
               useUserPackages = true;
               backupFileExtension = "bak";
 
-              # unstable + fenix Home Manager
               extraSpecialArgs = {
                 inherit inputs pkgsUnstable;
-                inherit (inputs) fenix;
               };
 
               users.leomin = import ./home-manager/default.nix;

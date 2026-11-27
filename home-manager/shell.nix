@@ -39,7 +39,6 @@
     interactiveShellInit = ''
       set fish_greeting
       zoxide init fish | source
-      starship init fish | source
     '';
     plugins = with pkgs.fishPlugins; [
       {
