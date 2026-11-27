@@ -26,7 +26,6 @@ require("conform").setup({
 		css = { "biome" },
 		html = { "biome" },
 		yaml = { "biome" },
-		markdown = { "biome" },
 		nix = { "nixfmt" },
 		lua = { "stylua" },
 		python = { "ruff_format", "ruff_organize_imports" },

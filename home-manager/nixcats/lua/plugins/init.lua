@@ -1,9 +1,7 @@
--- Core UI plugins loaded immediately
+-- Core UI plugins loaded immediately (noice / which-key are loaded at VeryLazy)
 require("plugins.bufferline")
 require("plugins.lualine")
 require("plugins.snacks")
-require("plugins.noice")
-require("plugins.which-key")
 require("plugins.session")
 
 -- 1. VeryLazy: Load non-critical keymaps and tools after UI renders
@@ -21,9 +19,19 @@ vim.api.nvim_create_autocmd("User", {
 			"diffview.nvim",
 			"inc-rename.nvim",
 			"todo-comments.nvim",
+			"nui.nvim",
+			"noice.nvim",
+			"which-key.nvim",
 		}
 		for _, p in ipairs(lazy_plugins) do
 			pcall(vim.cmd.packadd, p)
+		end
+
+		for _, mod in ipairs({ "plugins.noice", "plugins.which-key" }) do
+			local ok, err = pcall(require, mod)
+			if not ok then
+				vim.notify(("Failed to load %s:\n%s"):format(mod, err), vim.log.levels.WARN)
+			end
 		end
 
 		require("plugins.flash")

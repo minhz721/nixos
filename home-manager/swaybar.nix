@@ -31,6 +31,26 @@ let
     '';
   };
 
+  btToggle = pkgs.writeShellApplication {
+    name = "i3rs-bt-toggle";
+    runtimeInputs = with pkgs; [
+      bluez
+      util-linux
+    ];
+    text = ''
+      show=$(bluetoothctl show 2>/dev/null || true)
+      case "$show" in
+        *"Powered: yes"*)
+          bluetoothctl power off
+          ;;
+        *)
+          rfkill unblock bluetooth
+          bluetoothctl power on
+          ;;
+      esac
+    '';
+  };
+
   imCommand = pkgs.writeShellApplication {
     name = "i3rs-im";
     runtimeInputs = [ pkgs.fcitx5 ];
@@ -65,7 +85,7 @@ in
           {
             block = "cpu";
             interval = 2;
-            format = "  $utilization ";
+            format = " CPU: $utilization ";
             theme_overrides = {
               idle_fg = "#a6e3a1";
               good_fg = "#a6e3a1";
@@ -89,7 +109,7 @@ in
 
           {
             block = "memory";
-            format = "   $mem_used.eng(w:4) ";
+            format = " RAM: $mem_used.eng(w:4) ";
             interval = 2;
             theme_overrides = {
               idle_fg = "#94e2d5";
@@ -115,7 +135,7 @@ in
 
           {
             block = "custom";
-            interval = 5;
+            interval = 3;
             command = "${btCommand}/bin/i3rs-bt";
             format = " $text ";
             theme_overrides = {
@@ -128,7 +148,7 @@ in
               }
               {
                 button = "right";
-                cmd = "${pkgs.bash}/bin/bash -c '${pkgs.bluez}/bin/bluetoothctl show | grep -q \"Powered: yes\" && ${pkgs.bluez}/bin/bluetoothctl power off || (${pkgs.util-linux}/bin/rfkill unblock bluetooth; ${pkgs.bluez}/bin/bluetoothctl power on)'";
+                cmd = "${btToggle}/bin/i3rs-bt-toggle";
               }
             ];
           }
