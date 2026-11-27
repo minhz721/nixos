@@ -70,10 +70,7 @@ in
           "vscode-nvim"
           "lualine-nvim"
           "bufferline-nvim"
-          "which-key-nvim"
           "snacks-nvim"
-          "noice-nvim"
-          "nui-nvim"
         ];
 
         ide = pick [
@@ -102,6 +99,9 @@ in
           "nvim-autopairs"
 
           # VeryLazy / On-demand
+          "nui-nvim"
+          "noice-nvim"
+          "which-key-nvim"
           "flash-nvim"
           "fzf-lua"
           "trouble-nvim"
@@ -143,7 +143,6 @@ in
           nixfmt
           stylua
           shfmt
-          markdownlint-cli2
           statix
           deadnix
           wl-clipboard

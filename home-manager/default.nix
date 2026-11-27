@@ -7,9 +7,10 @@
     ./thorium.nix
     ./ghostty.nix
     ./nixcats
-    ./sway.nix
     ./fuzzel
+    ./sway.nix
     ./waybar.nix
+    # ./swaybar.nix
     # ./fresh.nix
     ./gram.nix
   ];
