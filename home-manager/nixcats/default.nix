@@ -146,7 +146,6 @@ in
           markdownlint-cli2
           statix
           deadnix
-          yamllint
           wl-clipboard
           ripgrep
           fd

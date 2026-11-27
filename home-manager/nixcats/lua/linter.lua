@@ -3,7 +3,6 @@ local lint = require("lint")
 lint.linters_by_ft = {
 	markdown = { "markdownlint-cli2" },
 	nix = { "statix", "deadnix" },
-	yaml = { "yamllint" },
 }
 
 local group = vim.api.nvim_create_augroup("NvimLint", {
