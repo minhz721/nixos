@@ -62,16 +62,35 @@ in
     userSettings = {
       auto_update = false;
       disable_ai = true;
+      features = {
+        edit_prediction_provider = "none";
+        copilot = false;
+      };
+      show_edit_predictions = false;
+      edit_predictions = {
+        mode = "subtle";
+        disabled_globs = [ "**/*" ];
+      };
+
+      agent = {
+        enabled = false;
+        button = false;
+      };
+      assistant = {
+        enabled = false;
+        button = false;
+      };
       collaboration_panel.button = false;
-      features.copilot = false;
-      assistant.enabled = false;
+      chat_panel.button = false;
+      notification_panel.button = false;
+
+      telemetry = {
+        diagnostics = false;
+        metrics = false;
+      };
       restore_on_startup = "last_session";
       base_keymap = "VSCode";
       project_panel.dock = "left";
-      agent = {
-        dock = "right";
-        threads_sidebar.position = "right";
-      };
       theme = {
         mode = "dark";
         light = "VSCode Dark Modern";
