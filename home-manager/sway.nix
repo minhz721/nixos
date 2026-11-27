@@ -19,7 +19,7 @@ in
   services.mako = {
     enable = true;
     settings = {
-      font = "Maple Mono NF 11";
+      font = "Maple Mono NF 12";
       background-color = "#1e1e2e";
       text-color = "#cdd6f4";
       border-color = "#cba6f7";
