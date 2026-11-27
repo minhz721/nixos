@@ -19,23 +19,16 @@ in
   services.mako = {
     enable = true;
     settings = {
-      font = "Maple Mono NF 12";
-      background-color = "#1e1e2e";
-      text-color = "#cdd6f4";
-      border-color = "#cba6f7";
-      progress-color = "over #313244";
+      default-timeout = 5000;
+      font = "Maple Mono NF";
+      background-color = "#1e1e2eff";
+      text-color = "#cdd6f4ff";
+      border-color = "#cba6f7ff";
+      border-size = 2;
+      border-radius = 8;
+      margin = "10,10";
+      padding = "10";
     };
-    extraConfig = ''
-      [urgency=low]
-      border-color=#a6adc8
-
-      [urgency=normal]
-      border-color=#cba6f7
-
-      [urgency=high]
-      border-color=#fab387
-      text-color=#f38ba8
-    '';
   };
 
   programs.hyprlock = {
@@ -157,30 +150,37 @@ in
       #     workspaceButtons = true;
       #     trayOutput = "none";
       #     fonts = {
-      #       names = [
-      #         "Maple Mono NF"
-      #       ];
-      #       size = 12.0;
+      #       names = [ "Maple Mono NF" ];
+      #       size = 13.0;
       #     };
       #     colors = {
-      #       statusline = "#cdd6f4";
       #       background = "#1e1e2e";
-      #       inactiveWorkspace = {
-      #         border = "#1e1e2e";
-      #         background = "#1e1e2e";
-      #         text = "#6c7086";
-      #       };
+      #       statusline = "#cdd6f4";
+      #       separator = "#45475a";
       #       focusedWorkspace = {
-      #         border = "#89b4fa";
-      #         background = "#89b4fa";
+      #         border = "#cba6f7";
+      #         background = "#cba6f7";
       #         text = "#1e1e2e";
       #       };
       #       activeWorkspace = {
-      #         border = "#313244";
+      #         border = "#45475a";
       #         background = "#313244";
       #         text = "#cdd6f4";
       #       };
+      #       inactiveWorkspace = {
+      #         border = "#313244";
+      #         background = "#1e1e2e";
+      #         text = "#a6adc8";
+      #       };
+      #       urgentWorkspace = {
+      #         border = "#f38ba8";
+      #         background = "#f38ba8";
+      #         text = "#1e1e2e";
+      #       };
       #     };
+      #     extraConfig = ''
+      #       status_padding 5
+      #     '';
       #   }
       # ];
 
