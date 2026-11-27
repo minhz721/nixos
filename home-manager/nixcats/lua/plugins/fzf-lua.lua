@@ -7,6 +7,9 @@ require("fzf-lua").setup({
 	previewers = { builtin = { syntax = true } },
 })
 
+-- Use fzf-lua for vim.ui.select (rustaceanvim runnables, code actions, ...).
+require("fzf-lua").register_ui_select()
+
 local function fzf(cmd)
 	return function()
 		if cmd == "TodoFzfLua" then

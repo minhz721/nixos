@@ -170,11 +170,6 @@ local servers = {
 		filetypes = { "css", "scss", "less" },
 	},
 
-	jsonls = {
-		cmd = { "vscode-json-language-server", "--stdio" },
-		filetypes = { "json", "jsonc" },
-	},
-
 	emmet_language_server = {
 		cmd = { "emmet-language-server", "--stdio" },
 		filetypes = {
