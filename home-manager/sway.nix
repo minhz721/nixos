@@ -18,6 +18,24 @@ in
 
   services.mako = {
     enable = true;
+    settings = {
+      font = "Maple Mono NF 11";
+      background-color = "#1e1e2e";
+      text-color = "#cdd6f4";
+      border-color = "#cba6f7";
+      progress-color = "over #313244";
+    };
+    extraConfig = ''
+      [urgency=low]
+      border-color=#a6adc8
+
+      [urgency=normal]
+      border-color=#cba6f7
+
+      [urgency=high]
+      border-color=#fab387
+      text-color=#f38ba8
+    '';
   };
 
   programs.hyprlock = {

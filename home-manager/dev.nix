@@ -50,7 +50,7 @@ in
     nodejs
 
     # Nix Ecosystem
-    nixd
+    nil
     nixfmt
 
     # Web & Scripting
@@ -61,9 +61,6 @@ in
     ruff
     ty
     shfmt
-
-    # Lua
-    stylua
 
     # Build & Config Tools
     gnumake
