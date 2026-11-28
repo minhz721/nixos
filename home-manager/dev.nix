@@ -1,11 +1,9 @@
-{
-  pkgs,
-  pkgsUnstable,
-  ...
-}:
+{ pkgs, pkgsUnstable, ... }:
+
 let
   rustToolchain = pkgs.symlinkJoin {
     name = "rust-toolchain";
+
     paths = with pkgsUnstable; [
       cargo
       rustc
@@ -30,16 +28,14 @@ in
     cargo-machete
 
     # CLI tools
-    fd
     ripgrep
-    zoxide
     curl
-    jq
     yq
-    bat
-    fzf
 
-    # Development Applications & CLI
+    # Terminal utilities
+    bottom
+
+    # Development Applications
     lazydocker
     lazygit
     lazysql
@@ -67,14 +63,17 @@ in
     taplo
   ]);
 
+  # Biome
   xdg.configFile."biome/biome.json".text = builtins.toJSON {
     formatter = {
       enabled = true;
       indentStyle = "tab";
       indentWidth = 4;
     };
+
     html.formatter.enabled = true;
     javascript.formatter.semicolons = "always";
+
     overrides = [
       {
         includes = [
@@ -82,6 +81,7 @@ in
           "**/*.yml"
           "**/*.md"
         ];
+
         formatter = {
           indentStyle = "space";
           indentWidth = 2;

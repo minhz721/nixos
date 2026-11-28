@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+
+{
   home.sessionPath = [
     "$HOME/.bun/bin"
   ];
@@ -13,19 +15,24 @@
   programs.starship = {
     enable = true;
     enableFishIntegration = true;
+
     settings = {
       add_newline = false;
       format = "$directory$git_branch$git_status$character";
+
       directory = {
         truncation_length = 3;
         truncate_to_repo = true;
       };
+
       git_branch = {
         format = "[$branch]($style) ";
       };
+
       git_status = {
         format = "[$all_status$ahead_behind]($style) ";
       };
+
       character = {
         success_symbol = "[❯](bold green)";
         error_symbol = "[❯](bold red)";
@@ -33,13 +40,48 @@
     };
   };
 
+  # Atuin
+  programs.atuin = {
+    enable = true;
+    enableFishIntegration = true;
+
+    settings = {
+      style = "compact";
+      inline_height = 20;
+      show_preview = true;
+      enter_accept = false;
+    };
+  };
+
+  # FZF
+  programs.fzf = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
+  # Zoxide
+  programs.zoxide = {
+    enable = true;
+    enableFishIntegration = true;
+  };
+
+  # FD
+  programs.fd.enable = true;
+
+  # Bat
+  programs.bat.enable = true;
+
+  # JQ
+  programs.jq.enable = true;
+
   # Fish
   programs.fish = {
     enable = true;
+
     interactiveShellInit = ''
       set fish_greeting
-      zoxide init fish | source
     '';
+
     plugins = with pkgs.fishPlugins; [
       {
         name = "done";
@@ -66,6 +108,7 @@
         src = bass.src;
       }
     ];
+
     shellAliases = {
       ls = "eza";
       ll = "eza -l";
@@ -84,7 +127,7 @@
       nhca = "nh clean all";
     };
 
-    # Abbreviations expand while typing, so history keeps the full command.
+    # Abbreviations
     shellAbbrs = {
       g = "git";
       ga = "git add";
@@ -109,11 +152,13 @@
   # Git
   programs.git = {
     enable = true;
+
     settings = {
       user = {
         name = "leomin";
         email = "minhtd721@gmail.com";
       };
+
       init.defaultBranch = "master";
       push.autoSetupRemote = true;
       color.ui = "auto";

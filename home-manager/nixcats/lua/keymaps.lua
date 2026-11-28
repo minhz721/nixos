@@ -2,16 +2,20 @@ local map = vim.keymap.set
 
 -- File operations
 map({ "n", "i", "x" }, "<C-s>", "<Esc><cmd>write<CR>", {
-	silent = true,
-	desc = "Save file",
+  silent = true,
+  desc = "Save file",
 })
 map({ "n", "x" }, "<leader>w", "<Esc><cmd>write<CR>", {
-	silent = true,
-	desc = "Write file and return to Normal mode",
+  silent = true,
+  desc = "Write file and return to Normal mode",
 })
 
 -- Select all
-map({ "n", "i", "x" }, "<C-a>", "<Esc>ggVG", { desc = "Select all" })
+map({ "n", "i", "x" }, "<C-a>", function()
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>ggVG", true, false, true), "n", false)
+end, {
+  desc = "Select all",
+})
 
 -- Undo & Redo
 map("n", "<C-z>", "u", { desc = "Undo" })
@@ -54,45 +58,45 @@ map("x", "<S-Tab>", "<gv", { desc = "Outdent selection" })
 
 -- Buffer navigation & close
 map("n", "<Tab>", "<cmd>BufferLineCycleNext<CR>", {
-	desc = "Next buffer",
+  desc = "Next buffer",
 })
 map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<CR>", {
-	desc = "Previous buffer",
+  desc = "Previous buffer",
 })
 map("n", "<leader>ba", function()
-	local ok, snacks = pcall(require, "snacks")
-	if ok then
-		snacks.bufdelete.all()
-	else
-		vim.cmd("%bdelete!")
-	end
+  local ok, snacks = pcall(require, "snacks")
+  if ok then
+    snacks.bufdelete.all()
+  else
+    vim.cmd("%bdelete!")
+  end
 end, {
-	silent = true,
-	desc = "Close all open buffers",
+  silent = true,
+  desc = "Close all open buffers",
 })
 
 map("n", "<leader>bd", function()
-	local ok, snacks = pcall(require, "snacks")
-	if ok then
-		snacks.bufdelete()
-	else
-		vim.cmd("bdelete")
-	end
+  local ok, snacks = pcall(require, "snacks")
+  if ok then
+    snacks.bufdelete()
+  else
+    vim.cmd("bdelete")
+  end
 end, { desc = "Close current buffer" })
 map("n", "<leader>bo", function()
-	local ok, snacks = pcall(require, "snacks")
-	if ok then
-		snacks.bufdelete.other()
-	end
+  local ok, snacks = pcall(require, "snacks")
+  if ok then
+    snacks.bufdelete.other()
+  end
 end, { desc = "Close other buffers" })
 
 -- Leader shortcuts
 map("n", "<leader>/", "gcc", {
-	remap = true,
-	desc = "Toggle comment",
+  remap = true,
+  desc = "Toggle comment",
 })
 map("x", "<leader>/", "gc", {
-	remap = true,
-	desc = "Toggle comment",
+  remap = true,
+  desc = "Toggle comment",
 })
 map("n", "<leader>q", "<cmd>quit<CR>", { desc = "Quit Neovim" })
