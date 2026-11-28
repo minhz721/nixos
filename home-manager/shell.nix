@@ -1,8 +1,11 @@
 { pkgs, ... }:
 
 {
-  home.sessionPath = [
-    "$HOME/.bun/bin"
+  home.packages = with pkgs; [
+    ripgrep
+    curl
+    yq
+    bottom
   ];
 
   # Eza
@@ -149,7 +152,6 @@
     };
   };
 
-  # Git
   programs.git = {
     enable = true;
 

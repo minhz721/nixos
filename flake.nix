@@ -20,7 +20,6 @@
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs =
@@ -31,6 +30,7 @@
     }@inputs:
     let
       system = "x86_64-linux";
+      user = "leomin"; # Dùng chung cho cả username và hostname
 
       # package unstable
       pkgsUnstable = import inputs.nixpkgs-unstable {
@@ -39,11 +39,15 @@
       };
     in
     {
-      nixosConfigurations.leomin = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.${user} = nixpkgs.lib.nixosSystem {
         inherit system;
 
         specialArgs = {
-          inherit inputs pkgsUnstable;
+          inherit
+            inputs
+            pkgsUnstable
+            user
+            ;
         };
 
         modules = [
@@ -56,10 +60,14 @@
               backupFileExtension = "bak";
 
               extraSpecialArgs = {
-                inherit inputs pkgsUnstable;
+                inherit
+                  inputs
+                  pkgsUnstable
+                  user
+                  ;
               };
 
-              users.leomin = import ./home-manager/default.nix;
+              users.${user} = import ./home-manager/default.nix;
             };
           }
         ];

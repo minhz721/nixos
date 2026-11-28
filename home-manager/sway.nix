@@ -14,6 +14,7 @@ in
     slurp
     wl-clipboard
     zenity
+    libnotify
   ];
 
   services.mako = {

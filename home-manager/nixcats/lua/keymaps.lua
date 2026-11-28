@@ -12,7 +12,11 @@ map({ "n", "x" }, "<leader>w", "<Esc><cmd>write<CR>", {
 
 -- Select all
 map({ "n", "i", "x" }, "<C-a>", function()
-  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<Esc>ggVG", true, false, true), "n", false)
+  local mouse = vim.o.mouse
+  vim.o.mouse = ""
+  vim.cmd("normal! \27")
+  vim.cmd("normal! ggVG")
+  vim.o.mouse = mouse
 end, {
   desc = "Select all",
 })

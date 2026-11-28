@@ -19,7 +19,8 @@
   programs.nix-ld.enable = true;
 
   environment.systemPackages = with pkgs; [
-    # Disk / Filesystem    ntfs3g
+    # Disk / Filesystem
+    ntfs3g
     exfatprogs
 
     # Core CLI & Archives

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 
 {
   # Firmware & Kernel Tweaks (Ryzen 5 4600G - Zen 2 + Vega 7 iGPU)
@@ -28,7 +28,7 @@
   };
 
   # Networking & Firewall (LocalSend)
-  networking.hostName = "leomin";
+  networking.hostName = user;
   networking.networkmanager.enable = true;
   networking.firewall = {
     enable = true;
@@ -47,7 +47,7 @@
     pulse.enable = true;
   };
 
-  #Bluetooth & Blueman
+  # Bluetooth & Blueman
   boot.kernelModules = [ "uhid" ];
   hardware.bluetooth = {
     enable = true;
@@ -59,7 +59,7 @@
   };
   services.blueman.enable = true;
 
-  #Security & Authentication
+  # Security & Authentication
   security.polkit.enable = true;
   services.gnome.gnome-keyring.enable = true;
 
@@ -78,7 +78,7 @@
   };
 
   # Storage & File Systems
-  # udsks2 + gvfs lo automount cho file manager;
+  # udisks2 + gvfs lo automount cho file manager;
   services.udisks2.enable = true;
   services.gvfs.enable = true;
   programs.dconf.enable = true;
