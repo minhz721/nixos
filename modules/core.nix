@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  user,
+  ...
+}:
 
 {
   # Bootloader
@@ -35,9 +40,9 @@
   # User Account & Default Fish Shell
   programs.fish.enable = true;
 
-  users.users."leomin" = {
+  users.users.${user} = {
     isNormalUser = true;
-    description = "leomin";
+    description = user;
     shell = pkgs.fish;
     extraGroups = [
       "networkmanager"
@@ -52,6 +57,6 @@
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "${config.users.users.leomin.home}/nixos";
+    flake = "${config.users.users.${user}.home}/nixos";
   };
 }

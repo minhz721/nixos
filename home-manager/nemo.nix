@@ -77,32 +77,9 @@ let
   assoc = app: types: lib.genAttrs types (_: [ app ]);
 in
 {
-  home.packages = with pkgs; [
-    # File Manager & Extraction
-    nemo
+  home.packages = [
+    pkgs.nemo
     extract
-    libnotify # notify-send (wallpaper script, fish "done" plugin)
-
-    # Archive & System Utilities
-    czkawka
-
-    # Multimedia
-    imv
-    mpv
-    ffmpeg
-    cava
-
-    # Disk / Filesystem GUI
-    gnome-disk-utility
-
-    # Desktop Applications
-    zathura
-    mission-center
-    localsend
-
-    # Communication & API
-    telegram-desktop
-    bruno
   ];
 
   xdg.dataFile."nemo/actions/ghostty.nemo_action".text = ''
@@ -116,6 +93,7 @@ in
     Extensions=dir;
     Quote=double
   '';
+
   dconf.settings = {
     "org/nemo/preferences" = {
       default-folder-viewer = "list-view";
@@ -134,7 +112,6 @@ in
       sidebar-bookmark-breakpoint = 5;
       start-with-sidebar = true;
     };
-    "org/gnome/desktop/privacy".remember-recent-files = false;
   };
 
   xdg.desktopEntries.nemo-extract = {
@@ -145,52 +122,8 @@ in
     noDisplay = true;
   };
 
-  xdg.userDirs = {
-    enable = true;
-    createDirectories = true;
-  };
-
-  xdg.mimeApps = {
-    enable = true;
-    defaultApplications = {
-      "inode/directory" = [ "nemo.desktop" ];
-      "application/pdf" = [ "org.pwmt.zathura.desktop" ];
-    }
-    // assoc "thorium.desktop" [
-      "text/html"
-      "application/xhtml+xml"
-      "x-scheme-handler/http"
-      "x-scheme-handler/https"
-      "x-scheme-handler/about"
-    ]
-    // assoc "imv.desktop" [
-      "image/jpeg"
-      "image/webp"
-      "image/bmp"
-      "image/svg+xml"
-      "image/tiff"
-      "image/gif"
-      "image/png"
-      "image/avif"
-    ]
-    // assoc "mpv.desktop" [
-      "video/x-matroska"
-      "video/webm"
-      "video/avi"
-      "video/x-msvideo"
-      "video/mp4"
-      "video/quicktime"
-      "video/mpeg"
-      "audio/mpeg"
-      "audio/wav"
-      "audio/x-wav"
-      "audio/flac"
-      "audio/x-flac"
-      "audio/ogg"
-      "audio/opus"
-      "audio/mp4"
-      "audio/aac"
-    ]
-    // assoc "nemo-extract.desktop" archiveMimes;
-  };
+  xdg.mimeApps.defaultApplications = {
+    "inode/directory" = [ "nemo.desktop" ];
+  }
+  // assoc "nemo-extract.desktop" archiveMimes;
 }

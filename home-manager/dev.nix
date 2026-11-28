@@ -14,9 +14,19 @@ let
   };
 in
 {
+  home.sessionPath = [
+    "$HOME/.bun/bin"
+  ];
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   home.packages = [
     rustToolchain
     pkgs.gcc
+    pkgs.bruno
   ]
   ++ (with pkgsUnstable; [
     # Rust tools
@@ -26,14 +36,6 @@ in
     cargo-audit
     cargo-deny
     cargo-machete
-
-    # CLI tools
-    ripgrep
-    curl
-    yq
-
-    # Terminal utilities
-    bottom
 
     # Development Applications
     lazydocker

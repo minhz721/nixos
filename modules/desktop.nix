@@ -2,6 +2,7 @@
   pkgs,
   pkgsUnstable,
   inputs,
+  user,
   ...
 }:
 
@@ -78,8 +79,7 @@
       appearance.scheme = "Catppuccin";
       keyboard.layout = "us";
       output.name = "DP-1";
-      user.default = "leomin";
+      user.default = user;
     };
   };
-
 }

@@ -17,7 +17,7 @@ choice=$(
 
 case "$choice" in
 0)
-	exec "$SCRIPT_DIR/change-wallpaper.sh"
+	exec "$SCRIPT_DIR/wallpaper.sh"
 	;;
 1)
 	systemctl poweroff
