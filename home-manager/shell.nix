@@ -54,6 +54,14 @@
         src = autopair.src;
       }
       {
+        name = "sponge";
+        src = sponge.src;
+      }
+      {
+        name = "puffer";
+        src = puffer.src;
+      }
+      {
         name = "bass";
         src = bass.src;
       }
@@ -65,6 +73,19 @@
       lt = "eza --tree";
       l = "eza -lah --git --icons";
 
+      lg = "lazygit";
+      ld = "lazydocker";
+      lsql = "lazysql";
+
+      rebuild = "sudo nixos-rebuild switch --flake";
+      flake-update = "nix flake update";
+      nix-clean = "sudo nix-collect-garbage -d";
+      nhos = "nh os switch";
+      nhca = "nh clean all";
+    };
+
+    # Abbreviations expand while typing, so history keeps the full command.
+    shellAbbrs = {
       g = "git";
       ga = "git add";
       gaa = "git add --all";
@@ -82,16 +103,6 @@
       gsl = "git stash list";
       gsp = "git stash pop";
       gsc = "git stash clear";
-
-      lg = "lazygit";
-      ld = "lazydocker";
-      lsql = "lazysql";
-
-      rebuild = "sudo nixos-rebuild switch --flake";
-      flake-update = "nix flake update";
-      nix-clean = "sudo nix-collect-garbage -d";
-      nhos = "nh os switch";
-      nhca = "nh clean all";
     };
   };
 
