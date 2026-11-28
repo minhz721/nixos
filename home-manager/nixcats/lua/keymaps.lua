@@ -10,14 +10,18 @@ map({ "n", "x" }, "<leader>w", "<Esc><cmd>write<CR>", {
   desc = "Write file and return to Normal mode",
 })
 
--- Select all
-map({ "n", "i", "x" }, "<C-a>", function()
-  local mouse = vim.o.mouse
-  vim.o.mouse = ""
-  vim.cmd("normal! \27")
-  vim.cmd("normal! ggVG")
-  vim.o.mouse = mouse
-end, {
+-- -- Select all
+-- map({ "n", "i", "x" }, "<C-a>", function()
+--   local mouse = vim.o.mouse
+--   vim.o.mouse = ""
+--   vim.cmd("normal! \27")
+--   vim.cmd("normal! ggVG")
+--   vim.o.mouse = mouse
+-- end, {
+--   desc = "Select all",
+-- })
+
+map("n", "<C-a>", "gg<S-v>G", {
   desc = "Select all",
 })
 
