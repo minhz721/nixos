@@ -16,11 +16,6 @@
       url = "github:BirdeeHub/nixCats-nvim";
     };
 
-    thorium = {
-      url = "github:Rishabh5321/custom-packages-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     noctalia-greeter = {
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
