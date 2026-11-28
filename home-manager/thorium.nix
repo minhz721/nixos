@@ -2,7 +2,7 @@
 let
   thoriumPkg = pkgs.callPackage ../packages/thorium { };
   thoriumWrapped = pkgs.symlinkJoin {
-    name = "thorium-wrapped";
+    name = "${thoriumPkg.name}-wrapped";
     paths = [ thoriumPkg ];
     nativeBuildInputs = [
       pkgs.makeWrapper
@@ -15,6 +15,7 @@ let
         --add-flags "--ozone-platform=wayland" \
         --add-flags "--enable-wayland-ime"
     '';
+    meta = thoriumPkg.meta;
   };
 in
 {

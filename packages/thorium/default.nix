@@ -29,33 +29,35 @@ pkgs.appimageTools.wrapType2 {
         -print -quit
     )
 
-    if [ -n "$desktop_src" ]; then
-      install -Dm444 \
-        "$desktop_src" \
-        "$out/share/applications/thorium-browser.desktop"
-
-      desktop_file="$out/share/applications/thorium-browser.desktop"
-
-      sed -i -E \
-        's|^Exec=.*|Exec=thorium %U|' \
-        "$desktop_file"
-
-      sed -i \
-        's/^Icon=.*/Icon=thorium/' \
-        "$desktop_file"
+    if [ -z "$desktop_src" ]; then
+      echo "thorium-browser.desktop not found in the AppImage" >&2
+      exit 1
     fi
 
-    # PNG icon
-    icon_src=$(
-      find "${appimageContents}" \
-        -iname "*thorium*.png" \
-        -print -quit
-    )
+    desktop_file="$out/share/applications/thorium-browser.desktop"
+    install -Dm444 "$desktop_src" "$desktop_file"
 
-    if [ -n "$icon_src" ]; then
-      install -Dm444 \
-        "$icon_src" \
-        "$out/share/icons/hicolor/512x512/apps/thorium.png"
+    # Only rewrite the command name, so the [Desktop Action ...] entries keep their
+    # arguments (e.g. --incognito), and drop --no-sandbox to keep the sandbox enabled.
+    sed -i -E \
+      -e 's|^(Exec=)[^ ]*|\1thorium|' \
+      -e 's| --no-sandbox||g' \
+      "$desktop_file"
+    sed -i 's/^Icon=.*/Icon=thorium/' "$desktop_file"
+
+    # PNG icons: keep every hicolor size shipped in the AppImage
+    found_icon=""
+    while IFS= read -r icon; do
+      size=$(basename "$(dirname "$(dirname "$icon")")")
+      install -Dm444 "$icon" "$out/share/icons/hicolor/$size/apps/thorium.png"
+      found_icon=1
+    done < <(find "${appimageContents}" -path "*/icons/hicolor/*/apps/*thorium*.png")
+
+    if [ -z "$found_icon" ]; then
+      icon_src=$(find "${appimageContents}" -iname "*thorium*.png" -print -quit)
+      if [ -n "$icon_src" ]; then
+        install -Dm444 "$icon_src" "$out/share/icons/hicolor/512x512/apps/thorium.png"
+      fi
     fi
 
     # SVG icon
@@ -76,6 +78,7 @@ pkgs.appimageTools.wrapType2 {
     description = "Thorium Browser (AVX2)";
     homepage = "https://github.com/gz83/thorium";
     license = licenses.bsd3;
+    sourceProvenance = [ sourceTypes.binaryNativeCode ];
     platforms = [ "x86_64-linux" ];
     mainProgram = pname;
   };
